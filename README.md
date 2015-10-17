@@ -1,10 +1,10 @@
 # About
-Bot for the chat program [Discord](https://discordapp.com/).
+A bot for the chat program [Discord](https://discordapp.com/).
 
 # How to use
 Install [node.js](https://nodejs.org/en/)
 
-Configure auth.json with required information
+Configure auth.json with the required information
 
 Open the node.js command prompt and write:
 * cd path/to/folder/Gravebot
@@ -14,7 +14,9 @@ Open the node.js command prompt and write:
 # Commands:
 * **!avatar** -> Responds with the Avatar image of the sender
 * **!ayylmao** -> All dayy lmao
+* **!commands** -> Lists all commands
 * **!gif** *gif tags* -> Gets a gif from Giphy matching the given tags
+* **!help** -> Lists all commands
 * **!image** *image tags* -> Gets an image from Google matching the given tags
 * **!join-server** *invite* -> Joins the server the bot is invited to
 * **!kappa** -> Kappa
