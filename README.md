@@ -4,7 +4,7 @@ A bot for the chat program [Discord](https://discordapp.com/).
 # How to use
 Install [node.js](https://nodejs.org/en/)
 
-Configure auth.json with the required information
+Rename auth.example to auth.json and fill in the required information
 
 Open the node.js command prompt and write:
 * cd path/to/folder/Gravebot
