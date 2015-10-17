@@ -6,16 +6,16 @@ A bot for the chat program [Discord](https://discordapp.com/).
 ### Windows:
 Install [node.js](https://nodejs.org/en/)
 
-Install [python v2.7.3](https://www.python.org) [32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi) [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi)
+Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 
 Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 
-Install [node-gyp](https://github.com/nodejs/node-gyp) (open the node.js command prompt and write **npm install -g node-gyp**)
+Install [node-gyp](https://github.com/nodejs/node-gyp) (open the command prompt and write **npm install -g node-gyp**)
 
 See **Launching the bot**
 
 ### Linux:
-Install [node.js]()
+Install [node.js](https://nodejs.org/en/)
 
 Install [gcc](https://gcc.gnu.org) (open the terminal and write **sudo apt-get install g++**)
 
@@ -24,9 +24,9 @@ Install [node-gyp](https://github.com/nodejs/node-gyp) (open the terminal and wr
 See **Launching the bot**
 
 ## Launching the bot:
-Rename auth.example to auth.json and fill in the required information
+Rename auth.json.example to auth.json and fill in the required information
 
-Open the node.js command prompt and write:
+Open the command prompt/terminal and write:
 * cd path/to/folder/Gravebot
 * npm install
 * npm start
