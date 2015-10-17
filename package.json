@@ -28,9 +28,6 @@
   "engines": {
     "node": "4.1.2"
   },
-  "engines": {
-    "node": "4.1.2"
-  },
   "scripts": {
     "start": "node discord_bot.js"
   },
