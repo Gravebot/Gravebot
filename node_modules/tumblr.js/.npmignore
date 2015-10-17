@@ -1,0 +1,9 @@
+credentials.json
+.idea
+node_modules
+
+coverage.html
+lib-cov
+
+*.swp
+*.swo

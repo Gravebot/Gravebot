@@ -1,0 +1,7 @@
+node_modules
+.DS_Store*
+.hubot_history
+*.swp
+
+# ignore shell script w/ environment variables
+bin/rexbot

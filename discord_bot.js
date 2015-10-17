@@ -274,7 +274,7 @@ var bot = new Discord.Client();
 bot.on("ready", function () {
 	console.log("Ready to begin! Serving in " + bot.channels.length + " channels");
   //Uncomment and insert a number to set the game your bot will be playing
-  //bot.setPlayingGame(329);
+  //bot.setPlayingGame();
 });
 
 bot.on("disconnected", function () {
