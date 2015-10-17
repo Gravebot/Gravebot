@@ -1,0 +1,32 @@
+{
+  "name": "Gravebot",
+  "version": "0.0.1",
+  "description": "Bot for the chat program Discord",
+  "readme": "README.md",
+  "maintainers": [],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "GNU",
+  "dependencies": {
+    "discord.js": "*",
+    "google": "1.1.x",
+    "google-images": "0.1.x",
+    "html-to-text": "*",
+    "imgflipper": "*",
+    "multiline": "^1.0.2",
+    "nock": "1.7.x",
+    "querystring": "*",
+    "request": ">=2.58.0",
+    "sinon": "1.14.x",
+    "tumblr.js": "0.0.x",
+    "underscore": "1.8.x",
+    "urban": "0.2.x",
+    "wikijs": "*",
+    "winston": "1.0.x",
+    "youtube-node": "1.2.x"
+  },
+  "main": "discord_bot.js"
+}
