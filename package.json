@@ -1,32 +1,42 @@
 {
-  "name": "Gravebot",
-  "version": "0.0.1",
-  "description": "Bot for the chat program Discord",
-  "readme": "README.md",
-  "maintainers": [],
-  "author": "",
+  "name": "gravebot",
+  "version": "1.0.0",
+  "description": "A bot for the chat program Discord",
+  "main": "discord_bot.js",
+  "dependencies": {
+    "google-images": "^0.1.2",
+    "discord.js": "^3.8.2",
+    "imgflipper": "^1.0.1",
+    "html-to-text": "^1.3.2",
+    "google": "^1.1.0",
+    "nock": "^1.7.1",
+    "multiline": "^1.0.2",
+    "querystring": "^0.2.0",
+    "request": "^2.65.0",
+    "sinon": "^1.14.1",
+    "tumblr.js": "^0.0.5",
+    "underscore": "^1.8.3",
+    "urban": "^0.2.4",
+    "wikijs": "^0.1.1",
+    "winston": "^1.0.2",
+    "youtube-node": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "!kappa"
+  },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/Gravestorm/Gravebot.git"
   },
-  "license": "GNU",
-  "dependencies": {
-    "discord.js": "*",
-    "google": "1.1.x",
-    "google-images": "0.1.x",
-    "html-to-text": "*",
-    "imgflipper": "*",
-    "multiline": "^1.0.2",
-    "nock": "1.7.x",
-    "querystring": "*",
-    "request": ">=2.58.0",
-    "sinon": "1.14.x",
-    "tumblr.js": "0.0.x",
-    "underscore": "1.8.x",
-    "urban": "0.2.x",
-    "wikijs": "*",
-    "winston": "1.0.x",
-    "youtube-node": "1.2.x"
+  "keywords": [
+    "Discord",
+    "Bot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gravestorm/Gravebot/issues"
   },
-  "main": "discord_bot.js"
+  "homepage": "https://github.com/Gravestorm/Gravebot#readme"
 }
