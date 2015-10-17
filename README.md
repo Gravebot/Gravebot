@@ -8,6 +8,7 @@ Configure auth.json with the required information
 
 Open the node.js command prompt and write:
 * cd path/to/folder/Gravebot
+* npm install
 * node discord_bot.js
 
 # Commands:
