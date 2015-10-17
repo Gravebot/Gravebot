@@ -25,6 +25,9 @@
   "scripts": {
     "test": "!kappa"
   },
+  "engines": {
+    "node": "4.1.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gravestorm/Gravebot.git"
