@@ -9,7 +9,7 @@ Rename auth.example to auth.json and fill in the required information
 Open the node.js command prompt and write:
 * cd path/to/folder/Gravebot
 * npm install
-* node discord_bot.js
+* npm start
 
 # Commands:
 * **!avatar** -> Responds with the Avatar image of the sender
