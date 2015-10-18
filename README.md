@@ -10,16 +10,16 @@ Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org
 
 Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 
-Install [node-gyp](https://github.com/nodejs/node-gyp) (open the command prompt and write **npm install -g node-gyp**)
+Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write **npm install -g node-gyp**)
 
 See **Launching the bot**
 
 ### Linux:
 Install [node.js](https://nodejs.org/en/)
 
-Install [gcc](https://gcc.gnu.org) (open the terminal and write **sudo apt-get install g++**)
+Install [gcc](https://gcc.gnu.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write **sudo apt-get install g++**)
 
-Install [node-gyp](https://github.com/nodejs/node-gyp) (open the terminal and write **sudo npm install -g node-gyp**)
+Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write **sudo npm install -g node-gyp**)
 
 See **Launching the bot**
 
