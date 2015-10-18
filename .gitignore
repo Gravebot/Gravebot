@@ -28,5 +28,3 @@ node_modules
 
 # Removed auth.json file
 auth.json
-
-Procfile
