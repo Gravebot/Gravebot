@@ -29,7 +29,7 @@ Rename auth.json.example to auth.json and fill in the required information
 Open the command prompt/terminal and write:
 * cd path/to/folder/Gravebot
 * npm install
-* npm start
+* npm start **OR** double click launch.bat
 
 # Commands:
 * **!avatar** -> Responds with the Avatar image of the sender
