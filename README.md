@@ -24,7 +24,7 @@ Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http
 See **Launching the bot**
 
 ## Launching the bot:
-Rename auth.json.example to auth.json and fill in the required information
+Rename **auth.json.example** to **auth.json** and fill in the required information
 
 Double click **npm install.bat**
 
