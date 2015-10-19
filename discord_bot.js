@@ -15,27 +15,27 @@ var config = {
 };
 
 var help = multiline(function(){/*
-```
+```php
 !avatar
      Responds with the Avatar image of the sender
 
 !ayylmao
      All dayy lmao
 
-!gif <gif tags>
-     Gets a gif from Giphy matching the given tags
+!gif 'gif tags
+'     Gets a gif from Giphy matching the given tags
 
-!image <image tags>
-     Gets an image from Google matching the given tags
+!image 'image tags
+'     Gets an image from Google matching the given tags
 
-!join-server <invite>
-     Joins the server the bot is invited to
+!join-server 'invite
+'     Joins the server the bot is invited to
 
 !kappa
      Kappa
 
-!meme <meme name> "top text" "bottom text"
-     Creates a meme with the given meme name and text
+!meme 'meme name "top text" "bottom text"
+'     Creates a meme with the given meme name and text
 
 !memehelp
      Lists available meme names
@@ -49,17 +49,17 @@ var help = multiline(function(){/*
 !servers
      Lists all the servers the bot is connected to
 
-!urban <search terms>
-     Returns the summary of the first matching search result from Urban Dictionary
+!urban 'search terms
+'     Returns the summary of the first matching search result from Urban Dictionary
 
 !uptime
      Shows how long the bot has been online
 
-!wiki <search terms>
-     Returns the summary of the first matching search result from Wikipedia
+!wiki 'search terms
+'     Returns the summary of the first matching search result from Wikipedia
 
-!youtube <video tags>
-     Gets a video from Youtube matching the given tags```
+!youtube 'video tags
+'     Gets a video from Youtube matching the given tags```
 */});
 
 var memehelp = multiline(function(){/*
@@ -135,24 +135,19 @@ var meme = {
 
 var commands = {
     "avatar": {
-      description: "Responds with the Avatar image of the sender",
       process: function(bot, msg){bot.sendMessage(msg.channel, msg.sender.avatarURL);}
     },
     "ayylmao": {
-      description: "All dayy lmao",
       process: function(bot, msg){bot.sendFile(msg.channel, "./images/Ayylmao.png");}
     },
     "commands": {
-        description: "Lists all commands",
         process: function(bot, msg) {bot.sendMessage(msg.channel, help);}
     },
     "gif": {
-	       usage: "<gif tags>",
-         description: "Gets a gif from Giphy matching the given tags",
          process: function(bot, msg, suffix) {
            var query = suffix;
            if(!query) {
-               bot.sendMessage(msg.channel, "Usage: !gif <gif tags>");
+               bot.sendMessage(msg.channel, "Usage: !gif **gif tags**");
                return;
            }
            var tags = suffix.split(" ");
@@ -167,27 +162,22 @@ var commands = {
 		  }
     },
     "help": {
-        description: "Lists all commands",
         process: function(bot, msg) {bot.sendMessage(msg.channel, help);}
     },
     "image": {
-        usage: "<image tags>",
-        description: "Gets an image from Google matching the given tags",
         process: function(bot, msg, suffix){
           var query = suffix;
           if(!query) {
-              bot.sendMessage(msg.channel, "Usage: !image <image tags>");
+              bot.sendMessage(msg.channel, "Usage: !image **image tags**");
               return;
           }
           google_image_plugin.respond(suffix, msg.channel, bot);}
     },
     "join-server": {
-        usage: "<invite>",
-        description: "Joins the server the bot is invited to",
         process: function(bot, msg, suffix) {
           var query = suffix;
           if(!query) {
-              bot.sendMessage(msg.channel, "Usage: !join-server <invite>");
+              bot.sendMessage(msg.channel, "Usage: !join-server **invite**");
               return;
           }
             console.log(suffix);
@@ -203,16 +193,13 @@ var commands = {
         }
     },
     "kappa": {
-      description: "Kappa",
       process: function(bot, msg){bot.sendFile(msg.channel, "./images/Kappa.png");}
     },
     "meme": {
-        usage: '<meme name> <"top text"> <"bottom text">',
-        description: "Creates a meme with the given meme name and text",
             process: function(bot, msg, suffix) {
               var query = suffix;
               if(!query) {
-                  bot.sendMessage(msg.channel, 'Usage: !meme <meme name> <"top text"> <"bottom text">');
+                  bot.sendMessage(msg.channel, 'Usage: !meme **meme name** **"top text"** **"bottom text"**');
                   return;
               }
               var tags = msg.content.split('"');
@@ -225,26 +212,21 @@ var commands = {
       }
     },
     "memehelp": {
-        description: "Lists available meme names",
         process: function(bot, msg) {bot.sendMessage(msg.channel, memehelp);}
     },
     "myid": {
-        description: "Responds with the user ID of the sender",
         process: function(bot, msg){bot.sendMessage(msg.channel, msg.author.id);}
     },
     "roll": {
-    description: "Rolls the dice",
     process: function(bot, msg, suffix) {
         var number = Math.floor(Math.random() * 6) + 1;
         bot.sendMessage(msg.channel, msg.sender + " Rolled " + number);
       }
     },
     "servers": {
-        description: "Lists all the servers the bot is connected to",
         process: function(bot, msg){bot.sendMessage(msg.channel, bot.servers);}
     },
     "uptime": {
-        description: "Shows how long the bot has been online",
         process: function(bot, msg){
           var uptimeh = Math.floor((bot.uptime / 1000) / (60*60));
           var uptimem = Math.floor((bot.uptime / 1000) % (60*60) / 60);
@@ -253,12 +235,10 @@ var commands = {
       }
     },
     "urban": {
-        usage: "<search terms>",
-        description: "Returns the summary of the first matching search result from Urban Dictionary",
         process: function(bot, msg, suffix) {
             var query = suffix;
             if(!query) {
-                bot.sendMessage(msg.channel, "Usage: !urban <search terms>");
+                bot.sendMessage(msg.channel, "Usage: !urban **search terms**");
                 return;
             }
             var Urban = require('urban');
@@ -274,12 +254,10 @@ var commands = {
         }
     },
     "wiki": {
-        usage: "<search terms>",
-        description: "Returns the summary of the first matching search result from Wikipedia",
         process: function(bot, msg, suffix) {
             var query = suffix;
             if(!query) {
-                bot.sendMessage(msg.channel, "Usage: !wiki <search terms>");
+                bot.sendMessage(msg.channel, "Usage: !wiki **search terms**");
                 return;
             }
             var Wiki = require('wikijs');
@@ -302,12 +280,10 @@ var commands = {
         }
     },
     "youtube": {
-        usage: "<video tags>",
-        description: "Gets a video from Youtube matching the given tags",
         process: function(bot, msg, suffix){
           var query = suffix;
           if(!query) {
-              bot.sendMessage(msg.channel, "Usage: !youtube <video tags>");
+              bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
               return;
           }
           youtube_plugin.respond(suffix, msg.channel, bot);}
