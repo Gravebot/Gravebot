@@ -1,9 +1,9 @@
 var Discord = require("discord.js");
 var AuthDetails = require("./auth.json");
-var youtube_plugin = new yt();
 var yt = require("./youtube_plugin");
-var google_image_plugin = new gi();
+var youtube_plugin = new yt();
 var gi = require("./google_image_plugin");
+var google_image_plugin = new gi();
 var multiline = require("multiline");
 var qs = require("querystring");
 
@@ -14,24 +14,9 @@ var config = {
     "permission": ["NORMAL"]
 };
 
-//If you want to add more memes, go to https://api.imgflip.com/popular_meme_ids
-var meme = {
-	"brace": 61546,
-	"mostinteresting": 61532,
-	"fry": 61520,
-	"onedoesnot": 61579,
-	"yuno": 61527,
-	"success": 61544,
-	"allthethings": 61533,
-	"doge": 8072285,
-	"drevil": 40945639,
-	"skeptical": 101711,
-	"notime": 442575,
-	"yodawg": 101716
-};
-
 var help = multiline(function(){/*
-```!avatar
+```
+!avatar
      Responds with the Avatar image of the sender
 
 !ayylmao
@@ -76,6 +61,47 @@ var help = multiline(function(){/*
 !youtube <video tags>
      Gets a video from Youtube matching the given tags```
 */});
+
+var memehelp = multiline(function(){/*
+```php
+`aliens` - Ancient Aliens
+
+`doge` - Such wow, Much meme
+
+`drevil` - Dr Evil
+
+`fry` - Not sure if ... or ...
+
+`highguy` - High Guy
+
+`idontalways` - I dont always ... but when I do ...
+
+`jackiechan` - Jackie Chan WTF
+
+`onedoesnot` - One Does Not Simply
+
+`spiderman` - Spiderman
+
+`yodawg` - Yo Dawg
+
+`yuno` - Y U No
+```
+*/});
+
+//If you want to add more memes, go to https://imgflip.com/memetemplates click on the wanted meme and click Blank Template on the right, then just copy the ID and name it
+var meme = {
+  "aliens": 101470,
+  "doge": 8072285,
+  "drevil": 40945639,
+  "fry": 61520,
+  "highguy": 101440,
+  "idontalways": 61532,
+  "jackiechan": 412211,
+  "onedoesnot": 61579,
+  "spiderman": 1366993,
+  "yodawg": 101716,
+	"yuno": 61527
+};
 
 var commands = {
     "avatar": {
@@ -170,13 +196,7 @@ var commands = {
     },
     "memehelp": {
         description: "Lists available meme names",
-        process: function(bot, msg) {
-            var str = "Currently available memes:\n"
-            for (var m in meme){
-                str += m + "\n"
-        }
-        bot.sendMessage(msg.channel, str);
-      }
+        process: function(bot, msg) {bot.sendMessage(msg.channel, memehelp);}
     },
     "myid": {
         description: "Responds with the user ID of the sender",
