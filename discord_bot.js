@@ -64,27 +64,27 @@ var help = multiline(function(){/*
 
 var memehelp = multiline(function(){/*
 ```php
-`aliens` - Ancient Aliens
+'aliens' - Ancient Aliens
 
-`doge` - Such wow, Much meme
+'doge' - Such wow, Much meme
 
-`drevil` - Dr Evil
+'drevil' - Dr Evil
 
-`fry` - Not sure if ... or ...
+'fry' - Not sure if ... or ...
 
-`highguy` - High Guy
+'highguy' - High Guy
 
-`idontalways` - I dont always ... but when I do ...
+'idontalways' - I dont always ... but when I do ...
 
-`jackiechan` - Jackie Chan WTF
+'jackiechan' - Jackie Chan WTF
 
-`onedoesnot` - One Does Not Simply
+'onedoesnot' - One Does Not Simply
 
-`spiderman` - Spiderman
+'spiderman' - Spiderman
 
-`yodawg` - Yo Dawg
+'yodawg' - Yo Dawg
 
-`yuno` - Y U No
+'yuno' - Y U No
 ```
 */});
 
