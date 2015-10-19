@@ -1,16 +1,11 @@
 var Discord = require("discord.js");
-var multiline = require("multiline");
-
-var yt = require("./youtube_plugin");
-var youtube_plugin = new yt();
-
-var gi = require("./google_image_plugin");
-var google_image_plugin = new gi();
-
 var AuthDetails = require("./auth.json");
+var youtube_plugin = new yt();
+var yt = require("./youtube_plugin");
+var google_image_plugin = new gi();
+var gi = require("./google_image_plugin");
+var multiline = require("multiline");
 var qs = require("querystring");
-
-var htmlToText = require('html-to-text');
 
 var config = {
     "api_key": "dc6zaTOxFJmzC",
@@ -273,6 +268,7 @@ var bot = new Discord.Client();
 
 bot.on("ready", function () {
 	console.log("Ready to begin! Serving in " + bot.channels.length + " channels");
+  //Sets the game the bot will be shown as playing, change the number for a different game (there is a list somewhere, but I forgot where)
   bot.setPlayingGame(329);
 });
 
