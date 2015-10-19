@@ -66,7 +66,11 @@ var memehelp = multiline(function(){/*
 ```php
 'aliens' - Ancient Aliens
 
-'doge' - Such wow, Much meme
+'cold' - Freezing Jack Nicholson
+
+'djpauly' - DJ Pauly
+
+'doge' - Such wow Much meme
 
 'drevil' - Dr Evil
 
@@ -78,9 +82,25 @@ var memehelp = multiline(function(){/*
 
 'jackiechan' - Jackie Chan WTF
 
-'onedoesnot' - One Does Not Simply
+'karate' - Karate Kyle
 
-'spiderman' - Spiderman
+'lebowsky' - Confused Lebowsky
+
+'mrbean' - If you know what I mean
+
+'nappa' - No Nappa its a trick
+
+'onedoesnot' - One does not simply
+
+'spidermanbed' - Spiderman bed
+
+'spidermandesk' - Spiderman desk
+
+'spidermanrails' - Spiderman rails
+
+'squidward' - Squidward beautiful vs ugly
+
+'takemymoney' - Shut up ant take my money
 
 'yodawg' - Yo Dawg
 
@@ -91,14 +111,24 @@ var memehelp = multiline(function(){/*
 //If you want to add more memes, go to https://imgflip.com/memetemplates click on the wanted meme and click Blank Template on the right, then just copy the ID and name it
 var meme = {
   "aliens": 101470,
+  "cold": 9106691,
+  "djpauly": 2005809,
   "doge": 8072285,
   "drevil": 40945639,
   "fry": 61520,
   "highguy": 101440,
   "idontalways": 61532,
   "jackiechan": 412211,
+  "karate": 61561,
+  "lebowsky": 1195347,
+  "mrbean": 583373,
+  "nappa": 295701,
   "onedoesnot": 61579,
-  "spiderman": 1366993,
+  "spidermanbed": 152145,
+  "spidermandesk": 1366993,
+  "spidermanrails": 413621,
+  "squidward": 285870,
+  "takemymoney": 176908,
   "yodawg": 101716,
 	"yuno": 61527
 };
