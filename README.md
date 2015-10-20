@@ -12,7 +12,7 @@ Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=98
 
 Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write **npm install -g node-gyp**)
 
-See **Launching the bot**
+See [Launching the bot](https://github.com/Gravestorm/Gravebot#launching-the-bot)
 
 ### Linux:
 Install [node.js](https://nodejs.org/en/)
@@ -21,7 +21,7 @@ Install [gcc](https://gcc.gnu.org) (open the [terminal](http://www.howtogeek.com
 
 Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write **sudo npm install -g node-gyp**)
 
-See **Launching the bot**
+See [Launching the bot](https://github.com/Gravestorm/Gravebot#launching-the-bot)
 
 ## Launching the bot:
 Rename **auth.json.example** to **auth.json** and fill in the required information
@@ -48,6 +48,3 @@ Double click **Launch.bat**
 * **!uptime** -> Shows how long the bot has been online
 * **!wiki** *search terms* -> Returns the summary of the first matching search result from Wikipedia
 * **!youtube** *video tags* -> Gets a video from Youtube matching the given tags
-
-# To do list:
-Voice addition.
