@@ -1,9 +1,12 @@
 var Discord = require("discord.js");
 var AuthDetails = require("./auth.json");
+
 var yt = require("./youtube_plugin");
 var youtube_plugin = new yt();
+
 var gi = require("./google_image_plugin");
 var google_image_plugin = new gi();
+
 var multiline = require("multiline");
 var qs = require("querystring");
 
@@ -280,14 +283,15 @@ var commands = {
         }
     },
     "youtube": {
-        process: function(bot, msg, suffix){
-          var query = suffix;
-          if(!query) {
-              bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
-              return;
+    process: function(bot, msg, suffix){
+        var query = suffix;
+        if(!query) {
+            bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
+            return;
           }
-          youtube_plugin.respond(suffix, msg.channel, bot);}
-    },
+        youtube_plugin.respond(suffix,msg.channel, bot);
+      }
+    }
 };
 
 var bot = new Discord.Client();
