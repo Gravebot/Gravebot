@@ -1,7 +1,8 @@
 # About
 A bot for the chat program [Discord](https://discordapp.com/).
 
-![Build Status](https://david-dm.org/gravestorm/gravebot.svg) [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
+[![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
+[![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 
 # How to use
 ## Preparation
