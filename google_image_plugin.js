@@ -1,6 +1,4 @@
 var util = require('util');
-var winston = require('winston');
-
 
 function GoogleImagePlugin () {
 	this.request = require('request');
@@ -35,7 +33,7 @@ GoogleImagePlugin.prototype.respond = function(query, channel, bot) {
 			bot.sendMessage(channel, data.responseData.results[0].unescapedUrl);
 		}
 	});
-	
+
 }
 
 GoogleImagePlugin.prototype._stripCommand = function(message) {

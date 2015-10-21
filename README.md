@@ -1,6 +1,8 @@
 # About
 A bot for the chat program [Discord](https://discordapp.com/).
 
+![Build Status](https://david-dm.org/gravestorm/gravebot.svg)
+
 # How to use
 ## Preparation
 ### Windows:
