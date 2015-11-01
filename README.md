@@ -5,6 +5,13 @@ A bot for the chat program [Discord](https://discordapp.com/).
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 
 # How to use
+# Invitation
+The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
+
+In order to do that, join the [Discord Bots](https://discord.gg/0cDvIgU2voWn4BaD) server and private message it with !join-server **Invitation** (e.g. 0cDvIgU2voWn4BaD)
+
+Though, if you still want to host it yourself, or mess around with the code, keep reading.
+
 ## Preparation
 ### Windows:
 Install [node.js](https://nodejs.org/en/)
@@ -34,6 +41,7 @@ Double click **npm install.bat**
 Double click **Launch.bat**
 
 # Commands:
+* **!aide** -> Lists all commands, with French descriptions
 * **!avatar** -> Responds with the Avatar image of the sender
 * **!ayylmao** -> All dayy lmao
 * **!commands** -> Lists all commands

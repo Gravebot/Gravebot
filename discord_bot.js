@@ -65,6 +65,55 @@ var help = multiline(function(){/*
      Gets a video from Youtube matching the given tags```
 */});
 
+var aide = multiline(function(){/*
+```php
+!avatar
+   Retourne l’avatar de l’utilisateur
+
+!ayylmao
+     All dayy lmao
+
+!gif 'gif tags'
+     Retourne un gif correspondant aux tags
+
+!image 'image tags'
+     Retourne une image correspondant aux tags
+
+!join-server 'invite'
+     Rejoint le serveur auquel le bot est invité
+
+!kappa
+     Kappa
+
+!meme 'meme name "top text" "bottom text"'
+     Crée un « meme » avec le texte choisis
+
+!memehelp
+     Liste tous les « meme » disponibles
+
+!myid
+     Retourne l’ID de l’utilisateur
+
+!roll
+     Fait rouler les dés
+
+!servers
+     Liste tous les serveurs auquel le bot est connecté
+
+!urban 'search terms'
+     Retourne la première définition de Urban Dictionary correspondant aux tags
+
+!uptime
+     Affiche la durée du bot en ligne
+
+!wiki 'search terms'
+     Retourne un résumé de la page Wikipedia correspondant aux tags
+
+!youtube 'video tags'
+     Retourne la vidéo youtube correspondant aux tags
+```
+*/});
+
 var memehelp = multiline(function(){/*
 ```php
 'aliens' - Ancient Aliens
@@ -137,6 +186,9 @@ var meme = {
 };
 
 var commands = {
+    "aide": {
+      process: function(bot, msg) {bot.sendMessage(msg.channel, aide);}
+    },
     "avatar": {
       process: function(bot, msg){bot.sendMessage(msg.channel, msg.sender.avatarURL);}
     },
@@ -311,13 +363,11 @@ bot.on("disconnected", function () {
 bot.on("message", function (msg) {
 	//Checks if the message is a command
 	if(msg.author.id != bot.user.id && msg.content[0] === '!') {
-		  var cmdTxt = msg.content.split(" ")[0].substring(1);
-      var suffix = msg.content.substring(cmdTxt.length+2);
+		  var cmdTxt = msg.content.toLowerCase().split(" ")[0].substring(1);
+      var suffix = msg.content.toLowerCase().substring(cmdTxt.length+2);
 		  var cmd = commands[cmdTxt];
       if(cmd) {
     cmd.process(bot, msg, suffix);
-		} else {
-			bot.sendMessage(msg.channel, "Invalid command " + cmdTxt);
 		}
 	}
 });

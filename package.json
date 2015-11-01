@@ -4,9 +4,9 @@
   "description": "A bot for the chat program Discord",
   "main": "discord_bot.js",
   "dependencies": {
-    "discord.js": "^3.8.2",
-    "google": "^1.1.0",
-    "google-images": "^0.1.2",
+    "discord.js": "^4.1.1",
+    "google": "^1.3.0",
+    "google-images": "^0.1.4",
     "imgflipper": "^1.0.1",
     "multiline": "^1.0.2",
     "querystring": "^0.2.0",
