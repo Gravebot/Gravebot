@@ -24,31 +24,73 @@
 
 <p>A bot for the chat program <a href="https://discordapp.com/">Discord</a>.</p>
 
+<p><a href="https://david-dm.org/gravestorm/gravebot"><img src="https://david-dm.org/gravestorm/gravebot.svg" alt="Build Status"></a>
+<a href="https://travis-ci.org/Gravestorm/Gravebot"><img src="https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master" alt="Build Status"></a></p>
+
 <h1>
 <a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h1>
 
+<h1>
+<a id="invitation" class="anchor" href="#invitation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Invitation</h1>
+
+<p>The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.</p>
+
+<p>In order to do that, join the <a href="https://discord.gg/0cDvIgU2voWn4BaD">Discord Bots</a> server and private message it with !join-server <strong>Invitation</strong> (e.g. <a href="https://discord.gg/0cDvIgU2voWn4BaD">https://discord.gg/0cDvIgU2voWn4BaD</a> <strong>or</strong> 0cDvIgU2voWn4BaD)</p>
+
+<p>Though, if you still want to host it yourself, or mess around with the code, keep reading.</p>
+
+<h2>
+<a id="preparation" class="anchor" href="#preparation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparation</h2>
+
+<h3>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows:</h3>
+
 <p>Install <a href="https://nodejs.org/en/">node.js</a></p>
 
-<p>Configure auth.json with required information</p>
+<p>Install <a href="https://www.python.org">python v2.7.3</a> (<a href="https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi">32 bit</a>, <a href="https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi">64 bit</a>)</p>
 
-<p>Open the node.js command prompt and write:</p>
+<p>Install <a href="http://go.microsoft.com/?linkid=9816758">Microsoft Visual Studio C++ Express</a></p>
 
-<ul>
-<li>cd path/to/folder/Gravebot</li>
-<li>npm install</li>
-<li>node discord_bot.js</li>
-</ul>
+<p>Install <a href="https://github.com/nodejs/node-gyp">node-gyp</a> (open the <a href="http://windows.microsoft.com/en-us/windows/command-prompt-faq">command prompt</a> and write <strong>npm install -g node-gyp</strong>)</p>
+
+<p>See <a href="https://github.com/Gravestorm/Gravebot#launching-the-bot">Launching the bot</a></p>
+
+<h3>
+<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux:</h3>
+
+<p>Install <a href="https://nodejs.org/en/">node.js</a></p>
+
+<p>Install <a href="https://gcc.gnu.org">gcc</a> (open the <a href="http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/">terminal</a> and write <strong>sudo apt-get install g++</strong>)</p>
+
+<p>Install <a href="https://github.com/nodejs/node-gyp">node-gyp</a> (open the <a href="http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/">terminal</a> and write <strong>sudo npm install -g node-gyp</strong>)</p>
+
+<p>See <a href="https://github.com/Gravestorm/Gravebot#launching-the-bot">Launching the bot</a></p>
+
+<h2>
+<a id="launching-the-bot" class="anchor" href="#launching-the-bot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Launching the bot:</h2>
+
+<p>Rename <strong>auth.json.example</strong> to <strong>auth.json</strong> and fill in the required information</p>
+
+<p>Double click <strong>npm install.bat</strong></p>
+
+<p>Double click <strong>Launch.bat</strong></p>
 
 <h1>
 <a id="commands" class="anchor" href="#commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commands:</h1>
 
 <ul>
 <li>
+<strong>!aide</strong> -&gt; Lists all commands, with French descriptions</li>
+<li>
 <strong>!avatar</strong> -&gt; Responds with the Avatar image of the sender</li>
 <li>
 <strong>!ayylmao</strong> -&gt; All dayy lmao</li>
 <li>
+<strong>!commands</strong> -&gt; Lists all commands</li>
+<li>
 <strong>!gif</strong> <em>gif tags</em> -&gt; Gets a gif from Giphy matching the given tags</li>
+<li>
+<strong>!help</strong> -&gt; Lists all commands</li>
 <li>
 <strong>!image</strong> <em>image tags</em> -&gt; Gets an image from Google matching the given tags</li>
 <li>
@@ -74,11 +116,6 @@
 <li>
 <strong>!youtube</strong> <em>video tags</em> -&gt; Gets a video from Youtube matching the given tags</li>
 </ul>
-
-<h1>
-<a id="to-do-list" class="anchor" href="#to-do-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>To do list:</h1>
-
-<p>Voice addition.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Gravestorm/Gravebot">Gravebot</a> is maintained by <a href="https://github.com/Gravestorm">Gravestorm</a>.</span>
