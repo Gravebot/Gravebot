@@ -8,7 +8,7 @@ A bot for the chat program [Discord](https://discordapp.com/).
 # Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
 
-In order to do that, join the [Discord Bots](https://discord.gg/0cDvIgU2voWn4BaD) server and private message it with !join-server **Invitation** (e.g. 0cDvIgU2voWn4BaD)
+In order to do that, join the [Discord Bots](https://discord.gg/0cDvIgU2voWn4BaD) server and private message it with !join-server **Invitation** (e.g. https://discord.gg/0cDvIgU2voWn4BaD **or** 0cDvIgU2voWn4BaD)
 
 Though, if you still want to host it yourself, or mess around with the code, keep reading.
 

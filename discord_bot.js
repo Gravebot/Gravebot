@@ -235,17 +235,15 @@ var commands = {
               bot.sendMessage(msg.channel, "Usage: !join-server **invite**");
               return;
           }
-            console.log(suffix);
-            console.log(bot.joinServer(suffix,function(error, server) {
-                console.log("callback: " + arguments);
+          var invite = msg.content.split(" ")[1];
+          bot.joinServer(invite,function(error,server) {
                 if(error){
                     bot.sendMessage(msg.channel, "Failed to join: " + error);
                 } else {
-                    console.log("Joined server " + server);
                     bot.sendMessage(msg.channel, "Successfully joined " + server);
                 }
-            }));
-        }
+        });
+      }
     },
     "kappa": {
       process: function(bot, msg){bot.sendFile(msg.channel, "./images/Kappa.png");}
@@ -341,7 +339,7 @@ var commands = {
             bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
             return;
           }
-        youtube_plugin.respond(suffix,msg.channel, bot);
+        youtube_plugin.respond(suffix, msg.channel, bot);
       }
     }
 };
