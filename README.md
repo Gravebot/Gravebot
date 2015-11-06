@@ -42,7 +42,7 @@ Double click **Launch.bat**
 
 # Commands:
 * **!aide** -> Lists all commands, with French descriptions
-* **!avatar** -> Responds with the Avatar image of the sender
+* **!avatar** -> Responds with the Avatar of the user, if no user is written, the avatar of the sender
 * **!ayylmao** -> All dayy lmao
 * **!commands** -> Lists all commands
 * **!gif** *gif tags* -> Gets a gif from Giphy matching the given tags
@@ -53,7 +53,8 @@ Double click **Launch.bat**
 * **!meme** *meme name* *"top text"* *"bottom text"* -> Creates a meme with the given meme name and text
 * **!memehelp** -> Lists available meme names
 * **!myid** -> Responds with the user ID of the sender
-* **!roll** -> Rolls the dice
+* **!rick** *number* *ricks* -> Ricks the dice with a number of sides, if no number is written, six-sided
+* **!roll** *number* -> Rolls the dice with a number of sides, if no number is written, six-sided
 * **!servers** -> Lists all the servers the bot is connected to
 * **!urban** *search terms* -> Returns the summary of the first matching search result from Urban Dictionary
 * **!uptime** -> Shows how long the bot has been online

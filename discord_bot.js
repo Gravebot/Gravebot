@@ -19,8 +19,8 @@ var config = {
 
 var help = multiline(function(){/*
 ```php
-!avatar
-     Responds with the Avatar image of the sender
+!avatar '@Username'
+     Responds with the Avatar of the user, if no user is written, the avatar of the sender
 
 !ayylmao
      All dayy lmao
@@ -46,8 +46,11 @@ var help = multiline(function(){/*
 !myid
      Responds with the user ID of the sender
 
-!roll
-     Rolls the dice
+!rick 'number' 'ricks'
+     Ricks the dice with a number of sides, if no number is written, six-sided
+
+!roll 'number'
+     Rolls the dice with a number of sides, if no number is written, six-sided
 
 !servers
      Lists all the servers the bot is connected to
@@ -66,17 +69,17 @@ var help = multiline(function(){/*
 */});
 
 var aide = multiline(function(){/*
-```php
-!avatar
-   Retourne l’avatar de l’utilisateur
+```
+!avatar <@Username>
+   Retourne l'avatar de l'utilisateur, si aucun noms d'utilisateur est spécifié, retourne celui par défaut
 
 !ayylmao
      All dayy lmao
 
-!gif 'gif tags'
+!gif <gif tags>
      Retourne un gif correspondant aux tags
 
-!image 'image tags'
+!image <image tags>
      Retourne une image correspondant aux tags
 
 !join-server 'invite'
@@ -85,7 +88,7 @@ var aide = multiline(function(){/*
 !kappa
      Kappa
 
-!meme 'meme name "top text" "bottom text"'
+!meme <meme name "top text" "bottom text">
      Crée un « meme » avec le texte choisis
 
 !memehelp
@@ -94,22 +97,25 @@ var aide = multiline(function(){/*
 !myid
      Retourne l’ID de l’utilisateur
 
-!roll
+!rick <number> <ricks>
+     Ricks les dés
+
+!roll <number>
      Fait rouler les dés
 
 !servers
      Liste tous les serveurs auquel le bot est connecté
 
-!urban 'search terms'
+!urban <search terms>
      Retourne la première définition de Urban Dictionary correspondant aux tags
 
 !uptime
      Affiche la durée du bot en ligne
 
-!wiki 'search terms'
+!wiki <search terms>
      Retourne un résumé de la page Wikipedia correspondant aux tags
 
-!youtube 'video tags'
+!youtube <video tags>
      Retourne la vidéo youtube correspondant aux tags
 ```
 */});
@@ -190,7 +196,22 @@ var commands = {
       process: function(bot, msg) {bot.sendMessage(msg.channel, aide);}
     },
     "avatar": {
-      process: function(bot, msg){bot.sendMessage(msg.channel, msg.sender.avatarURL);}
+      process: function(bot, msg, suffix){
+        if (msg.mentions.length === 0) {
+    			bot.sendMessage(msg.channel, msg.sender.avatarURL);
+    			return;
+    		}
+    		var msgArray = [];
+    		for (index in msg.mentions) {
+    			var user = msg.mentions[index];
+    			if(user.avatarURL === null) {
+    				msgArray.push(user.username + " is naked.");
+    			} else {
+    				msgArray.push(user.username + "'s avatar is: " + user.avatarURL);
+    			}
+    		}
+    		bot.sendMessage(msg.channel, msgArray);
+      }
     },
     "ayylmao": {
       process: function(bot, msg){bot.sendFile(msg.channel, "./images/Ayylmao.png");}
@@ -270,9 +291,35 @@ var commands = {
     "myid": {
         process: function(bot, msg){bot.sendMessage(msg.channel, msg.author.id);}
     },
-    "roll": {
+    "rick": {
     process: function(bot, msg, suffix) {
-        var number = Math.floor(Math.random() * 6) + 1;
+        var input = msg.content.split(" ")[1];
+        if (input) {
+          var numbers = Math.floor(Math.random() * input) + 1;
+        }
+        else {
+          var numbers = Math.floor(Math.random() * 6969) + 1;
+        }
+        var ricks = msg.content.split(" ")[1];
+        if (ricks) {
+          var count = Math.floor(Math.random() * input) + 1;
+        }
+        else {
+          var count = Math.floor(Math.random() * 9696) + 1;
+        }
+          bot.sendMessage(msg.channel, msg.sender + " Ricked " + numbers);
+          bot.sendMessage(msg.author, "```You got Ricked " + count + " times.```\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\nhttp://i.imgur.com/wyLF0TN.jpg");
+      }
+    },
+    "roll": {
+    process: function(bot, msg) {
+        var input = msg.content.split(" ")[1];
+        if (input) {
+          var number = Math.floor(Math.random() * input) + 1;
+        }
+        else {
+          var number = Math.floor(Math.random() * 6) + 1;
+        }
         bot.sendMessage(msg.channel, msg.sender + " Rolled " + number);
       }
     },
@@ -368,6 +415,9 @@ bot.on("message", function (msg) {
     cmd.process(bot, msg, suffix);
 		}
 	}
+  if(msg.isMentioned(bot.user)) {
+    bot.sendMessage(msg.author, "Hello, I am a bot that is owned by **Gravestorm** and hosted 24/7.\nWrite **!help** if you want to see what I can do.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
+  }
 });
 
 function get_gif(tags, func) {
