@@ -85,7 +85,6 @@ var commands = {
     "ayylmao": {
       process: function(bot, msg) {
         bot.sendMessage(msg.channel, "http://i.imgur.com/m7NaGVx.png");
-        bot.sendFile(msg.channel, "./images/Ayylmao.png");
       }
     },
     "commands": {
