@@ -46,6 +46,7 @@ Double click **Launch.bat**
 * **!avatar** *@Username* -> Responds with the Avatar of the user, if no user is written, the avatar of the sender
 * **!ayylmao** -> All dayy lmao
 * **!commands** -> Lists all commands
+* **!decide** *something or something or something...* -> Decides between given words
 * **!gif** *gif tags* -> Gets a gif from Giphy matching the given tags
 * **!help** -> Lists all commands
 * **!image** *image tags* -> Gets an image from Google matching the given tags

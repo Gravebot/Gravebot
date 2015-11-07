@@ -93,6 +93,28 @@ var commands = {
         bot.sendMessage(msg.channel, help);
       }
     },
+    "decide": {
+      process: function(bot, msg, suffix) {
+        var input = msg.content.substring(('!decide').length + 1);
+        var split = input.split(" or ");
+        var rand = Math.floor(Math.random() * Choices.length);
+        if(split.length > 1) {
+          bot.sendMessage(msg.channel, Choices[rand] + " **" + multipleDecide(split) + "**");
+        }
+        else {
+          bot.sendMessage(msg.channel, "Usage: !decide *something* **or** *something* **or** *something*...");
+        }
+        function multipleDecide(options) {
+          var selected = options[Math.floor(Math.random() * options.length)];
+          if(selected === "") {
+            return multipleDecide(options);
+          }
+          else {
+            return selected;
+          }
+        }
+      }
+    },
     "gif": {
       process: function(bot, msg, suffix) {
         var query = suffix;
@@ -161,7 +183,12 @@ var commands = {
         var Imgflipper = require("imgflipper");
         var imgflipper = new Imgflipper(AuthDetails.imgflip_username, AuthDetails.imgflip_password);
         imgflipper.generateMeme(meme[memetype], tags[1]?tags[1]:"", tags[3]?tags[3]:"", function(err, image) {
-          bot.sendMessage(msg.channel, image);
+          if(err) {
+            bot.sendMessage(msg.channel, 'Usage: !meme **meme name** **"top text"** **"bottom text"**');
+          }
+          else {
+            bot.sendMessage(msg.channel, image);
+          }
         });
       }
     },
@@ -241,7 +268,7 @@ var commands = {
             bot.sendMessage(msg.channel, definition);
           }
           else {
-            bot.sendMessage(msg.channel,"Sorry, I couldn't find a definition for: " + suffix);
+            bot.sendMessage(msg.channel, "Sorry, I couldn't find a definition for: " + suffix);
           }
         });
       }
@@ -294,6 +321,9 @@ var help = multiline(function(){/*
 
 !ayylmao
      All dayy lmao
+
+!decide 'something or something or something...'
+     Decides between given words
 
 !gif 'gif tags'
      Gets a gif from Giphy matching the given tags
@@ -351,6 +381,9 @@ var aide = multiline(function(){/*
 
 !ayylmao
      All dayy lmao
+
+!decide 'something or something or something...'
+     Choisissez entre les mots donnés
 
 !gif *gif tags*
      Retourne un gif correspondant aux tags
@@ -493,6 +526,18 @@ var EightBall = [
       "Very doubtful",
       "私はあなたのお母さんを翻訳しました",
       "Wow, Much no, very yes, so maybe"
+];
+
+var Choices = [
+      "I have decided upon",
+      "I would choose",
+      "In my opinion, it's",
+      "I'd go with",
+      "My final decision is",
+      "You're better off with",
+      "It's absolutely",
+      "Definitely",
+      "The answer is"
 ];
 
 var Quotes = [
