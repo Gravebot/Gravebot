@@ -1,5 +1,5 @@
 # About
-A bot for the chat program [Discord](https://discordapp.com/).
+A bot for the chat program [Discord](https://discordapp.com/), made with the help of [Discord.js library](https://github.com/hydrabolt/discord.js).
 
 [![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
@@ -41,6 +41,7 @@ Double click **npm install.bat**
 Double click **Launch.bat**
 
 # Commands:
+* **!8ball** *question* -> Answers the question
 * **!aide** -> Lists all commands, with French descriptions
 * **!avatar** *@Username* -> Responds with the Avatar of the user, if no user is written, the avatar of the sender
 * **!ayylmao** -> All dayy lmao
@@ -53,6 +54,7 @@ Double click **Launch.bat**
 * **!meme** *meme name* *"top text"* *"bottom text"* -> Creates a meme with the given meme name and text
 * **!memehelp** -> Lists available meme names
 * **!myid** -> Responds with the user ID of the sender
+* **!quote** -> Writes a random quote
 * **!rick** *number* *ricks* -> Ricks the dice with a number of sides, if no number is written, six-sided
 * **!roll** *number* -> Rolls the dice with a number of sides, if no number is written, six-sided
 * **!servers** -> Lists all the servers the bot is connected to

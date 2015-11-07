@@ -17,8 +17,278 @@ var config = {
     "permission": ["NORMAL"]
 };
 
+var bot = new Discord.Client();
+
+bot.on("ready", function () {
+	console.log("Ready to begin! Serving in " + bot.channels.length + " channels");
+  //Sets the game the bot will be shown as playing, change the number for a different game
+  bot.setPlayingGame(329);
+});
+
+bot.on("disconnected", function () {
+    console.log(currentTime() + "Disconnected. Attempting to reconnect...");
+    sleep(5000);
+    bot.login(AuthDetails.email, AuthDetails.password);
+});
+
+bot.on("message", function (msg) {
+	//Checks if the message is a command
+	if(msg.author.id != bot.user.id && msg.content[0] === '!') {
+		  var cmdTxt = msg.content.toLowerCase().split(" ")[0].substring(1);
+      var suffix = msg.content.toLowerCase().substring(cmdTxt.length+2);
+		  var cmd = commands[cmdTxt];
+      if(cmd) {
+    cmd.process(bot, msg, suffix);
+		}
+	}
+  if(msg.isMentioned(bot.user)) {
+    bot.sendMessage(msg.author, "Hello, I am a bot that is owned by **Gravestorm** and hosted 24/7.\nWrite **!help** if you want to see what I can do.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
+  }
+});
+
+var commands = {
+    "8ball": {
+      process: function(bot, msg, suffix) {
+        if (suffix.length === 0) {
+          bot.sendMessage(msg.channel, msg.sender + "You call that a question?\nhttp://i.imgur.com/PcXHbt6.png");
+        }
+        else {
+          var rand = Math.floor(Math.random() * EightBall.length);
+          bot.sendMessage(msg.channel, msg.sender + ":crystal_ball:**" + EightBall[rand] + "**:crystal_ball:");
+        }
+      }
+    },
+    "aide": {
+      process: function(bot, msg) {
+        bot.sendMessage(msg.channel, aide);
+      }
+    },
+    "avatar": {
+      process: function(bot, msg, suffix) {
+        if (msg.mentions.length === 0) {
+    			bot.sendMessage(msg.channel, "Your avatar:\n" + msg.sender.avatarURL);
+    			return;
+    		}
+    		var msgArray = [];
+    		for (index in msg.mentions) {
+    			var user = msg.mentions[index];
+    			if(user.avatarURL === null) {
+    				msgArray.push(user.username + " is naked.");
+    			}
+          else {
+    				msgArray.push(user.username + "'s avatar:\n" + user.avatarURL);
+    			}
+    		}
+    		bot.sendMessage(msg.channel, msgArray);
+      }
+    },
+    "ayylmao": {
+      process: function(bot, msg) {
+        bot.sendMessage(msg.channel, "http://i.imgur.com/m7NaGVx.png");
+        bot.sendFile(msg.channel, "./images/Ayylmao.png");
+      }
+    },
+    "commands": {
+      process: function(bot, msg) {
+        bot.sendMessage(msg.channel, help);
+      }
+    },
+    "gif": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, "Usage: !gif **gif tags**");
+          return;
+        }
+        var tags = suffix.split(" ");
+        get_gif(tags, function(id) {
+          if (typeof id !== "undefined") {
+			      bot.sendMessage(msg.channel, "http://media.giphy.com/media/" + id + "/giphy.gif [Tags: " + (tags ? tags : "Random GIF") + "]");
+			     }
+          else {
+			      bot.sendMessage(msg.channel, "Invalid tags, try something different. [Tags: " + (tags ? tags : "Random GIF") + "]");
+			     }
+		    });
+		  }
+    },
+    "help": {
+      process: function(bot, msg) {
+        bot.sendMessage(msg.channel, help);
+      }
+    },
+    "image": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, "Usage: !image **image tags**");
+          return;
+        }
+        google_image_plugin.respond(suffix, msg.channel, bot);
+      }
+    },
+    "join-server": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, "Usage: !join-server **invite**");
+          return;
+        }
+        var invite = msg.content.split(" ")[1];
+        bot.joinServer(invite,function(error,server) {
+          if(error) {
+            bot.sendMessage(msg.channel, "Failed to join: " + error);
+          }
+          else {
+            bot.sendMessage(msg.channel, "Successfully joined " + server);
+          }
+        });
+      }
+    },
+    "kappa": {
+      process: function(bot, msg) {
+        bot.sendFile(msg.channel, "./images/Kappa.png");
+      }
+    },
+    "meme": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, 'Usage: !meme **meme name** **"top text"** **"bottom text"**');
+          return;
+        }
+        var tags = msg.content.split('"');
+        var memetype = tags[0].split(" ")[1];
+        var Imgflipper = require("imgflipper");
+        var imgflipper = new Imgflipper(AuthDetails.imgflip_username, AuthDetails.imgflip_password);
+        imgflipper.generateMeme(meme[memetype], tags[1]?tags[1]:"", tags[3]?tags[3]:"", function(err, image) {
+          bot.sendMessage(msg.channel, image);
+        });
+      }
+    },
+    "memehelp": {
+      process: function(bot, msg) {
+        bot.sendMessage(msg.channel, memehelp);
+      }
+    },
+    "myid": {
+      process: function(bot, msg) {
+        bot.sendMessage(msg.channel, msg.author.id);
+      }
+    },
+    "quote": {
+      process: function(bot, msg) {
+        var rand = Math.floor(Math.random() * Quotes.length);
+        bot.sendMessage(msg.channel, Quotes[rand]);
+      }
+    },
+    "rick": {
+      process: function(bot, msg, suffix) {
+        var input = msg.content.split(" ")[1];
+        if (input) {
+          var numbers = Math.floor(Math.random() * input) + 1;
+        }
+        else {
+          var numbers = Math.floor(Math.random() * 6969) + 1;
+        }
+        var ricks = msg.content.split(" ")[2];
+        if (ricks) {
+          var count = Math.floor(Math.random() * input) + 1;
+        }
+        else {
+          var count = Math.floor(Math.random() * 9696) + 1;
+        }
+        bot.sendMessage(msg.channel, msg.sender + " Ricked " + numbers);
+        bot.sendMessage(msg.author, "```You got Rick Rolled " + count + " times.```\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\nhttp://i.imgur.com/wyLF0TN.png");
+      }
+    },
+    "roll": {
+      process: function(bot, msg, suffix) {
+        var input = msg.content.split(" ")[1];
+        if (input) {
+          var number = Math.floor(Math.random() * input) + 1;
+        }
+        else {
+          var number = Math.floor(Math.random() * 6) + 1;
+        }
+        bot.sendMessage(msg.channel, msg.sender + " Rolled " + number);
+      }
+    },
+    "servers": {
+      process: function(bot, msg) {
+        var list = bot.servers.sort();
+        bot.sendMessage(msg.channel, list);
+      }
+    },
+    "uptime": {
+      process: function(bot, msg) {
+          var uptimeh = Math.floor((bot.uptime / 1000) / (60*60));
+          var uptimem = Math.floor((bot.uptime / 1000) % (60*60) / 60);
+          var uptimes = Math.floor((bot.uptime / 1000) % 60);
+          bot.sendMessage(msg.channel, "I have been alive for:\n" + uptimeh + " Hours\n" + uptimem + " Minutes\n" + uptimes + " Seconds\n");
+      }
+    },
+    "urban": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, "Usage: !urban **search terms**");
+          return;
+        }
+        var Urban = require('urban');
+        Urban(suffix).first(function(json) {
+          if (json !== undefined) {
+            var definition = "" + json.word + ": " + json.definition + "\n:arrow_up: " + json.thumbs_up + "   :arrow_down: " + json.thumbs_down + "\n\nExample: " + json.example;
+            bot.sendMessage(msg.channel, definition);
+          }
+          else {
+            bot.sendMessage(msg.channel,"Sorry, I couldn't find a definition for: " + suffix);
+          }
+        });
+      }
+    },
+    "wiki": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, "Usage: !wiki **search terms**");
+          return;
+        }
+        var Wiki = require('wikijs');
+        new Wiki().search(query,1).then(function(data) {
+          new Wiki().page(data.results[0]).then(function(page) {
+            page.summary().then(function(summary) {
+              var sumText = summary.toString().split('\n');
+              var continuation = function() {
+                var paragraph = sumText.shift();
+                if(paragraph) {
+                  bot.sendMessage(msg.channel, paragraph, continuation);
+                }
+              };
+              continuation();
+            });
+          });
+        },function(err) {
+          bot.sendMessage(msg.channel, err);
+        });
+      }
+    },
+    "youtube": {
+      process: function(bot, msg, suffix) {
+        var query = suffix;
+        if(!query) {
+          bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
+          return;
+        }
+        youtube_plugin.respond(suffix, msg.channel, bot);
+      }
+    }
+};
+
 var help = multiline(function(){/*
 ```php
+!8ball 'question'
+     Answers the question
+
 !avatar '@Username'
      Responds with the Avatar of the user, if no user is written, the avatar of the sender
 
@@ -46,6 +316,9 @@ var help = multiline(function(){/*
 !myid
      Responds with the user ID of the sender
 
+!quote
+     Writes a random quote
+
 !rick 'number' 'ricks'
      Ricks the dice with a number of sides, if no number is written, six-sided
 
@@ -70,25 +343,28 @@ var help = multiline(function(){/*
 
 var aide = multiline(function(){/*
 ```
-!avatar <@Username>
+!8ball *question*
+   Répond à la question
+
+!avatar *@Username*
    Retourne l'avatar de l'utilisateur, si aucun noms d'utilisateur est spécifié, retourne celui par défaut
 
 !ayylmao
      All dayy lmao
 
-!gif <gif tags>
+!gif *gif tags*
      Retourne un gif correspondant aux tags
 
-!image <image tags>
+!image *image tags*
      Retourne une image correspondant aux tags
 
-!join-server 'invite'
+!join-server *invite*
      Rejoint le serveur auquel le bot est invité
 
 !kappa
      Kappa
 
-!meme <meme name "top text" "bottom text">
+!meme *meme name "top text" "bottom text"*
      Crée un « meme » avec le texte choisis
 
 !memehelp
@@ -97,25 +373,28 @@ var aide = multiline(function(){/*
 !myid
      Retourne l’ID de l’utilisateur
 
-!rick <number> <ricks>
+!quote
+     Ecrit une citation aléatoire
+
+!rick *number* *ricks*
      Ricks les dés
 
-!roll <number>
+!roll *number*
      Fait rouler les dés
 
 !servers
      Liste tous les serveurs auquel le bot est connecté
 
-!urban <search terms>
+!urban *search terms*
      Retourne la première définition de Urban Dictionary correspondant aux tags
 
 !uptime
      Affiche la durée du bot en ligne
 
-!wiki <search terms>
+!wiki *search terms*
      Retourne un résumé de la page Wikipedia correspondant aux tags
 
-!youtube <video tags>
+!youtube *video tags*
      Retourne la vidéo youtube correspondant aux tags
 ```
 */});
@@ -191,266 +470,84 @@ var meme = {
 	"yuno": 61527
 };
 
-var commands = {
-    "aide": {
-      process: function(bot, msg) {bot.sendMessage(msg.channel, aide);}
-    },
-    "avatar": {
-      process: function(bot, msg, suffix){
-        if (msg.mentions.length === 0) {
-    			bot.sendMessage(msg.channel, msg.sender.avatarURL);
-    			return;
-    		}
-    		var msgArray = [];
-    		for (index in msg.mentions) {
-    			var user = msg.mentions[index];
-    			if(user.avatarURL === null) {
-    				msgArray.push(user.username + " is naked.");
-    			} else {
-    				msgArray.push(user.username + "'s avatar is: " + user.avatarURL);
-    			}
-    		}
-    		bot.sendMessage(msg.channel, msgArray);
-      }
-    },
-    "ayylmao": {
-      process: function(bot, msg){bot.sendFile(msg.channel, "./images/Ayylmao.png");}
-    },
-    "commands": {
-        process: function(bot, msg) {bot.sendMessage(msg.channel, help);}
-    },
-    "gif": {
-         process: function(bot, msg, suffix) {
-           var query = suffix;
-           if(!query) {
-               bot.sendMessage(msg.channel, "Usage: !gif **gif tags**");
-               return;
-           }
-           var tags = suffix.split(" ");
-           get_gif(tags, function(id) {
-              if (typeof id !== "undefined") {
-			            bot.sendMessage(msg.channel, "http://media.giphy.com/media/" + id + "/giphy.gif [Tags: " + (tags ? tags : "Random GIF") + "]");
-			        }
-              else {
-			            bot.sendMessage(msg.channel, "Invalid tags, try something different. [Tags: " + (tags ? tags : "Random GIF") + "]");
-			        }
-		      });
-		  }
-    },
-    "help": {
-        process: function(bot, msg) {bot.sendMessage(msg.channel, help);}
-    },
-    "image": {
-        process: function(bot, msg, suffix){
-          var query = suffix;
-          if(!query) {
-              bot.sendMessage(msg.channel, "Usage: !image **image tags**");
-              return;
-          }
-          google_image_plugin.respond(suffix, msg.channel, bot);}
-    },
-    "join-server": {
-        process: function(bot, msg, suffix) {
-          var query = suffix;
-          if(!query) {
-              bot.sendMessage(msg.channel, "Usage: !join-server **invite**");
-              return;
-          }
-          var invite = msg.content.split(" ")[1];
-          bot.joinServer(invite,function(error,server) {
-                if(error){
-                    bot.sendMessage(msg.channel, "Failed to join: " + error);
-                } else {
-                    bot.sendMessage(msg.channel, "Successfully joined " + server);
-                }
-        });
-      }
-    },
-    "kappa": {
-      process: function(bot, msg){bot.sendFile(msg.channel, "./images/Kappa.png");}
-    },
-    "meme": {
-            process: function(bot, msg, suffix) {
-              var query = suffix;
-              if(!query) {
-                  bot.sendMessage(msg.channel, 'Usage: !meme **meme name** **"top text"** **"bottom text"**');
-                  return;
-              }
-              var tags = msg.content.split('"');
-              var memetype = tags[0].split(" ")[1];
-              var Imgflipper = require("imgflipper");
-              var imgflipper = new Imgflipper(AuthDetails.imgflip_username, AuthDetails.imgflip_password);
-              imgflipper.generateMeme(meme[memetype], tags[1]?tags[1]:"", tags[3]?tags[3]:"", function(err, image){
-                bot.sendMessage(msg.channel, image);
-        });
-      }
-    },
-    "memehelp": {
-        process: function(bot, msg) {bot.sendMessage(msg.channel, memehelp);}
-    },
-    "myid": {
-        process: function(bot, msg){bot.sendMessage(msg.channel, msg.author.id);}
-    },
-    "rick": {
-    process: function(bot, msg, suffix) {
-        var input = msg.content.split(" ")[1];
-        if (input) {
-          var numbers = Math.floor(Math.random() * input) + 1;
-        }
-        else {
-          var numbers = Math.floor(Math.random() * 6969) + 1;
-        }
-        var ricks = msg.content.split(" ")[1];
-        if (ricks) {
-          var count = Math.floor(Math.random() * input) + 1;
-        }
-        else {
-          var count = Math.floor(Math.random() * 9696) + 1;
-        }
-          bot.sendMessage(msg.channel, msg.sender + " Ricked " + numbers);
-          bot.sendMessage(msg.author, "```You got Ricked " + count + " times.```\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\nhttp://i.imgur.com/wyLF0TN.jpg");
-      }
-    },
-    "roll": {
-    process: function(bot, msg) {
-        var input = msg.content.split(" ")[1];
-        if (input) {
-          var number = Math.floor(Math.random() * input) + 1;
-        }
-        else {
-          var number = Math.floor(Math.random() * 6) + 1;
-        }
-        bot.sendMessage(msg.channel, msg.sender + " Rolled " + number);
-      }
-    },
-    "servers": {
-        process: function(bot, msg){bot.sendMessage(msg.channel, bot.servers);}
-    },
-    "uptime": {
-        process: function(bot, msg){
-          var uptimeh = Math.floor((bot.uptime / 1000) / (60*60));
-          var uptimem = Math.floor((bot.uptime / 1000) % (60*60) / 60);
-          var uptimes = Math.floor((bot.uptime / 1000) % 60);
-          bot.sendMessage(msg.channel, "I have been alive for:\n" + uptimeh + " Hours\n" + uptimem + " Minutes\n" + uptimes + " Seconds\n");
-      }
-    },
-    "urban": {
-        process: function(bot, msg, suffix) {
-            var query = suffix;
-            if(!query) {
-                bot.sendMessage(msg.channel, "Usage: !urban **search terms**");
-                return;
-            }
-            var Urban = require('urban');
-            Urban(suffix).first(function(json) {
-                if (json !== undefined) {
-                    var definition = "" + json.word + ": " + json.definition + "\n:arrow_up: " + json.thumbs_up + "   :arrow_down: " + json.thumbs_down + "\n\nExample: " + json.example;
-                    bot.sendMessage(msg.channel,definition);
-                }
-                else
-                { bot.sendMessage(msg.channel,"Sorry, I couldn't find a definition for: " + suffix);
-              }
-            });
-        }
-    },
-    "wiki": {
-        process: function(bot, msg, suffix) {
-            var query = suffix;
-            if(!query) {
-                bot.sendMessage(msg.channel, "Usage: !wiki **search terms**");
-                return;
-            }
-            var Wiki = require('wikijs');
-            new Wiki().search(query,1).then(function(data) {
-                new Wiki().page(data.results[0]).then(function(page) {
-                    page.summary().then(function(summary) {
-                        var sumText = summary.toString().split('\n');
-                        var continuation = function() {
-                            var paragraph = sumText.shift();
-                            if(paragraph){
-                                bot.sendMessage(msg.channel, paragraph, continuation);
-                            }
-                        };
-                        continuation();
-                    });
-                });
-            },function(err){
-                bot.sendMessage(msg.channel, err);
-            });
-        }
-    },
-    "youtube": {
-    process: function(bot, msg, suffix){
-        var query = suffix;
-        if(!query) {
-            bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
-            return;
-          }
-        youtube_plugin.respond(suffix, msg.channel, bot);
-      }
-    }
-};
+var EightBall = [
+      "It is certain",
+      "My CPU is saying yes",
+      "Without a doubt",
+      "Yes, definitely",
+      "Yes, unless you run out of memes",
+      "As I see it, yes",
+      "Most likely",
+      "If you say so",
+      "Sure, sure",
+      "Signs point to yes",
+      "You can't handle the truth",
+      "When life gives you rice, you make rice",
+      "Better not tell you now",
+      "Cannot predict now",
+      "Out of psychic coverage range",
+      "Don't count on it",
+      "My CPU is saying no",
+      "In your dreams",
+      "You are doomed",
+      "Very doubtful",
+      "私はあなたのお母さんを翻訳しました",
+      "Wow, Much no, very yes, so maybe"
+];
 
-var bot = new Discord.Client();
-
-bot.on("ready", function () {
-	console.log("Ready to begin! Serving in " + bot.channels.length + " channels");
-  //Sets the game the bot will be shown as playing, change the number for a different game (there is a list somewhere, but I forgot where)
-  bot.setPlayingGame(329);
-});
-
-bot.on("disconnected", function () {
-    console.log(currentTime() + "Disconnected. Attempting to reconnect...");
-    sleep(5000);
-    bot.login(AuthDetails.email, AuthDetails.password);
-});
-
-bot.on("message", function (msg) {
-	//Checks if the message is a command
-	if(msg.author.id != bot.user.id && msg.content[0] === '!') {
-		  var cmdTxt = msg.content.toLowerCase().split(" ")[0].substring(1);
-      var suffix = msg.content.toLowerCase().substring(cmdTxt.length+2);
-		  var cmd = commands[cmdTxt];
-      if(cmd) {
-    cmd.process(bot, msg, suffix);
-		}
-	}
-  if(msg.isMentioned(bot.user)) {
-    bot.sendMessage(msg.author, "Hello, I am a bot that is owned by **Gravestorm** and hosted 24/7.\nWrite **!help** if you want to see what I can do.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
-  }
-});
+var Quotes = [
+  "Going to church doesn’t make you a Christian any more than standing in a garage makes you a car. - *Billy Sunday*",
+  "I dream of a better tomorrow, where chickens can cross the road and not be questioned about their motives.",
+  "I hate when old people poke you at a wedding and say you're next. So when I was at a funeral I poked them and said you're next.",
+  "I think the worst time to have a heart attack is during a game of charades. - *Demetri Martin*",
+  "I asked God for a bike, but I know God doesn’t work that way. So I stole a bike and asked for forgiveness. - *Emo Philips*",
+  "The only mystery in life is why the kamikaze pilots wore helmets. - *Al McGuire*",
+  "How is it one careless match can start a forest fire, but it takes a whole box to start a campfire?",
+  "I couldn’t repair your brakes, so I made your horn louder. - *Steven Wright*",
+  "I intend to live forever. So far, so good. - *Steven Wright*",
+  "I dream of a better tomorrow, where chickens can cross the road and not be questioned about their motives.",
+  "When tempted to fight fire with fire, remember that the Fire Department usually uses water.",
+  "My favorite machine at the gym is the vending machine.",
+  "I always arrive late at the office, but I make up for it by leaving early. - *Charles Lamb*",
+  "Just do it. - *Shia Labeouf*",
+  "Don't let your dreams be memes. - *Shia LaBeouf*",
+  "Jet fuel can't melt steel beams. - *Barack Obama*",
+  "Jet fuel can't melt steel memes. - *Barack Obama*",
+  "Born too late to explore the earth\nBorn too soon to explore the galaxy\nBorn just in time to **browse dank memes**",
+  "Feels good man. - *Pepe*"
+];
 
 function get_gif(tags, func) {
         //limit=1 will only return 1 gif
         var params = {
-            "api_key": config.api_key,
-            "rating": config.rating,
-            "format": "json",
-            "limit": 1
+          "api_key": config.api_key,
+          "rating": config.rating,
+          "format": "json",
+          "limit": 1
         };
         var query = qs.stringify(params);
-
         if (tags !== null) {
-            query += "&q=" + tags.join('+')
+          query += "&q=" + tags.join('+')
         }
 
         var request = require("request");
 
         request(config.url + "?" + query, function (error, response, body) {
-            if (error || response.statusCode !== 200) {
-                console.error("giphy: Got error: " + body);
-                console.log(error);
+          if (error || response.statusCode !== 200) {
+            console.error("giphy: Got error: " + body);
+            console.log(error);
+          }
+          else {
+            var responseObj = JSON.parse(body)
+            console.log(responseObj.data[0])
+            if(responseObj.data.length) {
+              func(responseObj.data[0].id);
             }
             else {
-                var responseObj = JSON.parse(body)
-                console.log(responseObj.data[0])
-                if(responseObj.data.length){
-                    func(responseObj.data[0].id);
-                } else {
-                    func(undefined);
-                }
+              func(undefined);
             }
+          }
         }.bind(this));
-    }
+      }
 
 bot.login(AuthDetails.email, AuthDetails.password);
