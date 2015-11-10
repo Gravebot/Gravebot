@@ -45,6 +45,7 @@ Double click **Launch.bat**
 * **!aide** -> Lists all commands, with French descriptions
 * **!avatar** *@Username* -> Responds with the Avatar of the user, if no user is written, the avatar of the sender
 * **!ayylmao** -> All dayy lmao
+* **!chat** *sentence* -> Chats with you
 * **!commands** -> Lists all commands
 * **!decide** *something or something or something...* -> Decides between given words
 * **!gif** *gif tags* -> Gets a gif from Giphy matching the given tags

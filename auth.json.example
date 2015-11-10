@@ -1,7 +1,9 @@
 {
 	"email" : "DISCORD EMAIL",
 	"password" : "DISCORD PASSWORD",
-	"youtube_api_key": "YOUTUBE API KEY",
-	"imgflip_username": "IMGFLIP USERNAME",
-	"imgflip_password": "IMGFLIP PASSWORD"
+	"youtube_api_key": "https://developers.google.com/youtube/v3/getting-started",
+	"imgflip_username": "https://imgflip.com/",
+	"imgflip_password": "https://imgflip.com/",
+	"cleverbot_api_name": "https://cleverbot.io/keys",
+	"cleverbot_api_key": "https://cleverbot.io/keys"
 }

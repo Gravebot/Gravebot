@@ -1,12 +1,6 @@
 var Discord = require("discord.js");
 var AuthDetails = require("./auth.json");
 
-var yt = require("./youtube_plugin");
-var youtube_plugin = new yt();
-
-var gi = require("./google_image_plugin");
-var google_image_plugin = new gi();
-
 var multiline = require("multiline");
 var qs = require("querystring");
 
@@ -50,7 +44,7 @@ var commands = {
     "8ball": {
       process: function(bot, msg, suffix) {
         if (suffix.length === 0) {
-          bot.sendMessage(msg.channel, msg.sender + "You call that a question?\nhttp://i.imgur.com/PcXHbt6.png");
+          bot.sendMessage(msg.channel, msg.sender + " You call that a question?\nhttp://i.imgur.com/PcXHbt6.png");
         }
         else {
           var rand = Math.floor(Math.random() * EightBall.length);
@@ -86,6 +80,20 @@ var commands = {
       process: function(bot, msg) {
         bot.sendMessage(msg.channel, "http://i.imgur.com/m7NaGVx.png");
         bot.sendFile(msg.channel, "./images/Ayylmao.png");
+      }
+    },
+    "chat": {
+      process: function(bot, msg) {
+        var cb = msg.content.split(" ")[0].substring(1);
+        var cbi = msg.content.substring(cb.length+2);
+        var cleverbot = require("cleverbot.io"),AuthDetails.email, AuthDetails.password
+        clever = new cleverbot(AuthDetails.cleverbot_api_name, AuthDetails.cleverbot_api_key);
+        clever.setNick("Gravebot");
+        clever.create(function (err, session) {
+          clever.ask(cbi, function (err, response) {
+            bot.sendMessage(msg.channel, response); // Will likely be: "Living in a lonely world"
+          });
+        });
       }
     },
     "commands": {
@@ -145,6 +153,8 @@ var commands = {
           bot.sendMessage(msg.channel, "Usage: !image **image tags**");
           return;
         }
+        var gi = require("./google_image_plugin");
+        var google_image_plugin = new gi();
         google_image_plugin.respond(suffix, msg.channel, bot);
       }
     },
@@ -306,6 +316,8 @@ var commands = {
           bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
           return;
         }
+        var yt = require("./youtube_plugin");
+        var youtube_plugin = new yt();
         youtube_plugin.respond(suffix, msg.channel, bot);
       }
     }
@@ -321,6 +333,9 @@ var help = multiline(function(){/*
 
 !ayylmao
      All dayy lmao
+
+!chat 'sentence'
+     Chats with you
 
 !decide 'something or something or something...'
      Decides between given words
@@ -382,7 +397,10 @@ var aide = multiline(function(){/*
 !ayylmao
      All dayy lmao
 
-!decide 'something or something or something...'
+!chat *sentence*
+     Discute avec toi
+
+!decide *something or something or something...*
      Choisissez entre les mots donnés
 
 !gif *gif tags*
@@ -500,7 +518,7 @@ var meme = {
   "squidward": 285870,
   "takemymoney": 176908,
   "yodawg": 101716,
-	"yuno": 61527
+  "yuno": 61527
 };
 
 var EightBall = [
@@ -559,7 +577,15 @@ var Quotes = [
   "Jet fuel can't melt steel beams. - *Barack Obama*",
   "Jet fuel can't melt steel memes. - *Barack Obama*",
   "Born too late to explore the earth\nBorn too soon to explore the galaxy\nBorn just in time to **browse dank memes**",
-  "Feels good man. - *Pepe*"
+  "Feels good man. - *Pepe*",
+  "Press F to pay respects.",
+  "We don't make mistakes, just happy little accidents. - *Bob Ross*",
+  "There's nothing wrong with having a tree as a friend. - *Bob Ross*",
+  "The only thing worse than yellow snow is green snow. - *Bob Ross*",
+  "Shwooop. Hehe. You have to make those little noises, or it just doesn't work. - *Bob Ross*",
+  "I like to beat the brush. - *Bob Ross*",
+  "Just tap it. - *Bob Ross*",
+  "That'll be our little secret. - *Bob Ross*"
 ];
 
 function get_gif(tags, func) {
