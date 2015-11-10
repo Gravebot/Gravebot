@@ -4,6 +4,7 @@
   "description": "A bot for the chat program Discord",
   "main": "discord_bot.js",
   "dependencies": {
+    "cleverbot.io": "^1.0.3",
     "discord.js": "^4.1.1",
     "google": "^1.3.0",
     "google-images": "^0.1.4",
