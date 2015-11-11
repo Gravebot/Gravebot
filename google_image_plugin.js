@@ -26,7 +26,7 @@ GoogleImagePlugin.prototype.respond = function(query, channel, bot) {
 			return;
 		}
 		if (data.responseData.results.length == 0){
-			bot.sendMessage(channel, "No result for '" + query + "'");
+			bot.sendMessage(channel, "I couldn't find an image for: " + query);
 			return
 		}
 		else if("unescapedUrl" in data.responseData.results[0]){

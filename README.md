@@ -51,7 +51,7 @@ Double click **Launch.bat**
 * **!gif** *gif tags* -> Gets a gif from Giphy matching the given tags
 * **!help** -> Lists all commands
 * **!image** *image tags* -> Gets an image from Google matching the given tags
-* **!join-server** *invite* -> Joins the server the bot is invited to
+* **!join-server** *invitation link* -> Joins the server the bot is invited to
 * **!kappa** -> Kappa
 * **!meme** *meme name* *"top text"* *"bottom text"* -> Creates a meme with the given meme name and text
 * **!memehelp** -> Lists available meme names

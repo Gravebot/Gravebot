@@ -4,13 +4,6 @@ var AuthDetails = require("./auth.json");
 var multiline = require("multiline");
 var qs = require("querystring");
 
-var config = {
-    "api_key": "dc6zaTOxFJmzC",
-    "rating": "r",
-    "url": "http://api.giphy.com/v1/gifs/search",
-    "permission": ["NORMAL"]
-};
-
 var bot = new Discord.Client();
 
 bot.on("ready", function () {
@@ -35,8 +28,9 @@ bot.on("message", function (msg) {
     cmd.process(bot, msg, suffix);
 		}
 	}
-  if(msg.isMentioned(bot.user)) {
-    bot.sendMessage(msg.author, "Hello, I am a bot that is owned by **Gravestorm** and hosted 24/7.\nWrite **!help** if you want to see what I can do.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
+
+  if(msg.content.toLowerCase() === "gravebot" || msg.isMentioned(bot.user)) {
+    bot.sendMessage(msg.channel, respond);
   }
 });
 
@@ -54,7 +48,7 @@ var commands = {
     },
     "aide": {
       process: function(bot, msg) {
-        bot.sendMessage(msg.channel, aide);
+        bot.sendMessage(msg.author, aide + "I am a bot that is owned by **Gravestorm** and hosted 24/7.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
       }
     },
     "avatar": {
@@ -86,19 +80,19 @@ var commands = {
       process: function(bot, msg) {
         var cb = msg.content.split(" ")[0].substring(1);
         var cbi = msg.content.substring(cb.length+2);
-        var cleverbot = require("cleverbot.io"),AuthDetails.email, AuthDetails.password
+        var cleverbot = require("cleverbot.io"),
         clever = new cleverbot(AuthDetails.cleverbot_api_name, AuthDetails.cleverbot_api_key);
         clever.setNick("Gravebot");
         clever.create(function (err, session) {
           clever.ask(cbi, function (err, response) {
-            bot.sendMessage(msg.channel, response); // Will likely be: "Living in a lonely world"
+            bot.sendMessage(msg.channel, response);
           });
         });
       }
     },
     "commands": {
       process: function(bot, msg) {
-        bot.sendMessage(msg.channel, help);
+        bot.sendMessage(msg.author, help + "I am a bot that is owned by **Gravestorm** and hosted 24/7.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
       }
     },
     "decide": {
@@ -133,17 +127,17 @@ var commands = {
         var tags = suffix.split(" ");
         get_gif(tags, function(id) {
           if (typeof id !== "undefined") {
-			      bot.sendMessage(msg.channel, "http://media.giphy.com/media/" + id + "/giphy.gif [Tags: " + (tags ? tags : "Random GIF") + "]");
+			      bot.sendMessage(msg.channel, "http://media.giphy.com/media/" + id + "/giphy.gif");
 			     }
           else {
-			      bot.sendMessage(msg.channel, "Invalid tags, try something different. [Tags: " + (tags ? tags : "Random GIF") + "]");
+			      bot.sendMessage(msg.channel, "I couldn't find a gif for: " + tags);
 			     }
 		    });
 		  }
     },
     "help": {
       process: function(bot, msg) {
-        bot.sendMessage(msg.channel, help);
+        bot.sendMessage(msg.author, help + "I am a bot that is owned by **Gravestorm** and hosted 24/7.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
       }
     },
     "image": {
@@ -162,7 +156,7 @@ var commands = {
       process: function(bot, msg, suffix) {
         var query = suffix;
         if(!query) {
-          bot.sendMessage(msg.channel, "Usage: !join-server **invite**");
+          bot.sendMessage(msg.channel, "Usage: !join-server **invitation link**");
           return;
         }
         var invite = msg.content.split(" ")[1];
@@ -278,7 +272,7 @@ var commands = {
             bot.sendMessage(msg.channel, definition);
           }
           else {
-            bot.sendMessage(msg.channel, "Sorry, I couldn't find a definition for: " + suffix);
+            bot.sendMessage(msg.channel, "I couldn't find a definition for: " + suffix);
           }
         });
       }
@@ -304,8 +298,6 @@ var commands = {
               continuation();
             });
           });
-        },function(err) {
-          bot.sendMessage(msg.channel, err);
         });
       }
     },
@@ -322,6 +314,13 @@ var commands = {
       }
     }
 };
+
+var respond = multiline(function(){/*
+```coffee
+"#{
+Write !help for a list of commands.
+```
+*/});
 
 var help = multiline(function(){/*
 ```php
@@ -346,7 +345,7 @@ var help = multiline(function(){/*
 !image 'image tags'
      Gets an image from Google matching the given tags
 
-!join-server 'invite'
+!join-server 'invitation link'
      Joins the server the bot is invited to
 
 !kappa
@@ -383,7 +382,8 @@ var help = multiline(function(){/*
      Returns the summary of the first matching search result from Wikipedia
 
 !youtube 'video tags'
-     Gets a video from Youtube matching the given tags```
+     Gets a video from Youtube matching the given tags
+```
 */});
 
 var aide = multiline(function(){/*
@@ -409,7 +409,7 @@ var aide = multiline(function(){/*
 !image *image tags*
      Retourne une image correspondant aux tags
 
-!join-server *invite*
+!join-server *invitation link*
      Rejoint le serveur auquel le bot est invité
 
 !kappa
@@ -591,8 +591,8 @@ var Quotes = [
 function get_gif(tags, func) {
         //limit=1 will only return 1 gif
         var params = {
-          "api_key": config.api_key,
-          "rating": config.rating,
+          "api_key": "dc6zaTOxFJmzC",
+          "rating": "r",
           "format": "json",
           "limit": 1
         };
@@ -603,20 +603,13 @@ function get_gif(tags, func) {
 
         var request = require("request");
 
-        request(config.url + "?" + query, function (error, response, body) {
-          if (error || response.statusCode !== 200) {
-            console.error("giphy: Got error: " + body);
-            console.log(error);
+        request("http://api.giphy.com/v1/gifs/search" + "?" + query, function (error, response, body) {
+          var responseObj = JSON.parse(body)
+          if(responseObj.data.length) {
+            func(responseObj.data[0].id);
           }
           else {
-            var responseObj = JSON.parse(body)
-            console.log(responseObj.data[0])
-            if(responseObj.data.length) {
-              func(responseObj.data[0].id);
-            }
-            else {
-              func(undefined);
-            }
+            func(undefined);
           }
         }.bind(this));
       }
