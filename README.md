@@ -1,6 +1,8 @@
 # About
 A bot for the chat program [Discord](https://discordapp.com/), made with the help of [Discord.js library](https://github.com/hydrabolt/discord.js).
 
+[Command list](https://github.com/Gravestorm/Gravebot#commands).
+
 [![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 
@@ -8,7 +10,7 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 # Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
 
-In order to do that, join the [Discord Bots](https://discord.gg/0cDvIgU2voWn4BaD) server and private message it with !join-server **Invitation** (e.g. https://discord.gg/0cDvIgU2voWn4BaD **or** 0cDvIgU2voWn4BaD)
+In order to do that, join the [Discord Bots](https://discord.gg/0cDvIgU2voWn4BaD) server and private message it with !join-server **invitation link** (e.g. https://discord.gg/0cDvIgU2voWn4BaD **or** 0cDvIgU2voWn4BaD)
 
 Though, if you still want to host it yourself, or mess around with the code, keep reading.
 
@@ -34,33 +36,41 @@ Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http
 See [Launching the bot](https://github.com/Gravestorm/Gravebot#launching-the-bot)
 
 ## Launching the bot:
-Rename **auth.json.example** to **auth.json** and fill in the required information
+Rename **config.json.example** to **config.json** and fill in the required information
 
 Double click **npm install.bat**
 
 Double click **Launch.bat**
 
 # Commands:
-* **!8ball** *question* -> Answers the question
-* **!aide** -> Lists all commands, with French descriptions
-* **!avatar** *@Username* -> Responds with the Avatar of the user, if no user is written, the avatar of the sender
-* **!ayylmao** -> All dayy lmao
-* **!chat** *sentence* -> Chats with you
-* **!commands** -> Lists all commands
-* **!decide** *something or something or something...* -> Decides between given words
-* **!gif** *gif tags* -> Gets a gif from Giphy matching the given tags
-* **!help** -> Lists all commands
-* **!image** *image tags* -> Gets an image from Google matching the given tags
-* **!join-server** *invitation link* -> Joins the server the bot is invited to
-* **!kappa** -> Kappa
-* **!meme** *meme name* *"top text"* *"bottom text"* -> Creates a meme with the given meme name and text
-* **!memehelp** -> Lists available meme names
-* **!myid** -> Responds with the user ID of the sender
-* **!quote** -> Writes a random quote
-* **!rick** *number* *ricks* -> Ricks the dice with a number of sides, if no number is written, six-sided
-* **!roll** *number* -> Rolls the dice with a number of sides, if no number is written, six-sided
-* **!servers** -> Lists all the servers the bot is connected to
-* **!urban** *search terms* -> Returns the summary of the first matching search result from Urban Dictionary
-* **!uptime** -> Shows how long the bot has been online
-* **!wiki** *search terms* -> Returns the summary of the first matching search result from Wikipedia
-* **!youtube** *video tags* -> Gets a video from Youtube matching the given tags
+##Help commands:
+**!help fun** => List of fun commands
+**!help useful** => List of useful commands
+**!help info** => List of information commands
+**!aide** => Liste des commandes
+**!memelist** => List of meme names for the !meme command
+
+##Fun commands:
+**!8ball** *question* => Answers the question
+**!chat** *sentence* => Chats with you
+**!decide** *something or something or something...* => Decides between given words
+**!meme** *meme name "top text" "bottom text"* => Creates a meme with the given meme name and text
+**!quote** => Writes a random quote
+**!rick** *number ricks* => Ricks the dice with a number of sides, if no number is written, six-sided
+**!roll** *number* => Rolls the dice with a number of sides, if no number is written, six-sided
+
+##Useful commands:
+**!avatar** *@Username* => Responds with the Avatar of the user, if no user is written, the avatar of the sender
+**!gif** *gif tags* => Gets a gif from Giphy matching the given tags
+**!image** *image tags* => Gets an image from Google matching the given tags
+**!join-server** *invitation link* => Joins the server the bot is invited to
+**!urban** *search terms* => Returns the summary of the first matching search result from Urban Dictionary
+**!wiki** *search terms* => Returns the summary of the first matching search result from Wikipedia
+**!youtube** *video tags* => Gets a video from Youtube matching the given tags
+
+##Information commands:
+**!ayylmao** => All dayy lmao
+**!kappa** => Kappa
+**!myid** => Responds with the user ID of the sender
+**!servers** => Lists all the servers the bot is connected to
+**!uptime** => Shows how long the bot has been online

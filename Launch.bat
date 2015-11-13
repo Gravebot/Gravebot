@@ -1,2 +1,2 @@
-node discord_bot.js
+node gravebot.js
 pause
