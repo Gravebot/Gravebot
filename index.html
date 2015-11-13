@@ -24,6 +24,8 @@
 
 <p>A bot for the chat program <a href="https://discordapp.com/">Discord</a>, made with the help of <a href="https://github.com/hydrabolt/discord.js">Discord.js library</a>.</p>
 
+<p><a href="https://github.com/Gravestorm/Gravebot#commands">Command list</a>.</p>
+
 <p><a href="https://david-dm.org/gravestorm/gravebot"><img src="https://david-dm.org/gravestorm/gravebot.svg" alt="Build Status"></a>
 <a href="https://travis-ci.org/Gravestorm/Gravebot"><img src="https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master" alt="Build Status"></a></p>
 
@@ -35,7 +37,7 @@
 
 <p>The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.</p>
 
-<p>In order to do that, join the <a href="https://discord.gg/0cDvIgU2voWn4BaD">Discord Bots</a> server and private message it with !join-server <strong>Invitation</strong> (e.g. <a href="https://discord.gg/0cDvIgU2voWn4BaD">https://discord.gg/0cDvIgU2voWn4BaD</a> <strong>or</strong> 0cDvIgU2voWn4BaD)</p>
+<p>In order to do that, join the <a href="https://discord.gg/0cDvIgU2voWn4BaD">Discord Bots</a> server and private message it with !join-server <strong>invitation link</strong> (e.g. <a href="https://discord.gg/0cDvIgU2voWn4BaD">https://discord.gg/0cDvIgU2voWn4BaD</a> <strong>or</strong> 0cDvIgU2voWn4BaD)</p>
 
 <p>Though, if you still want to host it yourself, or mess around with the code, keep reading.</p>
 
@@ -69,7 +71,7 @@
 <h2>
 <a id="launching-the-bot" class="anchor" href="#launching-the-bot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Launching the bot:</h2>
 
-<p>Rename <strong>auth.json.example</strong> to <strong>auth.json</strong> and fill in the required information</p>
+<p>Rename <strong>config.json.example</strong> to <strong>config.json</strong> and fill in the required information</p>
 
 <p>Double click <strong>npm install.bat</strong></p>
 
@@ -78,52 +80,65 @@
 <h1>
 <a id="commands" class="anchor" href="#commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commands:</h1>
 
-<ul>
-<li>
-<strong>!8ball</strong> <em>question</em> -&gt; Answers the question</li>
-<li>
-<strong>!aide</strong> -&gt; Lists all commands, with French descriptions</li>
-<li>
-<strong>!avatar</strong> <em>@Username</em> -&gt; Responds with the Avatar of the user, if no user is written, the avatar of the sender</li>
-<li>
-<strong>!ayylmao</strong> -&gt; All dayy lmao</li>
-<li>
-<strong>!commands</strong> -&gt; Lists all commands</li>
-<li>
-<strong>!decide</strong> <em>something or something or something...</em> -&gt; Decides between given words</li>
-<li>
-<strong>!gif</strong> <em>gif tags</em> -&gt; Gets a gif from Giphy matching the given tags</li>
-<li>
-<strong>!help</strong> -&gt; Lists all commands</li>
-<li>
-<strong>!image</strong> <em>image tags</em> -&gt; Gets an image from Google matching the given tags</li>
-<li>
-<strong>!join-server</strong> <em>invite</em> -&gt; Joins the server the bot is invited to</li>
-<li>
-<strong>!kappa</strong> -&gt; Kappa</li>
-<li>
-<strong>!meme</strong> <em>meme name</em> <em>"top text"</em> <em>"bottom text"</em> -&gt; Creates a meme with the given meme name and text</li>
-<li>
-<strong>!memehelp</strong> -&gt; Lists available meme names</li>
-<li>
-<strong>!myid</strong> -&gt; Responds with the user ID of the sender</li>
-<li>
-<strong>!quote</strong> -&gt; Writes a random quote</li>
-<li>
-<strong>!rick</strong> <em>number</em> <em>ricks</em> -&gt; Ricks the dice with a number of sides, if no number is written, six-sided</li>
-<li>
-<strong>!roll</strong> <em>number</em> -&gt; Rolls the dice with a number of sides, if no number is written, six-sided</li>
-<li>
-<strong>!servers</strong> -&gt; Lists all the servers the bot is connected to</li>
-<li>
-<strong>!urban</strong> <em>search terms</em> -&gt; Returns the summary of the first matching search result from Urban Dictionary</li>
-<li>
-<strong>!uptime</strong> -&gt; Shows how long the bot has been online</li>
-<li>
-<strong>!wiki</strong> <em>search terms</em> -&gt; Returns the summary of the first matching search result from Wikipedia</li>
-<li>
-<strong>!youtube</strong> <em>video tags</em> -&gt; Gets a video from Youtube matching the given tags</li>
-</ul>
+<h2>
+<a id="help-commands" class="anchor" href="#help-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Help commands:</h2>
+
+<p><strong>!help fun</strong> =&gt; List of fun commands</p>
+
+<p><strong>!help useful</strong> =&gt; List of useful commands</p>
+
+<p><strong>!help info</strong> =&gt; List of information commands</p>
+
+<p><strong>!aide</strong> =&gt; Liste des commandes</p>
+
+<p><strong>!memelist</strong> =&gt; List of meme names for the !meme command</p>
+
+<h2>
+<a id="fun-commands" class="anchor" href="#fun-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fun commands:</h2>
+
+<p><strong>!8ball</strong> <em>question</em> =&gt; Answers the question</p>
+
+<p><strong>!chat</strong> <em>sentence</em> =&gt; Chats with you</p>
+
+<p><strong>!decide</strong> <em>something or something or something...</em> =&gt; Decides between given words</p>
+
+<p><strong>!meme</strong> <em>meme name "top text" "bottom text"</em> =&gt; Creates a meme with the given meme name and text</p>
+
+<p><strong>!quote</strong> =&gt; Writes a random quote</p>
+
+<p><strong>!rick</strong> <em>number ricks</em> =&gt; Ricks the dice with a number of sides, if no number is written, six-sided</p>
+
+<p><strong>!roll</strong> <em>number</em> =&gt; Rolls the dice with a number of sides, if no number is written, six-sided</p>
+
+<h2>
+<a id="useful-commands" class="anchor" href="#useful-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Useful commands:</h2>
+
+<p><strong>!avatar</strong> <em>@Username</em> =&gt; Responds with the Avatar of the user, if no user is written, the avatar of the sender</p>
+
+<p><strong>!gif</strong> <em>gif tags</em> =&gt; Gets a gif from Giphy matching the given tags</p>
+
+<p><strong>!image</strong> <em>image tags</em> =&gt; Gets an image from Google matching the given tags</p>
+
+<p><strong>!join-server</strong> <em>invitation link</em> =&gt; Joins the server the bot is invited to</p>
+
+<p><strong>!urban</strong> <em>search terms</em> =&gt; Returns the summary of the first matching search result from Urban Dictionary</p>
+
+<p><strong>!wiki</strong> <em>search terms</em> =&gt; Returns the summary of the first matching search result from Wikipedia</p>
+
+<p><strong>!youtube</strong> <em>video tags</em> =&gt; Gets a video from Youtube matching the given tags</p>
+
+<h2>
+<a id="information-commands" class="anchor" href="#information-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Information commands:</h2>
+
+<p><strong>!ayylmao</strong> =&gt; All dayy lmao</p>
+
+<p><strong>!kappa</strong> =&gt; Kappa</p>
+
+<p><strong>!myid</strong> =&gt; Responds with the user ID of the sender</p>
+
+<p><strong>!servers</strong> =&gt; Lists all the servers the bot is connected to</p>
+
+<p><strong>!uptime</strong> =&gt; Shows how long the bot has been online</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Gravestorm/Gravebot">Gravebot</a> is maintained by <a href="https://github.com/Gravestorm">Gravestorm</a>.</span>
