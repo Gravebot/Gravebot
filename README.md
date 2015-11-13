@@ -45,32 +45,52 @@ Double click **Launch.bat**
 # Commands:
 ##Help commands:
 **!help fun** => List of fun commands
+
 **!help useful** => List of useful commands
+
 **!help info** => List of information commands
+
 **!aide** => Liste des commandes
+
 **!memelist** => List of meme names for the !meme command
 
 ##Fun commands:
 **!8ball** *question* => Answers the question
+
 **!chat** *sentence* => Chats with you
+
 **!decide** *something or something or something...* => Decides between given words
+
 **!meme** *meme name "top text" "bottom text"* => Creates a meme with the given meme name and text
+
 **!quote** => Writes a random quote
+
 **!rick** *number ricks* => Ricks the dice with a number of sides, if no number is written, six-sided
+
 **!roll** *number* => Rolls the dice with a number of sides, if no number is written, six-sided
 
 ##Useful commands:
 **!avatar** *@Username* => Responds with the Avatar of the user, if no user is written, the avatar of the sender
+
 **!gif** *gif tags* => Gets a gif from Giphy matching the given tags
+
 **!image** *image tags* => Gets an image from Google matching the given tags
+
 **!join-server** *invitation link* => Joins the server the bot is invited to
+
 **!urban** *search terms* => Returns the summary of the first matching search result from Urban Dictionary
+
 **!wiki** *search terms* => Returns the summary of the first matching search result from Wikipedia
+
 **!youtube** *video tags* => Gets a video from Youtube matching the given tags
 
 ##Information commands:
 **!ayylmao** => All dayy lmao
+
 **!kappa** => Kappa
+
 **!myid** => Responds with the user ID of the sender
+
 **!servers** => Lists all the servers the bot is connected to
+
 **!uptime** => Shows how long the bot has been online
