@@ -224,13 +224,13 @@ var commands = {
 	"rick": {
 		process: function(bot, msg, suffix) {
 			var first = msg.content.split(" ")[1];
-			if (input) {
+			if (first) {
 				var numbers = Math.floor(Math.random() * first) + 1;
 			} else {
 				var numbers = Math.floor(Math.random() * 6969) + 1;
 			}
 			var second = msg.content.split(" ")[2];
-			if (ricks) {
+			if (second) {
 				var count = Math.floor(Math.random() * second) + 1;
 			} else {
 				var count = Math.floor(Math.random() * 9696) + 1;
