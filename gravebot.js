@@ -255,6 +255,19 @@ var commands = {
 			bot.sendMessage(msg.channel, list);
 		}
 	},
+	"snoopify": {
+		process: function(bot, msg, suffix) {
+			var query = suffix;
+			if (!query) {
+				bot.sendMessage(msg.channel, "Usage: !snoopify **sentence**");
+				return;
+			}
+			var G = require('gizoogle');
+			G.string(suffix, function(error, translation) {
+				bot.sendMessage(msg.channel, translation);
+			});
+		}
+	},
 	"uptime": {
 		process: function(bot, msg) {
 			var uptimeh = Math.floor((bot.uptime / 1000) / (60 * 60));
@@ -360,6 +373,9 @@ var helpfun = multiline(function() {/*
 
 !roll 'number'
       Rolls the dice with a number of sides, if no number is written, six-sided
+
+!snoopify 'sentence'
+      Snoopifies tha sentence
 ```
 */});
 
@@ -448,6 +464,9 @@ var aidefun = multiline(function() {/*
 
 !roll *chiffre*
       Fait rouler les dés
+
+!snoopify 'phrase'
+      Snoopifies la phrase
 ```
 */});
 

@@ -69,6 +69,8 @@ Double click **Launch.bat**
 
 **!roll** *number* => Rolls the dice with a number of sides, if no number is written, six-sided
 
+**!snoopify** *sentence* => Snoopifies tha sentence
+
 ##Useful commands:
 **!avatar** *@Username* => Responds with the Avatar of the user, if no user is written, the avatar of the sender
 
