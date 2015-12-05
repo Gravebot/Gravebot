@@ -1,3 +1,4 @@
+'use strict'
 var Discord = require("discord.js");
 var Config = require("./config.json");
 
@@ -6,19 +7,19 @@ var qs = require("querystring");
 
 var bot = new Discord.Client();
 
-bot.on("ready", function() {
-	console.log("Ready to begin! Serving in " + bot.servers.length + " servers");
+bot.on("ready", () => {
+	console.log("Started successfully. Serving in " + bot.servers.length + " servers");
 	//Sets the game the bot will be shown as playing, change the number for a different game
 	bot.setPlayingGame(329);
 });
 
-bot.on("disconnected", function() {
+bot.on("disconnected", () => {
 	console.log(currentTime() + "Disconnected. Attempting to reconnect...");
 	sleep(5000);
 	bot.login(Config.email, Config.password);
 });
 
-bot.on("message", function(msg) {
+bot.on("message", msg => {
 	//Checks if the message is a command
 	if (msg.content[0] === '!') {
 		var command = msg.content.toLowerCase().split(" ")[0].substring(1);
@@ -28,7 +29,6 @@ bot.on("message", function(msg) {
 			cmd.process(bot, msg, suffix);
 		}
 	}
-
 	if (msg.content.toLowerCase().indexOf("gravebot") != -1 || msg.isMentioned(bot.user)) {
 		bot.sendMessage(msg.author, "I am a bot that is owned by **Gravestorm** and hosted 24/7.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
 	}
@@ -61,12 +61,11 @@ var commands = {
 	"avatar": {
 		process: function(bot, msg, suffix) {
 			if (msg.mentions.length === 0) {
-				bot.sendMessage(msg.channel, "Your avatar:\n" + msg.sender.avatarURL);
+				bot.sendMessage(msg.channel, "Your avatar:\n" + msg.author.avatarURL);
 				return;
 			}
 			var msgArray = [];
-			for (index in msg.mentions) {
-				var user = msg.mentions[index];
+			for (var user of msg.mentions) {
 				if (user.avatarURL === null) {
 					msgArray.push(user.username + " is naked.");
 				} else {
@@ -83,7 +82,7 @@ var commands = {
 		}
 	},
 	"chat": {
-		process: function(bot, msg) {
+		process: function(bot, msg, suffix) {
 			var cb = msg.content.split(" ")[0].substring(1);
 			var cbi = msg.content.substring(cb.length + 2);
 			var cleverbot = require("cleverbot.io"),
@@ -94,6 +93,16 @@ var commands = {
 					bot.sendMessage(msg.channel, response);
 				});
 			});
+		}
+	},
+	"coin": {
+		process: function(bot, msg) {
+			var number = Math.floor(Math.random() * 2) + 1;
+			if (number === 1) {
+				bot.sendFile(msg.channel, "./images/Heads.png");
+			} else {
+				bot.sendFile(msg.channel, "./images/Tails.png");
+			}
 		}
 	},
 	"commands": {
@@ -119,6 +128,12 @@ var commands = {
 					return selected;
 				}
 			}
+		}
+	},
+	"drama": {
+		process: function(bot, msg) {
+			var rand = Math.floor(Math.random() * Drama.length);
+			bot.sendMessage(msg.channel, Drama[rand]);
 		}
 	},
 	"gif": {
@@ -151,18 +166,6 @@ var commands = {
 			}
 		}
 	},
-	"image": {
-		process: function(bot, msg, suffix) {
-			var query = suffix;
-			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !image **image tags**");
-				return;
-			}
-			var gi = require("./google_image_plugin");
-			var google_image_plugin = new gi();
-			google_image_plugin.respond(suffix, msg.channel, bot);
-		}
-	},
 	"join-server": {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
@@ -183,6 +186,11 @@ var commands = {
 	"kappa": {
 		process: function(bot, msg) {
 			bot.sendFile(msg.channel, "./images/Kappa.png");
+		}
+	},
+	"kappahd": {
+		process: function(bot, msg) {
+			bot.sendFile(msg.channel, "./images/Kappahd.png");
 		}
 	},
 	"meme": {
@@ -210,33 +218,10 @@ var commands = {
 			bot.sendMessage(msg.channel, memelist);
 		}
 	},
-	"myid": {
-		process: function(bot, msg) {
-			bot.sendMessage(msg.channel, msg.author.id);
-		}
-	},
 	"quote": {
 		process: function(bot, msg) {
 			var rand = Math.floor(Math.random() * Quotes.length);
 			bot.sendMessage(msg.channel, Quotes[rand]);
-		}
-	},
-	"rick": {
-		process: function(bot, msg, suffix) {
-			var first = msg.content.split(" ")[1];
-			if (first) {
-				var numbers = Math.floor(Math.random() * first) + 1;
-			} else {
-				var numbers = Math.floor(Math.random() * 6969) + 1;
-			}
-			var second = msg.content.split(" ")[2];
-			if (second) {
-				var count = Math.floor(Math.random() * second) + 1;
-			} else {
-				var count = Math.floor(Math.random() * 9696) + 1;
-			}
-			bot.sendMessage(msg.channel, msg.sender + " Ricked " + numbers);
-			bot.sendMessage(msg.author, "```You got Rick Rolled " + count + " times.```\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ\nhttp://i.imgur.com/wyLF0TN.png");
 		}
 	},
 	"roll": {
@@ -246,13 +231,44 @@ var commands = {
 			} else {
 				var number = Math.floor(Math.random() * 6) + 1;
 			}
-			bot.sendMessage(msg.channel, msg.sender + " Rolled " + number);
+			if (isNaN(number)) number = 0;
+			if (number != 0) {
+				bot.sendMessage(msg.channel, msg.author + " Rolled " + number);
+			} else {
+				bot.sendMessage(msg.channel, msg.author + " Rolled " + suffix + "\n*Roll with numbers only.*");
+			}
+		}
+	},
+	"serverinfo": {
+		process: function(bot, msg) {
+			var serverName = msg.channel.server.name;
+			var serverID = msg.channel.server.id;
+			var serverRegion = msg.channel.server.region;
+			var serverOwner = msg.channel.server.owner.username;
+			var channels = msg.channel.server.channels.length;
+			var defaultChannel = msg.channel.server.defaultChannel.name;
+			var members = msg.channel.server.members.length;
+			var iconURL = msg.channel.server.iconURL;
+			var serverinfo = ("```Server Name: " + serverName + "\nServer ID: " + serverID + "\nServer Region: " + serverRegion + "\nServer Owner: " + serverOwner + "\nChannels: " + channels + "\nDefault Channel: " + defaultChannel + "\nMembers: " + members + "\nServer Icon: " + iconURL + "```");
+			bot.sendMessage(msg, serverinfo);
+		}
+	},
+	"serverlist": {
+		process: function(bot, msg) {
+			var serversList = "";
+			for (var server of bot.servers.sort()) {
+				let online = 0;
+				let member = "";
+				serversList += "**" + server + "** has " + server.members.length + " members (";
+				online = server.members.reduce((count, member) => count + (member.status === 'online' ? 1 : 0), 0);
+				serversList += online + " online)\n";
+			}
+			bot.sendMessage(msg.channel, serversList);
 		}
 	},
 	"servers": {
 		process: function(bot, msg) {
-			var list = bot.servers.sort();
-			bot.sendMessage(msg.channel, list);
+			bot.sendMessage(msg.channel, "Connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels and " + bot.users.length + " users.\n*Write !serverlist for a list of servers I'm connected to.*");
 		}
 	},
 	"snoopify": {
@@ -292,6 +308,31 @@ var commands = {
 					bot.sendMessage(msg.channel, "I couldn't find a definition for: " + suffix);
 				}
 			});
+		}
+	},
+	"userinfo": {
+		process: function(bot, msg, suffix) {
+			if (msg.mentions.length == 0) {
+				var username = msg.author.username;
+				var userID = msg.author.id;
+				var discriminator = msg.author.discriminator;
+				var status = msg.author.status;
+				var avatar = msg.author.avatarURL;
+				var userinfo = ("```Name: " + username + "\nID: " + userID + "\nDiscriminator: " + discriminator + "\nStatus: " + status + "\nAvatar: " + avatar + "```");
+				bot.sendMessage(msg, userinfo);
+			} else {
+				for (var user of msg.mentions)
+					if (user != null) {
+						let info = [];
+						var username = user.username;
+						var userID = user.id;
+						var discriminator = user.discriminator;
+						var status = user.status;
+						var avatar = user.avatarURL;
+						var userinfo = ("```Name: " + username + "\nID: " + userID + "\nDiscriminator: " + discriminator + "\nStatus: " + status + "\nAvatar: " + avatar + "```");
+						bot.sendMessage(msg, userinfo);
+					}
+			}
 		}
 	},
 	"wiki": {
@@ -359,17 +400,20 @@ var helpfun = multiline(function() {/*
 !chat 'sentence'
       Chats with you
 
+!coin
+      Flips a coin
+
 !decide 'something or something or something...'
       Decides between given words
+
+!drama
+      Responds with a random drama image
 
 !meme 'meme name "top text" "bottom text"'
       Creates a meme with the given meme name and text
 
 !quote
       Writes a random quote
-
-!rick 'number' 'ricks'
-      Ricks the dice with a number of sides, if no number is written, six-sided
 
 !roll 'number'
       Rolls the dice with a number of sides, if no number is written, six-sided
@@ -381,14 +425,8 @@ var helpfun = multiline(function() {/*
 
 var helpuseful = multiline(function() {/*
 ```cs
-!avatar '@Username'
-      Responds with the Avatar of the user, if no user is written, the avatar of the sender
-
 !gif 'gif tags'
       Gets a gif from Giphy matching the given tags
-
-!image 'image tags'
-      Gets an image from Google matching the given tags
 
 !join-server 'invitation link'
       Joins the server the bot is invited to
@@ -406,20 +444,23 @@ var helpuseful = multiline(function() {/*
 
 var helpinfo = multiline(function() {/*
 ```cs
-!ayylmao
-      All dayy lmao
+!avatar '@Username'
+      Responds with the Avatar of the user, if no user is written, the avatar of the sender
 
-!kappa
-      Kappa
+!serverinfo
+      Gives information about the server
 
-!myid
-      Responds with the user ID of the sender
+!serverlist
+      Lists all the servers the bot is connected to
 
 !servers
-      Lists all the servers the bot is connected to
+      Lists how many servers, channels and users the bot is connected to
 
 !uptime
       Shows how long the bot has been online
+
+!userinfo '@username'
+      Gives information about the user, if no user is written, yourself
 ```
 */});
 
@@ -450,17 +491,20 @@ var aidefun = multiline(function() {/*
 !chat *phrase*
       Discute avec toi
 
+!coin
+      Flips a coin
+
 !decide *quelque chose ou quelque chose ou quelque chose...*
       Choisissez entre les mots donnés
+
+!drama
+      Responds with a random drama image
 
 !meme *noms du meme "texte haut" "texte bas"*
       Crée un « meme » avec le texte choisis
 
 !quote
       Ecrit une citation aléatoire
-
-!rick *chiffre* *ricks*
-      Ricks les dés
 
 !roll *chiffre*
       Fait rouler les dés
@@ -472,14 +516,8 @@ var aidefun = multiline(function() {/*
 
 var aideutile = multiline(function() {/*
 ```
-!avatar *@Username*
-      Retourne l'avatar de l'utilisateur, si aucun noms d'utilisateur est spécifié, retourne celui par défaut
-
 !gif *tags du gifs*
       Retourne un gif correspondant aux tags
-
-!image *tags de l'image*
-      Retourne une image correspondant aux tags
 
 !join-server *lien d'invitation*
       Rejoint le serveur auquel le bot est invité
@@ -497,20 +535,23 @@ var aideutile = multiline(function() {/*
 
 var aideinfo = multiline(function() {/*
 ```
-!ayylmao
-      All dayy lmao
+!avatar *@Username*
+      Retourne l'avatar de l'utilisateur, si aucun noms d'utilisateur est spécifié, retourne celui par défaut
 
-!kappa
-      Kappa
+!serverinfo
+      Gives information about the server
 
-!myid
-      Retourne l’ID de l’utilisateur
+!serverlist
+      Lists all the servers the bot is connected to
 
 !servers
-      Liste tous les serveurs auquel le bot est connecté
+      Lists how many servers, channels and users the bot is connected to
 
 !uptime
       Affiche la durée du bot en ligne
+
+!userinfo '@username'
+      Gives information about the user, if no user is written, yourself
 ```
 */});
 
@@ -650,6 +691,17 @@ var Quotes = [
 	"I like to beat the brush. - *Bob Ross*",
 	"Just tap it. - *Bob Ross*",
 	"That'll be our little secret. - *Bob Ross*"
+];
+
+var Drama = [
+	"http://i.imgur.com/lGbMzXB.png",
+	"http://i.imgur.com/KlimX5e.png",
+	"http://i.imgur.com/zqhk2cD.png",
+	"http://i.imgur.com/se9IyQU.png",
+	"http://i.imgur.com/Oz2nRd2.png",
+	"http://i.imgur.com/hvX8VnH.png",
+	"http://i.imgur.com/iOlfgx1.png",
+	"http://i.imgur.com/p5VXx1m.png"
 ];
 
 function get_gif(tags, func) {

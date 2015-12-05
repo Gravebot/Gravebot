@@ -59,21 +59,21 @@ Double click **Launch.bat**
 
 **!chat** *sentence* => Chats with you
 
+**!coin** => Flips a coin
+
+**!drama** => Responds with a random drama image
+
 **!decide** *something or something or something...* => Decides between given words
 
 **!meme** *meme name "top text" "bottom text"* => Creates a meme with the given meme name and text
 
 **!quote** => Writes a random quote
 
-**!rick** *number ricks* => Ricks the dice with a number of sides, if no number is written, six-sided
-
 **!roll** *number* => Rolls the dice with a number of sides, if no number is written, six-sided
 
 **!snoopify** *sentence* => Snoopifies tha sentence
 
 ##Useful commands:
-**!avatar** *@Username* => Responds with the Avatar of the user, if no user is written, the avatar of the sender
-
 **!gif** *gif tags* => Gets a gif from Giphy matching the given tags
 
 **!image** *image tags* => Gets an image from Google matching the given tags
@@ -87,12 +87,14 @@ Double click **Launch.bat**
 **!youtube** *video tags* => Gets a video from Youtube matching the given tags
 
 ##Information commands:
-**!ayylmao** => All dayy lmao
+**!avatar** *@Username* => Responds with the Avatar of the user, if no user is written, the avatar of the sender
 
-**!kappa** => Kappa
+**!serverinfo** => Gives information about the server
 
-**!myid** => Responds with the user ID of the sender
+**!serverlist** => Lists all the servers the bot is connected to
 
-**!servers** => Lists all the servers the bot is connected to
+**!servers** => Lists how many servers, channels and users the bot is connected to
 
 **!uptime** => Shows how long the bot has been online
+
+**!userinfo** *@username* => Gives information about the user, if no user is written, yourself
