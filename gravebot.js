@@ -38,10 +38,10 @@ var commands = {
 	"8ball": {
 		process: function(bot, msg, suffix) {
 			if (suffix.length === 0) {
-				bot.sendMessage(msg.channel, msg.sender + " You call that a question?\nhttp://i.imgur.com/PcXHbt6.png");
+				bot.sendMessage(msg.channel, msg.author + " You call that a question?\nhttp://i.imgur.com/PcXHbt6.png");
 			} else {
 				var rand = Math.floor(Math.random() * EightBall.length);
-				bot.sendMessage(msg.channel, msg.sender + ":crystal_ball:**" + EightBall[rand] + "**:crystal_ball:");
+				bot.sendMessage(msg.channel, msg.author + ":crystal_ball:**" + EightBall[rand] + "**:crystal_ball:");
 			}
 		}
 	},
@@ -53,6 +53,10 @@ var commands = {
 				bot.sendMessage(msg.channel, aideutile);
 			} else if (suffix === "info") {
 				bot.sendMessage(msg.channel, aideinfo);
+			} else if (suffix === "jeux") {
+				bot.sendMessage(msg.channel, aidejeux);
+			} else if (suffix === "autres") {
+				bot.sendMessage(msg.channel, helpother);
 			} else {
 				bot.sendMessage(msg.channel, aide);
 			}
@@ -161,6 +165,10 @@ var commands = {
 				bot.sendMessage(msg.channel, helpuseful);
 			} else if (suffix === "info") {
 				bot.sendMessage(msg.channel, helpinfo);
+			} else if (suffix === "games") {
+				bot.sendMessage(msg.channel, helpgames);
+			} else if (suffix === "other") {
+				bot.sendMessage(msg.channel, helpother);
 			} else {
 				bot.sendMessage(msg.channel, help);
 			}
@@ -226,16 +234,35 @@ var commands = {
 	},
 	"roll": {
 		process: function(bot, msg, suffix) {
-			if (suffix) {
-				var number = Math.floor(Math.random() * suffix) + 1;
+			var times = msg.content.split(" ")[1];
+			var sides = msg.content.split(" ")[2];
+			if (times > 500 && sides > 500) {
+				bot.sendMessage(msg.channel, msg.author + " I'm too high to calculate that high number.");
+			} else if (times > 900) {
+				bot.sendMessage(msg.channel, msg.author + " I'm too high to calculate that high number.");
 			} else {
-				var number = Math.floor(Math.random() * 6) + 1;
-			}
-			if (isNaN(number)) number = 0;
-			if (number != 0) {
-				bot.sendMessage(msg.channel, msg.author + " Rolled " + number);
-			} else {
-				bot.sendMessage(msg.channel, msg.author + " Rolled " + suffix + "\n*Roll with numbers only.*");
+				if (!sides) {
+					sides = 6;
+				}
+				if (!times) {
+					times = 1;
+				}
+				var msgArray = [];
+				var number = 0;
+				var total = 0;
+				var average = 0;
+				for (var i = times; i > 0; i--) {
+					number = Math.floor(Math.random() * sides) + 1;
+					total += number;
+					average = total / times;
+					msgArray.push(number);
+				}
+				if (isNaN(times) || isNaN(sides)) {
+					bot.sendMessage(msg.channel, msg.author + " rolled " + suffix + "\nUsage: !roll **times** **sides**");
+					return;
+				} else {
+					bot.sendMessage(msg.channel, msg.author + " rolled a total of " + total + " (average: " + average + "):\n" + msgArray);
+				}
 			}
 		}
 	},
@@ -259,7 +286,7 @@ var commands = {
 			for (var server of bot.servers.sort()) {
 				let online = 0;
 				let member = "";
-				serversList += "**" + server + "** has " + server.members.length + " members (";
+				serversList += "**`" + server + "`** " + server.members.length + " members (";
 				online = server.members.reduce((count, member) => count + (member.status === 'online' ? 1 : 0), 0);
 				serversList += online + " online)\n";
 			}
@@ -282,6 +309,16 @@ var commands = {
 			G.string(suffix, function(error, translation) {
 				bot.sendMessage(msg.channel, translation);
 			});
+		}
+	},
+	"starwars4": {
+		process: function(bot, msg) {
+			bot.sendMessage(msg.channel, "http://i.imgur.com/l9VKWWF.png");
+		}
+	},
+	"starwars5": {
+		process: function(bot, msg) {
+			bot.sendMessage(msg.channel, "http://i.imgur.com/eCpwo6J.png");
 		}
 	},
 	"uptime": {
@@ -374,185 +411,151 @@ var commands = {
 };
 
 var help = multiline(function() {/*
-```cs
-!help fun
-      List of fun commands
-
-!help useful
-      List of useful commands
-
-!help info
-      List of information commands
-
-!aide
-      Liste des commandes
-
-!memelist
-      List of meme names for the !meme command
-```
+**`!help fun`**
+				List of fun commands
+**`!help useful`**
+				List of useful commands
+**`!help info`**
+				List of information commands
+**`!help games`**
+				List of game commands
+**`!help other`**
+				List of other commands
+**`!aide`**
+				Liste des commandes
+**`!memelist`**
+				List of meme names for the !meme command
 */});
 
 var helpfun = multiline(function() {/*
-```cs
-!8ball 'question'
-      Answers the question
-
-!chat 'sentence'
-      Chats with you
-
-!coin
-      Flips a coin
-
-!decide 'something or something or something...'
-      Decides between given words
-
-!drama
-      Responds with a random drama image
-
-!meme 'meme name "top text" "bottom text"'
-      Creates a meme with the given meme name and text
-
-!quote
-      Writes a random quote
-
-!roll 'number'
-      Rolls the dice with a number of sides, if no number is written, six-sided
-
-!snoopify 'sentence'
-      Snoopifies tha sentence
-```
+**`!8ball`** `question`
+				Answers the question
+**`!chat`** `sentence`
+				Chats with you
+**`!coin`**
+				Flips a coin
+**`!decide`** `something` **`or`** `something...`
+				Decides between given words
+**`!drama`**
+				Responds with a random drama image
+**`!meme`** `meme name` `"top text"` `"bottom text"`
+				Creates a meme with the given meme name and text
+**`!quote`**
+				Writes a random quote
+**`!roll`** `times` `sides`
+				Rolls the dice a number of times with a number of sides
+**`!snoopify`** `sentence`
+				Snoopifies tha sentence
 */});
 
 var helpuseful = multiline(function() {/*
-```cs
-!gif 'gif tags'
-      Gets a gif from Giphy matching the given tags
-
-!join-server 'invitation link'
-      Joins the server the bot is invited to
-
-!urban 'search terms'
-      Returns the summary of the first matching search result from Urban Dictionary
-
-!wiki 'search terms'
-      Returns the summary of the first matching search result from Wikipedia
-
-!youtube 'video tags'
-      Gets a video from Youtube matching the given tags
-```
+**`!gif`** `gif tags`
+				Gets a gif from Giphy matching the given tags
+**`!join-server`** `invitation link`
+				Joins the server the bot is invited to
+**`!urban`** `search terms`
+				Returns the summary of the first matching search result from Urban Dictionary
+**`!wiki`** `search terms`
+				Returns the summary of the first matching search result from Wikipedia
+**`!youtube`** `video tags`
+				Gets a video from Youtube matching the given tags
 */});
 
 var helpinfo = multiline(function() {/*
-```cs
-!avatar '@Username'
-      Responds with the Avatar of the user, if no user is written, the avatar of the sender
+**`!avatar`** `@username`
+				Responds with the Avatar of the user, if no user is written, your avatar
+**`!serverinfo`**
+				Gives information about the server
+**`!serverlist`**
+				Lists all the servers the bot is connected to
+**`!servers`**
+				Lists how many servers, channels and users the bot is connected to
+**`!uptime`**
+				Shows how long the bot has been online
+**`!userinfo`** `@username`
+				Gives information about the user, if no user is written, yourself
+*/});
 
-!serverinfo
-      Gives information about the server
+var helpgames = multiline(function() {/*
+**`Coming Soon`**:tm:
+*/});
 
-!serverlist
-      Lists all the servers the bot is connected to
-
-!servers
-      Lists how many servers, channels and users the bot is connected to
-
-!uptime
-      Shows how long the bot has been online
-
-!userinfo '@username'
-      Gives information about the user, if no user is written, yourself
-```
+var helpother = multiline(function() {/*
+**`!ayylmao`**
+**`!kappa`**
+**`!kappaHD`**
+**`!starwars4`**
+**`!starwars5`**
 */});
 
 var aide = multiline(function() {/*
-```
-!aide fun
-      Liste de commandes amusantes
-
-!aide utile
-      Liste de commandes utiles
-
-!aide info
-      Liste de commandes d'information
-
-!help
-      List of commands
-
-!memelist
-      Liste des "meme" pour la commande !meme
-```
+**`!aide fun`**
+				Liste de commandes amusantes
+**`!aide utile`**
+				Liste de commandes utiles
+**`!aide info`**
+				Liste de commandes d'information
+**`!aide jeux`**
+				Liste des commandes de jeux
+**`!aide autres`**
+				Liste des autres commandes
+**`!help`**
+				List of commands
+**`!memelist`**
+				Liste des "meme" pour la commande !meme
 */});
 
 var aidefun = multiline(function() {/*
-```
-!8ball *question*
-      Répond à la question
-
-!chat *phrase*
-      Discute avec toi
-
-!coin
-      Flips a coin
-
-!decide *quelque chose ou quelque chose ou quelque chose...*
-      Choisissez entre les mots donnés
-
-!drama
-      Responds with a random drama image
-
-!meme *noms du meme "texte haut" "texte bas"*
-      Crée un « meme » avec le texte choisis
-
-!quote
-      Ecrit une citation aléatoire
-
-!roll *chiffre*
-      Fait rouler les dés
-
-!snoopify 'phrase'
-      Snoopifies la phrase
-```
+**`!8ball`** `question`
+				Répond à la question
+**`!chat`** `phrase`
+				Discute avec toi
+**`!coin`**
+				Lance une pièce
+**`!decide`** `quelque chose` **`or`** `quelque chose...`
+				Choisissez entre les mots donnés
+**`!drama`**
+				Renvoi une image dramatique aléatoire
+**`!meme`** `noms du meme` `"texte haut"` `"texte bas"`
+				Crée un « meme » avec le texte choisis
+**`!quote`**
+				Ecrit une citation aléatoire
+**`!roll`** `fois` `côtés`
+				Fait rouler un certain nombre de fois un dé avec un nombre de faces
+**`!snoopify`** `phrase`
+				Snoopifies la phrase
 */});
 
 var aideutile = multiline(function() {/*
-```
-!gif *tags du gifs*
-      Retourne un gif correspondant aux tags
-
-!join-server *lien d'invitation*
-      Rejoint le serveur auquel le bot est invité
-
-!urban *mots de la recherche*
-      Retourne la première définition de Urban Dictionary correspondant aux tags
-
-!wiki *mots de la recherche*
-      Retourne un résumé de la page Wikipedia correspondant aux tags
-
-!youtube *tags de la vidéo*
-      Retourne la vidéo youtube correspondant aux tags
-```
+**`!gif`** `tags du gifs`
+				Retourne un gif correspondant aux tags
+**`!join-server`** `lien d'invitation`
+				Rejoint le serveur auquel le bot est invité
+**`!urban`** `mots de la recherche`
+				Retourne la première définition de Urban Dictionary correspondant aux tags
+**`!wiki`** `mots de la recherche`
+				Retourne un résumé de la page Wikipedia correspondant aux tags
+**`!youtube`** `tags de la vidéo`
+				Retourne la vidéo youtube correspondant aux tags
 */});
 
 var aideinfo = multiline(function() {/*
-```
-!avatar *@Username*
-      Retourne l'avatar de l'utilisateur, si aucun noms d'utilisateur est spécifié, retourne celui par défaut
+**`!avatar`** `@username`
+				Retourne l'avatar de l'utilisateur, si aucun noms d'utilisateur est spécifié, votre avatar
+**`!serverinfo`**
+				Donne les infos du serveur
+**`!serverlist`**
+				Liste tous les serveurs auquel le bot est connecté
+**`!servers`**
+				Liste le nombre de serveurs, canaux et utilisateurs auquels le bots est connecté
+**`!uptime`**
+				Affiche la durée du bot en ligne
+**`!userinfo`** `@username`
+				Donne des informations à propose de l'utilisateur
+*/});
 
-!serverinfo
-      Gives information about the server
-
-!serverlist
-      Lists all the servers the bot is connected to
-
-!servers
-      Lists how many servers, channels and users the bot is connected to
-
-!uptime
-      Affiche la durée du bot en ligne
-
-!userinfo '@username'
-      Gives information about the user, if no user is written, yourself
-```
+var aidejeux = multiline(function() {/*
+**`Coming Soon`**:tm:
 */});
 
 var memelist = multiline(function() {/*

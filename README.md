@@ -16,7 +16,7 @@ Though, if you still want to host it yourself, or mess around with the code, kee
 
 ## Preparation
 ### Windows:
-Install [node.js](https://nodejs.org/en/)
+Install [node.js](https://nodejs.org/en/) v4.0 or higher
 
 Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 
@@ -27,7 +27,7 @@ Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt
 See [Launching the bot](https://github.com/Gravestorm/Gravebot#launching-the-bot)
 
 ### Linux:
-Install [node.js](https://nodejs.org/en/)
+Install [node.js](https://nodejs.org/en/) v4.0 or higher
 
 Install [gcc](https://gcc.gnu.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write **sudo apt-get install g++**)
 
@@ -50,6 +50,10 @@ Double click **Launch.bat**
 
 **!help info** => List of information commands
 
+**!help games** => List of game commands
+
+**!help other** => List of other commands
+
 **!aide** => Liste des commandes
 
 **!memelist** => List of meme names for the !meme command
@@ -61,22 +65,20 @@ Double click **Launch.bat**
 
 **!coin** => Flips a coin
 
-**!drama** => Responds with a random drama image
-
 **!decide** *something or something or something...* => Decides between given words
+
+**!drama** => Responds with a random drama image
 
 **!meme** *meme name "top text" "bottom text"* => Creates a meme with the given meme name and text
 
 **!quote** => Writes a random quote
 
-**!roll** *number* => Rolls the dice with a number of sides, if no number is written, six-sided
+**!roll** *times* *sides* => Rolls the dice a number of times with a number of sides
 
 **!snoopify** *sentence* => Snoopifies tha sentence
 
 ##Useful commands:
 **!gif** *gif tags* => Gets a gif from Giphy matching the given tags
-
-**!image** *image tags* => Gets an image from Google matching the given tags
 
 **!join-server** *invitation link* => Joins the server the bot is invited to
 
@@ -98,3 +100,14 @@ Double click **Launch.bat**
 **!uptime** => Shows how long the bot has been online
 
 **!userinfo** *@username* => Gives information about the user, if no user is written, yourself
+
+##Other commands:
+**!ayylmao**
+
+**!kappa**
+
+**!kappaHD**
+
+**!starwars4**
+
+**!starwars5**
