@@ -10,7 +10,7 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 # Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
 
-In order to do that, join the [Discord Bots](https://discord.gg/0cDvIgU2voWn4BaD) server and private message it with !join-server **invitation link** (e.g. https://discord.gg/0cDvIgU2voWn4BaD **or** 0cDvIgU2voWn4BaD)
+In order to do that, join the [Gravebot server](https://discord.gg/0iXEgtjdHgkpdsVr) and write !join-server **invitation link** (e.g. https://discord.gg/0cDvIgU2voWn4BaD **or** 0cDvIgU2voWn4BaD), you may also test it there as much as you like.
 
 Though, if you still want to host it yourself, or mess around with the code, keep reading.
 
