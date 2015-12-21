@@ -12,6 +12,8 @@ The easiest way to set this bot up on your server is to invite it to your Discor
 
 In order to do that, join the [Gravebot server](https://discord.gg/0iXEgtjdHgkpdsVr) and write !join-server **invitation link** (e.g. https://discord.gg/0cDvIgU2voWn4BaD **or** 0cDvIgU2voWn4BaD), you may also test it there as much as you like.
 
+**Private messaging does not work for the moment.**
+
 Though, if you still want to host it yourself, or mess around with the code, keep reading.
 
 ## Preparation
