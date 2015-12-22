@@ -29,9 +29,6 @@ bot.on("message", msg => {
 			cmd.process(bot, msg, suffix);
 		}
 	}
-	if (msg.content.toLowerCase().indexOf("gravebot") != -1 || msg.isMentioned(bot.user)) {
-		bot.sendMessage(msg.author, "I am a bot that is owned by **Gravestorm** and hosted 24/7.\nIf you want to see my guts, click the link below:\nhttps://github.com/Gravestorm/Gravebot");
-	}
 });
 
 var commands = {
@@ -121,7 +118,7 @@ var commands = {
 			if (split.length > 1) {
 				bot.sendMessage(msg.channel, Choices[rand] + " **" + multipleDecide(split) + "**");
 			} else {
-				bot.sendMessage(msg.channel, "Usage: !decide *something* **or** *something* **or** *something*...");
+				bot.sendMessage(msg.channel, "Usage: **`!decide`** `something` **`or`** `something...`");
 			}
 
 			function multipleDecide(options) {
@@ -144,7 +141,7 @@ var commands = {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !gif **gif tags**");
+				bot.sendMessage(msg.channel, "Usage: **`!gif`** `gif tags`");
 				return;
 			}
 			var tags = suffix.split(" ");
@@ -174,11 +171,28 @@ var commands = {
 			}
 		}
 	},
+	"join": {
+		process: function(bot, msg, suffix) {
+			var query = suffix;
+			if (!query) {
+				bot.sendMessage(msg.channel, "Usage: **`!join`** `invitation link`");
+				return;
+			}
+			var invite = msg.content.split(" ")[1];
+			bot.joinServer(invite, function(error, server) {
+				if (error) {
+					bot.sendMessage(msg.channel, "Failed to join: " + error);
+				} else {
+					bot.sendMessage(msg.channel, "Successfully joined " + server);
+				}
+			});
+		}
+	},
 	"join-server": {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !join-server **invitation link**");
+				bot.sendMessage(msg.channel, "Usage: **`!join-server`** `invitation link`");
 				return;
 			}
 			var invite = msg.content.split(" ")[1];
@@ -205,7 +219,7 @@ var commands = {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, 'Usage: !meme **meme name** **"top text"** **"bottom text"**');
+				bot.sendMessage(msg.channel, 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`');
 				return;
 			}
 			var tags = msg.content.split('"');
@@ -214,7 +228,7 @@ var commands = {
 			var imgflipper = new Imgflipper(Config.imgflip_username, Config.imgflip_password);
 			imgflipper.generateMeme(meme[memetype], tags[1] ? tags[1] : "", tags[3] ? tags[3] : "", function(err, image) {
 				if (err) {
-					bot.sendMessage(msg.channel, 'Usage: !meme **meme name** **"top text"** **"bottom text"**');
+					bot.sendMessage(msg.channel, 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`');
 				} else {
 					bot.sendMessage(msg.channel, image);
 				}
@@ -258,7 +272,7 @@ var commands = {
 					msgArray.push(number);
 				}
 				if (isNaN(times) || isNaN(sides)) {
-					bot.sendMessage(msg.channel, msg.author + " rolled " + suffix + "\nUsage: !roll **times** **sides**");
+					bot.sendMessage(msg.channel, msg.author + " rolled " + suffix + "\nUsage: **`!roll`** `times` `sides`");
 					return;
 				} else {
 					bot.sendMessage(msg.channel, msg.author + " rolled a total of " + total + " (average: " + average + "):\n" + msgArray);
@@ -295,14 +309,14 @@ var commands = {
 	},
 	"servers": {
 		process: function(bot, msg) {
-			bot.sendMessage(msg.channel, "Connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels and " + bot.users.length + " users.\n*Write !serverlist for a list of servers I'm connected to.*");
+			bot.sendMessage(msg.channel, "Connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels and " + bot.users.length + " users.*");
 		}
 	},
 	"snoopify": {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !snoopify **sentence**");
+				bot.sendMessage(msg.channel, "Usage: **`!snoopify`** `sentence`");
 				return;
 			}
 			var G = require('gizoogle');
@@ -333,7 +347,7 @@ var commands = {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !urban **search terms**");
+				bot.sendMessage(msg.channel, "Usage: **`!urban`** `search terms`");
 				return;
 			}
 			var Urban = require('urban');
@@ -376,7 +390,7 @@ var commands = {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !wiki **search terms**");
+				bot.sendMessage(msg.channel, "Usage: **`!wiki`** `search terms`");
 				return;
 			}
 			var Wiki = require('wikijs');
@@ -400,7 +414,7 @@ var commands = {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, "Usage: !youtube **video tags**");
+				bot.sendMessage(msg.channel, "Usage: **`!youtube`** `video tags`");
 				return;
 			}
 			var yt = require("./youtube_plugin");
@@ -559,49 +573,27 @@ var aidejeux = multiline(function() {/*
 */});
 
 var memelist = multiline(function() {/*
-```php
-'aliens' - Ancient Aliens
-
-'cold' - Freezing Jack Nicholson
-
-'djpauly' - DJ Pauly
-
-'doge' - Such wow Much meme
-
-'drevil' - Dr Evil
-
-'fry' - Not sure if ... or ...
-
-'highguy' - High Guy
-
-'idontalways' - I dont always ... but when I do ...
-
-'jackiechan' - Jackie Chan WTF
-
-'karate' - Karate Kyle
-
-'lebowsky' - Confused Lebowsky
-
-'mrbean' - If you know what I mean
-
-'nappa' - No Nappa its a trick
-
-'onedoesnot' - One does not simply
-
-'spidermanbed' - Spiderman bed
-
-'spidermandesk' - Spiderman desk
-
-'spidermanrails' - Spiderman rails
-
-'squidward' - Squidward beautiful vs ugly
-
-'takemymoney' - Shut up ant take my money
-
-'yodawg' - Yo Dawg
-
-'yuno' - Y U No
-```
+**`aliens`**                   - Ancient Aliens
+**`cold`**                       - Freezing Jack Nicholson
+**`djpauly`**                 - DJ Pauly
+**`doge`**                       - Such wow Much meme
+**`drevil`**                   - Dr Evil
+**`fry`**                         - Not sure if ... or ...
+**`highguy`**                 - High Guy
+**`idontalways`**         - I dont always ... but when I do ...
+**`jackiechan`**           - Jackie Chan WTF
+**`karate`**                   - Karate Kyle
+**`lebowsky`**               - Confused Lebowsky
+**`mrbean`**                   - If you know what I mean
+**`nappa`**                     - No Nappa its a trick
+**`onedoesnot`**           - One does not simply
+**`spidermanbed`**       - Spiderman bed
+**`spidermandesk`**     - Spiderman desk
+**`spidermanrails`**   - Spiderman rails
+**`squidward`**             - Squidward beautiful vs ugly
+**`takemymoney`**         - Shut up ant take my money
+**`yodawg`**                   - Yo Dawg
+**`yuno`**                       - Y U No
 */});
 
 //If you want to add more memes, go to https://imgflip.com/memetemplates click on the wanted meme and click Blank Template on the right, then just copy the ID and name it
@@ -697,14 +689,32 @@ var Quotes = [
 ];
 
 var Drama = [
-	"http://i.imgur.com/lGbMzXB.png",
-	"http://i.imgur.com/KlimX5e.png",
-	"http://i.imgur.com/zqhk2cD.png",
-	"http://i.imgur.com/se9IyQU.png",
-	"http://i.imgur.com/Oz2nRd2.png",
-	"http://i.imgur.com/hvX8VnH.png",
-	"http://i.imgur.com/iOlfgx1.png",
-	"http://i.imgur.com/p5VXx1m.png"
+  "http://i.imgur.com/IwJnS7s.png",
+	"http://i.imgur.com/2QBVNEy.png",
+	"http://i.imgur.com/Vflx6FT.png",
+	"http://i.imgur.com/GbIaoT0.png",
+	"http://i.imgur.com/H3NmH9A.png",
+	"http://i.imgur.com/mF0tsPR.png",
+	"http://i.imgur.com/lSsR6sD.png",
+	"http://i.imgur.com/PSi8gtA.png",
+	"http://i.imgur.com/iMJOWmk.png",
+	"http://i.imgur.com/tx0RTpO.png",
+	"http://i.imgur.com/7qQ1WXA.png",
+	"http://i.imgur.com/373kW4w.png",
+	"http://i.imgur.com/hIFLJlG.png",
+	"http://i.imgur.com/80bF923.png",
+	"http://i.imgur.com/0nBAsqC.png",
+	"http://i.imgur.com/KKVHZTt.png",
+	"http://i.imgur.com/DdnIFi2.png",
+	"http://i.imgur.com/OX2r7f3.png",
+	"http://i.imgur.com/NdyVfGj.png",
+	"http://i.imgur.com/5eJXar4.png",
+	"http://i.imgur.com/qP9Mbm2.png",
+	"http://i.imgur.com/E6Fkk97.png",
+	"http://i.imgur.com/BIJdWtz.png",
+	"http://i.imgur.com/rRAKiSv.png",
+	"http://i.imgur.com/lj1UGpj.png",
+	"http://i.imgur.com/jqr2gUM.png"
 ];
 
 function get_gif(tags, func) {
