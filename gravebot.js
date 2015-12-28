@@ -7,21 +7,19 @@ var qs = require("querystring");
 
 var bot = new Discord.Client();
 
-bot.on("ready", () => {
+bot.on("ready", function() {
 	console.log("Started successfully. Serving in " + bot.servers.length + " servers");
-	//Sets the game the bot will be shown as playing, change the number for a different game
-	bot.setPlayingGame(329);
 });
 
-bot.on("disconnected", () => {
+bot.on("disconnected", function() {
 	console.log(currentTime() + "Disconnected. Attempting to reconnect...");
 	sleep(5000);
 	bot.login(Config.email, Config.password);
 });
 
-bot.on("message", msg => {
+bot.on("message", function(msg) {
 	//Checks if the message is a command
-	if (msg.content[0] === '!') {
+	if (msg.content[0] === Config.prefix) {
 		var command = msg.content.toLowerCase().split(" ")[0].substring(1);
 		var suffix = msg.content.toLowerCase().substring(command.length + 2);
 		var cmd = commands[command];
@@ -62,7 +60,11 @@ var commands = {
 	"avatar": {
 		process: function(bot, msg, suffix) {
 			if (msg.mentions.length === 0) {
-				bot.sendMessage(msg.channel, "Your avatar:\n" + msg.author.avatarURL);
+				if (msg.author.avatarURL === null) {
+					bot.sendMessage(msg.channel, "You are naked.");
+				} else {
+					bot.sendMessage(msg.channel, "Your avatar:\n" + msg.author.avatarURL);
+				}
 				return;
 			}
 			var msgArray = [];
@@ -94,6 +96,11 @@ var commands = {
 					bot.sendMessage(msg.channel, response);
 				});
 			});
+		}
+	},
+	"chillenmyb": {
+		process: function(bot, msg) {
+			bot.sendFile(msg.channel, "./images/Chillenmyb.jpg");
 		}
 	},
 	"coin": {
@@ -135,6 +142,11 @@ var commands = {
 		process: function(bot, msg) {
 			var rand = Math.floor(Math.random() * Drama.length);
 			bot.sendMessage(msg.channel, Drama[rand]);
+		}
+	},
+	"feelsgoodman": {
+		process: function(bot, msg) {
+			bot.sendFile(msg.channel, "./images/Feelsgoodman.png");
 		}
 	},
 	"gif": {
@@ -236,8 +248,18 @@ var commands = {
 		}
 	},
 	"memelist": {
-		process: function(bot, msg) {
-			bot.sendMessage(msg.channel, memelist);
+		process: function(bot, msg, suffix) {
+			if (suffix === "1") {
+				bot.sendMessage(msg.author, memelist1);
+			} else if (suffix === "2") {
+				bot.sendMessage(msg.author, memelist2);
+			} else if (suffix === "3") {
+				bot.sendMessage(msg.author, memelist3);
+			} else if (suffix === "full") {
+				bot.sendFile(msg.author, "./memelist.txt", "memelist.txt");
+			} else {
+				bot.sendMessage(msg.channel, memelist);
+			}
 		}
 	},
 	"quote": {
@@ -309,7 +331,7 @@ var commands = {
 	},
 	"servers": {
 		process: function(bot, msg) {
-			bot.sendMessage(msg.channel, "Connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels and " + bot.users.length + " users.*");
+			bot.sendMessage(msg.channel, "Connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels and " + bot.users.length + " users.");
 		}
 	},
 	"snoopify": {
@@ -465,7 +487,7 @@ var helpfun = multiline(function() {/*
 var helpuseful = multiline(function() {/*
 **`!gif`** `gif tags`
 				Gets a gif from Giphy matching the given tags
-**`!join-server`** `invitation link`
+**`!join`** `invitation link`
 				Joins the server the bot is invited to
 **`!urban`** `search terms`
 				Returns the summary of the first matching search result from Urban Dictionary
@@ -496,6 +518,8 @@ var helpgames = multiline(function() {/*
 
 var helpother = multiline(function() {/*
 **`!ayylmao`**
+**`!chillenmyb`**
+**`!feelsgoodman`**
 **`!kappa`**
 **`!kappaHD`**
 **`!starwars4`**
@@ -543,7 +567,7 @@ var aidefun = multiline(function() {/*
 var aideutile = multiline(function() {/*
 **`!gif`** `tags du gifs`
 				Retourne un gif correspondant aux tags
-**`!join-server`** `lien d'invitation`
+**`!join`** `lien d'invitation`
 				Rejoint le serveur auquel le bot est invité
 **`!urban`** `mots de la recherche`
 				Retourne la première définition de Urban Dictionary correspondant aux tags
@@ -573,52 +597,304 @@ var aidejeux = multiline(function() {/*
 */});
 
 var memelist = multiline(function() {/*
-**`aliens`**                   - Ancient Aliens
-**`cold`**                       - Freezing Jack Nicholson
-**`djpauly`**                 - DJ Pauly
-**`doge`**                       - Such wow Much meme
-**`drevil`**                   - Dr Evil
-**`fry`**                         - Not sure if ... or ...
-**`highguy`**                 - High Guy
-**`idontalways`**         - I dont always ... but when I do ...
-**`jackiechan`**           - Jackie Chan WTF
-**`karate`**                   - Karate Kyle
-**`lebowsky`**               - Confused Lebowsky
-**`mrbean`**                   - If you know what I mean
-**`nappa`**                     - No Nappa its a trick
-**`onedoesnot`**           - One does not simply
-**`spidermanbed`**       - Spiderman bed
-**`spidermandesk`**     - Spiderman desk
-**`spidermanrails`**   - Spiderman rails
-**`squidward`**             - Squidward beautiful vs ugly
-**`takemymoney`**         - Shut up ant take my money
-**`yodawg`**                   - Yo Dawg
-**`yuno`**                       - Y U No
+Meme names for the !meme command
+**`!memelist 1`**
+**`!memelist 2`**
+**`!memelist 3`**
+**`!memelist full`**
+*/});
+
+var memelist1 = multiline(function() {/*
+	**`aliens`** - Ancient Aliens :alien:
+	**`allthese`** - Look at all these
+	**`allthings`** - All the things
+	**`approved`** - Chuck Norris approves :thumbsup:
+	**`archaic`** - Joseph Ducreux
+	**`archer`** - Archer
+	**`bender`** - Blackjack and Hookers
+	**`both`** - Why not both :question:
+	**`brace`** - Brace yourselves, ... is coming
+	**`cares`** - No one cares m8
+	**`cat`** - Grumpy Cat :cat:
+	**`cat2`** - Sophisticated cat :cat:
+	**`chainsaw`** - Chainsaw Bear :bear:
+	**`challenge`** - Challenge accepted
+	**`cheers`** - Leonardo Dicaprio cheers :smiley:
+	**`childhood`** - Right in the childhood :dizzy_face:
+	**`chilling`** - What's up :question:
+	**`christ`** - Buddy Christ :pray:
+	**`clarity`** - Sudden clarity Clarence :frowning:
+	**`cold`** - Jack Nicholson inside snow :snowman:
+	**`confession`** - Confession bear :bear:
+	**`conspiracy`** - Keanu Reeves conspiracy :frowning:
+	**`consuela`** - Not amused :unamused:
+	**`cows`** - Evil cows :cow:
+	**`djpauly`** - DJ Pauly
+	**`doge`** - Such wow Much meme
+	**`doges`** - Suchs wows muchs memes
+	**`drama`** - Michael Jackson popcorn
+	**`drevil`** - Dr Evil quotes
+	**`elf`** - Buddy the Elf
+	**`everywhere`** - ..., ... everywhere
+	**`explosion`** - Nuclear explosion :boom:
+	**`frustrated`** - Frustrated Boromir
+	**`fry`** - Not sure if ... or ... :confused:
+	**`fry2`** - Shut up and take my money
+	**`giveup`** - Just give up m8
+	**`gone`** - Aaand it's gone
+	**`goodday`** - Today was a good day
+	**`goodguy`** - Good guy Greg :smile:
+	**`hide`** - Hide yo kids hide yo wife
+	**`highguy`** - High Guy
+	**`hot`** - So hot :hotsprings:
+	**`idontalways`** - I don't always ... but when I do ...
+	**`impossibru`** - Imbossibru! :grimacing:
+	**`internet`** - Internet Guide
+	**`internet2`** - Welcome to the internet :sweat_drops:
+*/});
+
+var memelist2 = multiline(function() {/*
+	**`johnny`** - Here's Johnny
+	**`joker`** - And everybody loses their minds
+	**`karate`** - Karate Kyle
+	**`keepcalm`** -- Keep calm and ...
+	**`kermit`** - But that's none of my business
+	**`koala`** - Surprised Koala :koala:
+	**`laugh`** - Leonardo Dicaprio laughs :laughing:
+	**`lebowski`** - Confused Lebowski :confused:
+	**`limes`** - Why can't I hold all these limes
+	**`lionking`** - Lion King :tiger: :crown:
+	**`lol`** - L0L
+	**`look`** - Look at me :eyes:
+	**`luck`** - Bad luck Bryan
+	**`luke`** - Luke, I am ...
+	**`mallard`** - Actual advice Mallard
+	**`money`** - The Mask :dollar:
+	**`more`** - Y'all got any more of that ...
+	**`morpheus`** - What if I told you :pill:
+	**`mrbean`** - If you know what I mean :smirk:
+	**`mrt`** - Mr. T
+	**`nappa`** - No Nappa it's a trick
+	**`news`** - Peter Griffin news
+	**`news2`** - Ron Burgundy news
+	**`notbad`** - Not bad
+	**`noty`** - Kill yourself :skull:
+	**`obiwan`** - Obi Wan Kenobi
+	**`onedoesnot`** - One does not simply
+	**`onlyone`** - Am I the only one around here :gun:
+	**`ouch`** - Don't worry I'm fine
+	**`paddlin`** - That's a paddlin'
+	**`past`** - Back in my day :older_man:
+	**`past2`** - Back in my day :older_man:
+	**`patrick`** - Take ... and put it somewhere else
+	**`patrick2`** - Once upon a time
+	**`penguin`** - Socially awesome awkward penguin :penguin:
+	**`penguin2`** - Penguin Gang :penguin:
+	**`phone`** - Liam Neeson Taken :worried:
+	**`picard`** - Captain Picard facepalm :neutral_face: :hand:
+	**`picard2`** - Captain Picard WTF :question:
+	**`please`** - Yao Ming :joy:
+	**`powers`** - Austin Powers :smirk:
+	**`powers2`** - Seriously :question:
+	**`problems`** - First world problems :cry:
+	**`problems2`** - 90s first world problems :cry:
+	**`puffin`** - Unpopular opinion Puffin :bird:
+	**`rpg`** - RPG fan
+*/});
+
+var memelist3 = multiline(function() {/*
+	**`rum`** - Why is the rum gone :question:
+	**`say`** - Say that one more time, I dare you
+	**`scumbag`** - Scumbag Steve
+	**`seal`** - Awkward seal :neutral_face:
+	**`seal2`** - Satisfied seal :smirk:
+	**`seriously`** - Are you kidding me :question:
+	**`skeleton`** - Skeleton on a bench :skull:
+	**`skeptical`** - Skeptical kid
+	**`sorry`** - Rick and Carl :cry:
+	**`sparrow`** - Jack Sparrow being chased
+	**`sparta`** - This is sparta!
+	**`spiderman`** - Peter Parker
+	**`spidermanbed`** - Spiderman bed
+	**`spidermancamera`** - Spiderman camera :camera:
+	**`spidermandesk`** - Spiderman desk
+	**`spidermanmoney`** - Spiderman money :dollar:
+	**`spidermanrails`** - Spiderman rails
+	**`spidermansad`** - Spiderman sad :frowning:
+	**`spongebob`** - Didn't you ...
+	**`spongebob2`** - Imagination :rainbow:
+	**`spongebob3`** - I'll have you know
+	**`squidward`** - Beautiful :vs: Ugly
+	**`success`** - Success kid
+	**`sucks`** - Life sucks
+	**`tableflip`** - /tableflip
+	**`teacher`** - Unhelpful high school teacher
+	**`teacher2`** - Rasta teacher
+	**`ted`** - TED :confused:
+	**`time`** - Ain't nobody got time for that :clock2:
+	**`told`** - I was told there would be
+	**`toohigh`** - Is too damn high :chart_with_upwards_trend:
+	**`trophy`** - This is where I'd put my ... if I had one :trophy:
+	**`truestory`** - True story
+	**`unicorn`** - Unicorn Man
+	**`wat`** - Wat :question:
+	**`wait`** - I'll just wait here
+	**`whoa`** - Neil deGrasse Tyson
+	**`win`** - Barney Stanson win :thumbsup:
+	**`wonka`** - Willy Wonka stares :eyes:
+	**`wtf`** - Jackie Chan WTF :question:
+	**`wth`** - Kevin Hart WTH :question:
+	**`yeah`** - That would be great
+	**`yoda`** - Yoda is I
+	**`yo dawg`** - Yo Dawg
+	**`yuno`** - Y U No
+	**`zoidberg`** - You should feel bad
+	**`404`** - :warning: Not Found :warning:
+	**`?`** - :warning: :tm: :warning:
 */});
 
 //If you want to add more memes, go to https://imgflip.com/memetemplates click on the wanted meme and click Blank Template on the right, then just copy the ID and name it
 var meme = {
-	"aliens": 101470,
-	"cold": 9106691,
-	"djpauly": 2005809,
-	"doge": 8072285,
-	"drevil": 40945639,
-	"fry": 61520,
-	"highguy": 101440,
-	"idontalways": 61532,
-	"jackiechan": 412211,
-	"karate": 61561,
-	"lebowsky": 1195347,
-	"mrbean": 583373,
-	"nappa": 295701,
 	"onedoesnot": 61579,
-	"spidermanbed": 152145,
-	"spidermandesk": 1366993,
-	"spidermanrails": 413621,
-	"squidward": 285870,
-	"takemymoney": 176908,
+	"idontalways": 61532,
+	"aliens": 101470,
+	"fry": 61520,
+	"everywhere": 347390,
+	"cheers": 5496396,
+	"problems": 61539,
+	"brace": 61546,
+	"yuno": 61527,
+	"kermit": 16464531,
+	"luck": 61585,
+	"wonka": 61582,
+	"yeah": 563423,
+	"cat": 405658,
+	"skeptical": 101288,
+	"doge": 8072285,
+	"morpheus": 100947,
+	"allthings": 61533,
+	"picard": 1509839,
+	"picard2": 245898,
+	"onlyone": 259680,
+	"wat": 14230520,
+	"drevil": 40945639,
+	"toohigh": 61580,
+	"success": 101287,
+	"time": 442575,
+	"confession": 100955,
+	"wait": 109765,
+	"say": 124212,
+	"highguy": 101440,
 	"yodawg": 101716,
-	"yuno": 61527
+	"spongebob": 101511,
+	"seal": 13757816,
+	"sparta": 195389,
+	"joker": 1790995,
+	"conspiracy": 61583,
+	"gone": 766986,
+	"past": 718432,
+	"hot": 21604248,
+	"patrick": 61581,
+	"scumbag": 61522,
+	"noty": 172314,
+	"cat2": 1367068,
+	"skeleton": 4087833,
+	"more": 13424299,
+	"phone": 228024,
+	"yoda": 14371066,
+	"archer": 10628640,
+	"spidermandesk": 1366993,
+	"cares": 6531067,
+	"past2": 1232104,
+	"christ": 17699,
+	"penguin": 61584,
+	"spongebob2": 163573,
+	"laugh": 17496002,
+	"clarity": 100948,
+	"wtf": 412211,
+	"obiwan": 409403,
+	"news": 356615,
+	"sorry": 11557802,
+	"seal2": 23909796,
+	"wth": 265789,
+	"fry2": 176908,
+	"powers": 646581,
+	"puffin": 7761261,
+	"koala": 27920,
+	"luke": 19194965,
+	"news2": 1232147,
+	"spiderman": 107773,
+	"sparrow": 460541,
+	"look": 30213495,
+	"djpauly": 2005809,
+	"mrt": 1570716,
+	"goodguy": 61521,
+	"allthese": 516587,
+	"unicorn": 138874,
+	"lionking": 206153,
+	"spongebob3": 326093,
+	"impossibru": 307405,
+	"frustrated": 320771,
+	"trophy": 3218037,
+	"ted": 131092,
+	"mallard": 1356640,
+	"elf": 401687,
+	"problems2": 101296,
+	"zoidberg": 35747,
+	"teacher": 100957,
+	"please": 109015,
+	"archaic": 61535,
+	"drama": 16350739,
+	"whoa": 109017,
+	"told": 2372682,
+	"consuela": 160583,
+	"johnny": 309172,
+	"spidermanbed": 152145,
+	"money": 828786,
+	"tableflip": 1380694,
+	"approved": 241304,
+	"goodday": 7722308,
+	"paddlin": 5265532,
+	"bender": 59250,
+	"hide": 750310,
+	"internet2": 701902,
+	"giveup": 156115,
+	"cold": 9106691,
+	"explosion": 313162,
+	"karate": 61561,
+	"squidward": 285870,
+	"chainsaw": 136212,
+	"keepcalm": 22415053,
+	"internet": 406070,
+	"challenge": 24792,
+	"mrbean": 583373,
+	"truestory": 335860,
+	"rum": 752040,
+	"cows": 107043,
+	"childhood": 177491,
+	"spidermanrails": 413621,
+	"rpg": 309184,
+	"win": 690206,
+	"both": 542036,
+	"patrick2": 465748,
+	"powers2": 26468627,
+	"spidermansad": 412764,
+	"limes": 5824468,
+	"404": 241795,
+	"chilling": 220847,
+	"notbad": 289182,
+	"lebowski": 1195347,
+	"penguin2": 274504,
+	"spidermancamera": 1045989,
+	"lol": 105398,
+	"teacher2": 61566,
+	"seriously": 412219,
+	"spidermanmoney": 191950,
+	"nappa": 295701,
+	"ouch": 129430,
+	"sucks": 201950,
+	"doges": 7665301,
+	"?": 1139584,
 };
 
 var EightBall = [
