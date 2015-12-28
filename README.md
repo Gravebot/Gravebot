@@ -10,9 +10,9 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 # Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
 
-In order to do that, either **private message ₪Gravebot₪** or join the [Gravebot server](https://discord.gg/0iXEgtjdHgkpdsVr) and write !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.
+In order to do that, join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and either private message ₪Gravebot₪ or write in the main chat !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.
 
-If you have any questions, feedback or want to request features, you may also do that by leaving a message on the [Gravebot server](https://discord.gg/0iXEgtjdHgkpdsVr), or private messaging Gravestorm.
+If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), or private messaging Gravestorm.
 
 Though, if you still want to host it yourself, or mess around with the code, keep reading.
 
