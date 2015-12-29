@@ -3,6 +3,8 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 
 [Command list](https://github.com/Gravestorm/Gravebot#commands).
 
+[Russian version/Pусская версия](https://github.com/Gravestorm/GravebotRU).
+
 [![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 
@@ -10,7 +12,7 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 # Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
 
-In order to do that, join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and either private message ₪Gravebot₪ or write in the main chat !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.
+In order to do that, join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and write in the main chat !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.
 
 If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), or private messaging Gravestorm.
 
@@ -106,9 +108,15 @@ Double click **Launch.bat**
 ##Other commands:
 **!ayylmao**
 
+**!chillenmyb**
+
+**!feelsgoodman**
+
 **!kappa**
 
 **!kappaHD**
+
+**!skeltal**
 
 **!starwars4**
 

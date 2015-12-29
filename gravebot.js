@@ -231,7 +231,7 @@ var commands = {
 		process: function(bot, msg, suffix) {
 			var query = suffix;
 			if (!query) {
-				bot.sendMessage(msg.channel, 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`');
+				bot.sendMessage(msg.channel, 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`\nWrite **`!memelist`** for a list of meme names.');
 				return;
 			}
 			var tags = msg.content.split('"');
@@ -240,7 +240,7 @@ var commands = {
 			var imgflipper = new Imgflipper(Config.imgflip_username, Config.imgflip_password);
 			imgflipper.generateMeme(meme[memetype], tags[1] ? tags[1] : "", tags[3] ? tags[3] : "", function(err, image) {
 				if (err) {
-					bot.sendMessage(msg.channel, 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`');
+					bot.sendMessage(msg.channel, 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`\nWrite **`!memelist`** for a list of meme names.');
 				} else {
 					bot.sendMessage(msg.channel, image);
 				}
@@ -256,7 +256,9 @@ var commands = {
 			} else if (suffix === "3") {
 				bot.sendMessage(msg.author, memelist3);
 			} else if (suffix === "full") {
-				bot.sendFile(msg.author, "./memelist.txt", "memelist.txt");
+				bot.sendMessage(msg.author, memelist1);
+				bot.sendMessage(msg.author, memelist2);
+				bot.sendMessage(msg.author, memelist3);
 			} else {
 				bot.sendMessage(msg.channel, memelist);
 			}
@@ -297,7 +299,7 @@ var commands = {
 					bot.sendMessage(msg.channel, msg.author + " rolled " + suffix + "\nUsage: **`!roll`** `times` `sides`");
 					return;
 				} else {
-					bot.sendMessage(msg.channel, msg.author + " rolled a total of " + total + " (average: " + average + "):\n" + msgArray);
+					bot.sendMessage(msg.channel, msg.author + " rolled a " + sides + " sided dice " + times + " times for a total of " + total + " (average: " + average + "):\n" + msgArray);
 				}
 			}
 		}
@@ -332,6 +334,11 @@ var commands = {
 	"servers": {
 		process: function(bot, msg) {
 			bot.sendMessage(msg.channel, "Connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels and " + bot.users.length + " users.");
+		}
+	},
+	"skeltal": {
+		process: function(bot, msg) {
+			bot.sendMessage(msg.channel, "http://i.imgur.com/ZX79Q4S.png");
 		}
 	},
 	"snoopify": {
@@ -522,6 +529,7 @@ var helpother = multiline(function() {/*
 **`!feelsgoodman`**
 **`!kappa`**
 **`!kappaHD`**
+**`!skeltal`**
 **`!starwars4`**
 **`!starwars5`**
 */});
