@@ -4,6 +4,7 @@
   "description": "A bot for the chat program Discord",
   "main": "gravebot.js",
   "dependencies": {
+    "bluebird": "^3.1.1",
     "cleverbot.io": "^1.0.4",
     "discord.js": "^5.1.0",
     "gizoogle": "^0.0.6",

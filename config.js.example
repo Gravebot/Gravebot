@@ -18,5 +18,9 @@ export default {
   // Cleverbot API name and key, used for talking with Cleverbot.
   // Create a key here. https://cleverbot.io/keys
   cleverbot_api_name: '',
-  cleverbot_api_key: ''
+  cleverbot_api_key: '',
+
+  // Champion.gg API key is used for the League of Legends `!lol` commands.
+  // Create a key here. http://api.champion.gg/
+  championgg_api: ''
 };
