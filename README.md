@@ -58,7 +58,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - `!decide` *something or something or something...* - Decides between given words
 - `!drama` - Responds with a random drama image
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
-- `!quote` => Writes a random quote
+- `!quote` - Writes a random quote
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
 - `!snoopify` *sentence* - Snoopifies tha sentence
 
