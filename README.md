@@ -36,7 +36,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
 - Install [gcc](https://gcc.gnu.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
-- `cd` in the root directory and run `npm install`
+- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) in the root directory and run `npm install`
 - `npm start`
 
 
@@ -55,7 +55,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - `!8ball` *question* - Answers the question
 - `!chat` *sentence* - Chats with you
 - `!coin` - Flips a coin
-- `!decide` *something or something or something...* - Decides between given words
+- `!decide` *something or something...* - Decides between given words
 - `!drama` - Responds with a random drama image
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
 - `!quote` - Writes a random quote
