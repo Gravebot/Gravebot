@@ -19,126 +19,170 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h1>
+      <p><a href="https://david-dm.org/gravestorm/gravebot"><img src="https://david-dm.org/gravestorm/gravebot.svg" alt="Build Status"></a>
+<a href="https://travis-ci.org/Gravestorm/Gravebot"><img src="https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master" alt="Build Status"></a></p>
+
+<h2>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h2>
 
 <p>A bot for the chat program <a href="https://discordapp.com/">Discord</a>, made with the help of <a href="https://github.com/hydrabolt/discord.js">Discord.js library</a>.</p>
 
 <p><a href="https://github.com/Gravestorm/Gravebot#commands">Command list</a>.</p>
 
-<p><a href="https://david-dm.org/gravestorm/gravebot"><img src="https://david-dm.org/gravestorm/gravebot.svg" alt="Build Status"></a>
-<a href="https://travis-ci.org/Gravestorm/Gravebot"><img src="https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master" alt="Build Status"></a></p>
+<p><a href="https://github.com/Gravestorm/GravebotRU">Russian version/Pусская версия</a>.</p>
 
-<h1>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h1>
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
 
-<h1>
-<a id="invitation" class="anchor" href="#invitation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Invitation</h1>
+<h4>
+<a id="invitation" class="anchor" href="#invitation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Invitation</h4>
 
 <p>The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.</p>
 
-<p>In order to do that, join the <a href="https://discord.gg/0cDvIgU2voWn4BaD">Discord Bots</a> server and private message it with !join-server <strong>invitation link</strong> (e.g. <a href="https://discord.gg/0cDvIgU2voWn4BaD">https://discord.gg/0cDvIgU2voWn4BaD</a> <strong>or</strong> 0cDvIgU2voWn4BaD)</p>
+<p>In order to do that, join <a href="https://discord.gg/0iXEgtjdHgkpdsVr">Gravebot's Lair</a> and write in the main chat !join <strong>invitation link</strong> (e.g. <a href="https://discord.gg/0iXEgtjdHgkpdsVr">https://discord.gg/0iXEgtjdHgkpdsVr</a> <strong>or</strong> 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.</p>
+
+<p>If you have any questions, feedback or want to request features, you may also do that by leaving a message in the <a href="https://discord.gg/0iXEgtjdHgkpdsVr">Gravebot's Lair</a>, or private messaging Gravestorm.</p>
 
 <p>Though, if you still want to host it yourself, or mess around with the code, keep reading.</p>
 
 <h2>
-<a id="preparation" class="anchor" href="#preparation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparation</h2>
+<a id="configure" class="anchor" href="#configure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configure</h2>
 
-<h3>
-<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows:</h3>
-
-<p>Install <a href="https://nodejs.org/en/">node.js</a></p>
-
-<p>Install <a href="https://www.python.org">python v2.7.3</a> (<a href="https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi">32 bit</a>, <a href="https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi">64 bit</a>)</p>
-
-<p>Install <a href="http://go.microsoft.com/?linkid=9816758">Microsoft Visual Studio C++ Express</a></p>
-
-<p>Install <a href="https://github.com/nodejs/node-gyp">node-gyp</a> (open the <a href="http://windows.microsoft.com/en-us/windows/command-prompt-faq">command prompt</a> and write <strong>npm install -g node-gyp</strong>)</p>
-
-<p>See <a href="https://github.com/Gravestorm/Gravebot#launching-the-bot">Launching the bot</a></p>
-
-<h3>
-<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux:</h3>
-
-<p>Install <a href="https://nodejs.org/en/">node.js</a></p>
-
-<p>Install <a href="https://gcc.gnu.org">gcc</a> (open the <a href="http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/">terminal</a> and write <strong>sudo apt-get install g++</strong>)</p>
-
-<p>Install <a href="https://github.com/nodejs/node-gyp">node-gyp</a> (open the <a href="http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/">terminal</a> and write <strong>sudo npm install -g node-gyp</strong>)</p>
-
-<p>See <a href="https://github.com/Gravestorm/Gravebot#launching-the-bot">Launching the bot</a></p>
+<p>Rename <code>config.js.example</code> to <code>config.js</code> and fill in the required information. Note only variables with the <code>*Required*</code> comment are needed, everything else is optional.</p>
 
 <h2>
-<a id="launching-the-bot" class="anchor" href="#launching-the-bot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Launching the bot:</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>Rename <strong>config.json.example</strong> to <strong>config.json</strong> and fill in the required information</p>
+<h4>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows:</h4>
 
-<p>Double click <strong>npm install.bat</strong></p>
+<ul>
+<li>Install <a href="https://nodejs.org/en/">node.js</a> v4.0 or higher</li>
+<li>Install <a href="https://www.python.org">python v2.7.3</a> (<a href="https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi">32 bit</a>, <a href="https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi">64 bit</a>)</li>
+<li>Install <a href="http://go.microsoft.com/?linkid=9816758">Microsoft Visual Studio C++ Express</a>
+</li>
+<li>Install <a href="https://github.com/nodejs/node-gyp">node-gyp</a> (open the <a href="http://windows.microsoft.com/en-us/windows/command-prompt-faq">command prompt</a> and write <code>npm install -g node-gyp</code>)</li>
+<li>Run <code>npm-install.bat</code> to install the Node dependencies</li>
+<li>Run <code>launch.bat</code> to start the bot</li>
+</ul>
 
-<p>Double click <strong>Launch.bat</strong></p>
+<h4>
+<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux:</h4>
 
-<h1>
-<a id="commands" class="anchor" href="#commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commands:</h1>
-
-<h2>
-<a id="help-commands" class="anchor" href="#help-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Help commands:</h2>
-
-<p><strong>!help fun</strong> =&gt; List of fun commands</p>
-
-<p><strong>!help useful</strong> =&gt; List of useful commands</p>
-
-<p><strong>!help info</strong> =&gt; List of information commands</p>
-
-<p><strong>!aide</strong> =&gt; Liste des commandes</p>
-
-<p><strong>!memelist</strong> =&gt; List of meme names for the !meme command</p>
-
-<h2>
-<a id="fun-commands" class="anchor" href="#fun-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fun commands:</h2>
-
-<p><strong>!8ball</strong> <em>question</em> =&gt; Answers the question</p>
-
-<p><strong>!chat</strong> <em>sentence</em> =&gt; Chats with you</p>
-
-<p><strong>!decide</strong> <em>something or something or something...</em> =&gt; Decides between given words</p>
-
-<p><strong>!meme</strong> <em>meme name "top text" "bottom text"</em> =&gt; Creates a meme with the given meme name and text</p>
-
-<p><strong>!quote</strong> =&gt; Writes a random quote</p>
-
-<p><strong>!rick</strong> <em>number ricks</em> =&gt; Ricks the dice with a number of sides, if no number is written, six-sided</p>
-
-<p><strong>!roll</strong> <em>number</em> =&gt; Rolls the dice with a number of sides, if no number is written, six-sided</p>
+<ul>
+<li>Install <a href="https://nodejs.org/en/">node.js</a> v4.0 or higher</li>
+<li>Install <a href="https://gcc.gnu.org">gcc</a> (open the <a href="http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/">terminal</a> and write <code>sudo apt-get install g++</code>)</li>
+<li>Install <a href="https://github.com/nodejs/node-gyp">node-gyp</a> (open the <a href="http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/">terminal</a> and write <code>sudo npm install -g node-gyp</code>)</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Cd_%28command%29">cd</a> in the root directory and run <code>npm install</code>
+</li>
+<li><code>npm start</code></li>
+</ul>
 
 <h2>
-<a id="useful-commands" class="anchor" href="#useful-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Useful commands:</h2>
+<a id="commands" class="anchor" href="#commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Commands:</h2>
 
-<p><strong>!avatar</strong> <em>@Username</em> =&gt; Responds with the Avatar of the user, if no user is written, the avatar of the sender</p>
+<h4>
+<a id="help" class="anchor" href="#help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Help:</h4>
 
-<p><strong>!gif</strong> <em>gif tags</em> =&gt; Gets a gif from Giphy matching the given tags</p>
+<ul>
+<li>
+<code>!help fun</code> - List of fun commands</li>
+<li>
+<code>!help useful</code> - List of useful commands</li>
+<li>
+<code>!help info</code> - List of information commands</li>
+<li>
+<code>!help games</code> - List of game commands</li>
+<li>
+<code>!help other</code> - List of other commands</li>
+<li>
+<code>!aide</code> - Liste des commandes en Francais</li>
+<li>
+<code>!memelist</code> - List of meme names for the !meme command</li>
+</ul>
 
-<p><strong>!image</strong> <em>image tags</em> =&gt; Gets an image from Google matching the given tags</p>
+<h4>
+<a id="fun" class="anchor" href="#fun" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fun:</h4>
 
-<p><strong>!join-server</strong> <em>invitation link</em> =&gt; Joins the server the bot is invited to</p>
+<ul>
+<li>
+<code>!8ball</code> <em>question</em> - Answers the question</li>
+<li>
+<code>!chat</code> <em>sentence</em> - Chats with you</li>
+<li>
+<code>!coin</code> - Flips a coin</li>
+<li>
+<code>!decide</code> <em>something or something...</em> - Decides between given words</li>
+<li>
+<code>!drama</code> - Responds with a random drama image</li>
+<li>
+<code>!meme</code> <em>meme name "top text" "bottom text"</em> -  Creates a meme with the given meme name and text</li>
+<li>
+<code>!quote</code> - Writes a random quote</li>
+<li>
+<code>!roll</code> <em>times sides</em> - Rolls the dice a number of times with a number of sides</li>
+<li>
+<code>!snoopify</code> <em>sentence</em> - Snoopifies tha sentence</li>
+</ul>
 
-<p><strong>!urban</strong> <em>search terms</em> =&gt; Returns the summary of the first matching search result from Urban Dictionary</p>
+<h4>
+<a id="useful" class="anchor" href="#useful" aria-hidden="true"><span class="octicon octicon-link"></span></a>Useful:</h4>
 
-<p><strong>!wiki</strong> <em>search terms</em> =&gt; Returns the summary of the first matching search result from Wikipedia</p>
+<ul>
+<li>
+<code>!gif</code> <em>gif tags</em> - Gets a gif from Giphy matching the given tags</li>
+<li>
+<code>!join</code> <em>invitation link</em> - Joins the server the bot is invited to</li>
+<li>
+<code>!urban</code> <em>search terms</em> - Returns the summary of the first matching search result from Urban Dictionary</li>
+<li>
+<code>!wiki</code> <em>search terms</em> - Returns the summary of the first matching search result from Wikipedia</li>
+<li>
+<code>!youtube</code> <em>video tags</em> - Gets a video from Youtube matching the given tags</li>
+</ul>
 
-<p><strong>!youtube</strong> <em>video tags</em> =&gt; Gets a video from Youtube matching the given tags</p>
+<h4>
+<a id="information" class="anchor" href="#information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Information:</h4>
+
+<ul>
+<li>
+<code>!avatar</code> <em>@Username</em> - Responds with the Avatar of the user, if no user is written, the avatar of the sender</li>
+<li>
+<code>!serverinfo</code> - Gives information about the server</li>
+<li>
+<code>!serverlist</code> - Lists all the servers the bot is connected to</li>
+<li>
+<code>!servers</code> - Lists how many servers, channels and users the bot is connected to</li>
+<li>
+<code>!uptime</code> - Shows how long the bot has been online</li>
+<li>
+<code>!userinfo</code> <em>@username</em> - Gives information about the user, if no user is written, yourself</li>
+</ul>
+
+<h4>
+<a id="other" class="anchor" href="#other" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other:</h4>
+
+<ul>
+<li><code>!ayylmao</code></li>
+<li><code>!chillenmyb</code></li>
+<li><code>!feelsgoodman</code></li>
+<li><code>!kappa</code></li>
+<li><code>!kappaHD</code></li>
+<li><code>!skeltal</code></li>
+<li><code>!starwars4</code></li>
+<li><code>!starwars5</code></li>
+</ul>
 
 <h2>
-<a id="information-commands" class="anchor" href="#information-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Information commands:</h2>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
 
-<p><strong>!ayylmao</strong> =&gt; All dayy lmao</p>
-
-<p><strong>!kappa</strong> =&gt; Kappa</p>
-
-<p><strong>!myid</strong> =&gt; Responds with the user ID of the sender</p>
-
-<p><strong>!servers</strong> =&gt; Lists all the servers the bot is connected to</p>
-
-<p><strong>!uptime</strong> =&gt; Shows how long the bot has been online</p>
+<ul>
+<li>Gravestorm - <a href="https://github.com/Gravestorm">@Gravestorm</a>
+</li>
+<li>Dustin Blackman - <a href="https://github.com/dustinblackman">@dustinblackman</a>
+</li>
+</ul>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Gravestorm/Gravebot">Gravebot</a> is maintained by <a href="https://github.com/Gravestorm">Gravestorm</a>.</span>
