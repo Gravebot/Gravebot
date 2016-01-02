@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "babel-node index.js",
-    "lint": "eslint .",
+    "lint": "./node_modules/.bin/eslint .",
     "test": "npm run lint",
     "dev": "nodemon --exec babel-node ./index.js"
   },
