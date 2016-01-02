@@ -2,9 +2,12 @@
   "name": "gravebot",
   "version": "1.0.0",
   "description": "A bot for the chat program Discord",
-  "main": "gravebot.js",
+  "main": "index.js",
   "dependencies": {
     "bluebird": "^3.1.1",
+    "babel-cli": "^6.3.17",
+    "babel-core": "^6.3.26",
+    "babel-preset-es2015-node4": "^2.0.2",
     "cleverbot.io": "^1.0.4",
     "discord.js": "^5.1.0",
     "gizoogle": "^0.0.6",
@@ -17,15 +20,13 @@
     "youtube-node": "^1.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-core": "^6.3.26",
     "babel-eslint": "^4.1.6",
-    "babel-preset-es2015-node4": "^2.0.2",
     "eslint": "^1.10.3",
     "eslint-config-busbud": "^0.1.2",
     "eslint-config-semistandard": "^5.0.0",
     "eslint-config-standard": "^4.4.0",
-    "eslint-plugin-standard": "^1.3.1"
+    "eslint-plugin-standard": "^1.3.1",
+    "nodemon": "^1.8.1"
   },
   "scripts": {
     "start": "babel-node index.js",
