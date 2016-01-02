@@ -4,6 +4,7 @@
   "description": "A bot for the chat program Discord",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^3.1.1",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-preset-es2015-node4": "^2.0.2",
