@@ -2,7 +2,7 @@
   "name": "gravebot",
   "version": "1.0.0",
   "description": "A bot for the chat program Discord",
-  "main": "gravebot.js",
+  "main": "index.js",
   "dependencies": {
     "cleverbot.io": "^1.0.4",
     "discord.js": "^5.1.0",
