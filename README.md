@@ -1,4 +1,4 @@
-# About
+## About
 A bot for the chat program [Discord](https://discordapp.com/), made with the help of [Discord.js library](https://github.com/hydrabolt/discord.js).
 
 [Command list](https://github.com/Gravestorm/Gravebot#commands).
@@ -8,8 +8,8 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 [![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 
-# How to use
-# Invitation
+## How to use
+#### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
 
 In order to do that, join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and write in the main chat !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.
@@ -19,7 +19,7 @@ If you have any questions, feedback or want to request features, you may also do
 Though, if you still want to host it yourself, or mess around with the code, keep reading.
 
 ## Preparation
-### Windows:
+#### Windows:
 Install [node.js](https://nodejs.org/en/) v4.0 or higher
 
 Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
@@ -30,7 +30,7 @@ Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt
 
 See [Launching the bot](https://github.com/Gravestorm/Gravebot#launching-the-bot)
 
-### Linux:
+#### Linux:
 Install [node.js](https://nodejs.org/en/) v4.0 or higher
 
 Install [gcc](https://gcc.gnu.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write **sudo apt-get install g++**)
@@ -40,14 +40,14 @@ Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http
 See [Launching the bot](https://github.com/Gravestorm/Gravebot#launching-the-bot)
 
 ## Launching the bot:
-Rename **config.json.example** to **config.json** and fill in the required information
+Rename **config.js.example** to **config.js** and fill in the required information
 
 Double click **npm install.bat**
 
 Double click **Launch.bat**
 
-# Commands:
-##Help commands:
+## Commands:
+#### Help commands:
 **!help fun** => List of fun commands
 
 **!help useful** => List of useful commands
@@ -62,7 +62,7 @@ Double click **Launch.bat**
 
 **!memelist** => List of meme names for the !meme command
 
-##Fun commands:
+#### Fun commands:
 **!8ball** *question* => Answers the question
 
 **!chat** *sentence* => Chats with you
@@ -81,7 +81,7 @@ Double click **Launch.bat**
 
 **!snoopify** *sentence* => Snoopifies tha sentence
 
-##Useful commands:
+#### Useful commands:
 **!gif** *gif tags* => Gets a gif from Giphy matching the given tags
 
 **!join** *invitation link* => Joins the server the bot is invited to
@@ -92,7 +92,7 @@ Double click **Launch.bat**
 
 **!youtube** *video tags* => Gets a video from Youtube matching the given tags
 
-##Information commands:
+#### Information commands:
 **!avatar** *@Username* => Responds with the Avatar of the user, if no user is written, the avatar of the sender
 
 **!serverinfo** => Gives information about the server
@@ -105,7 +105,7 @@ Double click **Launch.bat**
 
 **!userinfo** *@username* => Gives information about the user, if no user is written, yourself
 
-##Other commands:
+#### Other commands:
 **!ayylmao**
 
 **!chillenmyb**
@@ -121,3 +121,8 @@ Double click **Launch.bat**
 **!starwars4**
 
 **!starwars5**
+
+## Contributors
+
+- Gravestorm - [@Gravestorm](https://github.com/Gravestorm)
+- Dustin Blackman - [@dustinblackman](https://github.com/dustinblackman)

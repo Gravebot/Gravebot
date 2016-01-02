@@ -1,2 +1,2 @@
-node gravebot.js
+npm start
 pause

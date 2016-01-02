@@ -1,0 +1,22 @@
+export default {
+  // *Required* Prefix for commands.
+  prefix: '!',
+
+  // *Required* Discord email and password for your bot.
+  email: '',
+  password: '',
+
+  // Youtube API key to be used when searching youtube videos.
+  // Learn more here. https://developers.google.com/youtube/v3/getting-started
+  youtube_api_key: '',
+
+  // Imgflip username and password, used for creating memes.
+  // Create an account here. https://imgflip.com
+  imgflip_username: '',
+  imgflip_password: '',
+
+  // Cleverbot API name and key, used for talking with Cleverbot.
+  // Create a key here. https://cleverbot.io/keys
+  cleverbot_api_name: '',
+  cleverbot_api_key: ''
+};
