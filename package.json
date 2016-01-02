@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
+    "babel-preset-es2015-node4": "^2.0.2",
     "cleverbot.io": "^1.0.4",
     "discord.js": "^5.1.0",
     "gizoogle": "^0.0.6",
@@ -19,7 +20,6 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
-    "babel-preset-es2015-node4": "^2.0.2",
     "eslint": "^1.10.3",
     "eslint-config-busbud": "^0.1.2",
     "eslint-config-semistandard": "^5.0.0",
