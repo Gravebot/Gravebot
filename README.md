@@ -77,6 +77,9 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - `!uptime` - Shows how long the bot has been online
 - `!userinfo` *@username* - Gives information about the user, if no user is written, yourself
 
+#### Games:
+- `!lol` - League of Legends
+
 #### Other:
 - `!ayylmao`
 - `!chillenmyb`
