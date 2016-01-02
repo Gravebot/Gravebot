@@ -1,5 +1,5 @@
 import { Client as Discord } from 'discord.js';
-import commands from './lib/commands';
+import commands from './lib';
 
 // Init
 import CONFIG from './config';
