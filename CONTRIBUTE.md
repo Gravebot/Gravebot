@@ -19,7 +19,7 @@ Gravebot is written in ES6/Babel javascript, we try to avoid ES5 as much as poss
 
 To add a new command, create a new javascript file in [`/lib`](/lib) and name it to something that resembles your to be functions. For example all the Discord server commands can be found in [`/lib/server.js`](/lib/server.js).
 
-All functions are sent the [`discord client instance`](https://discordjs.readthedocs.org/en/latest/docs_client.html), [`msg object`](https://discordjs.readthedocs.org/en/latest/docs_message.html), and the command text *(minus the command itself)* as parameters. A good example of this can be found in [`/lib/yoda.js`](/lib/yoda.js).
+All functions are sent the [discord client instance](https://discordjs.readthedocs.org/en/latest/docs_client.html), [msg object](https://discordjs.readthedocs.org/en/latest/docs_message.html), and the command text *(minus the command itself)* as parameters. A good example of this can be found in [`/lib/yoda.js`](/lib/yoda.js).
 
 It's good to default to some help text if someone is improperly using your commands. With a little string interpolation and some markdown, it's pretty easy to describe to a user how your commands work. Check out [`/lib/leagueoflegends.js`](/lib/leagueoflegends.js) or [`/lib/help`](/lib/help).
 
