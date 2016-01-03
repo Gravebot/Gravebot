@@ -40,9 +40,15 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) in the root directory and run `npm install`
 - `npm start`
 
+## Feature Requests
 
+Have a feature in mind? We'd love to hear about it. Feel free to [open an issue](https://github.com/Gravestorm/Gravebot/issues/new) and let us know.
 
-## Commands:
+## Contribute
+
+Want to contribute yourself to Gravebot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
+
+## Commands
 #### Help:
 - `!help fun` - List of fun commands
 - `!help useful` - List of useful commands
