@@ -32,7 +32,8 @@ Server Owner: user
 Channels: 1
 Default Channel: abc
 Members: 1
-Server Icon: http://website.com/img.png\`\`\``);
+Server Icon: http://website.com/img.png
+\`\`\``);
         done();
       }
 
@@ -101,7 +102,8 @@ Server Icon: http://website.com/img.png\`\`\``);
 ID: 1
 Discriminator: 1234
 Status: online
-Avatar: http://website.com/img.png\`\`\``);
+Avatar: http://website.com/img.png
+\`\`\``);
         done();
       }
 
@@ -127,7 +129,8 @@ Avatar: http://website.com/img.png\`\`\``);
 ID: 1
 Discriminator: 1234
 Status: online
-Avatar: http://website.com/img.png\`\`\``);
+Avatar: http://website.com/img.png
+\`\`\``);
         done();
       }
 
