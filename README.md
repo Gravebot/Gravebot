@@ -45,7 +45,7 @@ Have a feature in mind? We'd love to hear about it. Feel free to [open an issue]
 
 ## Contribute
 
-Want to contribute yourself to Gravesbot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
+Want to contribute yourself to Gravebot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
 
 ## Commands
 #### Help:

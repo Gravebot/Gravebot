@@ -1,10 +1,10 @@
 # Contribute
 
-Contributing to Gravesbot is super easy, we just have a few rules.
+Contributing to Gravebot is super easy, we just have a few rules.
 
 ## Rules
 
-Gravesbot is written in ES6/Babel javascript, we try to avoid ES5 as much as possible.
+Gravebot is written in ES6/Babel javascript, we try to avoid ES5 as much as possible.
 
 - No using `var`, instead properly using `let` and `const`
 - Using `import` and `export` for modules, and avoiding using `require` unless it's for JSON
