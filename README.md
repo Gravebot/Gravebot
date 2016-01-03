@@ -61,6 +61,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - `!quote` - Writes a random quote
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
 - `!snoopify` *sentence* - Snoopifies tha sentence
+- `!yoda` *setence* - Yodaify a sentence
 
 #### Useful:
 - `!gif` *gif tags* - Gets a gif from Giphy matching the given tags
