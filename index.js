@@ -18,7 +18,7 @@ bot.on('message', msg => {
   // Checks if the message is a command
   if (msg.content[0] === CONFIG.prefix) {
     let command = msg.content.toLowerCase().split(' ')[0].substring(1);
-    let suffix = msg.content.toLowerCase().substring(command.length + 2);
+    let suffix = msg.content.substring(command.length + 2);
     let cmd = commands[command];
 
     if (cmd) cmd(bot, msg, suffix);
