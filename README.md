@@ -10,6 +10,8 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 
 [Russian version/Pусская версия](https://github.com/Gravestorm/GravebotRU).
 
+## [Changelog](CHANGELOG.md)
+
 ## How to use
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
