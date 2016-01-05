@@ -50,8 +50,8 @@ Server Icon: http://website.com/img.png
           defaultChannel: {
             name: 'abc'
           },
-          roles: {
-            roles: 
+          {
+            roles: [{name: 'role1'}, {name: 'role2'}]
           },
           iconURL: 'http://website.com/img.png',
           members: ['user']
