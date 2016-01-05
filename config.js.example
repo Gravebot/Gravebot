@@ -22,10 +22,5 @@ export default {
 
   // Champion.gg API key is used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
-  CHAMPIONGG_API: '',
-
-  // Mashape has a large amount of APIs, one of them being used for the `!yoda` command.
-  // Sign up for Mashape, create an application, and grab a production key.
-  // https://market.mashape.com
-  MASHAPE_KEY: ''
+  CHAMPIONGG_API: ''
 };
