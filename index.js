@@ -37,7 +37,7 @@ bot.on('message', msg => {
   }
 
   // Checks if bot was mentioned
-  if (msg.mentions.get('username', nconf.get('USERNAME'))) {
+  if (msg.isMentioned(bot.user)) {
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd = commands[msg_split[1]];

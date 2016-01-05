@@ -2,9 +2,8 @@ export default {
   // *Required* Prefix for commands.
   PREFIX: '!',
 
-  // *Required* Discord email username, and password for your bot.
+  // *Required* Discord email and password for your bot.
   EMAIL: '',
-  USERNAME: '',
   PASSWORD: '',
 
   // Youtube API key to be used when searching youtube videos.
