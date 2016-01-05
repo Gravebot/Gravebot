@@ -1,28 +1,28 @@
 export default {
   // *Required* Prefix for commands.
-  prefix: '!',
+  PREFIX: '!',
 
   // *Required* Discord email and password for your bot.
-  email: '',
-  password: '',
+  EMAIL: '',
+  PASSWORD: '',
 
   // Youtube API key to be used when searching youtube videos.
   // Learn more here. https://developers.google.com/youtube/v3/getting-started
-  youtube_api_key: '',
+  YOUTUBE_API_KEY: '',
 
   // Imgflip username and password, used for creating memes.
   // Create an account here. https://imgflip.com
-  imgflip_username: '',
-  imgflip_password: '',
+  IMGFLIP_USERNAME: '',
+  IMGFLIP_PASSWORD: '',
 
   // Cleverbot API name and key, used for talking with Cleverbot.
   // Create a key here. https://cleverbot.io/keys
-  cleverbot_api_name: '',
-  cleverbot_api_key: '',
+  CLEVERBOT_API_NAME: '',
+  CLEVERBOT_API_KEY: '',
 
   // Champion.gg API key is used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
-  championgg_api: '',
+  CHAMPIONGG_API: '',
 
   // Mashape has a large amount of APIs, one of them being used for the `!yoda` command.
   // Sign up for Mashape, create an application, and grab a production key.

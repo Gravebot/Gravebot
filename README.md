@@ -49,7 +49,7 @@ Have a feature in mind? We'd love to hear about it. Feel free to [open an issue]
 
 ## Contribute
 
-Want to contribute yourself to Gravebot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
+Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
 
 ## Commands
 #### Help:
@@ -58,18 +58,19 @@ Want to contribute yourself to Gravebot? That's great! Be sure to check out the 
 - `!help info` - List of information commands
 - `!help games` - List of game commands
 - `!help other` - List of other commands
+- `!memelist` - List of meme names for the `!meme` command
 - `!aide` - Liste des commandes en Francais
-- `!memelist` - List of meme names for the !meme command
 
 #### Fun:
 - `!8ball` *question* - Answers the question
 - `!chat` *sentence* - Chats with you
 - `!coin` - Flips a coin
-- `!decide` *something or something...* - Decides between given words
-- `!drama` - Responds with a random drama image
+- `!decide` *something* **or** *something...* - Decides between given words
+- `!drama` *number* - Responds with a drama image, if no number is written, a random one
+- `!emoji` *number* - Responds with an emoji copypasta, if no number is written, a random one
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
-- `!pugbomb` *count* - Bombs chat with adorable pugs.
-- `!quote` - Writes a random quote
+- `!pugbomb` *count* - Bombs chat with adorable pugs
+- `!quote` *number* - Responds with a quote, if no number is written, a random one
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
 - `!snoopify` *sentence* - Snoopifies tha sentence
 - `!yoda` *setence* - Yodaify a sentence

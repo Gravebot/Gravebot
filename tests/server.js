@@ -32,6 +32,7 @@ Server Owner: user
 Channels: 1
 Default Channel: abc
 Members: 1
+Roles: role1, role2
 Server Icon: http://website.com/img.png
 \`\`\``);
         done();
@@ -49,6 +50,7 @@ Server Icon: http://website.com/img.png
           defaultChannel: {
             name: 'abc'
           },
+          roles: [{name: '@everyone'}, {name: 'role1'}, {name: 'role2'}],
           iconURL: 'http://website.com/img.png',
           members: ['user']
         }
@@ -96,54 +98,70 @@ Server Icon: http://website.com/img.png
 
   describe('userinfo', () => {
     it('should return user info for requesting user', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`\`\`\`Name: user
-ID: 1
-Discriminator: 1234
-Status: online
-Avatar: http://website.com/img.png
-\`\`\``);
-        done();
-      }
-
       let msg = {
         mentions: [],
-        channel: 'test',
+        channel: {
+          server: {
+            detailsOfUser: () => {
+              return {joinedAt: 'Sun, 27 Sep 2015 19:32:46 GMT'};
+            }
+          }
+        },
         author: {
           username: 'user',
           id: 1,
           discriminator: 1234,
           status: 'online',
+          joined: 'Sun, 27 Sep 2015 19:32:46 GMT',
           avatarURL: 'http://website.com/img.png'
         }
       };
 
-      server.userinfo({sendMessage}, msg);
-    });
-
-    it('should return user info for a mentioned user', done => {
       function sendMessage(channel, res) {
-        channel.should.equal('test');
+        channel.should.equal(msg.channel);
         res.should.equal(`\`\`\`Name: user
 ID: 1
 Discriminator: 1234
 Status: online
+Joined: Sun, 27 Sep 2015 19:32:46 GMT
 Avatar: http://website.com/img.png
 \`\`\``);
         done();
       }
 
+      server.userinfo({sendMessage}, msg);
+    });
+
+    it('should return user info for a mentioned user', done => {
       let msg = {
         mentions: [{
           username: 'user',
           id: 1,
           discriminator: 1234,
           status: 'online',
+          joined: 'Sun, 27 Sep 2015 19:32:46 GMT',
           avatarURL: 'http://website.com/img.png'
         }],
-        channel: 'test'
+        channel: {
+          server: {
+            detailsOfUser: () => {
+              return {joinedAt: 'Sun, 27 Sep 2015 19:32:46 GMT'};
+            }
+          }
+        }
       };
+
+      function sendMessage(channel, res) {
+        channel.should.equal(msg.channel);
+        res.should.equal(`\`\`\`Name: user
+ID: 1
+Discriminator: 1234
+Status: online
+Joined: Sun, 27 Sep 2015 19:32:46 GMT
+Avatar: http://website.com/img.png
+\`\`\``);
+        done();
+      }
 
       server.userinfo({sendMessage}, msg);
     });
