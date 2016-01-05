@@ -27,5 +27,9 @@ export default {
   // Mashape has a large amount of APIs, one of them being used for the `!yoda` command.
   // Sign up for Mashape, create an application, and grab a production key.
   // https://market.mashape.com
-  mashape_key: ''
+  mashape_key: '',
+
+  // Wolfram Alpha. Ask it anything.
+  // http://products.wolframalpha.com/developers/
+  wolfram_api: ''
 };
