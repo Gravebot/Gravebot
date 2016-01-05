@@ -1,4 +1,6 @@
 import chai from 'chai';
+import path from 'path';
+
 import customMemes from '../lib/custom_memes';
 
 chai.should();
@@ -18,7 +20,7 @@ describe('custom_memes', () => {
 
       function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal('./images/Ayylmao.png');
+        res.should.equal(path.join(__dirname, '../images/Ayylmao.png'));
 
         completed++;
         if (completed === 2) return done();
@@ -34,7 +36,7 @@ describe('custom_memes', () => {
     it('should return the correct local file', done => {
       function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal('./images/Chillenmyb.jpg');
+        res.should.equal(path.join(__dirname, '../images/Chillenmyb.jpg'));
         done();
       }
       customMemes.chillenmyb({sendFile}, {channel: 'test'});
@@ -45,7 +47,7 @@ describe('custom_memes', () => {
     it('should return the correct local file', done => {
       function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal('./images/Feelsgoodman.png');
+        res.should.equal(path.join(__dirname, '../images/Feelsgoodman.png'));
         done();
       }
       customMemes.feelsgoodman({sendFile}, {channel: 'test'});
@@ -56,7 +58,7 @@ describe('custom_memes', () => {
     it('should return the correct local file', done => {
       function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal('./images/Kappa.png');
+        res.should.equal(path.join(__dirname, '../images/Kappa.png'));
         done();
       }
       customMemes.kappa({sendFile}, {channel: 'test'});
@@ -67,7 +69,7 @@ describe('custom_memes', () => {
     it('should return the correct local file', done => {
       function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal('./images/Kappahd.png');
+        res.should.equal(path.join(__dirname, '../images/Kappahd.png'));
         done();
       }
       customMemes.kappahd({sendFile}, {channel: 'test'});
