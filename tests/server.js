@@ -32,6 +32,7 @@ Server Owner: user
 Channels: 1
 Default Channel: abc
 Members: 1
+Roles: role1, role2
 Server Icon: http://website.com/img.png
 \`\`\``);
         done();
@@ -48,6 +49,9 @@ Server Icon: http://website.com/img.png
           channels: ['abc'],
           defaultChannel: {
             name: 'abc'
+          },
+          roles: {
+            roles: 
           },
           iconURL: 'http://website.com/img.png',
           members: ['user']
@@ -102,6 +106,7 @@ Server Icon: http://website.com/img.png
 ID: 1
 Discriminator: 1234
 Status: online
+Joined: Sun, 27 Sep 2015 19:32:46 GMT
 Avatar: http://website.com/img.png
 \`\`\``);
         done();
@@ -115,6 +120,7 @@ Avatar: http://website.com/img.png
           id: 1,
           discriminator: 1234,
           status: 'online',
+          joined: 'Sun, 27 Sep 2015 19:32:46 GMT',
           avatarURL: 'http://website.com/img.png'
         }
       };
@@ -129,6 +135,7 @@ Avatar: http://website.com/img.png
 ID: 1
 Discriminator: 1234
 Status: online
+Joined: Sun, 27 Sep 2015 19:32:46 GMT
 Avatar: http://website.com/img.png
 \`\`\``);
         done();
@@ -140,6 +147,7 @@ Avatar: http://website.com/img.png
           id: 1,
           discriminator: 1234,
           status: 'online',
+          joined: 'Sun, 27 Sep 2015 19:32:46 GMT',
           avatarURL: 'http://website.com/img.png'
         }],
         channel: 'test'
