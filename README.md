@@ -31,13 +31,14 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
+- Install [libxml2](ftp://ftp.zlatkovic.com/libxml/)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
 - Run `npm-install.bat` to install the Node dependencies
 - Run `launch.bat` to start the bot
 
 #### Linux:
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
-- Install [gcc](https://gcc.gnu.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++`)
+- Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++ libxml2-dev`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) in the root directory and run `npm install`
 - `npm start`
