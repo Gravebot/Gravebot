@@ -6,6 +6,12 @@ import R from 'ramda';
 import './lib/config/init';
 import commands from './lib';
 
+// Verify both username and password are set before launching the bot.
+if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
+  console.error('Please make sure both EMAIL and PASSWORD are set in env or config.js before starting Gravebot');
+  process.exit(1);
+}
+
 // Init
 const bot = new Discord();
 
