@@ -81,7 +81,7 @@ Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBU
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
 - `!youtube` *video tags* - Gets a video from Youtube matching the given tags
-- `!wolfram` *sentence* - Query Wolfram Alpha for almost anything
+- `!wolfram` *query* - Query Wolfram Alpha for almost anything
 
 #### Information:
 - `!avatar` *@Username* - Responds with the Avatar of the user, if no user is written, the avatar of the sender
