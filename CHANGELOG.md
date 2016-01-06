@@ -1,3 +1,15 @@
+## 1.2.0 (Janurary 5th, 2016)
+
+#### Features
+- Wolfram Alpha `!wolfram` commands. Ask anything!
+- Emoji `!emoji` command to spam chat with glorious things
+- Drama `!drama` command when things are getting a little hot in chat
+- Added joined date and roles to `!serverinfo`
+- Commands can be used with mentions to Gravebot, `@₪Gravebot₪ pugbomb 3`, and in private messages.
+
+#### Bug Fixes
+- Replaced `!yoda` command to rid of all the API errors
+
 ## 1.1.0 (Janurary 3rd, 2016)
 
 #### Features
