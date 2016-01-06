@@ -109,4 +109,4 @@ Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBU
 - Gravestorm - [@Gravestorm](https://github.com/Gravestorm)
 - Dustin Blackman - [@dustinblackman](https://github.com/dustinblackman)
 
-## [License](LICENSE.md)
+## [License](LICENSE)
