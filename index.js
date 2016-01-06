@@ -5,6 +5,7 @@ import R from 'ramda';
 
 import './lib/config/init';
 import commands from './lib';
+import { callCmd } from './lib/helpers';
 
 // Init
 const bot = new Discord();
@@ -32,7 +33,7 @@ bot.on('message', msg => {
     let suffix = msg.content.substring(command.length + 2);
     let cmd = commands[command];
 
-    if (cmd) cmd(bot, msg, suffix);
+    if (cmd) callCmd(cmd, command, bot, msg, suffix);
     return;
   }
 
@@ -42,7 +43,7 @@ bot.on('message', msg => {
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd = commands[msg_split[1]];
 
-    if (cmd) cmd(bot, msg, suffix);
+    if (cmd) callCmd(cmd, msg_split[1], bot, msg, suffix);
     return;
   }
 
@@ -52,7 +53,7 @@ bot.on('message', msg => {
     let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
     let cmd = commands[msg_split[0]];
 
-    if (cmd) cmd(bot, msg, suffix);
+    if (cmd) callCmd(cmd, msg_split[0], bot, msg, suffix);
     return;
   }
 });
