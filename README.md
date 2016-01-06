@@ -80,7 +80,7 @@ Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBU
 - `!join` *invitation link* - Joins the server the bot is invited to
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
-- `!youtube` *video tags* - Gets a video from Youtube matching the given tags
+- `!yt` *video tags* - Gets a video from Youtube matching the given tags
 - `!wolfram` *query* - Query Wolfram Alpha for almost anything
 
 #### Information:
