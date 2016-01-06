@@ -24,11 +24,6 @@ export default {
   // Create a key here. http://api.champion.gg/
   CHAMPIONGG_API: '',
 
-  // Mashape has a large amount of APIs, one of them being used for the `!yoda` command.
-  // Sign up for Mashape, create an application, and grab a production key.
-  // https://market.mashape.com
-  MASHAPE_KEY: '',
-
   // Wolfram Alpha. Ask it anything.
   // http://products.wolframalpha.com/developers/
   WOLFRAM_KEY: ''
