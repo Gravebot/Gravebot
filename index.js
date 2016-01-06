@@ -1,4 +1,4 @@
-import { Client as Discord } from 'discord.js';
+import { Client as Discord, PMChannel } from 'discord.js';
 import express from 'express';
 import nconf from 'nconf';
 import R from 'ramda';
@@ -41,6 +41,16 @@ bot.on('message', msg => {
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd = commands[msg_split[1]];
+
+    if (cmd) cmd(bot, msg, suffix);
+    return;
+  }
+
+  // Check personal messages
+  if (msg.channel instanceof PMChannel) {
+    let msg_split = msg.content.split(' ');
+    let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
+    let cmd = commands[msg_split[0]];
 
     if (cmd) cmd(bot, msg, suffix);
     return;
