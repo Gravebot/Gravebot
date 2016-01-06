@@ -1,6 +1,7 @@
 language: node_js
 script: npm run test-coverage
 cache:
+  apt: true
   directories:
     - node_modules
 after_success:
