@@ -22,5 +22,9 @@ export default {
 
   // Champion.gg API key is used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
-  CHAMPIONGG_API: ''
+  CHAMPIONGG_API: '',
+
+  // Wolfram Alpha. Ask it anything.
+  // http://products.wolframalpha.com/developers/
+  WOLFRAM_KEY: ''
 };

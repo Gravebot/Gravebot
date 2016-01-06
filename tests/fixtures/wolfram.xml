@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<queryresult success='true'
+    error='false'
+    numpods='6'
+    datatypes='AdministrativeDivision,City,Country,Leader,People'
+    timedout=''
+    timedoutpods=''
+    timing='2.272'
+    parsetiming='0.338'
+    parsetimedout='false'
+    recalculate=''
+    id='MSPa6441228f0g54209493h000001ggc48436g01di2e'
+    host='http://www4b.wolframalpha.com'
+    server='34'
+    related='http://www4b.wolframalpha.com/api/v2/relatedQueries.jsp?id=MSPa6442228f0g54209493h0000057a83g5igfcfabf4&amp;s=34'
+    version='2.6'>
+ <pod title='Input interpretation'
+     scanner='Identity'
+     id='Input'
+     position='100'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6443228f0g54209493h00000211762578137f5eh?MSPStoreType=image/gif&amp;s=34'
+       alt='Canada | Prime Minister'
+       title='Canada | Prime Minister'
+       width='176'
+       height='23' />
+   <plaintext>Canada | Prime Minister</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Result'
+     scanner='Data'
+     id='Result'
+     position='200'
+     error='false'
+     numsubpods='1'
+     primary='true'>
+  <subpod title=''>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6444228f0g54209493h00000478549cb03adfa5h?MSPStoreType=image/gif&amp;s=34'
+       alt='Justin Trudeau'
+       title='Justin Trudeau'
+       width='100'
+       height='18' />
+   <plaintext>Justin Trudeau</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Basic information'
+     scanner='Data'
+     id='BasicInformation:LeaderData'
+     position='300'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6445228f0g54209493h0000034633955c0i5ihf7?MSPStoreType=image/gif&amp;s=34'
+       alt='official position | Prime Minister
+country | Canada
+start date | 04-11-2015 (2 months ago)'
+       title='official position | Prime Minister
+country | Canada
+start date | 04-11-2015 (2 months ago)'
+       width='320'
+       height='100' />
+   <plaintext>official position | Prime Minister
+country | Canada
+start date | 04-11-2015 (2 months ago)</plaintext>
+  </subpod>
+ </pod>
+ <pod title='Sequence'
+     scanner='Data'
+     id='LeaderSequence'
+     position='400'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6446228f0g54209493h000004h4ce4ib127eb18d?MSPStoreType=image/gif&amp;s=34'
+       alt='Wednesday, November 4, 2015  to  Monday, January 4, 2016 | Justin Trudeau
+Monday, February 6, 2006  to  Wednesday, November 4, 2015  (9 years 8 months 26 days) | Stephen Harper  (Conservative)
+Friday, December 12, 2003  to  Monday, February 6, 2006  (2 years 1 month 25 days) | Paul Martin  (Liberal)
+Thursday, November 4, 1993  to  Friday, December 12, 2003  (10 years 1 month 8 days) | Jean Chrétien  (Liberal)
+Friday, June 25, 1993  to  Thursday, November 4, 1993  (4 months 9 days) | Kim Campbell  (Progressive Conservative)'
+       title='Wednesday, November 4, 2015  to  Monday, January 4, 2016 | Justin Trudeau
+Monday, February 6, 2006  to  Wednesday, November 4, 2015  (9 years 8 months 26 days) | Stephen Harper  (Conservative)
+Friday, December 12, 2003  to  Monday, February 6, 2006  (2 years 1 month 25 days) | Paul Martin  (Liberal)
+Thursday, November 4, 1993  to  Friday, December 12, 2003  (10 years 1 month 8 days) | Jean Chrétien  (Liberal)
+Friday, June 25, 1993  to  Thursday, November 4, 1993  (4 months 9 days) | Kim Campbell  (Progressive Conservative)'
+       width='546'
+       height='317' />
+   <plaintext>Wednesday, November 4, 2015  to  Monday, January 4, 2016 | Justin Trudeau
+Monday, February 6, 2006  to  Wednesday, November 4, 2015  (9 years 8 months 26 days) | Stephen Harper  (Conservative)
+Friday, December 12, 2003  to  Monday, February 6, 2006  (2 years 1 month 25 days) | Paul Martin  (Liberal)
+Thursday, November 4, 1993  to  Friday, December 12, 2003  (10 years 1 month 8 days) | Jean Chrétien  (Liberal)
+Friday, June 25, 1993  to  Thursday, November 4, 1993  (4 months 9 days) | Kim Campbell  (Progressive Conservative)</plaintext>
+  </subpod>
+  <states count='1'>
+   <state name='More'
+       input='LeaderSequence__More' />
+  </states>
+ </pod>
+ <pod title='Personal information'
+     scanner='Data'
+     id='LeaderDataPersonalInformationPod:PeopleData'
+     position='500'
+     error='false'
+     numsubpods='2'>
+  <subpod title=''>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6447228f0g54209493h00000294b5a4ea2gbeffh?MSPStoreType=image/gif&amp;s=34'
+       alt='date of birth | 25-12-1971 (age: 44 years)
+place of birth | Ottawa, Ontario, Canada'
+       title='date of birth | 25-12-1971 (age: 44 years)
+place of birth | Ottawa, Ontario, Canada'
+       width='323'
+       height='68' />
+   <plaintext>date of birth | 25-12-1971 (age: 44 years)
+place of birth | Ottawa, Ontario, Canada</plaintext>
+  </subpod>
+  <subpod title='Timeline'>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6448228f0g54209493h0000059a909c5133idi81?MSPStoreType=image/gif&amp;s=34'
+       alt=''
+       title=''
+       width='550'
+       height='38' />
+   <plaintext></plaintext>
+  </subpod>
+ </pod>
+ <pod title='Image'
+     scanner='Data'
+     id='Image:PeopleData'
+     position='600'
+     error='false'
+     numsubpods='1'>
+  <subpod title=''>
+   <imagesource>http://commons.wikimedia.org/wiki/File:Trudeaujpg.jpg</imagesource>
+   <img src='http://www4b.wolframalpha.com/Calculate/MSP/MSP6449228f0g54209493h000005i91e8b3744967b3?MSPStoreType=image/gif&amp;s=34'
+       alt=''
+       title=''
+       width='109'
+       height='150' />
+   <plaintext></plaintext>
+  </subpod>
+ </pod>
+ <sources count='3'>
+  <source url='http://www.wolframalpha.com/sources/CountryDataSourceInformationNotes.html'
+      text='Country data' />
+  <source url='http://www.wolframalpha.com/sources/LeaderDataSourceInformationNotes.html'
+      text='Leader data' />
+  <source url='http://www.wolframalpha.com/sources/PeopleDataSourceInformationNotes.html'
+      text='People data' />
+ </sources>
+</queryresult>

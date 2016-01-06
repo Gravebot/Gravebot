@@ -1,6 +1,7 @@
 language: node_js
 script: npm run test-coverage
 cache:
+  apt: true
   directories:
     - node_modules
 after_success:
@@ -16,6 +17,7 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+      - libxml2-dev
 deploy:
   provider: heroku
   app: gravebot
