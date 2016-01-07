@@ -1,12 +1,12 @@
+# Gravebot
 
 [![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 [![Coverage Status](https://img.shields.io/coveralls/Gravestorm/Gravebot/master.svg)](https://coveralls.io/github/Gravestorm/Gravebot?branch=master)
 
 ## About
-A bot for the chat program [Discord](https://discordapp.com/), made with the help of [Discord.js library](https://github.com/hydrabolt/discord.js).
 
-[Command list](https://github.com/Gravestorm/Gravebot#commands).
+A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
 
 [Russian version/Pусская версия](https://github.com/Gravestorm/GravebotRU).
 
@@ -14,42 +14,13 @@ A bot for the chat program [Discord](https://discordapp.com/), made with the hel
 
 ## How to use
 #### Invitation
-The easiest way to set this bot up on your server is to invite it to your Discord server, it is currently hosted 24/7.
+The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-In order to do that, join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and write in the main chat !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr), you may also test it there as much as you like.
+Join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and write in the main chat !join **invitation link** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr). You can also give the bot a try in that room first as well.
 
-If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), or private messaging Gravestorm.
+If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm, and open an issue on Github.
 
-Though, if you still want to host it yourself, or mess around with the code, keep reading.
-
-## Configure
-
-Rename `config.js.example` to `config.js` and fill in the required information. Note only variables with the `*Required*` comment are needed, everything else is optional.
-
-## Installation
-#### Windows:
-- Install [node.js](https://nodejs.org/en/) v4.0 or higher
-- Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
-- Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
-- Install [libxml2](ftp://ftp.zlatkovic.com/libxml/)
-- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
-- Run `npm-install.bat` to install the Node dependencies
-- Run `launch.bat` to start the bot
-
-#### Linux:
-- Install [node.js](https://nodejs.org/en/) v4.0 or higher
-- Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++ libxml2-dev`)
-- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
-- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) in the root directory and run `npm install`
-- `npm start`
-
-## Feature Requests
-
-Have a feature in mind? We'd love to hear about it. Feel free to [open an issue](https://github.com/Gravestorm/Gravebot/issues/new) and let us know.
-
-## Contribute
-
-Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
+For self hosting, click [here](#localconfig).
 
 ## Commands
 #### Help:
@@ -104,9 +75,52 @@ Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBU
 - `!starwars4`
 - `!starwars5`
 
+---
+
+<a name="localconfig" />
+## Local Configuration
+
+Rename `config.js.example` to `config.js` and fill in the required information. Note only variables with the `*Required*` comment are needed, everything else is optional.
+
+## Local Installation
+#### Windows:
+- Install [node.js](https://nodejs.org/en/) v4.0 or higher
+- Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
+- Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
+- Install [libxml2](ftp://ftp.zlatkovic.com/libxml/)
+- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
+- Run `npm-install.bat` to install the Node dependencies
+- Run `launch.bat` to start the bot
+
+#### Linux:
+- Install [node.js](https://nodejs.org/en/) v4.0 or higher
+- Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++ libxml2-dev`)
+- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
+- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) in the root directory and run `npm install`
+- `npm start`
+
+## Deployment
+#### Heroku
+
+Gravebot comes setup and ready for Heroku. Setup your configuration in Heroku's environment variables and then push the source code.
+
+#### Docker
+
+Master branch is built and pushed to our Docker image. You can pull the latest from [here](https://hub.docker.com/r/gravebot/gravebot/).
+
+---
+
+## Feature Requests
+
+Have a feature in mind? We'd love to hear about it. Feel free to [open an issue](https://github.com/Gravestorm/Gravebot/issues/new) and let us know.
+
+## Contribute
+
+Want to contribute to Gravebot? That's great! Be sure to check out the [CONTRIBUTE.md](CONTRIBUTE.md) doc for more information on how.
+
 ## Contributors
 
-- Gravestorm - [@Gravestorm](https://github.com/Gravestorm)
-- Dustin Blackman - [@dustinblackman](https://github.com/dustinblackman)
+- Gravestorm  *(Maintainer)* - [@Gravestorm](https://github.com/Gravestorm)
+- Dustin Blackman *(Maintainer)* - [@dustinblackman](https://github.com/dustinblackman)
 
 ## [License](LICENSE)

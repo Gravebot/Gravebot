@@ -49,6 +49,7 @@
     "test": "npm run lint && npm run mocha",
     "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./lib --include-all-sources true node_modules/.bin/_mocha -- tests",
     "dev": "nodemon --exec babel-node ./index.js",
+    "image": "docker build --rm -t gravebot/gravebot:latest .",
     "heroku": "forever --minUptime 5000 -c 'babel-node' index.js"
   },
   "engines": {

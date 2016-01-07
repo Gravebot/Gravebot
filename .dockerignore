@@ -1,0 +1,7 @@
+node_modules/
+logs
+*.log
+lib-cov
+coverage/
+config.json
+config.js
