@@ -4,8 +4,46 @@ import server from '../lib/server';
 chai.should();
 
 describe('server', () => {
+  describe('avatar', () => {
+    it('should return a url to an avatar for self', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res.should.equal('Your avatar:\nhttp://test.dev/img.jpg');
+        done();
+      }
+
+      let msg = {
+        channel: 'test',
+        mentions: [],
+        author: {
+          avatarURL: 'http://test.dev/img.jpg'
+        }
+      };
+
+      server.avatar({sendMessage}, msg);
+    });
+
+    it('should return a url to an avatar for a mentioned user', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res[0].should.equal('test\'s avatar:\nhttp://test.dev/img.jpg');
+        done();
+      }
+
+      let msg = {
+        channel: 'test',
+        mentions: [{
+          avatarURL: 'http://test.dev/img.jpg',
+          username: 'test'
+        }]
+      };
+
+      server.avatar({sendMessage}, msg);
+    });
+  });
+
   describe('join/join-server', () => {
-    it('should join execute joinServer and respond with with a success message', (done) => {
+    it('should join execute joinServer and respond with with a success message', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
         res.should.equal('Successfully joined Test Server');
