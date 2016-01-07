@@ -52,11 +52,11 @@ For self hosting, click [here](#localconfig).
 - `!join` *invitation link* - Joins the server the bot is invited to
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
-- `!yt` *video tags* - Gets a video from Youtube matching the given tags
+- `!youtube` *video tags* - Gets a video from Youtube matching the given tags
 - `!wolfram` *query* - Query Wolfram Alpha for almost anything
 
 #### Information:
-- `!avatar` *@Username* - Responds with the Avatar of the user, if no user is written, the avatar of the sender
+- `!avatar` *@username* - Responds with the avatar of the user, if no user is written, the avatar of the sender
 - `!serverinfo` - Gives information about the server
 - `!serverlist` - Lists all the servers the bot is connected to
 - `!servers` - Lists how many servers, channels and users the bot is connected to
@@ -88,7 +88,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
-- Install [libxml2](ftp://ftp.zlatkovic.com/libxml/)
+- Install [libxml2](http://gnuwin32.sourceforge.net/packages/libxml2.htm)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
 - Run `npm-install.bat` to install the Node dependencies
 - Run `launch.bat` to start the bot
@@ -97,8 +97,8 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
 - Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++ libxml2-dev`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
-- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) in the root directory and run `npm install`
-- `npm start`
+- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the root directory and run `npm install`
+- Run `npm start`
 
 ## Deployment
 #### Heroku
