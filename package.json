@@ -13,6 +13,7 @@
     "cleverbot.io": "^1.0.4",
     "discord.js": "^5.3.2",
     "express": "^4.13.3",
+    "forever": "^0.15.1",
     "gizoogle": "^0.0.6",
     "glob": "^6.0.3",
     "imgflipper": "^1.0.1",
@@ -46,7 +47,8 @@
     "mocha": "mocha --compilers js:babel-core/register ./tests/index.js",
     "test": "npm run lint && npm run mocha",
     "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./lib --include-all-sources true node_modules/.bin/_mocha -- tests",
-    "dev": "nodemon --exec babel-node ./index.js"
+    "dev": "nodemon --exec babel-node ./index.js",
+    "heroku": "forever --minUptime 5000 -c 'babel-node' index.js"
   },
   "engines": {
     "node": ">=4.2.0 <5.0",
