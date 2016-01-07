@@ -4,7 +4,15 @@ import nconf from 'nconf';
 import R from 'ramda';
 
 import './lib/config/init';
+import './lib/config/sentry';
 import commands from './lib';
+import { callCmd } from './lib/helpers';
+
+// Verify both username and password are set before launching the bot.
+if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
+  console.error('Please make sure both EMAIL and PASSWORD are set in env or config.js before starting Gravebot');
+  process.exit(1);
+}
 
 // Init
 const bot = new Discord();
@@ -32,7 +40,7 @@ bot.on('message', msg => {
     let suffix = msg.content.substring(command.length + 2);
     let cmd = commands[command];
 
-    if (cmd) cmd(bot, msg, suffix);
+    if (cmd) callCmd(cmd, command, bot, msg, suffix);
     return;
   }
 
@@ -42,17 +50,22 @@ bot.on('message', msg => {
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd = commands[msg_split[1]];
 
-    if (cmd) cmd(bot, msg, suffix);
+    if (cmd) callCmd(cmd, msg_split[1], bot, msg, suffix);
     return;
   }
 
   // Check personal messages
   if (msg.channel instanceof PMChannel) {
+    // Accept invite links directly though PMs
+    if (msg.content.indexOf('https://discord.gg/') > -1 || msg.content.indexOf('https://discordapp.com/invite/') > -1) {
+      return commands.join(bot, msg, msg.content);
+    }
+
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
     let cmd = commands[msg_split[0]];
 
-    if (cmd) cmd(bot, msg, suffix);
+    if (cmd) callCmd(cmd, msg_split[0], bot, msg, suffix);
     return;
   }
 });
