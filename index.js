@@ -4,6 +4,7 @@ import nconf from 'nconf';
 import R from 'ramda';
 
 import './lib/config/init';
+import './lib/config/sentry';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
