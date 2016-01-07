@@ -4,6 +4,7 @@ import nconf from 'nconf';
 import R from 'ramda';
 
 import './lib/config/init';
+import './lib/config/sentry';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
@@ -55,6 +56,11 @@ bot.on('message', msg => {
 
   // Check personal messages
   if (msg.channel instanceof PMChannel) {
+    // Accept invite links directly though PMs
+    if (msg.content.indexOf('https://discord.gg/') > -1 || msg.content.indexOf('https://discordapp.com/invite/') > -1) {
+      return commands.join(bot, msg, msg.content);
+    }
+
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
     let cmd = commands[msg_split[0]];
