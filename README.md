@@ -3,6 +3,7 @@
 [![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 [![Coverage Status](https://img.shields.io/coveralls/Gravestorm/Gravebot/master.svg)](https://coveralls.io/github/Gravestorm/Gravebot?branch=master)
+<a href="https://zenhub.io"><img src="https://img.shields.io/badge/KanBan%20Board-Zenhub.io-blue.svg"></a>
 
 ## About
 
