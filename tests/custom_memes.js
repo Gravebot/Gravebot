@@ -33,13 +33,24 @@ describe('custom_memes', () => {
   });
 
   describe('chillenmyb', () => {
-    it('should return the correct local file', done => {
-      function sendFile(channel, res) {
+    it('should return the correct imgur url', done => {
+      function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal(path.join(__dirname, '../images/Chillenmyb.jpg'));
+        res.should.equal('http://i.imgur.com/Qh75Dsi.jpg');
         done();
       }
-      customMemes.chillenmyb({sendFile}, {channel: 'test'});
+      customMemes.chillenmyb({sendMessage}, {channel: 'test'});
+    });
+  });
+
+  describe('endall', () => {
+    it('should return the correct imgur url', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res.should.equal('http://i.imgur.com/SNmMCQV.png');
+        done();
+      }
+      customMemes.endall({sendMessage}, {channel: 'test'});
     });
   });
 
