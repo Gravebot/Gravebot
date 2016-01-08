@@ -12,7 +12,7 @@ Gravebot is written in ES6/Babel javascript, we try to avoid ES5 as much as poss
 - All functions are `camelCased`
 - Everything must pass lint, run `npm run lint`.
 - Tests are required for all functions
-- Avoid adding new modules if there is already one that does something similar. For example, don't add `lodash` as were already using `ramda`, or don't add `Q` as were already using `bluebird`.
+- Avoid adding new modules if there is already one that does something similar. For example, don't add `lodash` as we're already using `ramda`, or don't add `Q` as we're already using `bluebird`.
 - Avoid adding images to the repo if possible, but instead upload them to [imgur](https://imgur.com/) to improve performance.
 
 ## Instructions
