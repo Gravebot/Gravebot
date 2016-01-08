@@ -95,7 +95,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 
 #### Linux:
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
-- Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install g++ libxml2-dev`)
+- Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install build-essential libxml2-dev`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the root directory and run `npm install`
 - Run `npm start`
