@@ -1,5 +1,6 @@
 import chai from 'chai';
 import mockery from 'mockery';
+import nconf from 'nconf';
 import sinon from 'sinon';
 
 
@@ -88,6 +89,8 @@ describe('funny', () => {
         done();
       }
 
+      nconf.set('IMGFLIP_USERNAME', '123');
+      nconf.set('IMGFLIP_PASSWORD', '123');
       funny.meme({sendMessage}, {channel: 'test'}, 'wonka "top text" "bottom text"');
     });
   });
