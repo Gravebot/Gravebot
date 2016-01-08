@@ -39,7 +39,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/Qh75Dsi.jpg');
         done();
       }
-      customMemes.skeltal({sendMessage}, {channel: 'test'});
+      customMemes.chillenmyb({sendMessage}, {channel: 'test'});
     });
   });
 
@@ -50,7 +50,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/SNmMCQV.png');
         done();
       }
-      customMemes.skeltal({sendMessage}, {channel: 'test'});
+      customMemes.endall({sendMessage}, {channel: 'test'});
     });
   });
 
