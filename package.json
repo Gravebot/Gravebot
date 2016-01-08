@@ -4,9 +4,9 @@
   "description": "A bot for the chat program Discord",
   "main": "index.js",
   "dependencies": {
-    "babel-cli": "^6.4.0",
     "babel-core": "^6.4.0",
     "babel-preset-es2015-node4": "^2.0.2",
+    "babel-register": "^6.3.13",
     "bluebird": "^3.1.1",
     "chalk": "^1.1.1",
     "cheerio": "^0.19.0",
@@ -28,6 +28,7 @@
     "youtube-node": "^1.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.0",
     "babel-eslint": "^4.1.6",
     "babel-istanbul": "^0.5.9",
     "chai": "^3.4.1",
@@ -43,14 +44,14 @@
     "sinon": "^1.17.2"
   },
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "node index.js",
     "lint": "./node_modules/.bin/eslint .",
     "mocha": "mocha --compilers js:babel-core/register ./tests/index.js",
     "test": "npm run lint && npm run mocha",
     "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./lib --include-all-sources true node_modules/.bin/_mocha -- tests",
-    "dev": "nodemon --exec babel-node ./index.js",
+    "dev": "nodemon ./index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",
-    "heroku": "forever --minUptime 5000 -c 'babel-node' index.js"
+    "heroku": "forever --minUptime 5000 index.js"
   },
   "engines": {
     "node": ">=4.2.0 <5.0",
