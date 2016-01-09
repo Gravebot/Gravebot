@@ -54,6 +54,7 @@ For self hosting, click [here](#localconfig).
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
 - `!youtube` *video tags* - Gets a video from Youtube matching the given tags
 - `!wolfram` *query* - Query Wolfram Alpha for almost anything
+- `!videocall` - Start a one click video call or screenshare directly on Appear.in
 
 #### Information:
 - `!avatar` *@username* - Responds with the avatar of the user, if no user is written, the avatar of the sender
