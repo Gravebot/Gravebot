@@ -1,6 +1,6 @@
 ## 1.3.0 (Janurary 8th, 2016)
 
-## Features
+#### Features
 - Short hands for `!youtube` and `!wolfram` as `!yt` and `!wfa`
 - Support for joining through PMs with just Discord invite links
 - `!lol` `bans` and `best` to show the top bans and best champs in their respected positions
@@ -8,10 +8,10 @@
 - Better formatting for `!lol` commands
 - `manlyman` and `patrick3` memes
 
-## Bug Fixes
+#### Bug Fixes
 - `!drama`, `!emoji`, and `!quote` commands to have access to all available results
 
-## Technical Features
+#### Technical Features
 - `EMAIL` and `PASSWORD` are checked for on boot
 - Docker support with automated images based off Master branch
 - Added sentry for error tracking
