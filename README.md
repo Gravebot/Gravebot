@@ -64,6 +64,7 @@ For self hosting, click [here](#localconfig).
 - `!userinfo` *@username* - Gives information about the user, if no user is written, yourself
 
 #### Games:
+- `!dota2` - DOTA 2
 - `!lol` - League of Legends
 
 #### Other:
