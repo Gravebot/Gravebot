@@ -62,6 +62,7 @@ For self hosting, click [here](#localconfig).
 - `!servers` - Lists how many servers, channels and users the bot is connected to
 - `!uptime` - Shows how long the bot has been online
 - `!userinfo` *@username* - Gives information about the user, if no user is written, yourself
+- `!version` - Get information on the latest version of Gravebot
 
 #### Games:
 - `!lol` - League of Legends
