@@ -1,7 +1,11 @@
 import chai from 'chai';
+import fs from 'fs';
+import nock from 'nock';
+import path from 'path';
 import server from '../lib/server';
 
 chai.should();
+const res_fixture = fs.readFileSync(path.join(__dirname, './fixtures/version.md'));
 
 describe('server', () => {
   describe('avatar', () => {
@@ -217,6 +221,31 @@ Avatar: http://website.com/img.png
       }
 
       server.uptime({sendMessage, uptime: 242342345}, {channel: 'test'});
+    });
+  });
+
+  describe('version', () => {
+    it('should return the change log for the latest verion', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res.should.equal(`1.2.3 (Janurary 8th, 2016)
+
+Features
+- Test One
+
+Bug Fixes
+- Test Two
+
+Technical Features
+- Test Three`);
+        done();
+      }
+
+      nock('https://raw.githubusercontent.com/')
+        .get('/Gravestorm/Gravebot/master/CHANGELOG.md')
+        .reply(200, res_fixture);
+
+      server.version({sendMessage}, {channel: 'test'});
     });
   });
 });
