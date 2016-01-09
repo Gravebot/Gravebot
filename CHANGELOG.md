@@ -1,3 +1,4 @@
+<a name="1.3.0" />
 ## 1.3.0 (Janurary 8th, 2016)
 
 #### Features
@@ -18,6 +19,7 @@
 - Dropped `babel-node` binary to start app
 
 
+<a name="1.2.0" />
 ## 1.2.0 (Janurary 5th, 2016)
 
 #### Features
@@ -30,6 +32,8 @@
 #### Bug Fixes
 - Replaced `!yoda` command to rid of all the API errors
 
+
+<a name="1.1.0" />
 ## 1.1.0 (Janurary 3rd, 2016)
 
 #### Features
