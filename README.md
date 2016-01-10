@@ -65,6 +65,7 @@ For self hosting, click [here](#localconfig).
 - `!version` - Get information on the latest version of Gravebot
 
 #### Games:
+- `!dota2` - DOTA 2
 - `!lol` - League of Legends
 
 #### Other:
