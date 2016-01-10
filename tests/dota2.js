@@ -51,7 +51,7 @@ describe('dota2', () => {
     it('it should return the most popular build for anti-mage', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal(`You got it! Here's most popular build priorities for **anti mage**.
+        res.should.equal(`You got it! Here's most popular build priorities for **Anti Mage**.
 R > Q > W > E`);
         done();
       }
@@ -135,7 +135,7 @@ R > Q > W > E`);
     it('it should return the most used items for anti-mage', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal(`Alright! Here's the top 10 **most used** items for **anti mage** this month:
+        res.should.equal(`Alright! Here's the top 10 **most used** items for **Anti Mage** this month:
 
 *1st*. **Battle Fury** with 49.21% winrate over 4,875,904 matches
 *2nd*. **Power Treads** with 43.9% winrate over 3,963,102 matches
