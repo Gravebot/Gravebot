@@ -22,6 +22,7 @@
     "ramda": "^0.19.1",
     "raven": "^0.9.0",
     "request": "^2.67.0",
+    "super-error": "^2.0.0",
     "urban": "^0.3.0",
     "wikijs": "^0.1.1",
     "wolfram-alpha": "^0.3.0",
