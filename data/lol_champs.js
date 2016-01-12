@@ -126,4 +126,4 @@ export default {
   420: 'Illaoi',
   421: 'Rek\'Sai',
   429: 'Kalista',
-  432: 'Bard' }
+  432: 'Bard' };
