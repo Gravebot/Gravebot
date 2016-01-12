@@ -66,8 +66,25 @@ For self hosting, click [here](#localconfig).
 - `!version` - Get information on the latest version of Gravebot
 
 #### Games:
-- `!dota2` - DOTA 2
-- `!lol` - League of Legends
+
+**Dota2**
+- `!dota2` - Help
+- `!dota2 best` *position* - Get the top 10 Heroes for a specific position
+- `!dota2 build` *hero-name* - Get the most popular build for a Hero
+- `!dota2 counters` *hero-name* - Get the top 10 counters for a Hero
+- `!dota2 impact` - Get the top 10 Heroes with the biggest impact
+- `!dota2 items` *hero-name* - Get the top 10 most used items for a Hero`
+
+**League of Legends**
+- `!lol` - Help
+- `!lol bans` - Get the top 10 most common bans
+- `!lol best` *position* - Get the top 10 best champs for a position
+- `!lol counters` *champ-name position* - Get the top 10 counters for a Champion and Position
+- `!lol items` *champ-name position* - Get the highest win item sets for a Champion and Position
+- `!lol match` *region summoner-name* - Get rank, champ, winrate, and games for all players in a __current__ match.
+- `!lol skills` *champ-name position* - Get the highest win skills for a Champion and Position
+- `!lol status` - Get the LoL Game and Client server status for all regions
+
 
 #### Other:
 - `!ayylmao`
