@@ -2,6 +2,7 @@ import chai from 'chai';
 import nconf from 'nconf';
 import nock from 'nock';
 import path from 'path';
+import R from 'ramda';
 
 import lol from '../lib/leagueoflegends';
 import { loadFixtures } from './_helpers';
@@ -12,6 +13,7 @@ const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/leagueoflegends/'
 describe('league of legends', () => {
   before(() => {
     nconf.set('CHAMPIONGG_API', 'api_key');
+    nconf.set('RIOT_KEY', 'api_key');
   });
 
   beforeEach(() => {
@@ -139,6 +141,38 @@ describe('league of legends', () => {
         .reply(200, FIXTURES.best);
 
       lol.lol({sendMessage}, {channel: 'test'}, 'best mid');
+    });
+  });
+
+  describe('match details', () => {
+    it('should return match details for a specific player', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res.should.equal(`Game on! You can find **omervalentine** on __Red__ side.
+
+__Blue Side:__
+    **OmerValentine1** - Gold V - **Zed**,  __0%__ winrate over __0 games__
+
+__Red Side:__
+    **OmerValentine** - Gold V - **Lucian**,  __50%__ winrate over __2 games__`);
+        done();
+      }
+
+      // Summoner Lookup
+      nock('https://na.api.pvp.net')
+        .get('/api/lol/na/v1.4/summoner/by-name/omervalentine?api_key=api_key')
+        .reply(200, FIXTURES.match_details_1)
+        .get('/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/43260920?api_key=api_key')
+        .reply(200, FIXTURES.match_details_2)
+        .get(`/api/lol/na/v2.5/league/by-summoner/43260920,432609201/entry?api_key=api_key`)
+        .reply(200, FIXTURES.match_details_3)
+        .get('/api/lol/na/v1.3/stats/by-summoner/43260920/ranked?api_key=api_key')
+        .times(9)
+        .reply(200, FIXTURES.match_details_4)
+        .get('/api/lol/na/v1.3/stats/by-summoner/432609201/ranked?api_key=api_key')
+        .reply(200, FIXTURES.match_details_5);
+
+      lol.lol({sendMessage}, {channel: 'test', mentions: []}, 'match na omervalentine');
     });
   });
 });
