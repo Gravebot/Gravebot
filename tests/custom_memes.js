@@ -12,7 +12,7 @@ describe('custom_memes', () => {
 
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/m7NaGVx.png');
+        res.should.equal('http://i.imgur.com/m7NaGVx.gif');
 
         completed++;
         if (completed === 2) return done();
@@ -91,7 +91,7 @@ describe('custom_memes', () => {
     it('should return the correct imgur url', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/ZX79Q4S.png');
+        res.should.equal('http://i.imgur.com/ZX79Q4S.gif');
         done();
       }
       customMemes.skeltal({sendMessage}, {channel: 'test'});
@@ -102,7 +102,7 @@ describe('custom_memes', () => {
     it('should return the correct imgur url', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/l9VKWWF.png');
+        res.should.equal('http://i.imgur.com/l9VKWWF.gif');
         done();
       }
       customMemes.starwars4({sendMessage}, {channel: 'test'});
@@ -113,7 +113,7 @@ describe('custom_memes', () => {
     it('should return the correct imgur url', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/eCpwo6J.png');
+        res.should.equal('http://i.imgur.com/eCpwo6J.gif');
         done();
       }
       customMemes.starwars5({sendMessage}, {channel: 'test'});

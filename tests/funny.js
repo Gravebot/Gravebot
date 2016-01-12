@@ -33,7 +33,7 @@ describe('funny', () => {
     it('should return drama image at index 3', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/GbIaoT0.png');
+        res.should.equal('http://i.imgur.com/GbIaoT0.gif');
         done();
       }
 
@@ -45,7 +45,7 @@ describe('funny', () => {
       sandbox.stub(Math, 'random', () => 0.6787224733270705);
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/OX2r7f3.png');
+        res.should.equal('http://i.imgur.com/OX2r7f3.gif');
 
         sandbox.restore();
         done();
