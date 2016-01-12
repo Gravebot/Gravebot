@@ -2,7 +2,6 @@ import chai from 'chai';
 import nconf from 'nconf';
 import nock from 'nock';
 import path from 'path';
-import R from 'ramda';
 
 import lol from '../lib/leagueoflegends';
 import { loadFixtures } from './_helpers';
