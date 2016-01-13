@@ -24,6 +24,11 @@ export default {
   // Create a key here. http://api.champion.gg/
   CHAMPIONGG_API: '',
 
+  // Riot's API key is used for player and match search commands.
+  // BE WARNED, a development key will be very limited and most of the time will not work,
+  // as there is a lot of requests made in order to complete these data sets.
+  RIOT_KEY: '',
+
   // Wolfram Alpha. Ask it anything.
   // http://products.wolframalpha.com/developers/
   WOLFRAM_KEY: ''
