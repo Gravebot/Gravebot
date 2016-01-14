@@ -144,6 +144,7 @@ Server Icon: http://website.com/img.png
         mentions: [],
         channel: {
           server: {
+            name: 'server',
             detailsOfUser: () => {
               return {joinedAt: 'Sun, 27 Sep 2015 19:32:46 GMT'};
             }
@@ -165,7 +166,7 @@ Server Icon: http://website.com/img.png
 ID: 1
 Discriminator: 1234
 Status: online
-Joined: Sun, 27 Sep 2015 19:32:46 GMT
+Joined server: Sun, 27 Sep 2015 19:32:46 GMT
 Avatar: http://website.com/img.png
 \`\`\``);
         done();
@@ -186,6 +187,7 @@ Avatar: http://website.com/img.png
         }],
         channel: {
           server: {
+            name: 'server',
             detailsOfUser: () => {
               return {joinedAt: 'Sun, 27 Sep 2015 19:32:46 GMT'};
             }
@@ -199,7 +201,7 @@ Avatar: http://website.com/img.png
 ID: 1
 Discriminator: 1234
 Status: online
-Joined: Sun, 27 Sep 2015 19:32:46 GMT
+Joined server: Sun, 27 Sep 2015 19:32:46 GMT
 Avatar: http://website.com/img.png
 \`\`\``);
         done();
