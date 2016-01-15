@@ -1,0 +1,164 @@
+vendor-prefixes ?= webkit official // @stylint ignore
+
+// Fonts
+@font-face
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/oxygen.ttf);
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+@font-face
+  font-family: 'Oxygen-Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/oxygen-bold.ttf);
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+@font-face
+  font-family: 'Oxygen-Italic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/oxygen-italic.ttf);
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+// Defaults
+body
+  background-color #36393e
+  font-family Oxygen
+
+.main
+  width 500px
+  height 300px
+  position absolute
+  top 0px
+  left 0px
+
+// Title
+$text_color = white
+.title
+  font-family Oxygen-Bold
+  text-align center
+  color $text_color
+  line-height 0.5
+
+  h2
+    display inline-block
+    position relative
+
+  lines()
+    content ""
+    position absolute
+    height 5px
+    border-top 1px solid white
+    top 5px
+    width 180px
+
+  h2:before
+    lines()
+  h2:after
+    lines()
+
+  h2:before
+    right 100%
+    margin-right 15px
+
+  h2:after
+    left 100%
+    margin-left 15px
+
+
+.banner
+  top 10px
+  padding-left 10px
+  position relative
+
+
+// Champ
+.champ
+  color $text_color
+  img
+    width 80px
+    height 80px
+    border-radius 40%
+  .name
+    font-family Oxygen-Bold
+    font-size 20px
+    position absolute
+    top -10px
+    left 100px
+  .position
+    position absolute
+    left 100px
+    top 10px
+
+// Logo
+.logo
+  // positon relative
+  img
+    position absolute
+    top -137px
+    left -50px
+    -webkit-transform: scale(0.19)
+    transform: scale(0.19)
+
+// Items
+$item_left_pos = 60px
+$item_width = 210px
+$priority_font_size = 13px
+$priority_color = #8CA2C8
+
+itemPriority()
+  color #CECECE
+  width $item-width
+  position absolute
+  font-family Oxygen-Italic
+  font-size $priority_font_size
+
+.items
+  position relative
+  color $text_color
+  img
+    border 1px solid #a2762f
+    width 40px
+    height 40px
+  div
+    padding-bottom 5px
+
+.item-left
+  position relative
+  padding-left 10px
+
+  img
+    left 10px
+
+  .item-priority
+    itemPriority()
+    top -2px
+    left $item_left_pos
+
+  .item-name
+    width $item_width
+    position absolute
+    top -10px
+    left $item_left_pos
+
+$item_right_pos = 310px
+.item-right
+  position relative
+
+  img
+    position absolute
+    left 260px
+    top -44px
+
+  .item-priority
+    itemPriority()
+    top -46px
+    left $item_right_pos
+
+  .item-name
+    width $item_width
+    position absolute
+    top -54px
+    left $item_right_pos
