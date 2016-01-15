@@ -60,9 +60,9 @@
   },
   "scripts": {
     "build": "npm run build-stylus",
-    "build-stylus": "mkdir -p css && stylus --compress --include ../nib/lib -o ./web/css ./web/styl",
+    "build-stylus": "mkdir -p web/css && stylus --compress --include ../nib/lib -o ./web/css ./web/styl",
     "dev": "npm run dev-stylus & nodemon ./index.js",
-    "dev-stylus": "mkdir -p css && stylus -w --compress --include ../nib/lib -o ./web/css ./web/styl",
+    "dev-stylus": "mkdir -p web/css && stylus -w --compress --include ../nib/lib -o ./web/css ./web/styl",
     "heroku": "npm run build && forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",
     "lint": "npm run lint-js && npm run lint-styl && npm run lint-jade",
