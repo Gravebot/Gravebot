@@ -48,7 +48,7 @@ gulp.task('lol:champs', done => {
     .then(R.path(['body', 'data']))
     .then(R.keys)
     .map(id => {
-      let download_path = path.join(__dirname, `../web/images/leagueoflegends/champs/${id}.png`);
+      let download_path = path.join(__dirname, `../web/images/leagueoflegends/champs/${id.toLowerCase()}.png`);
       return downloadFile(`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`, download_path);
     }, {concurrency: 10})
     .asCallback(done);
