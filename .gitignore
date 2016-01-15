@@ -29,3 +29,9 @@ node_modules
 # Removed config.json file
 config.json
 config.js
+
+# ignore web
+web/css/
+
+# Test files
+test.js
