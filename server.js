@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import { Client as Discord, PMChannel } from 'discord.js';
 import chalk from 'chalk';
 import express from 'express';
@@ -6,6 +7,7 @@ import R from 'ramda';
 
 import './lib/config/init';
 import './lib/config/sentry';
+import './lib/config/phantom';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
@@ -16,17 +18,29 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 }
 
 // Init
-console.log(chalk.cyan('Booting...'));
 const bot = new Discord();
-
-// Start health check endpoint
 const web = express();
+web.use(bodyParser.urlencoded({extended: true, limit: '1000mb'}));
+web.use(bodyParser.json({limit: '1000mb'}));
+
+// Setup views endpoints
+web.set('views', './web/views');
+web.set('view engine', 'jade');
+web.use(express.static('web'));
+
+// Render view for images
+web.post('/view', (req, res) => {
+  res.render(req.body.view, req.body.data);
+});
+
+// Health check endpoint
 web.use('/', (req, res) => {
   res.json({status: 'okay'});
 });
-web.listen(process.env.PORT || 5000);
 
-// Listen for events
+web.listen(nconf.get('PORT'));
+
+// Listen for events on Discord
 bot.on('ready', () => console.log(chalk.green(`Started successfully. Serving in ${bot.servers.length} servers`)));
 bot.on('disconnected', () => {
   console.log(chalk.yellow(`[${Date().toString()}] Disconnected. Attempting to reconnect...`));
