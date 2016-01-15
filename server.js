@@ -20,8 +20,8 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 // Init
 const bot = new Discord();
 const web = express();
-web.use(bodyParser.urlencoded({extended: true, limit: '1000mb'}));
-web.use(bodyParser.json({limit: '1000mb'}));
+web.use(bodyParser.urlencoded({extended: true}));
+web.use(bodyParser.json());
 
 // Setup views endpoints
 web.set('views', './web/views');
