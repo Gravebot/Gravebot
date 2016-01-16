@@ -23,8 +23,13 @@ requester({url: 'https://ddragon.leagueoflegends.com/realms/na.json', json: true
     return requester({url: `https://ddragon.leagueoflegends.com/cdn/${v}/data/en_US/champion.json`, json: true});
   })
   .then(R.path(['body', 'data']))
+  .tap(data => {
+    let vals = R.values(data);
+    let item_data = R.zipObj(R.pluck('key')(vals), R.pluck('name')(vals));
+    fs.writeFileSync(path.join(__dirname, '../../data/lol_champs.json'), JSON.stringify(item_data, null, 2), 'utf8');
+  })
   .then(R.keys)
   .map(id => {
-    let download_path = path.join(__dirname, `../web/images/leagueoflegends/champs/${id.toLowerCase()}.png`);
+    let download_path = path.join(__dirname, `../../web/images/leagueoflegends/champs/${id.toLowerCase()}.png`);
     return downloadFile(`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`, download_path);
   }, {concurrency: 10});
