@@ -61,7 +61,7 @@
     "dev": "DEBUG=express:*,horseman nodemon ./index.js",
     "heroku": "forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",
-    "lint": "npm run lint-js && npm run lint-styl && npm run lint-jade",
+    "lint": "npm run lint-js && npm run lint-styl && npm run lint-jade && npm run lint-json",
     "lint-jade": "jadelint ./web/views",
     "lint-js": "eslint .",
     "lint-json": "find ./data -name \\*.json -type f -maxdepth 1 -exec jsonlint -q {} \\;",
