@@ -30,8 +30,5 @@ node_modules
 config.json
 config.js
 
-# ignore web
-web/css/
-
 # Test files
 test.js

@@ -1,17 +1,19 @@
 vendor-prefixes ?= webkit official // @stylint ignore
 
+@import 'nib'
+
 // Fonts
 @font-face
-  font-family 'Oxygen';
-  font-style normal;
-  font-weight 400;
+  font-family 'Oxygen'
+  font-style normal
+  font-weight 400
   src url(/fonts/oxygen.woff) format('woff')
   unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
 
 @font-face
   font-family 'Oxygen-Bold'
   font-style normal
-  font-weight 400;
+  font-weight 400
   src url(/fonts/oxygen-bold.woff) format('woff')
   unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
 
@@ -28,29 +30,29 @@ body
   font-family Oxygen
 
 .main
-  width 500px
   height 300px
+  left 0
   position absolute
-  top 0px
-  left 0px
+  top 0
+  width 500px
 
 // Title
 $text_color = white
 .title
-  font-family Oxygen-Bold
-  text-align center
   color $text_color
-  line-height 0.5
+  font-family Oxygen-Bold
+  line-height .5
+  text-align center
 
   h2
     display inline-block
     position relative
 
   lines()
-    content ""
-    position absolute
-    height 5px
     border-top 1px solid white
+    content ""
+    height 5px
+    position absolute
     top 5px
     width 180px
 
@@ -60,8 +62,8 @@ $text_color = white
     lines()
 
   h2:before
-    right 100%
     margin-right 15px
+    right 100%
 
   h2:after
     left 100%
@@ -69,38 +71,36 @@ $text_color = white
 
 
 .banner
-  top 10px
   padding-left 10px
   position relative
+  top 10px
 
 
 // Champ
 .champ
   color $text_color
   img
-    width 80px
-    height 80px
     border-radius 40%
+    height 80px
+    width 80px
   .name
     font-family Oxygen-Bold
     font-size 20px
+    left 100px
     position absolute
     top -10px
-    left 100px
   .position
-    position absolute
     left 100px
+    position absolute
     top 14px
 
 // Logo
 .logo
-  // positon relative
   img
-    position absolute
-    top -137px
     left -50px
-    -webkit-transform: scale(0.19)
-    transform: scale(0.19)
+    position absolute
+    transform: scale(.19)
+    top -137px
 
 // Items
 $item_left_pos = 60px
@@ -110,55 +110,56 @@ $priority_color = #8CA2C8
 
 itemPriority()
   color #CECECE
-  width $item-width
-  position absolute
   font-family Oxygen-Italic
   font-size $priority_font_size
+  position absolute
+  width $item-width
 
 .items
-  position relative
   color $text_color
-  img
-    border 1px solid #a2762f
-    width 40px
-    height 40px
+  position relative
+  
   div
     padding-bottom 5px
+  img
+    border 1px solid #a2762f
+    height 40px
+    width 40px
 
 .item-left
-  position relative
   padding-left 10px
+  position relative
 
   img
     left 10px
 
   .item-priority
     itemPriority()
-    top -2px
     left $item_left_pos
+    top -2px
 
   .item-name
-    width $item_width
+    left $item_left_pos
     position absolute
     top -6px
-    left $item_left_pos
+    width $item_width
 
 $item_right_pos = 310px
 .item-right
   position relative
 
   img
-    position absolute
     left 260px
+    position absolute
     top -44px
 
   .item-priority
     itemPriority()
-    top -46px
     left $item_right_pos
+    top -46px
 
   .item-name
-    width $item_width
+    left $item_right_pos
     position absolute
     top -48px
-    left $item_right_pos
+    width $item_width
