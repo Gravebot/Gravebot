@@ -47,17 +47,11 @@ describe('league of legends', () => {
   });
 
   describe('items', () => {
-    it('should return items for ekko mid', done => {
-      function sendMessage(channel, res) {
+    it('should return an image buffer larger then 80000', function(done) {
+      this.timeout(7000);
+      function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal(`Alright! Here's the highest win item set for **Ekko** **Middle** with a 46.26% winrate.
-
-*1st*. Morellonomicon
-*2nd*. Sorcerer's Shoes
-*3rd*. Zhonya's Hourglass
-*4th*. Luden's Echo
-*5th*. Rabadon's Deathcap
-*6th*. Void Staff`);
+        res.length.should.be.at.least(80000);
         done();
       }
 
@@ -65,7 +59,7 @@ describe('league of legends', () => {
         .get('/champion/ekko/items/finished/mostWins?api_key=api_key')
         .reply(200, FIXTURES.items);
 
-      lol.lol({sendMessage}, {channel: 'test'}, 'items ekko mid');
+      lol.lol({sendFile}, {channel: 'test'}, 'items ekko mid');
     });
   });
 
