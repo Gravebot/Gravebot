@@ -58,7 +58,7 @@
   },
   "scripts": {
     "dev": "DEBUG=express:*,horseman nodemon ./index.js",
-    "heroku": "npm run build && forever --minUptime 5000 index.js",
+    "heroku": "forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",
     "lint": "npm run lint-js && npm run lint-styl && npm run lint-jade",
     "lint-jade": "jadelint ./web/views",
