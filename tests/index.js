@@ -1,5 +1,4 @@
 import glob from 'glob';
-import nconf from 'nconf';
 import R from 'ramda';
 import '../lib/config/init';
 import '../lib/config/express';
