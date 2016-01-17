@@ -43,6 +43,7 @@ For self hosting, click [here](#localconfig).
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
 - `!pugbomb` *count* - Bombs chat with adorable pugs
 - `!quote` *number* - Responds with a quote, if no number is written, a random one
+- `!randomcat` - Returns a random cat picture
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
 - `!snoopify` *sentence* - Snoopifies tha sentence
 - `!yoda` *setence* - Yodaify a sentence
