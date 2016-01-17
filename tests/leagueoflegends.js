@@ -47,11 +47,11 @@ describe('league of legends', () => {
   });
 
   describe('items', () => {
-    it('should return an image buffer larger then 80000', function(done) {
+    it('should return an image buffer larger then 70000', function(done) {
       this.timeout(7000);
       function sendFile(channel, res) {
         channel.should.equal('test');
-        res.length.should.be.at.least(80000);
+        res.length.should.be.at.least(70000);
         done();
       }
 
