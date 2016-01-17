@@ -1,4 +1,4 @@
-if [ "$TRAVIS_BRANCH" == "master" ] && [ -z "$DOCKER_EMAIL" ]
+if [ "$TRAVIS_BRANCH" == "master" ] && [ -n "$DOCKER_EMAIL" ]
 then
   docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASS"
   export REPO=gravebot/gravebot
