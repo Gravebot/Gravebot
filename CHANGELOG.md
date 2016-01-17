@@ -4,7 +4,7 @@
 #### Features
 - `!lol items` is the first command to return an [image response](https://github.com/Gravestorm/Gravebot/pull/94) instead of text
 - `!lol match` command to get player stats of a current match
-- `!randomcat`
+- `!cat` command to send a cute cat picture
 - `!dota2` commands now give stats and builds for DOTA2
 - `!videocall` now lets you generate a one click video call and screen share link, either public or private
 - `!version` command to load the latest information from this changelog in to Discord
