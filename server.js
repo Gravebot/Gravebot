@@ -1,11 +1,12 @@
 import { Client as Discord, PMChannel } from 'discord.js';
 import chalk from 'chalk';
-import express from 'express';
 import nconf from 'nconf';
 import R from 'ramda';
 
 import './lib/config/init';
+import './lib/config/express';
 import './lib/config/sentry';
+import './lib/config/phantom';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
@@ -16,17 +17,9 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 }
 
 // Init
-console.log(chalk.cyan('Booting...'));
 const bot = new Discord();
 
-// Start health check endpoint
-const web = express();
-web.use('/', (req, res) => {
-  res.json({status: 'okay'});
-});
-web.listen(process.env.PORT || 5000);
-
-// Listen for events
+// Listen for events on Discord
 bot.on('ready', () => console.log(chalk.green(`Started successfully. Serving in ${bot.servers.length} servers`)));
 bot.on('disconnected', () => {
   console.log(chalk.yellow(`[${Date().toString()}] Disconnected. Attempting to reconnect...`));

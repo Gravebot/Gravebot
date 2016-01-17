@@ -29,3 +29,6 @@ node_modules
 # Removed config.json file
 config.json
 config.js
+
+# Test files
+test.js
