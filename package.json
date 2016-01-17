@@ -23,7 +23,7 @@
     "moment": "^2.11.0",
     "nconf": "^0.8.2",
     "nib": "^1.1.0",
-    "node-horseman": "^2.8.2",
+    "node-horseman": "git+https://git@github.com/dustinblackman/node-horseman.git#debug-inspector",
     "phantomjs": "^1.9.19",
     "promise-queue": "^2.2.2",
     "ramda": "^0.19.1",
@@ -67,7 +67,7 @@
     "lint-json": "find ./data -name \\*.json -type f -maxdepth 1 -exec jsonlint -q {} \\;",
     "lint-styl": "stylint --config ./.stylintrc ./web/styl",
     "mocha": "mocha --compilers js:babel-core/register ./tests/index.js",
-    "start": "npm run build && node index.js",
+    "start": "node index.js",
     "test": "npm run lint && npm run mocha",
     "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./lib --include-all-sources true node_modules/.bin/_mocha -- tests"
   },
