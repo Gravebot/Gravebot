@@ -17,6 +17,7 @@ Gravebot is written in ES6/Babel javascript, we try to avoid ES5 as much as poss
 
 ## Instructions
 
+#### Creating a new module
 To add a new command, create a new javascript file in [`/lib`](/lib) and name it to something that resembles your to be functions. For example all the Discord server commands can be found in [`/lib/server.js`](/lib/server.js).
 
 All functions are sent the [discord client instance](https://discordjs.readthedocs.org/en/latest/docs_client.html), [msg object](https://discordjs.readthedocs.org/en/latest/docs_message.html), and the command text *(minus the command itself)* as parameters. A good example of this can be found in [`/lib/yoda.js`](/lib/yoda.js).
@@ -25,6 +26,13 @@ It's good to default to some help text if someone is improperly using your comma
 
 After you've completed writing, export a default object with the key name being the name of the discord command. Again, a good example of this can be found in [`/lib/yoda.js`](/lib/yoda.js). You can export multiple commands and everything will be merged on run.
 
+#### Image Responses
+
+If you'd prefer to develop an image response instead of a text response, take a look at the League of Legends [`items`](https://github.com/Gravestorm/Gravebot/blob/master/lib/leagueoflegends/championgg.js) commands. The images are HTML/Jade views using Stylus as the css pre-compiler. The images should try to fit in with the look of Discord. Please reframe from loading remote dependencies, but instead save them locally in the repo within the `web` folder.
+
+#### Tests
 Tests are required for all new functions, examples can be found in [/tests](/tests) This project already uses [`mocha`](https://mochajs.org/), [`nock`](https://github.com/pgte/nock), [`chai`](http://chaijs.com/), and [`sinon`](http://sinonjs.org/docs/), which should be more than enough to write any tests needed. Tests are run with `npm run mocha`.
 
+
+#### Pull Requests
 Once everything is up to par, feel free to through up a pull request. For pull request formatting, check out [#7](https://github.com/Gravestorm/Gravebot/pull/7) and [#2](https://github.com/Gravestorm/Gravebot/pull/2)

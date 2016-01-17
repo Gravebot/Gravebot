@@ -1,3 +1,19 @@
+<a name="1.4.0" />
+## 1.4.0 (Janurary 17th, 2016)
+
+#### Features
+- `!lol items` is the first command to return an [image response](https://github.com/Gravestorm/Gravebot/pull/94) instead of text
+- `!lol match` command to get player stats of a current match
+- `!cat` command to send a cute cat picture
+- `!dota2` commands now give stats and builds for DOTA2
+- `!videocall` now lets you generate a one click video call and screen share link, either public or private
+- `!version` command to load the latest information from this changelog in to Discord
+- `!endall` command to end all arguments
+
+#### Bug Fixes
+- Spell check everywhere
+- Added safeguard to `!roll` command that was causing crashes
+
 <a name="1.3.0" />
 ## 1.3.0 (Janurary 8th, 2016)
 

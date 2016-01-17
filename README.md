@@ -35,6 +35,7 @@ For self hosting, click [here](#localconfig).
 
 #### Fun:
 - `!8ball` *question* - Answers the question
+- `!cat` - Returns a random cat picture
 - `!chat` *sentence* - Chats with you
 - `!coin` - Flips a coin
 - `!decide` *something* **or** *something...* - Decides between given words

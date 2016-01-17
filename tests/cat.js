@@ -1,11 +1,11 @@
 import chai from 'chai';
-import randomcat from '../lib/randomcat';
+import cat from '../lib/cat';
 import nock from 'nock';
 
 chai.should();
 const res_fixture = require('./fixtures/randomcat.json');
 
-describe('randomcat', () => {
+describe('cat', () => {
   it('should return a cat picture', done => {
     function sendMessage(channel, res) {
       channel.should.equal('test');
@@ -18,6 +18,6 @@ describe('randomcat', () => {
       .get('/meow.php')
       .reply(200, res_fixture);
 
-    randomcat.randomcat({sendMessage}, {channel: 'test'});
+    cat.cat({sendMessage}, {channel: 'test'});
   });
 });
