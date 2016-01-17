@@ -6,8 +6,6 @@ import '../lib/config/express';
 import '../lib/config/phantom';
 
 
-nconf.set('PORT', 5000);
-
 let glob_options = {
   realpath: true,
   nodir: true
