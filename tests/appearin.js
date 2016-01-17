@@ -43,7 +43,7 @@ describe('appearin', () => {
         res.should.equal('https://appear.in/0234342344');
       } else {
         channel.should.equal(msg.mentions[0]);
-        res.should.equal('authortest would like you to join a videocall/screenshare. https://appear.in/0234342344');
+        res.should.equal('authortest would like you to join a videocall/screenshare.\nhttps://appear.in/0234342344');
       }
 
       if (testcount === 2) done();

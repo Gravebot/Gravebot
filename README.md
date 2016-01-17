@@ -73,7 +73,7 @@ For self hosting, click [here](#localconfig).
 - `!dota2 build` *hero-name* - Get the most popular build for a Hero
 - `!dota2 counters` *hero-name* - Get the top 10 counters for a Hero
 - `!dota2 impact` - Get the top 10 Heroes with the biggest impact
-- `!dota2 items` *hero-name* - Get the top 10 most used items for a Hero`
+- `!dota2 items` *hero-name* - Get the top 10 most used items for a Hero
 
 **League of Legends**
 - `!lol` - Help

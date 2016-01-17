@@ -13,7 +13,7 @@ describe('dota2', () => {
     it('it should return a list of the top 10 best heroes', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal(`Okay! Here's the top 10 **statistical** heroes for **mid**:
+        res.should.equal(`Okay! Here's the top 10 **statistical** Heroes for **mid**:
 
 *1st*. **Shadow Fiend**
     Presence: __90.74%__ | Winrate: __51.22%__ | KDA: __2.7691__ | GPM: __546.8119__ | XPM: __571.5334__
@@ -97,7 +97,7 @@ R > Q > W > E`);
     it('it should return the highest impacting heroes', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal(`Alright! Here's the top 10 heroes with the biggest impact this month:
+        res.should.equal(`Alright! Here's the top 10 Heroes with the biggest impact this month:
 
 *1st*. **Spectre**
     KDA: __3.7913__ | Kills: __9.4035__ | Deaths: __6.9009__ | Assists: __16.76__
