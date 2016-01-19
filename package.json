@@ -23,7 +23,7 @@
     "nconf": "^0.8.2",
     "nib": "^1.1.0",
     "node-horseman": "git+https://git@github.com/dustinblackman/node-horseman.git#debug-inspector",
-    "phantomjs2": "^2.0.2",
+    "phantomjs2": "git+https://git@github.com/dustinblackman/phantomjs2.git#linux",
     "promise-queue": "^2.2.2",
     "ramda": "^0.19.1",
     "raven": "^0.9.0",
