@@ -1,0 +1,143 @@
+vendor-prefixes ?= webkit official // @stylint ignore
+
+@import 'nib'
+
+// Fonts
+// @font-face
+//   font-family 'Oxygen'
+//   font-style normal
+//   font-weight 400
+//   // src url(/fonts/oxygen.woff) format('woff')
+//   src url('/fonts/oxygen.svg#Oxygen') format('svg')
+//   unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+//
+// @font-face
+//   font-family 'Oxygen-Bold'
+//   font-style normal
+//   font-weight 400
+//   // src url(/fonts/oxygen-bold.woff) format('woff')
+//   src url('/fonts/oxygen-bold.svg#Oxygen-Bold') format('svg')
+//   // unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+// Defaults
+body
+  background-color green
+  // font-family Oxygen
+  font-family: 'Oxygen', sans-serif;
+
+$text_color = white
+.main
+  background-color #36393e
+  height 400px
+  left 0
+  position absolute
+  top 0
+  max-width 700px
+
+.banner
+  color $text_color
+  display flex
+  align-items center
+  justify-content space-between
+
+.champ
+  color $text_color
+  display flex
+  align-items center
+  padding-left 90px
+
+  .name
+    font-size 18px
+    font-weight bold
+
+  ul
+    padding 0
+    margin 0
+    list-style-type none
+  li
+    font-size 12px
+    line-height 18px
+    padding-left 5px
+    padding-right 5px
+  img
+    flex-grow 0
+    flex-shrink 0
+    height 60px
+    width 60px
+
+.logo
+  padding-top 2px
+  padding-right 60px
+
+.title
+  color $text_color
+  font-weight bold
+  line-height .5
+  text-align center
+
+  h2
+    display inline-block
+    position relative
+
+  lines()
+    border-top 1px solid white
+    content ''
+    position absolute
+    top 5px
+    width 200px
+
+  h2:before
+    lines()
+  h2:after
+    lines()
+
+  h2:before
+    margin-right 15px
+    right 100%
+
+  h2:after
+    left 100%
+    margin-left 15px
+
+.counters
+  position relative
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  justify-content center
+  align-content flex-start
+
+.counter
+  color $text_color
+  display flex
+  align-items center
+  background-color #53575E
+  border 1px solid #71757D
+  margin 3px
+  position relative
+
+  .position
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size 10px
+    top -2px
+    left 4px
+    position absolute
+
+  .name
+    font-weight bold
+    font-size 14px
+
+  ul
+    padding 0
+    margin 0
+    list-style-type none
+  li
+    font-size 12px
+    line-height 18px
+    padding-left 5px
+    padding-right 5px
+  img
+    flex-grow 0
+    flex-shrink 0
+    height 60px
+    width 60px

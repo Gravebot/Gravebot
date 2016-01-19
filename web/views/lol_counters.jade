@@ -1,0 +1,27 @@
+link(href='https://fonts.googleapis.com/css?family=Oxygen:400,700', rel='stylesheet', type='text/css')
+link(rel='stylesheet', type='text/css', href='/style/lol_counters.styl')
+  
+div.main
+  div.banner
+    div.champ
+      img(src='/images/leagueoflegends/champs/ekko.png')
+      ul
+        li.name Ekko
+        li Middle
+        
+    div.logo
+      img(src='/images/leagueoflegends/logo_small.png')
+  
+  div.title
+    h2 COUNTERS
+  
+  div.counters
+    each val in champs
+      div.counter
+        img(src='/images/leagueoflegends/champs/#{val.image}.png')
+        div.position
+          span #{val.position}
+        ul
+          li.name #{val.key}
+          li Winrate: #{val.winRate}%
+          li Games: #{val.games}
