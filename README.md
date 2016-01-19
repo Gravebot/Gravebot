@@ -38,6 +38,7 @@ For self hosting, click [here](#localconfig).
 - `!cat` - Returns a random cat picture
 - `!chat` *sentence* - Chats with you
 - `!coin` - Flips a coin
+- `!comics` - Get a random comic from a bunch of different artists
 - `!decide` *something* **or** *something...* - Decides between given words
 - `!drama` *number* - Responds with a drama image, if no number is written, a random one
 - `!emoji` *number* - Responds with an emoji copypasta, if no number is written, a random one
