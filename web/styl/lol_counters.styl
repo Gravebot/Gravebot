@@ -3,21 +3,19 @@ vendor-prefixes ?= webkit official // @stylint ignore
 @import 'nib'
 
 // Fonts
-// @font-face
-//   font-family 'Oxygen'
-//   font-style normal
-//   font-weight 400
-//   // src url(/fonts/oxygen.woff) format('woff')
-//   src url('/fonts/oxygen.svg#Oxygen') format('svg')
-//   unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
-//
-// @font-face
-//   font-family 'Oxygen-Bold'
-//   font-style normal
-//   font-weight 400
-//   // src url(/fonts/oxygen-bold.woff) format('woff')
-//   src url('/fonts/oxygen-bold.svg#Oxygen-Bold') format('svg')
-//   // unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+@font-face
+  font-family 'Oxygen'
+  font-style normal
+  font-weight 400
+  src url(/fonts/oxygen.woff) format('woff')
+  unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+@font-face
+  font-family 'Oxygen-Bold'
+  font-style normal
+  font-weight 400
+  src url(/fonts/oxygen-bold.woff) format('woff')
+  unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
 
 // Defaults
 body
@@ -28,7 +26,6 @@ body
 $text_color = white
 .main
   background-color #36393e
-  height 400px
   left 0
   position absolute
   top 0
@@ -119,8 +116,8 @@ $text_color = white
   .position
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-size 10px
-    top -2px
-    left 4px
+    top 2px
+    left 2px
     position absolute
 
   .name
