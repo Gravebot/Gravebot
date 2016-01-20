@@ -20,10 +20,9 @@ vendor-prefixes ?= webkit official // @stylint ignore
 // Defaults
 body
   background-color #36393e
-  font-family Oxygen
+  font-family 'Oxygen', sans-serif
 
 .main
-  height 300px
   left 0
   position absolute
   top 0
@@ -33,8 +32,7 @@ body
 $text_color = white
 .title
   color $text_color
-  font-family Oxygen
-  font-style bold
+  font-weight bold
   line-height .5
   text-align center
 
@@ -45,10 +43,9 @@ $text_color = white
   lines()
     border-top 1px solid white
     content ''
-    height 5px
     position absolute
     top 5px
-    width 180px
+    width 200px
 
   h2:before
     lines()
@@ -65,95 +62,77 @@ $text_color = white
 
 
 .banner
-  padding-left 10px
-  position relative
-  top 10px
+  color $text_color
+  display flex
+  align-items center
+  justify-content space-between
 
-
-// Champ
 .champ
   color $text_color
-  img
-    border-radius 40%
-    height 80px
-    width 80px
-  .name
-    font-family Oxygen
-    font-style bold
-    font-size 20px
-    left 100px
-    position absolute
-    top -10px
-  .position
-    left 100px
-    position absolute
-    top 14px
+  display flex
+  align-items center
+  padding-left 10px
 
-// Logo
-.logo
+  .name
+    font-size 18px
+    font-weight bold
+
+  ul
+    padding 0
+    margin 0
+    list-style-type none
+  li
+    font-size 12px
+    line-height 18px
+    padding-left 5px
+    padding-right 5px
   img
-    left -50px
-    position absolute
-    transform: scale(.19)
-    top -137px
+    flex-grow 0
+    flex-shrink 0
+    height 60px
+    width 60px
+
+.logo
+  padding-top 2px
 
 // Items
-$item_left_pos = 60px
-$item_width = 210px
-$priority_font_size = 13px
-$priority_color = #8CA2C8
-
-itemPriority()
-  color #CECECE
-  font-size $priority_font_size
-  position absolute
-  width $item-width
-
 .items
-  color $text_color
   position relative
+  padding-left 25px
+  display flex
+  flex-direction column wrap
+  flex-wrap wrap
+  align-content stretch
 
-  div
-    padding-bottom 5px
+.item
+  color $text_color
+  display flex
+  align-items center
+  margin 2px
+  position relative
+  width 220px
+
+  .name
+    font-weight bold
+    font-size 14px
+
+  .position
+    color #BEBFC1
+    font-size 13px
+    font-style italic
+
+  ul
+    padding 0
+    margin 0
+    list-style-type none
+  li
+    font-size 12px
+    line-height 18px
+    padding-left 5px
+    padding-right 5px
   img
+    flex-grow 0
+    flex-shrink 0
     border 1px solid #a2762f
     height 40px
     width 40px
-
-.item-left
-  padding-left 10px
-  position relative
-
-  img
-    left 10px
-
-  .item-priority
-    itemPriority()
-    left $item_left_pos
-    top -2px
-
-  .item-name
-    left $item_left_pos
-    position absolute
-    top -4px
-    width $item_width
-
-$item_right_pos = 310px
-.item-right
-  position relative
-
-  img
-    left 260px
-    position absolute
-    top -48px
-
-  .item-priority
-    itemPriority()
-    left $item_right_pos
-    top -50px
-
-  .item-name
-    left $item_right_pos
-    position absolute
-    top -52px
-    width $item_width
