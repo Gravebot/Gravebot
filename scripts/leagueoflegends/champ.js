@@ -24,9 +24,18 @@ requester({url: 'https://ddragon.leagueoflegends.com/realms/na.json', json: true
   })
   .then(R.path(['body', 'data']))
   .tap(data => {
-    let vals = R.values(data);
-    let item_data = R.zipObj(R.pluck('key')(vals), R.pluck('name')(vals));
-    fs.writeFileSync(path.join(__dirname, '../../data/lol_champs.json'), JSON.stringify(item_data, null, 2), 'utf8');
+    let champs = R.map(champ => {
+      if (champ.id === 'MonkeyKing') champ.id = 'wukong';
+      return {
+        id: champ.key,
+        name: champ.name,
+        nid: champ.id.toLowerCase(),
+        image: champ.image.full.toLowerCase()
+      };
+    }, R.values(data));
+    champs = R.zipObj(R.pluck('nid')(champs), champs);
+
+    fs.writeFileSync(path.join(__dirname, '../../data/lol_champs.json'), JSON.stringify(champs, null, 2), 'utf8');
   })
   .then(R.keys)
   .map(id => {

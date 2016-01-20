@@ -20,16 +20,17 @@ vendor-prefixes ?= webkit official // @stylint ignore
 // Defaults
 body
   background-color green
-  // font-family Oxygen
-  font-family: 'Oxygen', sans-serif;
+  font-family 'Oxygen', sans-serif
 
 $text_color = white
+$max_width = 750px
 .main
   background-color #36393e
   left 0
   position absolute
   top 0
-  max-width 700px
+  max-width $max_width
+  max-height 400px
 
 .banner
   color $text_color
@@ -98,11 +99,11 @@ $text_color = white
 
 .counters
   position relative
+  padding-left 25px
   display flex
-  flex-direction row
+  flex-direction column wrap
   flex-wrap wrap
-  justify-content center
-  align-content flex-start
+  align-content stretch
 
 .counter
   color $text_color
@@ -112,6 +113,7 @@ $text_color = white
   border 1px solid #71757D
   margin 3px
   position relative
+  width ($max_width / 4.5)
 
   .position
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;

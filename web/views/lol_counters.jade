@@ -3,10 +3,10 @@ link(rel='stylesheet', type='text/css', href='/style/lol_counters.styl')
 div.main
   div.banner
     div.champ
-      img(src='/images/leagueoflegends/champs/ekko.png')
+      img(src='/images/leagueoflegends/champs/#{image}')
       ul
-        li.name Ekko
-        li Middle
+        li.name #{name}
+        li #{position}
         
     div.logo
       img(src='/images/leagueoflegends/logo_small.png')
@@ -15,12 +15,12 @@ div.main
     h2 COUNTERS
   
   div.counters
-    each val in champs
+    each counter in counters
       div.counter
-        img(src='/images/leagueoflegends/champs/#{val.image}.png')
+        img(src='/images/leagueoflegends/champs/#{counter.image}.png')
         div.position
-          span #{val.position}
+          span #{counter.position}
         ul
-          li.name #{val.key}
-          li Winrate: #{val.winRate}%
-          li Games: #{val.games}
+          li.name #{counter.key}
+          li Winrate: #{counter.winRate}%
+          li Games: #{counter.games}
