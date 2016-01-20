@@ -29,7 +29,7 @@
   },
   "duplicates": {
     "expect": true,
-    "error": true
+    "error": false
   },
   "efficient": {
     "expect": "always",

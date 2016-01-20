@@ -60,17 +60,16 @@ $text_color = white
     left 100%
     margin-left 15px
 
-
 .banner
+  align-items center
   color $text_color
   display flex
-  align-items center
   justify-content space-between
 
 .champ
+  align-items center
   color $text_color
   display flex
-  align-items center
   padding-left 10px
 
   .name
@@ -78,9 +77,9 @@ $text_color = white
     font-weight bold
 
   ul
-    padding 0
-    margin 0
     list-style-type none
+    margin 0
+    padding 0
   li
     font-size 12px
     line-height 18px
@@ -97,24 +96,24 @@ $text_color = white
 
 // Items
 .items
-  position relative
-  padding-left 25px
+  align-content stretch
   display flex
   flex-direction column wrap
   flex-wrap wrap
-  align-content stretch
+  padding-left 25px
+  position relative
 
 .item
+  align-items center
   color $text_color
   display flex
-  align-items center
   margin 2px
   position relative
   width 220px
 
   .name
-    font-weight bold
     font-size 14px
+    font-weight bold
 
   .position
     color #BEBFC1
@@ -122,17 +121,17 @@ $text_color = white
     font-style italic
 
   ul
-    padding 0
-    margin 0
     list-style-type none
+    margin 0
+    padding 0
   li
     font-size 12px
     line-height 18px
     padding-left 5px
     padding-right 5px
   img
+    border 1px solid #a2762f
     flex-grow 0
     flex-shrink 0
-    border 1px solid #a2762f
     height 40px
     width 40px
