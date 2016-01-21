@@ -20,21 +20,11 @@ describe('league of legends', () => {
   });
 
   describe('counters', () => {
-    it('should return counters for ekko mid', done => {
-      function sendMessage(channel, res) {
+    it('should return counters for ekko mid', function(done) {
+      this.timeout(7000);
+      function sendFile(channel, res) {
         channel.should.equal('test');
-        res.should.equal(`Sure! Here's the top 10 **statistical** counters for **Ekko Middle**:
-
-*1st*. **KogMaw** - 58.63% win rate over 29 games.
-*2nd*. **Jayce** - 52.81% win rate over 89 games.
-*3rd*. **Karthus** - 58.09% win rate over 136 games.
-*4th*. **Cassiopeia** - 52.83% win rate over 195 games.
-*5th*. **Ziggs** - 52.89% win rate over 225 games.
-*6th*. **Mordekaiser** - 62.5% win rate over 16 games.
-*7th*. **Urgot** - 53.85% win rate over 13 games.
-*8th*. **Akali** - 48.68% win rate over 189 games.
-*9th*. **Heimerdinger** - 50.8% win rate over 126 games.
-*10th*. **Veigar** - 45.53% win rate over 257 games.`);
+        res.length.should.be.at.least(70000);
         done();
       }
 
@@ -42,7 +32,7 @@ describe('league of legends', () => {
         .get('/champion/ekko/matchup?api_key=api_key')
         .reply(200, FIXTURES.counters);
 
-      lol.lol({sendMessage}, {channel: 'test'}, 'counters ekko mid');
+      lol.lol({sendFile}, {channel: 'test'}, 'counters ekko mid');
     });
   });
 

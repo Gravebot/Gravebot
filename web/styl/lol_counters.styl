@@ -19,17 +19,55 @@ vendor-prefixes ?= webkit official // @stylint ignore
 
 // Defaults
 body
-  background-color #36393e
+  background-color green
   font-family 'Oxygen', sans-serif
 
+$text_color = white
+$max_width = 750px
 .main
+  background-color #36393e
   left 0
+  max-height 400px
+  max-width $max_width
   position absolute
   top 0
-  width 500px
 
-// Title
-$text_color = white
+.banner
+  align-items center
+  color $text_color
+  display flex
+  justify-content space-between
+
+.champ
+  align-items center
+  color $text_color
+  display flex
+  padding-left 90px
+  padding-top 2px
+
+  .name
+    font-size 24px
+    font-weight bold
+
+  ul
+    list-style-type none
+    margin 0
+    padding 0
+  li
+    font-size 14px
+    line-height 18px
+    padding-left 5px
+    padding-right 5px
+  img
+    flex-grow 0
+    flex-shrink 0
+    height 80px
+    width 80px
+
+.logo
+  padding-right 60px
+  padding-top 2px
+
 .title
   color $text_color
   font-weight bold
@@ -60,20 +98,34 @@ $text_color = white
     left 100%
     margin-left 15px
 
-.banner
-  align-items center
-  color $text_color
+.counters
+  align-content stretch
   display flex
-  justify-content space-between
+  flex-direction column wrap
+  flex-wrap wrap
+  padding-left 25px
+  position relative
 
-.champ
+.counter
   align-items center
+  background-color #53575E
+  border 1px solid #71757D
   color $text_color
   display flex
-  padding-left 10px
+
+  margin 3px
+  position relative
+  width ($max_width / 4.5)
+
+  .position
+    font-size 10px
+    left 2px
+    position absolute
+    text-shadow -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+    top -4px // THis is different depednding on if it's OSX or Linux.
 
   .name
-    font-size 18px
+    font-size 14px
     font-weight bold
 
   ul
@@ -90,48 +142,3 @@ $text_color = white
     flex-shrink 0
     height 60px
     width 60px
-
-.logo
-  padding-top 2px
-
-// Items
-.items
-  align-content stretch
-  display flex
-  flex-direction column wrap
-  flex-wrap wrap
-  padding-left 25px
-  position relative
-
-.item
-  align-items center
-  color $text_color
-  display flex
-  margin 2px
-  position relative
-  width 220px
-
-  .name
-    font-size 14px
-    font-weight bold
-
-  .position
-    color #BEBFC1
-    font-size 13px
-    font-style italic
-
-  ul
-    list-style-type none
-    margin 0
-    padding 0
-  li
-    font-size 12px
-    line-height 18px
-    padding-left 5px
-    padding-right 5px
-  img
-    border 1px solid #a2762f
-    flex-grow 0
-    flex-shrink 0
-    height 40px
-    width 40px
