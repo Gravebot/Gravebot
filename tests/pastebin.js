@@ -20,6 +20,6 @@ describe('pastebin', () => {
       .post('/api/api_post.php', {api_dev_key: key, api_option: 'paste', api_paste_code: 'test'})
       .reply(200, 'http://pastebin.com/EcYgmBpk');
 
-    pastebin.makePaste({sendMessage}, {channel: 'test'}, 'test');
+    pastebin.paste({sendMessage}, {channel: 'test'}, 'test');
   });
 });
