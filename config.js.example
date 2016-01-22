@@ -32,5 +32,9 @@ export default {
 
   // Wolfram Alpha. Ask it anything.
   // http://products.wolframalpha.com/developers/
-  WOLFRAM_KEY: ''
+  WOLFRAM_KEY: '',
+
+  //PasteBin Api Key
+  // http://pastebin.com/api/
+  PASTEBIN_KEY: ''
 };
