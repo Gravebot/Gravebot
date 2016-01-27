@@ -65,6 +65,17 @@ describe('custom_memes', () => {
     });
   });
 
+  describe('jpeg', () => {
+    it('should return the correct youtube url', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res.should.equal('https://www.youtube.com/watch?v=QEzhxP-pdos');
+        done();
+      }
+      customMemes.jpeg({sendMessage}, {channel: 'test'});
+    });
+  });
+
   describe('kappa', () => {
     it('should return the correct local file', done => {
       function sendFile(channel, res) {
