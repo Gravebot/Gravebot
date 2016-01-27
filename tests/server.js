@@ -67,15 +67,16 @@ describe('server', () => {
     it('should return a string containing server information', done => {
       function sendMessage(channel, res) {
         channel.should.equal(channel);
-        res.should.equal(`\`\`\`Server Name: test
-Server ID: 1234
-Server Region: london
-Server Owner: user
+        res.should.equal(`\`\`\`Name: test
+ID: 1234
+Region: london
+Owner: user
 Channels: 1
 Default Channel: abc
+AFK Channel: abc
 Members: 1
 Roles: role1, role2
-Server Icon: http://website.com/img.png
+Icon: http://website.com/img.png
 \`\`\``);
         done();
       }
@@ -90,6 +91,9 @@ Server Icon: http://website.com/img.png
           },
           channels: ['abc'],
           defaultChannel: {
+            name: 'abc'
+          },
+          afkChannel: {
             name: 'abc'
           },
           roles: [{name: '@everyone'}, {name: 'role1'}, {name: 'role2'}],
