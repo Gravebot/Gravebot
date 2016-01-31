@@ -1,5 +1,7 @@
+import Promise from 'bluebird';
 import { Client as Discord, PMChannel } from 'discord.js';
 import chalk from 'chalk';
+import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
 
@@ -19,10 +21,45 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 // Init
 const bot = new Discord();
 
+// Checks for PMs older then a week and deletes them.
+function clearOldMessages() {
+  console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
+  let count = 0;
+
+  const getLastMessage = R.curry(Promise.promisify(bot.getChannelLogs).bind(bot))(R.__, 1, {});
+  Promise.resolve(bot.privateChannels)
+    .map(channel => {
+      return getLastMessage(channel)
+        .then(R.head)
+        .then(R.prop('timestamp'))
+        .then(timestamp => {
+          const message_time = moment.unix(timestamp / 1000);
+          if (message_time.isBefore(moment().subtract(7, 'days'))) {
+            count++;
+            return channel.delete();
+          }
+        });
+    }, {concurrency: 5})
+    .then(() => {
+      console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Removed ${count} private channels`));
+    })
+    .catch(err => {
+      console.log(chalk.red(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Error removing private channels`));
+      console.log(chalk.red(err));
+    });
+}
+
+// Clear PMs once a day.
+setInterval(() => clearOldMessages(), 86400000);
+
 // Listen for events on Discord
-bot.on('ready', () => console.log(chalk.green(`Started successfully. Serving in ${bot.servers.length} servers`)));
+bot.on('ready', () => {
+  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Serving in ${bot.servers.length} servers`));
+  setTimeout(() => clearOldMessages(), 5000);
+});
+
 bot.on('disconnected', () => {
-  console.log(chalk.yellow(`[${Date().toString()}] Disconnected. Attempting to reconnect...`));
+  console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
   setTimeout(() => {
     bot.login(nconf.get('EMAIL'), nconf.get('PASSWORD'));
   }, 5000);
