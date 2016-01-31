@@ -43,9 +43,10 @@ function onMessage(msg) {
   if (msg.isMentioned(bot.user)) {
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
-    let cmd = commands[msg_split[1]];
+    let cmd_name = msg_split[1].toLowerCase();
+    let cmd = commands[cmd_name];
 
-    if (cmd) callCmd(cmd, msg_split[1], bot, msg, suffix);
+    if (cmd) callCmd(cmd, cmd_name, bot, msg, suffix);
     return;
   }
 
@@ -58,9 +59,10 @@ function onMessage(msg) {
 
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
-    let cmd = commands[msg_split[0]];
+    let cmd_name = msg_split[0].toLowerCase();
+    let cmd = commands[cmd_name];
 
-    if (cmd) callCmd(cmd, msg_split[0], bot, msg, suffix);
+    if (cmd) callCmd(cmd, cmd_name, bot, msg, suffix);
     return;
   }
 }
