@@ -7,34 +7,38 @@ export default {
   EMAIL: '',
   PASSWORD: '',
 
-  // Youtube API key to be used when searching youtube videos.
+  // Youtube API key, used for searching videos with `!youtube`.
   // Learn more here. https://developers.google.com/youtube/v3/getting-started
   YOUTUBE_API_KEY: '',
 
-  // Imgflip username and password, used for creating memes.
+  // Imgflip username and password, used for creating memes with `!meme`.
   // Create an account here. https://imgflip.com
   IMGFLIP_USERNAME: '',
   IMGFLIP_PASSWORD: '',
 
-  // Cleverbot API name and key, used for talking with Cleverbot.
+  // Cleverbot API name and key, used to talk to Cleverbot with `!chat`.
   // Create a key here. https://cleverbot.io/keys
   CLEVERBOT_API_NAME: '',
   CLEVERBOT_API_KEY: '',
 
-  // Champion.gg API key is used for the League of Legends `!lol` commands.
+  // Champion.gg API key, used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
   CHAMPIONGG_API: '',
 
-  // Riot's API key is used for player and match search commands.
+  // Riot's API key, used for player and match search commands.
   // BE WARNED, a development key will be very limited and most of the time will not work,
   // as there is a lot of requests made in order to complete these data sets.
   RIOT_KEY: '',
 
-  // Wolfram Alpha. Ask it anything.
-  // http://products.wolframalpha.com/developers/
+  // Wolfram Alpha API key, used to query Wolfram Alpha with `!wolfram`.
+  // Apply for a key here. http://products.wolframalpha.com/developers/
   WOLFRAM_KEY: '',
 
-  //PasteBin Api Key
-  // http://pastebin.com/api/
-  PASTEBIN_KEY: ''
+  // PasteBin API key, used to create pastes with `!paste`.
+  // Get a key here. http://pastebin.com/api/
+  PASTEBIN_KEY: '',
+
+  // Popkey API key, used for searching GIFs with `!popkey`.
+  // Apply for a key here. http://popkey.co/api/submit
+  POPKEY_KEY: ''
 };
