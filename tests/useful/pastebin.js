@@ -1,7 +1,9 @@
 import chai from 'chai';
 import nconf from 'nconf';
 import nock from 'nock';
+
 import pastebin from '../lib/pastebin';
+
 
 chai.should();
 

@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import { loadFixtures } from './_helpers';
 import comics from '../lib/comics';
 
+
 chai.should();
 const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/comics'));
 

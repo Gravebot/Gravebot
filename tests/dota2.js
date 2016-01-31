@@ -5,6 +5,7 @@ import path from 'path';
 import dota from '../lib/dota2';
 import { loadFixtures } from './_helpers';
 
+
 chai.should();
 const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/dota2/'));
 

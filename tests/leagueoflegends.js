@@ -6,6 +6,7 @@ import path from 'path';
 import lol from '../lib/leagueoflegends';
 import { loadFixtures } from './_helpers';
 
+
 chai.should();
 const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/leagueoflegends/'));
 

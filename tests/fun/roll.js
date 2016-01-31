@@ -1,6 +1,8 @@
 import chai from 'chai';
 import sinon from 'sinon';
+
 import roll from '../lib/roll';
+
 
 chai.should();
 

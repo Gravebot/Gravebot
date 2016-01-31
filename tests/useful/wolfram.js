@@ -3,7 +3,9 @@ import fs from 'fs';
 import nock from 'nock';
 import nconf from 'nconf';
 import path from 'path';
+
 import wolfram from '../lib/wolfram';
+
 
 chai.should();
 const res_fixture = fs.readFileSync(path.join(__dirname, './fixtures/wolfram.xml'));

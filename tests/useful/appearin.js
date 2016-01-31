@@ -3,9 +3,9 @@ import sinon from 'sinon';
 
 import appearin from '../lib/appearin';
 
+
 let sandbox;
 chai.should();
-
 
 describe('appearin', () => {
   before(() => {

@@ -1,6 +1,8 @@
 import chai from 'chai';
-import giphy from '../lib/giphy';
 import nock from 'nock';
+
+import giphy from '../lib/giphy';
+
 
 chai.should();
 const res_fixture = require('./fixtures/giphy.json');

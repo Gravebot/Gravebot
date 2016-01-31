@@ -2,12 +2,14 @@ import chai from 'chai';
 import fs from 'fs';
 import nock from 'nock';
 import path from 'path';
-import server from '../lib/server';
+
+import info from '../lib/info';
+
 
 chai.should();
 const res_fixture = fs.readFileSync(path.join(__dirname, './fixtures/version.md'));
 
-describe('server', () => {
+describe('info', () => {
   describe('avatar', () => {
     it('should return a url to an avatar for self', done => {
       function sendMessage(channel, res) {
@@ -24,7 +26,7 @@ describe('server', () => {
         }
       };
 
-      server.avatar({sendMessage}, msg);
+      info.avatar({sendMessage}, msg);
     });
 
     it('should return a url to an avatar for a mentioned user', done => {
@@ -42,24 +44,7 @@ describe('server', () => {
         }]
       };
 
-      server.avatar({sendMessage}, msg);
-    });
-  });
-
-  describe('join/join-server', () => {
-    it('should join execute joinServer and respond with with a success message', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('Successfully joined Test Server');
-        done();
-      }
-
-      function joinServer(url, next) {
-        return next(null, 'Test Server');
-      }
-
-      let invite_url = 'http://discord.gg/123456';
-      server.join({sendMessage, joinServer}, {channel: 'test', content: invite_url}, invite_url);
+      info.avatar({sendMessage}, msg);
     });
   });
 
@@ -102,7 +87,7 @@ Icon: http://website.com/img.png
         }
       };
 
-      server.serverinfo({sendMessage}, {channel});
+      info.serverinfo({sendMessage}, {channel});
     });
   });
 
@@ -119,7 +104,7 @@ Icon: http://website.com/img.png
         members: [{status: 'online'}, {status: 'online'}]
       }];
 
-      server.serverlist({sendMessage, servers}, {channel: 'test'});
+      info.serverlist({sendMessage, servers}, {channel: 'test'});
     });
   });
 
@@ -138,7 +123,7 @@ Icon: http://website.com/img.png
         users: ['user']
       };
 
-      server.servers(bot, {channel: 'test'});
+      info.servers(bot, {channel: 'test'});
     });
   });
 
@@ -176,7 +161,7 @@ Avatar: http://website.com/img.png
         done();
       }
 
-      server.userinfo({sendMessage}, msg);
+      info.userinfo({sendMessage}, msg);
     });
 
     it('should return user info for a mentioned user', done => {
@@ -211,7 +196,7 @@ Avatar: http://website.com/img.png
         done();
       }
 
-      server.userinfo({sendMessage}, msg);
+      info.userinfo({sendMessage}, msg);
     });
   });
 
@@ -226,7 +211,7 @@ Avatar: http://website.com/img.png
         done();
       }
 
-      server.uptime({sendMessage, uptime: 242342345}, {channel: 'test'});
+      info.uptime({sendMessage, uptime: 242342345}, {channel: 'test'});
     });
   });
 
@@ -251,7 +236,7 @@ Technical Features
         .get('/Gravestorm/Gravebot/master/CHANGELOG.md')
         .reply(200, res_fixture);
 
-      server.version({sendMessage}, {channel: 'test'});
+      info.version({sendMessage}, {channel: 'test'});
     });
   });
 });

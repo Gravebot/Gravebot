@@ -1,11 +1,12 @@
 import chai from 'chai';
 import path from 'path';
 
-import customMemes from '../lib/custom_memes';
+import other from '../lib/other';
+
 
 chai.should();
 
-describe('custom_memes', () => {
+describe('other', () => {
   describe('ayylmao', () => {
     it('should return the correct imgur url and local file', done => {
       let completed = 0;
@@ -25,7 +26,7 @@ describe('custom_memes', () => {
         completed++;
         if (completed === 2) return done();
       }
-      customMemes.ayylmao({
+      other.ayylmao({
         sendMessage,
         sendFile
       }, {channel: 'test'});
@@ -39,7 +40,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/Qh75Dsi.jpg');
         done();
       }
-      customMemes.chillenmyb({sendMessage}, {channel: 'test'});
+      other.chillenmyb({sendMessage}, {channel: 'test'});
     });
   });
 
@@ -50,7 +51,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/SNmMCQV.png');
         done();
       }
-      customMemes.endall({sendMessage}, {channel: 'test'});
+      other.endall({sendMessage}, {channel: 'test'});
     });
   });
 
@@ -61,7 +62,7 @@ describe('custom_memes', () => {
         res.should.equal(path.join(__dirname, '../images/Feelsgoodman.png'));
         done();
       }
-      customMemes.feelsgoodman({sendFile}, {channel: 'test'});
+      other.feelsgoodman({sendFile}, {channel: 'test'});
     });
   });
 
@@ -72,7 +73,7 @@ describe('custom_memes', () => {
         res.should.equal('https://www.youtube.com/watch?v=QEzhxP-pdos');
         done();
       }
-      customMemes.jpeg({sendMessage}, {channel: 'test'});
+      other.jpeg({sendMessage}, {channel: 'test'});
     });
   });
 
@@ -83,7 +84,7 @@ describe('custom_memes', () => {
         res.should.equal(path.join(__dirname, '../images/Kappa.png'));
         done();
       }
-      customMemes.kappa({sendFile}, {channel: 'test'});
+      other.kappa({sendFile}, {channel: 'test'});
     });
   });
 
@@ -94,7 +95,7 @@ describe('custom_memes', () => {
         res.should.equal(path.join(__dirname, '../images/Kappahd.png'));
         done();
       }
-      customMemes.kappahd({sendFile}, {channel: 'test'});
+      other.kappahd({sendFile}, {channel: 'test'});
     });
   });
 
@@ -105,7 +106,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/ZX79Q4S.gif');
         done();
       }
-      customMemes.skeltal({sendMessage}, {channel: 'test'});
+      other.skeltal({sendMessage}, {channel: 'test'});
     });
   });
 
@@ -116,7 +117,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/l9VKWWF.gif');
         done();
       }
-      customMemes.starwars4({sendMessage}, {channel: 'test'});
+      other.starwars4({sendMessage}, {channel: 'test'});
     });
   });
 
@@ -127,7 +128,7 @@ describe('custom_memes', () => {
         res.should.equal('http://i.imgur.com/eCpwo6J.gif');
         done();
       }
-      customMemes.starwars5({sendMessage}, {channel: 'test'});
+      other.starwars5({sendMessage}, {channel: 'test'});
     });
   });
 });

@@ -6,6 +6,7 @@ import english from '../lib/help/english';
 import french from '../lib/help/french';
 import meme from '../lib/help/meme';
 
+
 chai.should();
 
 function isString(func, chnl, response, count, cmd) {
