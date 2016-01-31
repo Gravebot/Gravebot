@@ -28,7 +28,7 @@ bot.on('disconnected', () => {
   }, 5000);
 });
 
-bot.on('message', msg => {
+function onMessage(msg) {
   // Checks for PREFIX
   if (msg.content[0] === nconf.get('PREFIX')) {
     let command = msg.content.toLowerCase().split(' ')[0].substring(1);
@@ -63,6 +63,9 @@ bot.on('message', msg => {
     if (cmd) callCmd(cmd, msg_split[0], bot, msg, suffix);
     return;
   }
-});
+}
+
+bot.on('message', onMessage);
+bot.on('messageUpdated', onMessage);
 
 bot.login(nconf.get('EMAIL'), nconf.get('PASSWORD'));
