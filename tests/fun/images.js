@@ -9,7 +9,7 @@ chai.should();
 const res_fixture_cat = require(path.join(__dirname, '../fixtures/randomcat.json'));
 const res_fixture_pug = require(path.join(__dirname, '../fixtures/pugbomb.json'));
 
-describe('comics', () => {
+describe('images', () => {
   describe('cat', () => {
     it('should return a cat picture', done => {
       function sendMessage(channel, res) {
