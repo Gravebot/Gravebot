@@ -12,6 +12,7 @@ import './lib/config/phantom';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
+
 // Verify both username and password are set before launching the bot.
 if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
   console.error('Please make sure both EMAIL and PASSWORD are set in env or config.js before starting Gravebot');
@@ -89,7 +90,7 @@ function onMessage(msg) {
 
   // Check personal messages
   if (msg.channel instanceof PMChannel) {
-    // Accept invite links directly though PMs
+    // Accept invite links directly through PMs
     if (msg.content.indexOf('https://discord.gg/') > -1 || msg.content.indexOf('https://discordapp.com/invite/') > -1) {
       return commands.join(bot, msg, msg.content);
     }

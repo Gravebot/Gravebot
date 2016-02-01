@@ -3,6 +3,7 @@ import sinon from 'sinon';
 
 import eightball from '../../lib/fun/8ball';
 
+
 let sandbox;
 chai.should();
 

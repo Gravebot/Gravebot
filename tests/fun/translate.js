@@ -5,6 +5,7 @@ import path from 'path';
 
 import translate from '../../lib/fun/translate';
 
+
 chai.should();
 const res_fixture = fs.readFileSync(path.join(__dirname, '../fixtures/yoda.html'));
 

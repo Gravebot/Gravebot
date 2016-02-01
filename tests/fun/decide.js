@@ -3,6 +3,7 @@ import sinon from 'sinon';
 
 import decide from '../../lib/fun/decide';
 
+
 let sandbox;
 chai.should();
 

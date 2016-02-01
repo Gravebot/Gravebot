@@ -3,6 +3,7 @@ import sinon from 'sinon';
 
 import coin from '../../lib/fun/coin';
 
+
 let sandbox;
 chai.should();
 

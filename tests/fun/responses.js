@@ -3,6 +3,7 @@ import sinon from 'sinon';
 
 import responses from '../../lib/fun/responses';
 
+
 let sandbox;
 chai.should();
 
