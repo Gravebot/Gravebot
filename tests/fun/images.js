@@ -2,12 +2,12 @@ import chai from 'chai';
 import nock from 'nock';
 import path from 'path';
 
-import images from '../lib/fun/images';
+import images from '../../lib/fun/images';
 
 
 chai.should();
-const res_fixture_cat = require('./fixtures/randomcat.json');
-const res_fixture_pug = require(path.join(__dirname, './fixtures/pugbomb.json'));
+const res_fixture_cat = require(path.join(__dirname, '../fixtures/randomcat.json'));
+const res_fixture_pug = require(path.join(__dirname, '../fixtures/pugbomb.json'));
 
 describe('comics', () => {
   describe('cat', () => {

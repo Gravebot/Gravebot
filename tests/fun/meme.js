@@ -2,9 +2,7 @@ import chai from 'chai';
 import mockery from 'mockery';
 import nconf from 'nconf';
 
-import meme from '../lib/fun/meme';
-
-
+let meme;
 chai.should();
 
 describe('funny', () => {
@@ -22,6 +20,7 @@ describe('funny', () => {
       warnOnUnregistered: false
     });
     mockery.registerMock('imgflipper', _Imgflipper);
+    meme = require('../../lib/fun/meme').default;
   });
 
   after(() => {

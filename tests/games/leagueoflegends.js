@@ -4,11 +4,11 @@ import nock from 'nock';
 import path from 'path';
 
 import lol from '../../lib/games/leagueoflegends';
-import { loadFixtures } from './_helpers';
+import { loadFixtures } from '../_helpers';
 
 
 chai.should();
-const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/leagueoflegends/'));
+const FIXTURES = loadFixtures(path.join(__dirname, '../fixtures/leagueoflegends/'));
 
 describe('league of legends', () => {
   before(() => {

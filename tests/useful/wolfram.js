@@ -4,11 +4,11 @@ import nock from 'nock';
 import nconf from 'nconf';
 import path from 'path';
 
-import wolfram from '../lib/wolfram';
+import wolfram from '../../lib/useful/wolfram';
 
 
 chai.should();
-const res_fixture = fs.readFileSync(path.join(__dirname, './fixtures/wolfram.xml'));
+const res_fixture = fs.readFileSync(path.join(__dirname, '../fixtures/wolfram.xml'));
 
 describe('wolfram', () => {
   it('should return an image containg the Canadian Primeminister', done => {

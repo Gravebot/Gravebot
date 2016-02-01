@@ -2,10 +2,11 @@ import chai from 'chai';
 import fs from 'fs';
 import nock from 'nock';
 import path from 'path';
-import yoda from '../lib/yoda';
+
+import translate from '../../lib/fun/translate';
 
 chai.should();
-const res_fixture = fs.readFileSync(path.join(__dirname, './fixtures/yoda.html'));
+const res_fixture = fs.readFileSync(path.join(__dirname, '../fixtures/yoda.html'));
 
 describe('yoda', () => {
   it('shoud return converted text', done => {
@@ -20,6 +21,6 @@ describe('yoda', () => {
       .post('/index.php')
       .reply(200, res_fixture);
 
-    yoda.yoda({sendMessage}, {channel: 'test'}, 'Hello, lets go to the store.');
+    translate.yoda({sendMessage}, {channel: 'test'}, 'Hello, lets go to the store.');
   });
 });

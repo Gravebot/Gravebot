@@ -2,7 +2,7 @@ import chai from 'chai';
 import nconf from 'nconf';
 import nock from 'nock';
 
-import pastebin from '../lib/pastebin';
+import pastebin from '../../lib/useful/pastebin';
 
 
 chai.should();

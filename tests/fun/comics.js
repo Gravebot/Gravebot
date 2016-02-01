@@ -3,12 +3,12 @@ import nock from 'nock';
 import path from 'path';
 import sinon from 'sinon';
 
-import { loadFixtures } from './_helpers';
-import comics from '../lib/comics';
+import { loadFixtures } from '../_helpers';
+import comics from '../../lib/fun/comics';
 
 
 chai.should();
-const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/comics'));
+const FIXTURES = loadFixtures(path.join(__dirname, '../fixtures/comics'));
 
 describe('comics', () => {
   describe('cyanide and happiness', () => {

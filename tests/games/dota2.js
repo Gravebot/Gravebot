@@ -3,11 +3,11 @@ import nock from 'nock';
 import path from 'path';
 
 import dota from '../../lib/games/dota2';
-import { loadFixtures } from './_helpers';
+import { loadFixtures } from '../_helpers';
 
 
 chai.should();
-const FIXTURES = loadFixtures(path.join(__dirname, './fixtures/dota2/'));
+const FIXTURES = loadFixtures(path.join(__dirname, '../fixtures/dota2/'));
 
 describe('dota2', () => {
   describe('best', () => {
