@@ -86,6 +86,10 @@ function onMessage(msg) {
   // Checks if bot was mentioned
   if (msg.isMentioned(bot.user)) {
     let msg_split = msg.content.split(' ');
+
+    // If bot was mentioned without a command, then skip.
+    if (!msg_split[1]) return;
+
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
     if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
