@@ -21,7 +21,7 @@
     "glob": "^6.0.3",
     "imgflipper": "^1.0.1",
     "jade": "^1.11.0",
-    "moment": "^2.11.0",
+    "moment": "^2.11.1",
     "nconf": "^0.8.2",
     "nib": "^1.1.0",
     "node-horseman": "git+https://git@github.com/Gravebot/node-horseman.git#debug-inspector",
