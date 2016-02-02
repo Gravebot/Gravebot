@@ -38,6 +38,11 @@ function clearOldMessages() {
             count++;
             return channel.delete();
           }
+        })
+        .catch(err => {
+          // This sometimes get thrown by channel.delete even though the channel does get deleted.
+          // It can be ignored, but is logged just incase.
+          console.log(err);
         });
     }, {concurrency: 5})
     .then(() => {
