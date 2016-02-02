@@ -35,7 +35,7 @@ bot.on('message', msg => {
     let suffix = msg.content.substring(command.length + 2);
     let cmd = commands[command];
 
-    if (cmd) callCmd(cmd, command, bot, msg, suffix);
+    if (cmd || msg.content[1] === nconf.get('PREFIX')) callCmd(cmd, command, bot, msg, suffix);
     return;
   }
 
