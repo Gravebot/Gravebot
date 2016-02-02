@@ -50,7 +50,7 @@ For self hosting, click [here](#localconfig).
 - `!yoda` *sentence* - Yodaify a sentence
 
 #### Useful:
-- `!gif` *gif tags* - Gets a gif from Giphy matching the given tags
+- `!giphy` *gif tags* - Gets a gif from Giphy matching the given tags
 - `!join` *invitation link* - Joins the server the bot is invited to
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
