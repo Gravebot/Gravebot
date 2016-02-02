@@ -22,7 +22,7 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 // Init
 const bot = new Discord();
 
-// Checks for PMs older then a week and deletes them.
+// Checks for PMs older then 2 days and deletes them.
 function clearOldMessages() {
   console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
   let count = 0;
@@ -35,10 +35,15 @@ function clearOldMessages() {
         .then(R.prop('timestamp'))
         .then(timestamp => {
           const message_time = moment.unix(timestamp / 1000);
-          if (message_time.isBefore(moment().subtract(7, 'days'))) {
+          if (message_time.isBefore(moment().subtract(2, 'days'))) {
             count++;
             return channel.delete();
           }
+        })
+        .catch(err => {
+          // This sometimes get thrown by channel.delete even though the channel does get deleted.
+          // It can be ignored, but is logged just incase.
+          console.log(err);
         });
     }, {concurrency: 5})
     .then(() => {
@@ -67,6 +72,8 @@ bot.on('disconnected', () => {
 });
 
 function onMessage(msg) {
+  if (bot.user.username === msg.author.username) return;
+
   // Checks for PREFIX
   if (msg.content[0] === nconf.get('PREFIX')) {
     let command = msg.content.toLowerCase().split(' ')[0].substring(1);
@@ -82,6 +89,7 @@ function onMessage(msg) {
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
+    if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
     let cmd = commands[cmd_name];
 
     if (cmd) callCmd(cmd, cmd_name, bot, msg, suffix);

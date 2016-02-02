@@ -251,6 +251,12 @@
     "nid": "jayce",
     "image": "jayce.png"
   },
+  "jhin": {
+    "id": "202",
+    "name": "Jhin",
+    "nid": "jhin",
+    "image": "jhin.png"
+  },
   "jinx": {
     "id": "222",
     "name": "Jinx",

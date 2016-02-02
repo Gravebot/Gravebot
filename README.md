@@ -128,7 +128,11 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 ## Deployment
 #### Heroku
 
-Gravebot comes setup and ready for Heroku. Setup your configuration in Heroku's environment variables and then push the source code.
+Gravebot comes setup and ready for Heroku.
+
+1. Setup your configuration in Heroku's environment variables.
+2. Activate multi buildpack. `heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git`
+3. Push the source code.
 
 #### Docker
 
