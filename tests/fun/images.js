@@ -14,7 +14,7 @@ describe('images', () => {
     it('should return cat images', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://random.cat/i/067_-_1yzs4wL.gif');
+        res.should.equal('http://random.cat/i/7VnxKqw.jpg');
         done();
       }
 
@@ -25,26 +25,22 @@ describe('images', () => {
 
       images.cat({sendMessage}, {channel: 'test'});
     });
+  });
 
-    describe('pugbomb', () => {
-      it('should return pug images', done => {
-        function sendMessage(channel, res) {
-          channel.should.equal('test');
-          res.should.equal(`http://29.media.tumblr.com/tumblr_ll267csxAQ1qb08qmo1_500.jpg
-http://25.media.tumblr.com/tumblr_mclncuZUso1qb08qmo1_500.jpg
-http://28.media.tumblr.com/tumblr_lk8iieigtQ1qzj3syo1_500.jpg
-http://38.media.tumblr.com/tumblr_mc4u6lwZHr1qf4k86o1_500.jpg
-http://29.media.tumblr.com/tumblr_lsvcpxVBgd1qzgqodo1_500.jpg`);
-          done();
-        }
+  describe('pug', () => {
+    it('should return pug images', done => {
+      function sendMessage(channel, res) {
+        channel.should.equal('test');
+        res.should.equal(`http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`);
+        done();
+      }
 
-        nock.cleanAll();
-        nock('https://pugme.herokuapp.com')
-          .get('/bomb?count=5')
-          .reply(200, res_fixture_pug);
+      nock.cleanAll();
+      nock('https://pugme.herokuapp.com')
+        .get('/bomb?count=1')
+        .reply(200, res_fixture_pug);
 
-        images.pugbomb({sendMessage}, {channel: 'test'});
-      });
+      images.pug({sendMessage}, {channel: 'test'});
     });
   });
 });

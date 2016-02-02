@@ -16,7 +16,7 @@ describe('gif', () => {
     it('should return a gif when querying "food"', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res.should.equal('http://media.giphy.com/media/d2Z2xGvRyOJr31TO/giphy.gif');
+        res.should.equal('http://media4.giphy.com/media/xTiTnKmRgF5KrpqRby/giphy.gif');
         done();
       }
 
@@ -45,14 +45,14 @@ describe('gif', () => {
     });
   });
   describe('gif', () => {
+    before(() => {
+      sandbox = sinon.sandbox.create();
+      sandbox.stub(Math, 'random', () => 0.234342344890234089234089);
+    });
+
+    after(() => sandbox.restore());
+
     it('should choose between giphy and popkey', done => {
-      before(() => {
-        sandbox = sinon.sandbox.create();
-        sandbox.stub(Math, 'random', () => 0.234342344890234089234089);
-      });
-
-      after(() => sandbox.restore());
-
       function sendMessage(channel, res) {
         channel.should.equal('test');
         res.should.equal('https://popkey-assets.s3.amazonaws.com/original-30ab9d03-a65b-4759-a953-143524c61765.GIF');
