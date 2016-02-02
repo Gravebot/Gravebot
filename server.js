@@ -88,6 +88,7 @@ function onMessage(msg) {
     let msg_split = msg.content.split(' ');
     let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
+    if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
     let cmd = commands[cmd_name];
 
     if (cmd) callCmd(cmd, cmd_name, bot, msg, suffix);
