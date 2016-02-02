@@ -1,4 +1,5 @@
 import chai from 'chai';
+import nconf from 'nconf';
 import nock from 'nock';
 import path from 'path';
 import sinon from 'sinon';
@@ -12,6 +13,10 @@ const res_fixture_giphy = require(path.join(__dirname, '../fixtures/giphy.json')
 const res_fixture_popkey = require(path.join(__dirname, '../fixtures/popkey.json'));
 
 describe('gif', () => {
+  before(() => {
+    nconf.set('POPKEY_KEY', '123');
+  });
+
   describe('giphy', () => {
     it('should return a gif when querying "food"', done => {
       function sendMessage(channel, res) {
@@ -22,12 +27,13 @@ describe('gif', () => {
 
       nock.cleanAll();
       nock('http://api.giphy.com')
-        .get('/v1/gifs/random?api_key=dc6zaTOxFJmzC&rating=r&format=json&limit=1&tag=food')
+        .get('/v1/gifs/random?tag=food&api_key=dc6zaTOxFJmzC&rating=r&format=json&limit=1')
         .reply(200, res_fixture_giphy);
 
       gif.giphy({sendMessage}, {channel: 'test'}, 'food');
     });
   });
+
   describe('popkey', () => {
     it('should return a gif when querying "food"', done => {
       function sendMessage(channel, res) {
@@ -38,12 +44,13 @@ describe('gif', () => {
 
       nock.cleanAll();
       nock('http://api.popkey.co')
-        .get('v2/media/search?q=food')
+        .get('/v2/media/search?q=food')
         .reply(200, res_fixture_popkey);
 
       gif.popkey({sendMessage}, {channel: 'test'}, 'food');
     });
   });
+
   describe('gif', () => {
     before(() => {
       sandbox = sinon.sandbox.create();
@@ -61,7 +68,7 @@ describe('gif', () => {
 
       nock.cleanAll();
       nock('http://api.popkey.co')
-        .get('v2/media/search?q=food')
+        .get('/v2/media/search?q=food')
         .reply(200, res_fixture_popkey);
 
       gif.gif({sendMessage}, {channel: 'test'}, 'food');
