@@ -6,12 +6,12 @@ import images from '../../lib/fun/images';
 
 
 chai.should();
-const res_fixture_cat = require(path.join(__dirname, '../fixtures/randomcat.json'));
-const res_fixture_pug = require(path.join(__dirname, '../fixtures/pugbomb.json'));
+const res_fixture_cat = require(path.join(__dirname, '../fixtures/cat.json'));
+const res_fixture_pug = require(path.join(__dirname, '../fixtures/pug.json'));
 
 describe('images', () => {
   describe('cat', () => {
-    it('should return a cat picture', done => {
+    it('should return cat images', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
         res.should.equal('http://random.cat/i/067_-_1yzs4wL.gif');
@@ -27,7 +27,7 @@ describe('images', () => {
     });
 
     describe('pugbomb', () => {
-      it('should return 5 pug images', done => {
+      it('should return pug images', done => {
         function sendMessage(channel, res) {
           channel.should.equal('test');
           res.should.equal(`http://29.media.tumblr.com/tumblr_ll267csxAQ1qb08qmo1_500.jpg

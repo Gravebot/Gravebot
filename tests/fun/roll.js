@@ -13,7 +13,7 @@ describe('roll', () => {
 
     function sendMessage(channel, res) {
       channel.should.equal('test');
-      res.should.equal(`user rolled a 3 sided dice 4 times for a total of 28 (average: 7):
+      res.should.equal(`user rolled a 3 sided dice 4 times for a total of **28** (average: 7):
 7,7,7,7`);
 
       sandbox.restore();
