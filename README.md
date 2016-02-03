@@ -35,7 +35,7 @@ For self hosting, click [here](#localconfig).
 
 #### Fun:
 - `!8ball` *question* - Answers the question
-- `!cat` - Returns a random cat picture
+- `!cat` bomb *count* - Returns a random cat picture
 - `!chat` *text* - Chats with you
 - `!coin` - Flips a coin
 - `!comics` - Get a random comic from a bunch of different artists
@@ -43,7 +43,7 @@ For self hosting, click [here](#localconfig).
 - `!drama` *number* - Responds with a drama image, if no number is written, a random one
 - `!emoji` *number* - Responds with an emoji copypasta, if no number is written, a random one
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
-- `!pugbomb` *count* - Bombs chat with adorable pugs
+- `!pug` bomb *count* - Bombs chat with adorable pugs
 - `!quote` *number* - Responds with a quote, if no number is written, a random one
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
 - `!snoopify` *sentence* - Snoopifies tha sentence
