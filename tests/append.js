@@ -1,4 +1,4 @@
-import chai from 'chai';
+/**import chai from 'chai';
 
 import append from '../lib/append';
 
@@ -7,10 +7,10 @@ chai.should();
 describe('append', () => {
 
   it('should append content to a previous message', done => {
-    const msgs = [{content: 'hello'},
-    {content: '!'}];
+    let msgs = [{content: 'hello'},
+                  {content: '!'}];
 
-    const msg = {
+    let msg = {
       author: 'user',
       channel: {
         messages:{
@@ -29,3 +29,6 @@ describe('append', () => {
     append.append({sendMessage}, msg, ' world');
   });
 });
+**/
+import chai from 'chai';
+import append from '../lib/append';
