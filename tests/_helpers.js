@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import R from 'ramda';
 
+
 export function loadFixtures(fixtures_path, encoding = 'utf8') {
   var loaded_fixtures = {};
 
