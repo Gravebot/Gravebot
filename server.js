@@ -12,6 +12,7 @@ import './lib/config/phantom';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
+
 // Verify both username and password are set before launching the bot.
 if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
   console.error('Please make sure both EMAIL and PASSWORD are set in env or config.js before starting Gravebot');
