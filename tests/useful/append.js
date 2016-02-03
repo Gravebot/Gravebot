@@ -7,10 +7,10 @@ chai.should();
 describe('append', () => {
 
   it('should append content to a previous message', done => {
-    let msgs = [{content: 'hello'},
-                  {content: '!'}];
+    const msgs = [{content: 'hello'},
+    {content: '!'}];
 
-    let msg = {
+    const msg = {
       author: 'user',
       channel: {
         messages:{
@@ -20,6 +20,7 @@ describe('append', () => {
         }
       }
     };
+
     function sendMessage(channel, res) {
       channel.should.equal(msg.channel);
       res.should.equal('hello world');

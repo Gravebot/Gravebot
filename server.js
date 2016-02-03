@@ -71,7 +71,6 @@ bot.on('disconnected', () => {
 });
 
 function onMessage(msg) {
-  if (bot.user.username === msg.author.username) return;
   // Checks for PREFIX
   if (msg.content[0] === nconf.get('PREFIX')) {
     let cmd;
