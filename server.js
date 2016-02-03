@@ -80,8 +80,7 @@ function onMessage(msg) {
     if (msg.content[1] === nconf.get('PREFIX')) {
       command = 'append';
       suffix = msg.content.substring(2);
-    }
-    else {
+    } else {
       command = msg.content.toLowerCase().split(' ')[0].substring(1);
       suffix = msg.content.substring(command.length + 2);
     }
