@@ -3,7 +3,7 @@ import nconf from 'nconf';
 import _request from 'request';
 import R from 'ramda';
 
-import sentry from '../config/sentry';
+import sentry from '../../sentry';
 
 
 const request = Promise.promisify(_request);

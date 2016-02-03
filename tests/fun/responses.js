@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 
-import responses from '../../lib/fun/responses';
+import responses from '../../src/commands/fun/responses';
 
 
 let sandbox;

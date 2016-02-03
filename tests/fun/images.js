@@ -2,7 +2,7 @@ import chai from 'chai';
 import nock from 'nock';
 import path from 'path';
 
-import images from '../../lib/fun/images';
+import images from '../../src/commands/fun/images';
 
 
 chai.should();

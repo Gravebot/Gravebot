@@ -7,7 +7,7 @@ import path from 'path';
 nconf.use('memory');
 nconf.argv().env();
 
-const config_path = path.join(__dirname, '../../config.js');
+const config_path = path.join(__dirname, '../config.js');
 if (fs.existsSync(config_path)) {
-  nconf.defaults(require(config_path).default);
+  nconf.defaults(require(config_path));
 }

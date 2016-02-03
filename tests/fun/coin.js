@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 
-import coin from '../../lib/fun/coin';
+import coin from '../../src/commands/fun/coin';
 
 
 let sandbox;

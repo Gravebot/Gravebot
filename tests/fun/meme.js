@@ -21,7 +21,7 @@ describe('meme', () => {
       warnOnUnregistered: false
     });
     mockery.registerMock('imgflipper', _Imgflipper);
-    meme = require('../../lib/fun/meme').default;
+    meme = require('../../src/commands/fun/meme').default;
   });
 
   after(() => {

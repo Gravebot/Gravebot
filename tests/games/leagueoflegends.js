@@ -3,7 +3,7 @@ import nconf from 'nconf';
 import nock from 'nock';
 import path from 'path';
 
-import lol from '../../lib/games/leagueoflegends';
+import lol from '../../src/commands/games/leagueoflegends';
 import { loadFixtures } from '../_helpers';
 
 

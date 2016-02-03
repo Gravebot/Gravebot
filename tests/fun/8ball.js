@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 
-import eightball from '../../lib/fun/8ball';
+import eightball from '../../src/commands/fun/8ball';
 
 
 let sandbox;

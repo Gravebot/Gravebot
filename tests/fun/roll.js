@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 
-import roll from '../../lib/fun/roll';
+import roll from '../../src/commands/fun/roll';
 
 
 chai.should();

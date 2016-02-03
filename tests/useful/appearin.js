@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 
-import appearin from '../../lib/useful/appearin';
+import appearin from '../../src/commands/useful/appearin';
 
 
 let sandbox;

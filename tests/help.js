@@ -1,10 +1,10 @@
 import Promise from 'bluebird';
 import chai from 'chai';
 
-import help from '../lib/help';
-import english from '../lib/help/english';
-import french from '../lib/help/french';
-import meme from '../lib/help/meme';
+import help from '../src/commands/help';
+import english from '../src/commands/help/english';
+import french from '../src/commands/help/french';
+import meme from '../src/commands/help/meme';
 
 
 chai.should();

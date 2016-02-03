@@ -1,9 +1,9 @@
 import glob from 'glob';
 import R from 'ramda';
 
-import '../lib/config/init';
-import '../lib/config/express';
-import '../lib/config/phantom';
+import '../src/init-config';
+import '../src/express';
+import '../src/phantom';
 
 
 const glob_options = {

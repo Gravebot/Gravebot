@@ -4,7 +4,7 @@ import nock from 'nock';
 import path from 'path';
 import sinon from 'sinon';
 
-import gif from '../../lib/useful/gif';
+import gif from '../../src/commands/useful/gif';
 
 
 let sandbox;

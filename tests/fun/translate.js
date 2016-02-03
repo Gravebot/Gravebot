@@ -3,7 +3,7 @@ import fs from 'fs';
 import nock from 'nock';
 import path from 'path';
 
-import translate from '../../lib/fun/translate';
+import translate from '../../src/commands/fun/translate';
 
 
 chai.should();

@@ -1,7 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 
-import decide from '../../lib/fun/decide';
+import decide from '../../src/commands/fun/decide';
 
 
 let sandbox;

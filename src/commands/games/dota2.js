@@ -3,8 +3,8 @@ import cheerio from 'cheerio';
 import R from 'ramda';
 import _request from 'request';
 
-import sentry from '../config/sentry';
-import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../helpers';
+import sentry from '../../sentry';
+import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../helpers';
 
 
 const request = Promise.promisify(_request);
