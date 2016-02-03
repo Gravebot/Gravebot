@@ -5,7 +5,6 @@ import append from '../../lib/useful/append';
 chai.should();
 
 describe('append', () => {
-
   it('should append content to a previous message', done => {
     const msgs = [{content: 'hello'},
     {content: '!'}];
@@ -13,7 +12,7 @@ describe('append', () => {
     const msg = {
       author: 'user',
       channel: {
-        messages:{
+        messages: {
           getAll: () => {
             return msgs;
           }
