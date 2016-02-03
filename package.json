@@ -61,7 +61,7 @@
   "scripts": {
     "build": "babel src --out-dir dist --copy-files",
     "dev": "DEV=true DEBUG=express:*,horseman nodemon ./index.js",
-    "heroku": "forever --minUptime 5000 index.js",
+    "forever": "forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",
     "lint": "npm run lint-js && npm run lint-styl && npm run lint-jade && npm run lint-json",
     "lint-jade": "jadelint ./web/views",
