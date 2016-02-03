@@ -1,6 +1,6 @@
-/**import chai from 'chai';
 
-import append from '../lib/append';
+import chai from 'chai';
+import append from '../../lib/useful/append';
 
 chai.should();
 
@@ -29,6 +29,3 @@ describe('append', () => {
     append.append({sendMessage}, msg, ' world');
   });
 });
-**/
-import chai from 'chai';
-import append from '../lib/append';

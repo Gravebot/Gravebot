@@ -12,7 +12,6 @@ import './lib/config/phantom';
 import commands from './lib';
 import { callCmd } from './lib/helpers';
 
-
 // Verify both username and password are set before launching the bot.
 if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
   console.error('Please make sure both EMAIL and PASSWORD are set in env or config.js before starting Gravebot');
@@ -71,17 +70,6 @@ bot.on('disconnected', () => {
   }, 5000);
 });
 
-export function parseMessage(content, msg) {
-  let command = content.toLowerCase().split(' ')[0].substring(1);
-  let suffix = content.substring(command.length + 2);
-
-  let cmd = commands[command];
-  if(cmd != null) {
-    callCmd(cmd, command, bot, msg, suffix);
-  }
-  return;
-}
-
 function onMessage(msg) {
   if (bot.user.username === msg.author.username) return;
   // Checks for PREFIX
@@ -135,8 +123,6 @@ function onMessage(msg) {
     return;
   }
 }
-
-
 
 bot.on('message', onMessage);
 bot.on('messageUpdated', onMessage);
