@@ -70,14 +70,33 @@ bot.on('disconnected', () => {
   }, 5000);
 });
 
+export function parseMessage(content, msg) {
+  let command = content.toLowerCase().split(' ')[0].substring(1);
+  let suffix = content.substring(command.length + 2);
+
+  let cmd = commands[command];
+  if(cmd != null) {
+    callCmd(cmd, command, bot, msg, suffix);
+  }
+  return;
+}
+
 function onMessage(msg) {
   if (bot.user.username === msg.author.username) return;
-
   // Checks for PREFIX
   if (msg.content[0] === nconf.get('PREFIX')) {
-    let command = msg.content.toLowerCase().split(' ')[0].substring(1);
-    let suffix = msg.content.substring(command.length + 2);
-    let cmd = commands[command];
+    let cmd;
+    let command;
+    let suffix;
+    if(msg.content[1] === nconf.get('PREFIX')) {
+      command = 'append';
+      suffix = msg.content.substring(2);
+    }
+    else {
+    command = msg.content.toLowerCase().split(' ')[0].substring(1);
+    suffix = msg.content.substring(command.length + 2);
+  }
+    cmd = commands[command];
 
     if (cmd || msg.content[1] === nconf.get('PREFIX')) callCmd(cmd, command, bot, msg, suffix);
     return;
@@ -115,6 +134,8 @@ function onMessage(msg) {
     return;
   }
 }
+
+
 
 bot.on('message', onMessage);
 bot.on('messageUpdated', onMessage);
