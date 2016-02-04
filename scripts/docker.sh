@@ -1,3 +1,4 @@
+echo "Checking if we should be building new Docker image"
 if [ "$TRAVIS_BRANCH" == "master" ] && [ -n "$DOCKER_EMAIL" ]
 then
   docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASS"
