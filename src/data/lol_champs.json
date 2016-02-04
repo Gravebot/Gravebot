@@ -395,12 +395,6 @@
     "nid": "missfortune",
     "image": "missfortune.png"
   },
-  "wukong": {
-    "id": "62",
-    "name": "Wukong",
-    "nid": "wukong",
-    "image": "monkeyking.png"
-  },
   "mordekaiser": {
     "id": "82",
     "name": "Mordekaiser",
@@ -718,6 +712,12 @@
     "name": "Warwick",
     "nid": "warwick",
     "image": "warwick.png"
+  },
+  "wukong": {
+    "id": "62",
+    "name": "Wukong",
+    "nid": "wukong",
+    "image": "wukong.png"
   },
   "xerath": {
     "id": "101",

@@ -21,7 +21,7 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 // Init
 const bot = new Discord();
 
-// Checks for PMs older then 2 days and deletes them.
+// Checks for PMs older than 2 days and deletes them.
 function clearOldMessages() {
   console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
   let count = 0;
