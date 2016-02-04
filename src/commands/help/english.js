@@ -41,8 +41,10 @@ export default {
     Snoopifies tha sentence
 **\`!yoda\`** \`sentence\`
     Yodaify a sentence`,
-  useful: `**\`!gif\`** \`gif tags\`
-		Gets a gif from Giphy or Popkey matching the given tags
+  useful: `**\`!!\`** \`text\`
+		Appends text to previous message sent. If it was part of a bot command it will be run.
+**\`!gif\`** \`gif tags\`
+  	Gets a gif from Giphy or Popkey matching the given tags
     Use \`!giphy\` or \`!popkey\` to search the specific sites
 **\`!join\`** \`invitation link\`
 		Joins the server the bot is invited to
