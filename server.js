@@ -5,11 +5,12 @@ import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
 
-import './init-config';
-import './express';
-import './sentry';
-import './phantom';
-import commands from './commands';
+import './lib/config/init';
+import './lib/config/express';
+import './lib/config/sentry';
+import './lib/config/phantom';
+import commands from './lib';
+import { callCmd } from './lib/helpers';
 
 
 // Verify both username and password are set before launching the bot.
@@ -33,20 +34,16 @@ function clearOldMessages() {
         .then(R.head)
         .then(R.prop('timestamp'))
         .then(timestamp => {
-          // Remove cache from RAM
-          R.forEach(message => {
-            channel.messages.remove(message);
-          }, channel.messages);
-
           const message_time = moment.unix(timestamp / 1000);
           if (message_time.isBefore(moment().subtract(2, 'days'))) {
             count++;
             return channel.delete();
           }
         })
-        .catch(() => {
+        .catch(err => {
           // This sometimes get thrown by channel.delete even though the channel does get deleted.
-          // It can be ignored
+          // It can be ignored, but is logged just incase.
+          console.log(err);
         });
     }, {concurrency: 5})
     .then(() => {
@@ -73,11 +70,6 @@ bot.on('disconnected', () => {
     bot.login(nconf.get('EMAIL'), nconf.get('PASSWORD'));
   }, 5000);
 });
-
-function callCmd(cmd, name, bot, msg, suffix) {
-  console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
-  cmd(bot, msg, suffix);
-}
 
 function onMessage(msg) {
   if (bot.user.username === msg.author.username) return;
