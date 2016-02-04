@@ -33,16 +33,20 @@ function clearOldMessages() {
         .then(R.head)
         .then(R.prop('timestamp'))
         .then(timestamp => {
+          // Remove cache from RAM
+          R.forEach(message => {
+            channel.messages.remove(message);
+          }, channel.messages);
+
           const message_time = moment.unix(timestamp / 1000);
           if (message_time.isBefore(moment().subtract(2, 'days'))) {
             count++;
             return channel.delete();
           }
         })
-        .catch(err => {
+        .catch(() => {
           // This sometimes get thrown by channel.delete even though the channel does get deleted.
-          // It can be ignored, but is logged just incase.
-          console.log(err);
+          // It can be ignored
         });
     }, {concurrency: 5})
     .then(() => {
