@@ -30,4 +30,4 @@ describe('append', () => {
   });
 });
 **/
-//TODO: fix TypeError conflict with import commands from '...'; in /lib/useful/append.js
+// TODO: fix TypeError conflict with import commands from '...'; in /lib/useful/append.js
