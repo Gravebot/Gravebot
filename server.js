@@ -72,11 +72,10 @@ bot.on('disconnected', () => {
 });
 
 function onMessage(msg) {
+  if (bot.user.username === msg.author.username) return;
   // Checks for PREFIX
   if (msg.content[0] === nconf.get('PREFIX')) {
-    let cmd;
-    let command;
-    let suffix;
+    let command, suffix;
     if (msg.content[1] === nconf.get('PREFIX')) {
       command = 'append';
       suffix = msg.content.substring(2);
@@ -84,9 +83,9 @@ function onMessage(msg) {
       command = msg.content.toLowerCase().split(' ')[0].substring(1);
       suffix = msg.content.substring(command.length + 2);
     }
-    cmd = commands[command];
+    let cmd = commands[command];
 
-    if (cmd || msg.content[1] === nconf.get('PREFIX')) callCmd(cmd, command, bot, msg, suffix);
+    if (cmd) callCmd(cmd, command, bot, msg, suffix);
     return;
   }
 
