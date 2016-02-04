@@ -1,7 +1,7 @@
 import Imgflipper from 'imgflipper';
 import nconf from 'nconf';
 
-import sentry from '../config/sentry';
+import sentry from '../../sentry';
 
 import { memes } from '../../data';
 

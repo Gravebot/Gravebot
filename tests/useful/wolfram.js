@@ -4,7 +4,7 @@ import nock from 'nock';
 import nconf from 'nconf';
 import path from 'path';
 
-import wolfram from '../../lib/useful/wolfram';
+import wolfram from '../../src/commands/useful/wolfram';
 
 
 chai.should();

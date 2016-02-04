@@ -1,4 +1,4 @@
-import join from '../../lib/useful/join';
+import join from '../../src/commands/useful/join';
 
 
 describe('join/join-server', () => {

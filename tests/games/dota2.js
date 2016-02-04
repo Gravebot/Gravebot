@@ -2,7 +2,7 @@ import chai from 'chai';
 import nock from 'nock';
 import path from 'path';
 
-import dota from '../../lib/games/dota2';
+import dota from '../../src/commands/games/dota2';
 import { loadFixtures } from '../_helpers';
 
 

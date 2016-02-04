@@ -1,7 +1,7 @@
 import chai from 'chai';
 import path from 'path';
 
-import other from '../lib/other';
+import other from '../src/commands/other';
 
 
 chai.should();

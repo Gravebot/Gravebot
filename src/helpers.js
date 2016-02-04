@@ -1,12 +1,3 @@
-import chalk from 'chalk';
-import moment from 'moment';
-
-
-export function callCmd(cmd, name, bot, msg, suffix) {
-  console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
-  cmd(bot, msg, suffix);
-}
-
 export function getOrdinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;

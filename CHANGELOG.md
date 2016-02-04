@@ -1,3 +1,40 @@
+<a name="2.0.0" />
+## 2.0.0 (February 3rd, 2016)
+
+#### Features
+- Added `!cat bomb`
+- Added `!comics`
+- Added `!popkey` gifs command
+- Added `!pastebin`
+- `!gif` now randomly picks between giphy and popkey for search
+- Added 'bot' as a position for League commands
+- Added Jihn to League commands
+- Added generated image for `!lol counters`
+- Retry commands when a user edits a message (to fix typos, for example)
+
+#### Bug Fixes
+- Infinite loop with reply commands like `!yoda` and `!snoopify`
+- Fixed crash when bot is mentioned without a command
+- Fixed commands not working when uppercased
+- Bad layout formatting for League items command
+- Fixed Wukong missing for League commands
+- Fixed `!cat` returning invalid URLs
+- Fixed champ names sometimes being invalid when querying Champion.gg
+- Fixed docker builds
+- Rewrote cleverbot for (hopeful) better performance
+
+#### Technical Details/Features
+- Initial ram usage dropped from 250MB to 80MB
+- Initialization time dropped from ~8 seconds to ~3 seconds
+- Reorganized all commands and folder structure to match `!help`
+- Plenty of refactoring to better match ES6 standard
+- Auto clean PMs older then 2 days
+- Upgraded to PhantomJS 2
+
+#### Breaking Changes
+- `!pugbomb` renamed to `!pug bomb`
+- Config file must now export as an ES5 module instead of ES6. See the [example](/config.js.example).
+
 <a name="1.4.0" />
 ## 1.4.0 (Janurary 17th, 2016)
 

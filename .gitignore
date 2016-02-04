@@ -32,3 +32,6 @@ config.js
 
 # Test files
 test.js
+
+# Dist
+dist/

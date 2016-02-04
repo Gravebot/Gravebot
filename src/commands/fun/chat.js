@@ -2,7 +2,7 @@ import Cleverbot from 'cleverbot-node';
 import ent from 'entities';
 import nconf from 'nconf';
 
-import sentry from '../config/sentry';
+import sentry from '../../sentry';
 
 
 const clever = new Cleverbot(nconf.get('CLEVERBOT_API_NAME'), nconf.get('CLEVERBOT_API_KEY'));

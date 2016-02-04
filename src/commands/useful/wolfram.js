@@ -3,7 +3,7 @@ import nconf from 'nconf';
 import R from 'ramda';
 import wolframalpha from 'wolfram-alpha';
 
-import sentry from '../config/sentry';
+import sentry from '../../sentry';
 
 
 function queryWolf(wolf, query) {

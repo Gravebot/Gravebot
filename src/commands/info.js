@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import R from 'ramda';
 import _request from 'request';
 
-import sentry from './config/sentry';
+import sentry from '../sentry';
 
 
 const request = Promise.promisify(_request);

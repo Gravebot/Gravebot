@@ -5,12 +5,11 @@ import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
 
-import './lib/config/init';
-import './lib/config/express';
-import './lib/config/sentry';
-import './lib/config/phantom';
-import commands from './lib';
-import { callCmd } from './lib/helpers';
+import './init-config';
+import './express';
+import './sentry';
+import './phantom';
+import commands from './commands';
 
 
 // Verify both username and password are set before launching the bot.
@@ -70,6 +69,11 @@ bot.on('disconnected', () => {
     bot.login(nconf.get('EMAIL'), nconf.get('PASSWORD'));
   }, 5000);
 });
+
+function callCmd(cmd, name, bot, msg, suffix) {
+  console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
+  cmd(bot, msg, suffix);
+}
 
 function onMessage(msg) {
   if (bot.user.username === msg.author.username) return;

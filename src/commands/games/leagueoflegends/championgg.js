@@ -4,10 +4,10 @@ import R from 'ramda';
 import _request from 'request';
 import SuperError from 'super-error';
 
-import sentry from '../../config/sentry';
+import sentry from '../../../sentry';
 import { lol_champs, lol_items } from '../../../data';
-import { getOrdinal, toTitleCase } from '../../helpers';
-import phantom from '../../config/phantom';
+import { getOrdinal, toTitleCase } from '../../../helpers';
+import phantom from '../../../phantom';
 
 
 const request = Promise.promisify(_request);

@@ -3,7 +3,7 @@ import fs from 'fs';
 import nock from 'nock';
 import path from 'path';
 
-import info from '../lib/info';
+import info from '../src/commands/info';
 
 
 chai.should();

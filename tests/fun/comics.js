@@ -4,7 +4,7 @@ import path from 'path';
 import sinon from 'sinon';
 
 import { loadFixtures } from '../_helpers';
-import comics from '../../lib/fun/comics';
+import comics from '../../src/commands/fun/comics';
 
 
 chai.should();

@@ -8,10 +8,10 @@ const glob_options = {
 };
 
 const command_files = R.flatten([
-  glob.sync('./lib/*(!(index.js|helpers.js))', glob_options),
-  glob.sync('./lib/*/index.js', glob_options),
-  glob.sync('./lib/*/*/index.js', glob_options),
-  glob.sync('./lib/*(!(help|config))/*.js', glob_options)
+  glob.sync(`${__dirname}/*(!(index.js|helpers.js))`, glob_options),
+  glob.sync(`${__dirname}/*/index.js`, glob_options),
+  glob.sync(`${__dirname}/*/*/index.js`, glob_options),
+  glob.sync(`${__dirname}/*(!(help|config))/*.js`, glob_options)
 ]);
 
 // Merge all the commands objecs together and export.
