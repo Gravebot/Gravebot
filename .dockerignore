@@ -5,3 +5,5 @@ lib-cov
 coverage/
 config.json
 config.js
+test.js
+src/
