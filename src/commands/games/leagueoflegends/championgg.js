@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import didyoumean from 'didyoumean';
 import nconf from 'nconf';
 import R from 'ramda';
 import _request from 'request';
@@ -57,6 +58,17 @@ function _makeRequest(options) {
     });
 }
 
+// Verify name of a champ. If champ is not found, do a closest string match to find it.
+// If no champ can be matched, return the string anyway incase it's a new champ that hasn't been added yet.
+function _verifyName(champ) {
+  const champ_reg = champ.toLowerCase().replace(/[^a-z]/g, '');
+  if (!lol_champs[champ_reg]) {
+    const champ_search = didyoumean(champ_reg, R.keys(lol_champs));
+    if (champ_search) return champ_search;
+  }
+  return champ_reg;
+}
+
 export function counters(bot, msg, suffix) {
   if (!nconf.get('CHAMPIONGG_API')) {
     return bot.sendMessage(msg.channel, 'Please setup Champion.gg in config.js to use the **`!lol`** command.');
@@ -65,7 +77,7 @@ export function counters(bot, msg, suffix) {
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
-  const champ_reg = champ.toLowerCase().replace(/[^a-z]/g, '');
+  const champ_reg = _verifyName(champ);
 
   if (position === champ) return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
 
@@ -119,7 +131,7 @@ export function items(bot, msg, suffix) {
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
-  const champ_reg = champ.toLowerCase().replace(/[^a-z]/g, '');
+  const champ_reg = _verifyName(champ);
 
   if (position === champ) return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
 
@@ -160,7 +172,8 @@ export function skills(bot, msg, suffix) {
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
-  const champ_reg = champ.toLowerCase().replace(/[^a-z]/g, '');
+  const champ_reg = _verifyName(champ);
+  const champ_data = lol_champs[champ_reg];
 
   if (position === champ) return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
 
@@ -188,7 +201,7 @@ export function skills(bot, msg, suffix) {
         return R.toUpper(skill_count[count_num]);
       }, counts));
 
-      const text = `Okay! Here's the skill order for **${toTitleCase(champ)} ${gg_position}**.
+      const text = `Okay! Here's the skill order for **${champ_data.name} ${gg_position}**.
 
 **Skill Priority:** ${skill_order}
 **Full Order:** ${skills.join(',')}`;
