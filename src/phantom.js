@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import chalk from 'chalk';
 import Horseman from 'node-horseman';
 import nconf from 'nconf';
-import { path as phantom_path } from 'phantomjs2';
+import { path as phantom_path } from 'phantomjs-prebuilt';
 import Queue from 'promise-queue';
 import R from 'ramda';
 
