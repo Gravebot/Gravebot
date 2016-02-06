@@ -12,6 +12,7 @@ function cat(bot, msg, suffix) {
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
     if (count > 15) count = 15;
+    if (count < 0) count = 5;
   }
 
   const options = {
@@ -38,6 +39,7 @@ function pug(bot, msg, suffix) {
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
     if (count > 15) count = 15;
+    if (count < 0) count = 5;
   }
 
   const options = {
