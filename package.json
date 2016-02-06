@@ -60,7 +60,7 @@
     "stylint-stylish": "^1.2.0"
   },
   "scripts": {
-    "build": "babel src --out-dir dist --copy-files",
+    "build": "rm -rf ./dist && babel src --out-dir dist --copy-files",
     "dev": "DEV=true DEBUG=express:*,horseman nodemon ./index.js",
     "forever": "forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",
