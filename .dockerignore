@@ -7,3 +7,5 @@ config.json
 config.js
 test.js
 src/
+dist/
+.git/
