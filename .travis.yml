@@ -9,7 +9,7 @@ cache:
     - node_modules
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-  - bash ./scripts/docker.sh
+  - bash ./scripts/docker/travis.sh
 node_js:
   # - "stable"
   - "4.2"

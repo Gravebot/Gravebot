@@ -1,11 +1,13 @@
+.git/
+coverage/
 node_modules/
 logs
 *.log
 lib-cov
-coverage/
+
 config.json
 config.js
-test.js
-src/
+test.*
+
 dist/
-.git/
+tests/
