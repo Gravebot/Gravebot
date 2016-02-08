@@ -15,7 +15,7 @@ function snoop(bot, msg, suffix) {
     return;
   }
   gizoogle.string(suffix, (err, translation) => {
-    if (err) sentry.captureError(err);
+    if (err) sentry(err, 'translate', 'snoop');
     bot.sendMessage(msg.channel, translation);
   });
 }
@@ -41,7 +41,7 @@ function yoda(bot, msg, phrase) {
     .then($ => $('textarea[name="YodaSpeak"]').first().text())
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'translate', 'yoda');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

@@ -29,7 +29,7 @@ function cat(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'images', 'cat');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -55,7 +55,7 @@ function pug(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'images', 'pug');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

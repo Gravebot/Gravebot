@@ -66,7 +66,7 @@ export function serverStatus(bot, msg) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'leagueoflegends', 'serverStatus');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -193,7 +193,7 @@ export function matchDetails(bot, msg, suffix) {
       bot.sendMessage(msg.channel, R.join('\n\n', [title_text, blue_side_text, red_side_text]));
     })
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'leagueoflegends', 'matchDetails');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

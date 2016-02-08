@@ -35,7 +35,7 @@ function wolfram(bot, msg, query) {
     .then(R.prop('image'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'wolfram');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

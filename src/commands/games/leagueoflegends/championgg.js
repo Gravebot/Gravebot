@@ -118,7 +118,7 @@ export function counters(bot, msg, suffix) {
     })
     .then(buf => bot.sendFile(msg.channel, buf))
     .catch(err => {
-      if (!(err instanceof SuperError)) sentry.captureError(err);
+      if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'counters');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -159,7 +159,7 @@ export function items(bot, msg, suffix) {
     })
     .then(buf => bot.sendFile(msg.channel, buf))
     .catch(err => {
-      if (!(err instanceof SuperError)) sentry.captureError(err);
+      if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'items');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -209,7 +209,7 @@ export function skills(bot, msg, suffix) {
       bot.sendMessage(msg.channel, text);
     })
     .catch(err => {
-      if (!(err instanceof SuperError)) sentry.captureError(err);
+      if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'skills');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -239,7 +239,7 @@ export function bans(bot, msg) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'leagueoflegends', 'bans');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -272,7 +272,7 @@ export function best(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'leagueoflegends', 'best');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

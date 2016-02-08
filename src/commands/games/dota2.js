@@ -80,7 +80,7 @@ function best(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'dota2', 'best');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -109,7 +109,7 @@ function build(bot, msg, suffix) {
       bot.sendMessage(msg.channel, text);
     })
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'dota2', 'build');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -153,7 +153,7 @@ function counters(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'dota2', 'counters');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -197,7 +197,7 @@ function impact(bot, msg) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'dota2', 'impact');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -239,7 +239,7 @@ function items(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'dota2', 'items');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

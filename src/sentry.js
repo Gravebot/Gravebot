@@ -3,7 +3,11 @@ import raven from 'raven';
 
 
 let client = {
-  captureError: (err) => console.log(err)
+  captureError: (err, options) => {
+    if (options.tags && options.tags.source && !err.source) err.source = options.tags.source;
+    if (options.tags && options.tags.method && !err.method) err.method = options.tags.method;
+    console.error(err);
+  }
 };
 
 if (nconf.get('NODE_ENV') === 'production' && nconf.get('SENTRY_DSN')) {
@@ -13,10 +17,22 @@ if (nconf.get('NODE_ENV') === 'production' && nconf.get('SENTRY_DSN')) {
   client.on('error', err => console.log(`Error: ${err.message}`));
   process.on('uncaughtException', err => {
     const exit = function() { process.exit(1); };
+    const options = {
+      level: 'fatal',
+      source: 'main_process'
+    };
     client.once('logged', exit);
     client.once('error', exit);
-    client.captureError(err, {level: 'fatal'});
+    client.captureError(err, options);
   });
 }
 
-export default client;
+export default function captureError(err, source, method) {
+  const options = {
+    tags: { source, method }
+  };
+
+  if (source && !method) options.tags.method = source;
+
+  client.captureError(err, options);
+}
