@@ -32,7 +32,7 @@ function makePaste(bot, msg, paste) {
     .then(R.prop('body'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'pastebin');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

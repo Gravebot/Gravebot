@@ -119,7 +119,7 @@ function version(bot, msg) {
     .then(R.trim)
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'info', 'version');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

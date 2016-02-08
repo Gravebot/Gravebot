@@ -33,7 +33,7 @@ function chat(bot, msg, suffix) {
         clearTimeout(typingTimeout);
       });
     } catch (err) {
-      sentry.captureError(err);
+      sentry(err, 'chat');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
       bot.stopTyping(msg.channel);
       clearTimeout(typingTimeout);

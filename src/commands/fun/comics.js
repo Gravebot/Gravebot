@@ -37,7 +37,7 @@ function cah(bot, msg) {
     .then($ => $('#main-comic').attr('src'))
     .then(url => bot.sendMessage(msg.channel, `http:${url}`))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'cah');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -54,7 +54,7 @@ function smbc(bot, msg) {
     .then($ => $('#comic').attr('src'))
     .then(url => bot.sendMessage(msg.channel, `http://www.smbc-comics.com/${url}`))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'smbc');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -67,7 +67,7 @@ function amazingSuperPowers(bot, msg) {
     .then($ => $('#comic-1').find('img').first().attr('src'))
     .then(url => bot.sendMessage(msg.channel, url))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'amazingSuperPowers');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -97,7 +97,7 @@ function awkwardZombie(bot, msg) {
     .then($ => $('#comic').find('img').first().attr('src'))
     .then(url => bot.sendMessage(msg.channel, url))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'awkwardZombie');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -110,7 +110,7 @@ function chainsawsuit(bot, msg) {
     .then($ => $('#comic').find('img').first().attr('src'))
     .then(url => bot.sendMessage(msg.channel, url))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'chainsawsuit');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -127,7 +127,7 @@ function dogHouseDiaries(bot, msg) {
     .then($ => $('#imgdiv').find('img').first().attr('src').replace('\n', ''))
     .then(url => bot.sendMessage(msg.channel, `http://thedoghousediaries.com/${url}`))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'dogHouseDiaries');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -140,7 +140,7 @@ function theOatmeal(bot, msg) {
     .then($ => $('#comic').find('img').first().attr('src'))
     .then(url => bot.sendMessage(msg.channel, url))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'theOatmeal');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -161,7 +161,7 @@ function xkcd(bot, msg) {
     .then($ => $('#comic').find('img').first().attr('src'))
     .then(url => bot.sendMessage(msg.channel, `https:${url}`))
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'comics', 'xkcd');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }

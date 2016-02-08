@@ -36,7 +36,7 @@ function giphy(bot, msg, suffix) {
       }
     })
     .catch(err => {
-      sentry.captureError(err);
+      sentry(err, 'gif', 'giphy');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
@@ -75,7 +75,7 @@ function popkey(bot, msg, suffix) {
       if (err instanceof TypeError) {
         bot.sendMessage(msg.channel, `I couldn\'t find a gif for: ${suffix}`);
       } else {
-        sentry.captureError(err);
+        sentry(err, 'gif', 'popkey');
         bot.sendMessage(msg.channel, `Error: ${err.message}`);
       }
     });

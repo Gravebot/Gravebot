@@ -27,7 +27,7 @@ function meme(bot, msg, suffix) {
 
   imgflipper.generateMeme(memes[memetype], tags[1] ? tags[1] : ' ', tags[3] ? tags[3] : ' ', (err, image) => {
     if (err) {
-      if (err.message !== 'No texts supplied') sentry.captureError(err);
+      if (err.message !== 'No texts supplied') sentry(err, 'meme');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     } else {
       bot.sendMessage(msg.channel, image);
