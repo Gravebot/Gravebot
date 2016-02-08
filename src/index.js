@@ -64,7 +64,7 @@ setInterval(() => clearOldMessages(), 86400000);
 // Listen for events on Discord
 bot.on('ready', () => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Serving in ${bot.servers.length} servers`));
-  setTimeout(() => clearOldMessages(), 5000);
+  if (nconf.get('CLEAN_ON_BOOT') !== 'false') setTimeout(() => clearOldMessages(), 5000);
 });
 
 bot.on('disconnected', () => {
