@@ -172,9 +172,9 @@ function randomComic(bot, msg) {
     cah,
     smbc,
     amazingSuperPowers,
-    awkwardZombie,
+    // awkwardZombie,
     chainsawsuit,
-    dogHouseDiaries,
+    // dogHouseDiaries,
     theOatmeal,
     xkcd
   ];
