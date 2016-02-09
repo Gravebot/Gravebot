@@ -139,6 +139,11 @@ Gravebot comes setup and ready for Heroku.
 
 Master branch is built and pushed to our Docker image. You can pull the latest from [here](https://hub.docker.com/r/gravebot/gravebot/).
 
+
+## Updating
+
+Updating Gravebot is like any other NodeJS app. Just run `git pull && npm install`.
+
 ---
 
 ## Feature Requests
