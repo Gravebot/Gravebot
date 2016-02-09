@@ -109,7 +109,8 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 
 ## Local Installation
 #### Windows:
-**Warning: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependecies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty, and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.**
+**Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependecies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty, and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
+
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
