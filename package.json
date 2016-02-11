@@ -75,7 +75,8 @@
     "push-image": "npm run test && npm run build && docker build --build-arg NODE_VERSION=$(cat package.json | json engines.node) --build-arg NPM_VERSION=$(cat package.json | json engines.npm) --rm -t gravebot/gravebot:latest . && docker push gravebot/gravebot:latest",
     "start": "node index.js",
     "test": "npm run lint && npm run mocha",
-    "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js"
+    "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
+    "translate": "babel-node ./scripts/translate.js"
   },
   "engines": {
     "node": "4.2.6",
