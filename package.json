@@ -68,7 +68,7 @@
     "lint": "npm run lint-js && npm run lint-styl && npm run lint-jade && npm run lint-json",
     "lint-jade": "jadelint ./web/views",
     "lint-js": "eslint ./src ./tests",
-    "lint-json": "find ./src/data -name \\*.json -type f -maxdepth 1 -exec jsonlint -q {} \\;",
+    "lint-json": "find ./src/data ./i18n -name \\*.json -type f -maxdepth 1 -exec jsonlint -q {} \\;",
     "lint-styl": "stylint --config ./.stylintrc ./web/styl",
     "mocha": "mocha --compilers js:babel-core/register ./tests/index.js",
     "postinstall": "npm run build",

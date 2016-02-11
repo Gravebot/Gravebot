@@ -75,6 +75,38 @@
     "msg": "League of Legends",
     "done": true
   },
+  "lol_status": {
+    "msg": "Get the LoL Game and Client server status for all regions",
+    "done": true
+  },
+  "lol_bans": {
+    "msg": "Get the top 10 most common bans",
+    "done": true
+  },
+  "lol_best": {
+    "msg": "Get the top 10 best champs for a position",
+    "done": true
+  },
+  "lol_counters": {
+    "msg": "Get the top 10 counters for a Champion and Position",
+    "done": true
+  },
+  "lol_header_text": {
+    "msg": "League of Legends help commands\n\nAccepted positions are **Top**, **Mid**, **ADC**, **Jungle**, and **Support**.\nAccepted regions are **br, eune, euw, kr, lan, las, na, oce, pbe, ru, and tr**.",
+    "done": true
+  },
+  "lol_items": {
+    "msg": "Get the highest win item sets for a Champion and Position",
+    "done": true
+  },
+  "lol_match": {
+    "msg": "Get rank, champ, winrate, and games for all players in a __current__ match.",
+    "done": true
+  },
+  "lol_skills": {
+    "msg": "Get the highest win skills for a Champion and Position",
+    "done": true
+  },
   "meme": {
     "msg": "Creates a meme with the given meme name and text",
     "done": true

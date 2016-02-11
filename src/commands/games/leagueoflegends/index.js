@@ -1,4 +1,5 @@
-import { help_text } from './help';
+import { subCommands } from '../../help';
+
 import { bans, best, counters, items, skills } from './championgg';
 import { serverStatus, matchDetails } from './riot';
 
@@ -24,6 +25,37 @@ export default {
     if (command === 'servers') return serverStatus(bot, msg, suffix);
     if (command === 'serverstatus') return serverStatus(bot, msg, suffix);
     if (command === 'status') return serverStatus(bot, msg, suffix);
-    return bot.sendMessage(msg.channel, help_text);
+    return subCommands(bot, msg, 'lol');
+  }
+};
+
+export const help = {
+  lol: {
+    category: 'games',
+    header_text: 'lol_header_text',
+    subcommands: [
+      {name: 'bans'},
+      {
+        name: 'best',
+        parameters: ['position']
+      },
+      {
+        name: 'counters',
+        parameters: ['champ-name', 'position']
+      },
+      {
+        name: 'items',
+        parameters: ['champ-name', 'position']
+      },
+      {
+        name: 'match',
+        parameters: ['region', 'summoner-name']
+      },
+      {
+        name: 'skills',
+        parameters: ['champ-name', 'position']
+      },
+      {name: 'status'}
+    ]
   }
 };

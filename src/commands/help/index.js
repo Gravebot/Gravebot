@@ -41,6 +41,30 @@ R.forEach(js_path => {
   }
 }, command_files);
 
+export function subCommands(bot, msg, method, lang = 'en') {
+  const subcommands = R.sort(R.prop('command'))(help_parameters[method].subcommands);
+
+  let text = R.map(subcommand => {
+    const trans_key = `${method}_${subcommand.name}`;
+    const translation = translations[lang][trans_key] || translations.en[trans_key];
+    if (!translation) return console.log(chalk.yellow(`[WARN] ${trans_key} does not haev a translation`));
+    const parameters = R.join(' ', subcommand.parameters || []);
+
+    return `**\`${method} ${subcommand.name} ${parameters}\`**
+    ${translation}`;
+  }, subcommands);
+
+  text = R.join('\n', R.reject(R.isNil, text));
+  if (subcommands.header_text) {
+    const header_text = translations[lang][subcommands.header_text] || translations.en[subcommands.header_text];
+    text = `${header_text}\n\n${text}`;
+  }
+
+  console.log(text);
+
+  return bot.sendMessage(msg.channel, text);
+}
+
 // Default `!help`
 function helpInit(lang = 'en') {
   const help_methods = R.keys(categories).sort();
@@ -60,7 +84,7 @@ function helpCategory(methods, lang = 'en') {
 
   const text = R.map(name => {
     const translation = translations[lang][name] || translations.en[name];
-    if (!translation) return;
+    if (!translation) return console.log(chalk.yellow(`[WARN] ${name} does not have a translation`));
 
     const parameters = R.join(' ', help_parameters[name].parameters || []);
     return `**\`${nconf.get('PREFIX')}${name} ${parameters}\`**
@@ -69,30 +93,6 @@ function helpCategory(methods, lang = 'en') {
 
   return R.join('\n', R.reject(R.isNil, text));
 }
-
-function subCommands(bot, msg, method, lang = 'en') {
-  const subcommands = help_parameters[method].subcommands;
-  subcommands.sort();
-
-  let text = R.map(subcommand => {
-    const trans_key = `${method}_${subcommand.name}`;
-    const translation = translations[lang][trans_key] || translations.en[trans_key];
-    if (!translation) return;
-    const parameters = R.join(' ', R.map(parameter => `\`${parameter}\``, help_parameters[trans_key].parameters || []));
-
-    return `${method} ${subcommand.name} ${parameters}
-    ${translation}`;
-  }, subcommands);
-
-  text = R.join('\n', R.reject(R.isNil, text));
-  if (subcommands.header_text && translations[lang][subcommands.header_text]) {
-    const header_text = translations[lang][subcommands.header_text] || translations.en[subcommands.header_text];
-    text = `${header_text}\n\n${text}`;
-  }
-
-  return text;
-}
-
 
 function help(bot, msg, suffix) {
   const category = suffix.toLowerCase();
