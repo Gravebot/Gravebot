@@ -1,182 +1,186 @@
 {
   "8ball": {
-    "msg": "Answers the question",
+    "text": "Answers the question",
     "done": true
   },
   "avatar": {
-    "msg": "Responds with the avatar of the user, if no user is written, your avatar",
+    "text": "Responds with the avatar of the user, if no user is written, your avatar",
     "done": true
   },
   "cat": {
-    "msg": "Bombs chat with adorable cats",
+    "text": "Bombs chat with adorable cats",
     "done": true
   },
   "chat": {
-    "msg": "Chats with you",
+    "text": "Chats with you",
     "done": true
   },
   "coin": {
-    "msg": "Flips a coin",
+    "text": "Flips a coin",
     "done": true
   },
   "comics": {
-    "msg": "Get a random comic from a bunch of different artists",
+    "text": "Get a random comic from a bunch of different artists",
     "done": true
   },
   "decide": {
-    "msg": "Decides between given words",
+    "text": "Decides between given words",
     "done": true
   },
   "dota2": {
-    "msg": "DOTA 2",
+    "text": "DOTA 2",
     "done": true
   },
   "drama": {
-    "msg": "Responds with a drama image, if no number is written, a random one",
+    "text": "Responds with a drama image, if no number is written, a random one",
     "done": true
   },
   "emoji": {
-    "msg": "Responds with an emoji copypasta, if no number is written, a random one",
+    "text": "Responds with an emoji copypasta, if no number is written, a random one",
     "done": true
   },
   "gif": {
-    "msg": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",
+    "text": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",
+    "done": true
+  },
+  "hello": {
+    "text": "Hello",
     "done": true
   },
   "help_fun": {
-    "msg": "List of fun commands",
+    "text": "List of fun commands",
     "done": true
   },
   "help_games": {
-    "msg": "List of game commands",
+    "text": "List of game commands",
     "done": true
   },
   "help_info": {
-    "msg": "List of information commands",
+    "text": "List of information commands",
     "done": true
   },
   "help_memelist": {
-    "msg": "List of meme names for the **`!meme`** command",
+    "text": "List of meme names for the **`!meme`** command",
     "done": true
   },
   "help_other": {
-    "msg": "List of other commands",
+    "text": "List of other commands",
     "done": true
   },
   "help_useful": {
-    "msg": "List of useful commands",
+    "text": "List of useful commands",
     "done": true
   },
   "join": {
-    "msg": "Joins the server the bot is invited to",
+    "text": "Joins the server the bot is invited to",
     "done": true
   },
   "lol": {
-    "msg": "League of Legends",
-    "done": true
-  },
-  "lol_status": {
-    "msg": "Get the LoL Game and Client server status for all regions",
+    "text": "League of Legends",
     "done": true
   },
   "lol_bans": {
-    "msg": "Get the top 10 most common bans",
+    "text": "Get the top 10 most common bans",
     "done": true
   },
   "lol_best": {
-    "msg": "Get the top 10 best champs for a position",
+    "text": "Get the top 10 best champs for a position",
     "done": true
   },
   "lol_counters": {
-    "msg": "Get the top 10 counters for a Champion and Position",
+    "text": "Get the top 10 counters for a Champion and Position",
     "done": true
   },
   "lol_header_text": {
-    "msg": "League of Legends help commands\n\nAccepted positions are **Top**, **Mid**, **ADC**, **Jungle**, and **Support**.\nAccepted regions are **br, eune, euw, kr, lan, las, na, oce, pbe, ru, and tr**.",
+    "text": "League of Legends help commands\n\nAccepted positions are **Top, Mid, ADC, Jungle,** and **Support**.\nAccepted regions are **br, eune, euw, kr, lan, las, na, oce, pbe, ru, and tr**.",
     "done": true
   },
   "lol_items": {
-    "msg": "Get the highest win item sets for a Champion and Position",
+    "text": "Get the highest win item sets for a Champion and Position",
     "done": true
   },
   "lol_match": {
-    "msg": "Get rank, champ, winrate, and games for all players in a __current__ match.",
+    "text": "Get rank, champ, winrate, and games for all players in a __current__ match.",
     "done": true
   },
   "lol_skills": {
-    "msg": "Get the highest win skills for a Champion and Position",
+    "text": "Get the highest win skills for a Champion and Position",
+    "done": true
+  },
+  "lol_status": {
+    "text": "Get the LoL Game and Client server status for all regions",
     "done": true
   },
   "meme": {
-    "msg": "Creates a meme with the given meme name and text",
+    "text": "Creates a meme with the given meme name and text",
     "done": true
   },
   "paste": {
-    "msg": "Creates a paste on Pastebin.com and returns the url",
+    "text": "Creates a paste on Pastebin.com and returns the url",
     "done": true
   },
   "pug": {
-    "msg": "Bombs chat with adorable pugs.",
+    "text": "Bombs chat with adorable pugs.",
     "done": true
   },
   "quote": {
-    "msg": "Responds with a quote, if no number is written, a random one",
+    "text": "Responds with a quote, if no number is written, a random one",
     "done": true
   },
   "roll": {
-    "msg": "Rolls the dice a number of times with a number of sides",
+    "text": "Rolls the dice a number of times with a number of sides",
     "done": true
   },
   "serverinfo": {
-    "msg": "Gives information about the server",
+    "text": "Gives information about the server",
     "done": true
   },
   "serverlist": {
-    "msg": "Lists all the servers the bot is connected to",
+    "text": "Lists all the servers the bot is connected to",
     "done": true
   },
   "servers": {
-    "msg": "Lists how many servers, channels and users the bot is connected to",
+    "text": "Lists how many servers, channels and users the bot is connected to",
     "done": true
   },
   "snoopify": {
-    "msg": "Snoopifies tha sentence",
+    "text": "Snoopifies tha sentence",
     "done": true
   },
   "uptime": {
-    "msg": "Shows how long the bot has been online",
+    "text": "Shows how long the bot has been online",
     "done": true
   },
   "urban": {
-    "msg": "Returns the summary of the first matching search result from Urban Dictionary",
+    "text": "Returns the summary of the first matching search result from Urban Dictionary",
     "done": true
   },
   "userinfo": {
-    "msg": "Gives information about the user, if no user is written, yourself",
+    "text": "Gives information about the user, if no user is written, yourself",
     "done": true
   },
   "version": {
-    "msg": "Get information on the latest version of Gravebot",
+    "text": "Get information on the latest version of Gravebot",
     "done": true
   },
   "videocall": {
-    "msg": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.",
+    "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.",
     "done": true
   },
   "wiki": {
-    "msg": "Returns the summary of the first matching search result from Wikipedia",
+    "text": "Returns the summary of the first matching search result from Wikipedia",
     "done": true
   },
   "wolfram": {
-    "msg": "Query Wolfram Alpha for almost anything",
+    "text": "Query Wolfram Alpha for almost anything",
     "done": true
   },
   "yoda": {
-    "msg": "Yodaify a sentence",
+    "text": "Yodaify a sentence",
     "done": true
   },
   "youtube": {
-    "msg": "Gets a video from Youtube matching the given tags",
+    "text": "Gets a video from Youtube matching the given tags",
     "done": true
   }
 }

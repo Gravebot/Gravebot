@@ -1,4 +1,4 @@
-import { subCommands } from '../../help';
+import { subCommands as helpText } from '../../help';
 
 import { bans, best, counters, items, skills } from './championgg';
 import { serverStatus, matchDetails } from './riot';
@@ -25,7 +25,7 @@ export default {
     if (command === 'servers') return serverStatus(bot, msg, suffix);
     if (command === 'serverstatus') return serverStatus(bot, msg, suffix);
     if (command === 'status') return serverStatus(bot, msg, suffix);
-    return subCommands(bot, msg, 'lol');
+    return helpText(bot, msg, 'lol');
   }
 };
 

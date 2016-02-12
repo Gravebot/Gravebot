@@ -6,7 +6,7 @@ let client = {
   captureError: (err, options) => {
     if (options.tags && options.tags.source && !err.source) err.source = options.tags.source;
     if (options.tags && options.tags.method && !err.method) err.method = options.tags.method;
-    console.error(err);
+    console.error(err.stack || err);
   }
 };
 

@@ -1,21 +1,14 @@
 import chalk from 'chalk';
-import glob from 'glob';
 import nconf from 'nconf';
 import path from 'path';
 import R from 'ramda';
 
 
 import { command_files } from '../';
+import { getUserLang } from '../../redis';
 import meme from './meme';
+import T from '../../translate';
 
-// TOOD: Remove
-import english from './english';
-
-
-const translations_path = path.join(__dirname, '../../../i18n');
-const translations = R.fromPairs(R.map(file_path => {
-  return [path.basename(file_path).replace(/.json/g, ''), require(file_path)];
-}, glob.sync(`${translations_path}/*(!(_source.json))`)));
 
 const help_parameters = {};
 const categories = {
@@ -23,7 +16,7 @@ const categories = {
   fun: [],
   games: [],
   useful: [],
-  other: [] // Prefil here.
+  other: []
 };
 
 // Merge all the help objects together
@@ -41,63 +34,62 @@ R.forEach(js_path => {
   }
 }, command_files);
 
-export function subCommands(bot, msg, method, lang = 'en') {
-  const subcommands = R.sort(R.prop('command'))(help_parameters[method].subcommands);
+export function subCommands(bot, msg, method) {
+  getUserLang(msg.author.id).then(lang => {
+    const subcommands = R.sort(R.prop('command'))(help_parameters[method].subcommands);
 
-  let text = R.map(subcommand => {
-    const trans_key = `${method}_${subcommand.name}`;
-    const translation = translations[lang][trans_key] || translations.en[trans_key];
-    if (!translation) return console.log(chalk.yellow(`[WARN] ${trans_key} does not haev a translation`));
-    const parameters = R.join(' ', subcommand.parameters || []);
+    let text = R.map(subcommand => {
+      const trans_key = `${method}_${subcommand.name}`;
+      const translation = T(trans_key, lang);
+      if (!translation) return;
+      const parameters = R.join(' ', subcommand.parameters || []);
 
-    return `**\`${method} ${subcommand.name} ${parameters}\`**
-    ${translation}`;
-  }, subcommands);
+      return `**\`${method} ${subcommand.name} ${parameters}\`**
+      ${translation}`;
+    }, subcommands);
 
-  text = R.join('\n', R.reject(R.isNil, text));
-  if (subcommands.header_text) {
-    const header_text = translations[lang][subcommands.header_text] || translations.en[subcommands.header_text];
-    text = `${header_text}\n\n${text}`;
-  }
+    text = R.join('\n', R.reject(R.isNil, text));
+    if (subcommands.header_text) {
+      const header_text = T('subcommands.header_text', lang);
+      text = `${header_text}\n\n${text}`;
+    }
 
-  console.log(text);
-
-  return bot.sendMessage(msg.channel, text);
-}
-
-// Default `!help`
-function helpInit(lang = 'en') {
-  const help_methods = R.keys(categories).sort();
-  help_methods.push('memelist');
-
-  const text = R.map(param => {
-    return `**\`${nconf.get('PREFIX')}help ${param}\`**
-    ${translations[lang]['help_' + param]}`;
-  }, help_methods);
-
-  return R.join('\n', text);
+    return bot.sendMessage(msg.channel, text);
+  });
 }
 
 // E.g. !help useful
-function helpCategory(methods, lang = 'en') {
-  methods.sort();
-
+function helpCategory(category, lang = 'en') {
+  const methods = categories[category].sort();
   const text = R.map(name => {
-    const translation = translations[lang][name] || translations.en[name];
-    if (!translation) return console.log(chalk.yellow(`[WARN] ${name} does not have a translation`));
+    const translation = T(name, lang);
+    if (!translation && category !== 'other') return;
 
     const parameters = R.join(' ', help_parameters[name].parameters || []);
-    return `**\`${nconf.get('PREFIX')}${name} ${parameters}\`**
-    ${translations[lang][name]}`;
+    let text = `**\`${nconf.get('PREFIX')}${name} ${parameters}\`**`;
+    if (translation) text += `\n${translation}`;
+
+    return text;
   }, methods);
 
   return R.join('\n', R.reject(R.isNil, text));
 }
 
 function help(bot, msg, suffix) {
-  const category = suffix.toLowerCase();
-  if (categories[category]) return bot.sendMessage(msg.channel, helpCategory(categories[category]));
-  return bot.sendMessage(msg.channel, helpInit());
+  getUserLang(msg.author.id).then(lang => {
+    const category = suffix.toLowerCase();
+    if (categories[category]) return bot.sendMessage(msg.channel, helpCategory(category, lang));
+
+    const help_methods = R.keys(categories).sort();
+    help_methods.push('memelist');
+
+    const text = R.map(param => {
+      return `**\`${nconf.get('PREFIX')}help ${param}\`**
+      ${T('help_' + param, lang)}`;
+    }, help_methods);
+
+    return bot.sendMessage(msg.channel, R.join('\n', text));
+  });
 }
 
 function memelist(bot, msg, suffix) {
@@ -118,9 +110,7 @@ function memelist(bot, msg, suffix) {
 }
 
 export default {
-  commands: (bot, msg) => {
-    bot.sendMessage(msg.channel, english.all);
-  },
+  commands: help,
   help,
   memelist
 };

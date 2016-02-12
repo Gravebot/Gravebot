@@ -34,3 +34,16 @@ export default {
     bot.sendMessage(msg.channel, 'http://i.imgur.com/eCpwo6J.gif');
   }
 };
+
+export const help = {
+  ayylmao: {category: 'other'},
+  chillenmyb: {category: 'other'},
+  endall: {category: 'other'},
+  feelsgoodman: {category: 'other'},
+  jpeg: {category: 'other'},
+  kappa: {category: 'other'},
+  kappahd: {category: 'other'},
+  skeltal: {category: 'other'},
+  starwars4: {category: 'other'},
+  starwars5: {category: 'other'}
+};
