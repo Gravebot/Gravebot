@@ -41,3 +41,7 @@ export default {
   dice: roll,
   roll
 };
+
+export const help = {
+  roll: {parameters: ['times', 'sides']}
+};

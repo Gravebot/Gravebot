@@ -44,3 +44,9 @@ function chat(bot, msg, suffix) {
 export default {
   chat
 };
+
+export const help = {
+  chat: {
+    parameters: ['text']
+  }
+};

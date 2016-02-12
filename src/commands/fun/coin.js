@@ -13,3 +13,7 @@ export default {
   flip: coin,
   flipcoin: coin
 };
+
+export const help = {
+  coin: {}
+};

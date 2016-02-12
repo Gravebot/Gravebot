@@ -23,6 +23,42 @@
     "text": "Get a random comic from a bunch of different artists",
     "done": true
   },
+  "comics_asp": {
+    "text": "Returns a Amazing Super Powers comic",
+    "done": true
+  },
+  "comics_az": {
+    "text": "Returns a Awkward Zombie comic",
+    "done": true
+  },
+  "comics_cah": {
+    "text": "Returns a Cyanide and Happimess comic",
+    "done": true
+  },
+  "comics_css": {
+    "text": "Returns a chainsawsuit comic",
+    "done": true
+  },
+  "comics_dhd": {
+    "text": "Returns a Dog House Diaries comic",
+    "done": true
+  },
+  "comics_header_text": {
+    "text": "Get random web comic strips",
+    "done": true
+  },
+  "comics_smbc": {
+    "text": "Returns a Saturday Morning Breakfast Cereal comic",
+    "done": true
+  },
+  "comics_to": {
+    "text": "Returns a The Oatmeal comic",
+    "done": true
+  },
+  "comics_xkcd": {
+    "text": "Returns a xkcd comic",
+    "done": true
+  },
   "decide": {
     "text": "Decides between given words",
     "done": true

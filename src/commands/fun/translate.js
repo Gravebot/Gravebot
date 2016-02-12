@@ -52,3 +52,8 @@ export default {
   yoda: yoda,
   yodaify: yoda
 };
+
+export const help = {
+  snoopify: {parameters: 'sentence'},
+  yoda: {parameters: 'sentence'}
+};

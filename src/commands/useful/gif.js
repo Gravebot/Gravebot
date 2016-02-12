@@ -100,3 +100,7 @@ export default {
   giphy,
   popkey
 };
+
+export const help = {
+  gif: {parameters: 'gif tags'}
+};

@@ -18,3 +18,7 @@ export default {
   joinserver: joinServer,
   'join-server': joinServer
 };
+
+export const help = {
+  join: {parameters: 'invitation link'}
+};

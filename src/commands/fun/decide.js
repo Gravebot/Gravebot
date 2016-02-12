@@ -22,3 +22,9 @@ export default {
   choose: decide,
   decide
 };
+
+export const help = {
+  decide: {
+    parameters: ['something', 'or', 'something']
+  }
+};

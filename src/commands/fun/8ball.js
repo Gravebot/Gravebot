@@ -14,3 +14,9 @@ export default {
   '8ball': eightBall,
   eightball: eightBall
 };
+
+export const help = {
+  '8ball': {
+    parameters: ['question']
+  }
+};

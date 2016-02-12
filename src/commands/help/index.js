@@ -42,9 +42,11 @@ export function subCommands(bot, msg, method) {
       const trans_key = `${method}_${subcommand.name}`;
       const translation = T(trans_key, lang);
       if (!translation) return;
-      const parameters = R.join(' ', subcommand.parameters || []);
 
-      return `**\`${method} ${subcommand.name} ${parameters}\`**
+      const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
+      const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
+
+      return `**\`${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
       ${translation}`;
     }, subcommands);
 
@@ -65,9 +67,10 @@ function helpCategory(category, lang = 'en') {
     const translation = T(name, lang);
     if (!translation && category !== 'other') return;
 
-    const parameters = R.join(' ', help_parameters[name].parameters || []);
-    let text = `**\`${nconf.get('PREFIX')}${name} ${parameters}\`**`;
-    if (translation) text += `\n${translation}`;
+    const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+    let text = `**\`${nconf.get('PREFIX')}${name}\`**`;
+    if (parameters) text += ` \`${parameters}\``;
+    if (translation) text += `\n\t\t${translation}`;
 
     return text;
   }, methods);
@@ -84,7 +87,7 @@ function help(bot, msg, suffix) {
     help_methods.push('memelist');
 
     const text = R.map(param => {
-      return `**\`${nconf.get('PREFIX')}help ${param}\`**
+      return `**\`${nconf.get('PREFIX')}help\`** \`${param}\`
       ${T('help_' + param, lang)}`;
     }, help_methods);
 

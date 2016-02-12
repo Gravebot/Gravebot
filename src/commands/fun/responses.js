@@ -34,3 +34,9 @@ export default {
   emojis: emoji,
   quote
 };
+
+export const help = {
+  drama: {parameters: 'number'},
+  emoji: {parameters: 'number'},
+  quote: {parameters: 'number'}
+};

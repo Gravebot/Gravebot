@@ -66,3 +66,12 @@ export default {
   pug,
   pugs: pug
 };
+
+export const help = {
+  cat: {
+    parameters: ['bomb', 'number']
+  },
+  dog: {
+    parameters: ['bomb', 'number']
+  }
+};
