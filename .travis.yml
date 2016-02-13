@@ -3,6 +3,7 @@ script: npm run test-coverage
 
 services:
   - docker
+  - redis-server
 cache:
   apt: true
   directories:
