@@ -6,7 +6,7 @@ import SuperError from 'super-error';
 
 import sentry from '../../../sentry';
 import { lol_champs } from '../../../data';
-import { help_text } from './help';
+import { subCommands as helpText } from '../../help';
 import { secondDec, toTitleCase } from '../../../helpers';
 
 
@@ -163,7 +163,7 @@ export function matchDetails(bot, msg, suffix) {
   if (!R.contains(region, regions)) return bot.sendMessage(msg.channel, `I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
   if (!name) {
     bot.sendMessage(msg.channel, 'You need to specify a summoner name.');
-    return bot.sendMessage(msg.channel, help_text);
+    return bot.sendMessage(msg.channel, helpText(bot, msg, 'lol'));
   }
 
   _makeRequest(`https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}`)
