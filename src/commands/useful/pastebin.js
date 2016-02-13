@@ -42,3 +42,7 @@ export default {
   pastebin: makePaste,
   makepaste: makePaste
 };
+
+export const help = {
+  pastebin: {parameters: ['text']}
+};

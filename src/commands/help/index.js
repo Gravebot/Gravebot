@@ -12,6 +12,7 @@ import T from '../../translate';
 
 const help_parameters = {};
 const categories = {
+  help: [],
   info: [],
   fun: [],
   games: [],
@@ -36,7 +37,7 @@ R.forEach(js_path => {
 
 export function subCommands(bot, msg, method) {
   getUserLang(msg.author.id).then(lang => {
-    const subcommands = R.sort(R.prop('command'))(help_parameters[method].subcommands);
+    const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
     let text = R.map(subcommand => {
       const trans_key = `${method}_${subcommand.name}`;
@@ -51,8 +52,8 @@ export function subCommands(bot, msg, method) {
     }, subcommands);
 
     text = R.join('\n', R.reject(R.isNil, text));
-    if (subcommands.header_text) {
-      const header_text = T('subcommands.header_text', lang);
+    if (help_parameters[method].header_text) {
+      const header_text = T(help_parameters[method].header_text, lang);
       text = `${header_text}\n\n${text}`;
     }
 
@@ -85,11 +86,25 @@ function help(bot, msg, suffix) {
 
     const help_methods = R.keys(categories).sort();
     help_methods.push('memelist');
+    help_methods.splice(help_methods.indexOf('help'), 1);
 
     const text = R.map(param => {
       return `**\`${nconf.get('PREFIX')}help\`** \`${param}\`
       ${T('help_' + param, lang)}`;
     }, help_methods);
+
+    // Adds commands that aren't just `help`;
+    R.forEach(name => {
+      const translation = T(name, lang);
+      if (!translation) return;
+
+      const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+
+      let command_text = `**\`${nconf.get('PREFIX')}setlang\`**`;
+      if (parameters) command_text += ` \`${parameters}\``;
+      if (translation) command_text += `\n\t\t${translation}`;
+      text.push(command_text);
+    }, categories.help);
 
     return bot.sendMessage(msg.channel, R.join('\n', text));
   });

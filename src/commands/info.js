@@ -140,3 +140,13 @@ export default {
   version,
   whois: userinfo
 };
+
+export const help = {
+  avatar: {parameters: ['@username'], category: 'info'},
+  serverinfo: {category: 'info'},
+  serverlist: {category: 'info'},
+  servers: {category: 'info'},
+  userinfo: {parameters: ['@username'], category: 'info'},
+  uptime: {category: 'info'},
+  version: {category: 'info'}
+};

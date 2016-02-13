@@ -23,3 +23,7 @@ export default {
   wiki,
   wikipedia: wiki
 };
+
+export const help = {
+  wiki: {parameters: ['search terms']}
+};

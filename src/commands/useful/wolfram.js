@@ -44,3 +44,7 @@ export default {
   wfa: wolfram,
   wolfram
 };
+
+export const help = {
+  wolfram: {parameters: ['query']}
+};

@@ -4,25 +4,11 @@ import R from 'ramda';
 import _request from 'request';
 
 import sentry from '../../sentry';
+import { subCommands as helpText } from '../help';
 import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../helpers';
 
 
 const request = Promise.promisify(_request);
-
-const help_text = `Dota 2 help commands
-Accepted positions are **Mid**, **Off**, **Safe**, and **Jungle**.
-
-**\`!dota2 best\`** \`position\`
-    Get the top 10 Heroes for a specific position
-**\`!dota2 build\`** \`hero-name\`
-    Get the most popular build for a Hero
-**\`!dota2 counters\`** \`hero-name\`
-    Get the top 10 counters for a Hero
-**\`!dota2 impact\`**
-    Get the top 10 Heroes with the biggest impact
-**\`!dota2 items\`** \`hero-name\`
-    Get the top 10 most used items for a Hero`;
-
 const positions = {
   middle: 'mid',
   mid: 'mid',
@@ -259,10 +245,35 @@ function commands(bot, msg, suffix) {
   if (command === 'matchups') return counters(bot, msg, suffix);
   if (command === 'skill') return build(bot, msg, suffix);
   if (command === 'skills') return build(bot, msg, suffix);
-  return bot.sendMessage(msg.channel, help_text);
+  return bot.sendMessage(msg.channel, helpText(bot, msg, 'dota2'));
 }
 
 export default {
   dota: commands,
   dota2: commands
+};
+
+export const help = {
+  dota2: {
+    header_text: 'dota2_header_text',
+    subcommands: [
+      {
+        name: 'best',
+        parameters: ['position']
+      },
+      {
+        name: 'build',
+        parameters: ['hero-nane']
+      },
+      {
+        name: 'counters',
+        parameters: ['hero-name']
+      },
+      {name: 'impact'},
+      {
+        name: 'items',
+        parameters: ['hero-name']
+      }
+    ]
+  }
 };

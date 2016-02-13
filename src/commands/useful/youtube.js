@@ -33,3 +33,7 @@ export default {
   youtube: search,
   yt: search
 };
+
+export const help = {
+  youtube: {parameters: ['search terms']}
+};

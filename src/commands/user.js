@@ -24,3 +24,10 @@ export default {
   setlang: setLang,
   'set-language': setLang
 };
+
+export const help = {
+  'set-language': {
+    parameters: 'language code',
+    category: 'help'
+  }
+};

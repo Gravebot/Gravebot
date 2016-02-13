@@ -4,7 +4,7 @@
     "done": true
   },
   "avatar": {
-    "text": "Responds with the avatar of the user, if no user is written, your avatar",
+    "text": "Responds with the avatar of the user, if no user is written, the avatar of the sender",
     "done": true
   },
   "cat": {
@@ -65,6 +65,30 @@
   },
   "dota2": {
     "text": "DOTA 2",
+    "done": true
+  },
+  "dota2_best": {
+    "text": "Get the top 10 Heroes for a specific position",
+    "done": true
+  },
+  "dota2_build": {
+    "text": "Get the most popular build for a Hero",
+    "done": true
+  },
+  "dota2_counters": {
+    "text": "Get the top 10 counters for a Hero",
+    "done": true
+  },
+  "dota2_header_text": {
+    "text": "Dota 2 help commands.\nAccepted positions are **Mid**, **Off**, **Safe**, and **Jungle**.",
+    "done": true
+  },
+  "dota2_impact": {
+    "text": "Get the top 10 Heroes with the biggest impact",
+    "done": true
+  },
+  "dota2_items": {
+    "text": "Get the top 10 most used items for a Hero",
     "done": true
   },
   "drama": {
@@ -177,6 +201,10 @@
   },
   "servers": {
     "text": "Lists how many servers, channels and users the bot is connected to",
+    "done": true
+  },
+  "set-language": {
+    "text": "Set all commands to respond in a specified language",
     "done": true
   },
   "snoopify": {

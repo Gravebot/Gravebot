@@ -23,3 +23,7 @@ export default {
   ud: urban,
   urban
 };
+
+export const help = {
+  urban: {parameters: ['search terms']}
+};
