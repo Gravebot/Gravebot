@@ -2,11 +2,14 @@ import { PMChannel } from 'discord.js';
 
 import sentry from '../sentry';
 import { setUserLang } from '../redis';
-import T from '../translate';
+import T, { langs } from '../translate';
 
 
 function setLang(bot, msg, suffix) {
   const lang = suffix.toLowerCase();
+
+  if (!lang) return bot.sendMessage(msg.channel, `${T('accepted_languages', 'en')}:\n**${langs.join(', ')}**`);
+
   setUserLang(msg.author.id, lang).then(() => {
     if (msg.channel instanceof PMChannel) {
       bot.sendMessage(msg.channel, `${T('hello', lang)}, ${msg.author.name}!`);

@@ -1,5 +1,6 @@
 {
   "8ball": "Answers the question",
+  "accepted_languages": "Accepted languages are",
   "avatar": "Responds with the avatar of the user, if no user is written, the avatar of the sender",
   "cat": "Bombs chat with adorable cats",
   "chat": "Chats with you",

@@ -3,6 +3,10 @@
     "text": "Answers the question",
     "done": true
   },
+  "accepted_languages": {
+    "text": "Accepted languages are",
+    "done": true
+  },
   "avatar": {
     "text": "Responds with the avatar of the user, if no user is written, the avatar of the sender",
     "done": true

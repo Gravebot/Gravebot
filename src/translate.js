@@ -16,3 +16,5 @@ export default function translate(key, lang) {
 
   return translation;
 }
+
+export const langs = R.keys(translations);
