@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
 [![Coverage Status](https://img.shields.io/coveralls/Gravestorm/Gravebot/master.svg)](https://coveralls.io/github/Gravestorm/Gravebot?branch=master)
 <a href="https://zenhub.io"><img src="https://img.shields.io/badge/KanBan%20Board-Zenhub.io-blue.svg"></a>
+[![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/gravebot/gravebot/)
 
 ## About
 
