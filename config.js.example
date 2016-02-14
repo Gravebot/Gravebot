@@ -7,6 +7,9 @@ module.exports = {
   EMAIL: '',
   PASSWORD: '',
 
+  // *Required* Redis URL
+  REDIS_URL: '',
+
   // Youtube API key, used for searching videos with `!youtube`.
   // Learn more here. https://developers.google.com/youtube/v3/getting-started
   YOUTUBE_API_KEY: '',
