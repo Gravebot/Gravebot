@@ -12,50 +12,47 @@ import { toTitleCase } from '../src/helpers';
 const fs = Promise.promisifyAll(_fs);
 const gt = Promise.promisify(googleTranslate(process.env.GOOGLE_TRANSLATE_API).translate);
 
-// const supported_languages = [
-//   'ar', // Arabic
-//   'bs', // Bosnian
-//   'bg', // Bulgarian
-//   'ca', // Catalan
-//   'cs', // Czech
-//   'da', // Danish
-//   'de', // German
-//   'el', // Greek
-//   'en', // English
-//   'es', // Spanish
-//   'fi', // Finish
-//   'fr', // French
-//   'he', // Hebrew
-//   'hr', // Croatian
-//   'hu', // Hungarian
-//   'id', // Indonesian
-//   'it', // Italian
-//   'ja', // Japanese
-//   'ka', // Georgian
-//   'ko', // Korean
-//   'ms', // Malay
-//   'no', // Norwegian
-//   'lt', // Lithuanian
-//   'lv', // Latvian
-//   'nl', // Dutch
-//   'pl', // Polish
-//   'pt', // Portuguese
-//   'pt-br', // Brazillian Portuguese
-//   'ro', // Romanian
-//   'ru', // Russian
-//   'sk', // Slovak
-//   'sl', // Slovenian
-//   'sr', // Serbian
-//   'sv', // Swedish
-//   'th', // Thai
-//   'tr', // Turkish
-//   'vi', // Vietnamese
-//   'zh-cn', // Chinese Simplified
-//   'zh-tw' // Chinese Traditional
-// ];
-
-const supported_languages = ['en', 'fr'];
-
+const supported_languages = [
+  'ar', // Arabic
+  'bs', // Bosnian
+  'bg', // Bulgarian
+  'ca', // Catalan
+  'cs', // Czech
+  'da', // Danish
+  'de', // German
+  'el', // Greek
+  'en', // English
+  'es', // Spanish
+  'fi', // Finish
+  'fr', // French
+  'he', // Hebrew
+  'hr', // Croatian
+  'hu', // Hungarian
+  'id', // Indonesian
+  'it', // Italian
+  'ja', // Japanese
+  'ka', // Georgian
+  'ko', // Korean
+  'ms', // Malay
+  'no', // Norwegian
+  'lt', // Lithuanian
+  'lv', // Latvian
+  'nl', // Dutch
+  'pl', // Polish
+  'pt', // Portuguese
+  'pt-br', // Brazillian Portuguese
+  'ro', // Romanian
+  'ru', // Russian
+  'sk', // Slovak
+  'sl', // Slovenian
+  'sr', // Serbian
+  'sv', // Swedish
+  'th', // Thai
+  'tr', // Turkish
+  'vi', // Vietnamese
+  'zh-cn', // Chinese Simplified
+  'zh-tw' // Chinese Traditional
+];
 
 const translations_path = path.join(__dirname, '../i18n');
 const translations = R.fromPairs(R.map(file_name => {
