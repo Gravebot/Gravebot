@@ -3,13 +3,14 @@ import ent from 'entities';
 import nconf from 'nconf';
 
 import sentry from '../../sentry';
+import T from '../../translate';
 
 
 const clever = new Cleverbot(nconf.get('CLEVERBOT_API_NAME'), nconf.get('CLEVERBOT_API_KEY'));
 
 function chat(bot, msg, suffix) {
   if (!nconf.get('CLEVERBOT_API_NAME') || !nconf.get('CLEVERBOT_API_KEY')) {
-    bot.sendMessage(msg.channel, 'Please setup cleverbot in config.js to use the **`!chat`** command.');
+    bot.sendMessage(msg.channel, T('chat_usage', msg.author.lang));
     return;
   }
 

@@ -19,6 +19,10 @@
     "text": "Chats with you",
     "done": true
   },
+  "chat_usage": {
+    "text": "Please setup cleverbot in config.js to use the **`!chat`** command.",
+    "done": true
+  },
   "coin": {
     "text": "Flips a coin",
     "done": true
@@ -67,6 +71,10 @@
     "text": "Decides between given words",
     "done": true
   },
+  "decide_usage": {
+    "text": "Usage: **`!decide`** `something` **`or`** `something...`",
+    "done": true
+  },
   "dota2": {
     "text": "DOTA 2",
     "done": true
@@ -107,6 +115,14 @@
     "text": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",
     "done": true
   },
+  "gif_error": {
+    "text": "I couldn't find a gif for",
+    "done": true
+  },
+  "gif_usage": {
+    "text": "Usage: **`!gif`** `gif tags`",
+    "done": true
+  },
   "hello": {
     "text": "Hello",
     "done": true
@@ -137,6 +153,10 @@
   },
   "join": {
     "text": "Joins the server the bot is invited to",
+    "done": true
+  },
+  "join_usage": {
+    "text": "Usage: **`!join`** `invitation link`",
     "done": true
   },
   "lol": {
@@ -179,8 +199,28 @@
     "text": "Creates a meme with the given meme name and text",
     "done": true
   },
+  "meme_usage": {
+    "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
+    "done": true
+  },
   "paste": {
     "text": "Creates a paste on Pastebin.com and returns the url",
+    "done": true
+  },
+  "pastebin_setup": {
+    "text": "Please setup Pastebin in config.js to use the **`!paste`** command.",
+    "done": true
+  },
+  "pastebin_usage": {
+    "text": "Usage: **`!paste`** `text`",
+    "done": true
+  },
+  "popkey_setup": {
+    "text": "Please setup Popkey in config.js to use the **`!popkey`** command.",
+    "done": true
+  },
+  "popkey_usage": {
+    "text": "Usage: **`!popkey`** `gif tags`",
     "done": true
   },
   "pug": {
@@ -223,6 +263,14 @@
     "text": "Returns the summary of the first matching search result from Urban Dictionary",
     "done": true
   },
+  "urban_error": {
+    "text": "I couldn't find a definition for",
+    "done": true
+  },
+  "urban_usage": {
+    "text": "Usage: **`!urban`** `search terms`",
+    "done": true
+  },
   "userinfo": {
     "text": "Gives information about the user, if no user is written, yourself",
     "done": true
@@ -239,8 +287,20 @@
     "text": "Returns the summary of the first matching search result from Wikipedia",
     "done": true
   },
+  "wiki_usage": {
+    "text": "Usage: **`!wiki`** `search terms`",
+    "done": true
+  },
   "wolfram": {
     "text": "Query Wolfram Alpha for almost anything",
+    "done": true
+  },
+  "wolfram_setup": {
+    "text": "Please setup Wolfram in config.js to use the **`!wolfram`** command.",
+    "done": true
+  },
+  "wolfram_usage": {
+    "text": "Usage: **`!wolfram`** `query`",
     "done": true
   },
   "yoda": {
@@ -249,6 +309,18 @@
   },
   "youtube": {
     "text": "Gets a video from Youtube matching the given tags",
+    "done": true
+  },
+  "youtube_error": {
+    "text": "I couldn't find a video for",
+    "done": true
+  },
+  "youtube_setup": {
+    "text": "Please setup Youtube in config.js to use the **`!youtube`** command.",
+    "done": true
+  },
+  "youtube_usage": {
+    "text": "Usage: **`!youtube`** `video tags`",
     "done": true
   }
 }

@@ -4,6 +4,7 @@ import _request from 'request';
 import R from 'ramda';
 
 import sentry from '../../sentry';
+import T from '../../translate';
 
 
 const request = Promise.promisify(_request);
@@ -32,7 +33,7 @@ function giphy(bot, msg, suffix) {
       if (body.data.id) {
         bot.sendMessage(msg.channel, body.data.image_original_url);
       } else {
-        bot.sendMessage(msg.channel, `I couldn\'t find a gif for: ${suffix}`);
+        bot.sendMessage(msg.channel, `${T('gif_error', msg.author.lang)}: ${suffix}`);
       }
     })
     .catch(err => {
@@ -43,12 +44,12 @@ function giphy(bot, msg, suffix) {
 
 function popkey(bot, msg, suffix) {
   if (!nconf.get('POPKEY_KEY')) {
-    bot.sendMessage(msg.channel, 'Please setup Popkey in config.js to use the **`!popkey`** command.');
+    bot.sendMessage(msg.channel, T('popkey_setup', msg.author.lang));
     return;
   }
 
   if (!suffix) {
-    bot.sendMessage(msg.channel, 'Usage: **`!popkey`** `gif tags`');
+    bot.sendMessage(msg.channel, T('popkey_usage', msg.author.lang));
     return;
   }
 
@@ -68,12 +69,12 @@ function popkey(bot, msg, suffix) {
         const gif = body[Math.floor(Math.random() * body.length)].source.url;
         bot.sendMessage(msg.channel, gif);
       } else {
-        bot.sendMessage(msg.channel, `I couldn\'t find a gif for: ${suffix}`);
+        bot.sendMessage(msg.channel, `${T('gif_error', msg.author.lang)}: ${suffix}`);
       }
     })
     .catch(err => {
       if (err instanceof TypeError) {
-        bot.sendMessage(msg.channel, `I couldn\'t find a gif for: ${suffix}`);
+        bot.sendMessage(msg.channel, `${T('gif_error', msg.author.lang)}: ${suffix}`);
       } else {
         sentry(err, 'gif', 'popkey');
         bot.sendMessage(msg.channel, `Error: ${err.message}`);
@@ -83,7 +84,7 @@ function popkey(bot, msg, suffix) {
 
 function gif(bot, msg, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, 'Usage: **`!gif`** `gif tags`');
+    bot.sendMessage(msg.channel, T('gif_usage', msg.author.lang));
     return;
   }
 

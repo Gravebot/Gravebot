@@ -1,6 +1,9 @@
+import T from '../../translate';
+
+
 function joinServer(bot, msg, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, 'Usage: **`!join`** `invitation link`');
+    bot.sendMessage(msg.channel, T('join_usage', msg.author.lang));
     return;
   }
   bot.joinServer(suffix, (err, server) => {

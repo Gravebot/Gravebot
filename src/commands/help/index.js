@@ -3,7 +3,6 @@ import nconf from 'nconf';
 import path from 'path';
 import R from 'ramda';
 
-import { getUserLang } from '../../redis';
 import meme from './meme';
 import T from '../../translate';
 
@@ -39,29 +38,28 @@ if (!process.env.TEST) {
 }
 
 export function subCommands(bot, msg, method) {
-  getUserLang(msg.author.id).then(lang => {
-    const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
+  const lang = msg.author.lang;
+  const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
-    let text = R.map(subcommand => {
-      const trans_key = `${method}_${subcommand.name}`;
-      const translation = T(trans_key, lang);
-      if (!translation) return;
+  let text = R.map(subcommand => {
+    const trans_key = `${method}_${subcommand.name}`;
+    const translation = T(trans_key, lang);
+    if (!translation) return;
 
-      const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
-      const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
+    const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
+    const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
 
-      return `**\`${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
-      ${translation}`;
-    }, subcommands);
+    return `**\`${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
+    ${translation}`;
+  }, subcommands);
 
-    text = R.join('\n', R.reject(R.isNil, text));
-    if (help_parameters[method].header_text) {
-      const header_text = T(help_parameters[method].header_text, lang);
-      text = `${header_text}\n\n${text}`;
-    }
+  text = R.join('\n', R.reject(R.isNil, text));
+  if (help_parameters[method].header_text) {
+    const header_text = T(help_parameters[method].header_text, lang);
+    text = `${header_text}\n\n${text}`;
+  }
 
-    return bot.sendMessage(msg.channel, text);
-  });
+  return bot.sendMessage(msg.channel, text);
 }
 
 // E.g. !help useful
@@ -83,34 +81,33 @@ function helpCategory(category, lang = 'en') {
 }
 
 function help(bot, msg, suffix) {
-  getUserLang(msg.author.id).then(lang => {
-    const category = suffix.toLowerCase();
-    if (categories[category]) return bot.sendMessage(msg.channel, helpCategory(category, lang));
+  const lang = msg.author.lang;
+  const category = suffix.toLowerCase();
+  if (categories[category]) return bot.sendMessage(msg.channel, helpCategory(category, lang));
 
-    const help_methods = R.keys(categories).sort();
-    help_methods.push('memelist');
-    help_methods.splice(help_methods.indexOf('help'), 1);
+  const help_methods = R.keys(categories).sort();
+  help_methods.push('memelist');
+  help_methods.splice(help_methods.indexOf('help'), 1);
 
-    const text = R.map(param => {
-      return `**\`${nconf.get('PREFIX')}help\`** \`${param}\`
-      ${T('help_' + param, lang)}`;
-    }, help_methods);
+  const text = R.map(param => {
+    return `**\`${nconf.get('PREFIX')}help\`** \`${param}\`
+    ${T('help_' + param, lang)}`;
+  }, help_methods);
 
-    // Adds commands that aren't just `help`;
-    R.forEach(name => {
-      const translation = T(name, lang);
-      if (!translation) return;
+  // Adds commands that aren't just `help`;
+  R.forEach(name => {
+    const translation = T(name, lang);
+    if (!translation) return;
 
-      const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+    const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
 
-      let command_text = `**\`${nconf.get('PREFIX')}setlang\`**`;
-      if (parameters) command_text += ` \`${parameters}\``;
-      if (translation) command_text += `\n\t\t${translation}`;
-      text.push(command_text);
-    }, categories.help);
+    let command_text = `**\`${nconf.get('PREFIX')}setlang\`**`;
+    if (parameters) command_text += ` \`${parameters}\``;
+    if (translation) command_text += `\n\t\t${translation}`;
+    text.push(command_text);
+  }, categories.help);
 
-    return bot.sendMessage(msg.channel, R.join('\n', text));
-  });
+  return bot.sendMessage(msg.channel, R.join('\n', text));
 }
 
 function memelist(bot, msg, suffix) {

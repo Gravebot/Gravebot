@@ -1,4 +1,5 @@
 import { choices } from '../../data';
+import T from '../../translate';
 
 
 function decide(bot, msg, suffix) {
@@ -13,7 +14,7 @@ function decide(bot, msg, suffix) {
   if (split.length > 1) {
     bot.sendMessage(msg.channel, `${choices[rand]} **${multipleDecide(split)}**`);
   } else {
-    bot.sendMessage(msg.channel, 'Usage: **`!decide`** `something` **`or`** `something...`');
+    bot.sendMessage(msg.channel, T('decide_usage', msg.author.lang));
   }
 }
 

@@ -1,10 +1,11 @@
 import R from 'ramda';
 import Wiki from 'wikijs';
 
+import T from '../../translate';
 
 function wiki(bot, msg, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, 'Usage: **`!wiki`** `search terms`');
+    bot.sendMessage(msg.channel, T('wiki_usage', msg.author.lang));
     return;
   }
   new Wiki().search(suffix, 1).then(data => {

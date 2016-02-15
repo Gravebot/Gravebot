@@ -4,6 +4,7 @@ import R from 'ramda';
 import wolframalpha from 'wolfram-alpha';
 
 import sentry from '../../sentry';
+import T from '../../translate';
 
 
 function queryWolf(wolf, query) {
@@ -17,11 +18,11 @@ function queryWolf(wolf, query) {
 
 function wolfram(bot, msg, query) {
   if (!nconf.get('WOLFRAM_KEY')) {
-    return bot.sendMessage(msg.channel, 'Please setup Wolfram in config.js to use the **`!wolfram`** command.');
+    return bot.sendMessage(msg.channel, T('wolfram_setup', msg.author.lang));
   }
 
   if (!query) {
-    bot.sendMessage(msg.channel, 'Usage: **\`!wolfram\`** \`query\`');
+    bot.sendMessage(msg.channel, T('wolfram_usage', msg.author.lang));
   }
 
   const wolf = wolframalpha.createClient(nconf.get('WOLFRAM_KEY'));
