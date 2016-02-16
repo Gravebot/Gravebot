@@ -79,7 +79,8 @@ function callCmd(cmd, name, bot, msg, suffix) {
   cmd(bot, msg, suffix);
 }
 
-function onMessage(msg) {
+function onMessage(msg, new_message) {
+  msg = new_message || msg;
   if (bot.user.username === msg.author.username) return;
 
   // Checks for PREFIX
