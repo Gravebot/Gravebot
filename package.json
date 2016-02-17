@@ -20,7 +20,7 @@
     "forever": "^0.15.1",
     "gizoogle": "^0.0.6",
     "glob": "^6.0.3",
-    "imgflipper": "^1.0.1",
+    "imgflipper": "git+https://git@github.com/Gravebot/imgflipper.git#json-body",
     "jade": "^1.11.0",
     "moment": "^2.11.1",
     "nconf": "^0.8.2",
