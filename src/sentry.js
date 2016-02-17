@@ -6,7 +6,7 @@ let client = {
   captureError: (err, options) => {
     if (options.tags && options.tags.source && !err.source) err.source = options.tags.source;
     if (options.tags && options.tags.method && !err.method) err.method = options.tags.method;
-    console.error(err);
+    console.error(err.stack || err);
   }
 };
 
@@ -33,6 +33,7 @@ export default function captureError(err, source, method) {
   };
 
   if (source && !method) options.tags.method = source;
+  if (err.level) options.level = err.level;
 
   client.captureError(err, options);
 }
