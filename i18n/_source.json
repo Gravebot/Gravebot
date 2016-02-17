@@ -15,6 +15,10 @@
     "text": "Bombs chat with adorable cats",
     "done": true
   },
+  "champgg_setup": {
+    "text": "Please setup Champion.gg in config.js to use the **`!lol`** command.",
+    "done": true
+  },
   "chat": {
     "text": "Chats with you",
     "done": true
@@ -187,12 +191,24 @@
     "text": "Get rank, champ, winrate, and games for all players in a __current__ match.",
     "done": true
   },
+  "lol_positions": {
+    "text": "Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?",
+    "done": true
+  },
   "lol_skills": {
     "text": "Get the highest win skills for a Champion and Position",
     "done": true
   },
+  "lol_specify_position": {
+    "text": "You didn't specifiy a position.",
+    "done": true
+  },
   "lol_status": {
     "text": "Get the LoL Game and Client server status for all regions",
+    "done": true
+  },
+  "lol_unknown_position": {
+    "text": "I don't understand position",
     "done": true
   },
   "meme": {
@@ -201,6 +217,18 @@
   },
   "meme_usage": {
     "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
+    "done": true
+  },
+  "no_counters": {
+    "text": "I don't have counters for",
+    "done": true
+  },
+  "no_item_sets": {
+    "text": "I don't have item sets for",
+    "done": true
+  },
+  "no_skills": {
+    "text": "I don't have skill orders for",
     "done": true
   },
   "paste": {
@@ -231,6 +259,10 @@
     "text": "Responds with a quote, if no number is written, a random one",
     "done": true
   },
+  "riot_setup": {
+    "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
+    "done": true
+  },
   "roll": {
     "text": "Rolls the dice a number of times with a number of sides",
     "done": true
@@ -253,6 +285,10 @@
   },
   "snoopify": {
     "text": "Snoopifies tha sentence",
+    "done": true
+  },
+  "specify_summoner": {
+    "text": "You need to specify a summoner name.",
     "done": true
   },
   "uptime": {

@@ -8,6 +8,7 @@ import sentry from '../../../sentry';
 import { lol_champs } from '../../../data';
 import { subCommands as helpText } from '../../help';
 import { secondDec, toTitleCase } from '../../../helpers';
+import T from '../../../translate';
 
 
 const request = Promise.promisify(_request);
@@ -145,7 +146,7 @@ function _formatPlayerStats(summoners) {
 
 export function matchDetails(bot, msg, suffix) {
   if (!nconf.get('RIOT_KEY')) {
-    return bot.sendMessage(msg.channel, 'Please setup Riot\'s API in config.js to use the **`!lol`** command.');
+    return bot.sendMessage(msg.channel, T('riot_setup', msg.author.lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -162,7 +163,7 @@ export function matchDetails(bot, msg, suffix) {
 
   if (!R.contains(region, regions)) return bot.sendMessage(msg.channel, `I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
   if (!name) {
-    bot.sendMessage(msg.channel, 'You need to specify a summoner name.');
+    bot.sendMessage(msg.channel, T('specify_summoner', msg.author.lang));
     return bot.sendMessage(msg.channel, helpText(bot, msg, 'lol'));
   }
 
