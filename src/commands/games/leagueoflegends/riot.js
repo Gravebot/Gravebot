@@ -17,10 +17,17 @@ const champions = R.values(lol_champs);
 const NotFoundError = SuperError.subclass('NotFoundError', function(msg) {
   this.message = msg || 'Not Found';
   this.code = 404;
+  this.level = 'warning';
+});
+
+const NotYetAvailable = SuperError.subclass('NotYetAvailable', function(msg) {
+  this.message = msg || 'Match details are not yet availabe from Riot';
+  this.code = 503;
+  this.level = 'warning';
 });
 
 // List of regions
-const regions = ['br', 'eune', 'euw', 'kr', 'lan', 'las', 'na', 'oce', 'pbe', 'ru', 'tr'];
+const regions = ['br', 'eune', 'euw', 'kr', 'lan', 'las', 'na', 'oce', 'ru', 'tr'];
 
 // Setup and makes request to Riot API
 function _makeRequest(url) {
@@ -76,11 +83,15 @@ function _getMatchSummoners(region, name, summoner_id) {
   let observer_region = R.toUpper(region);
   observer_region = !R.contains(observer_region, ['KR', 'RU']) ? observer_region + '1' : observer_region;
   if (observer_region === 'OCE1') observer_region = 'OC1';
+  if (observer_region === 'EUNE1') observer_region = 'EUN1';
 
   return _makeRequest(`https://${region}.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/${observer_region}/${summoner_id}`)
+    .tap(data => {
+      if (data.status && data.status.status_code === 403) throw new NotYetAvailable();
+    })
     .then(R.prop('participants'))
     .tap(summoners => {
-      if (!summoners) throw new NotFoundError();
+      if (!summoners) throw new NotYetAvailable();
     })
     .catch(NotFoundError, err => {
       console.error(err);
