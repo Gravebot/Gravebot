@@ -6,7 +6,7 @@ then
   export NODE_VERSION=$(cat package.json | json engines.node)
   export NPM_VERSION=$(cat package.json | json engines.npm)
   echo $NODE_VERSION $NPM_VERSION
-  docker build -f Dockerfile -t $REPO:$COMMIT .
+  docker build --build-arg NODE_VERSION=$NODE_VERSION --build-arg NPM_VERSION=$NPM_VERSION -t $REPO:$COMMIT .
   docker tag -f $REPO:$COMMIT $REPO:latest
   docker push $REPO
 else
