@@ -79,6 +79,9 @@ function _getMatchSummoners(region, name, summoner_id) {
 
   return _makeRequest(`https://${region}.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/${observer_region}/${summoner_id}`)
     .then(R.prop('participants'))
+    .tap(summoners => {
+      if (!summoners) throw new NotFoundError();
+    })
     .catch(NotFoundError, err => {
       console.error(err);
       throw new Error(`**${name}** isn't in a game.`);
