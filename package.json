@@ -14,7 +14,7 @@
     "cheerio": "^0.19.0",
     "cleverbot-node": "^0.2.1",
     "didyoumean": "^1.2.1",
-    "discord.js": "^6.0.0",
+    "discord.js": "git+https://git@github.com/Gravebot/discord.js.git#indev",
     "entities": "^1.1.1",
     "express": "^4.13.3",
     "forever": "^0.15.1",
