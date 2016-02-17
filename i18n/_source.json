@@ -131,6 +131,10 @@
     "text": "Hello",
     "done": true
   },
+  "help_all": {
+    "text": "List all available commands in private chat",
+    "done": true
+  },
   "help_fun": {
     "text": "List of fun commands",
     "done": true

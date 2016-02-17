@@ -63,8 +63,16 @@ export function subCommands(bot, msg, method) {
 }
 
 // E.g. !help useful
-function helpCategory(category, lang = 'en') {
-  const methods = categories[category].sort();
+function helpCategory(bot, msg, category, lang = 'en') {
+  let methods, channel;
+  if (category === 'all') {
+    channel = msg.channel;
+    methods = R.flatten(R.values(categories)).sort();
+  } else {
+    channel = msg.author;
+    methods = categories[category].sort();
+  }
+
   const text = R.map(name => {
     const translation = T(name, lang);
     if (!translation && category !== 'other') return;
@@ -77,16 +85,22 @@ function helpCategory(category, lang = 'en') {
     return text;
   }, methods);
 
-  return R.join('\n', R.reject(R.isNil, text));
+  if (category === 'all') {
+    R.forEach(commands_text => {
+      return bot.sendMessage(channel, R.join('\n', R.reject(R.isNil, commands_text)));
+    }, R.splitEvery(10)(text));
+  } else {
+    return bot.sendMessage(channel, R.join('\n', R.reject(R.isNil, text)));
+  }
 }
 
 function help(bot, msg, suffix) {
   const lang = msg.author.lang;
   const category = suffix.toLowerCase();
-  if (categories[category]) return bot.sendMessage(msg.channel, helpCategory(category, lang));
+  if (categories[category] || category === 'all') return helpCategory(bot, msg, category, lang);
 
   const help_methods = R.keys(categories).sort();
-  help_methods.push('memelist');
+  help_methods.push('all');
   help_methods.splice(help_methods.indexOf('help'), 1);
 
   const text = R.map(param => {
@@ -101,7 +115,7 @@ function help(bot, msg, suffix) {
 
     const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
 
-    let command_text = `**\`${nconf.get('PREFIX')}setlang\`**`;
+    let command_text = `**\`${nconf.get('PREFIX')}${name}\`**`;
     if (parameters) command_text += ` \`${parameters}\``;
     if (translation) command_text += `\n\t\t${translation}`;
     text.push(command_text);

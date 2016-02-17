@@ -32,6 +32,7 @@
   "gif_error": "I couldn't find a gif for",
   "gif_usage": "Usage: **`!gif`** `gif tags`",
   "hello": "Hello",
+  "help_all": "List all available commands in private chat",
   "help_fun": "List of fun commands",
   "help_games": "List of game commands",
   "help_info": "List of information commands",

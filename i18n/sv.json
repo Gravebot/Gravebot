@@ -32,6 +32,7 @@
   "gif_error": "Jag kunde inte hitta en gif för",
   "gif_usage": "Användning: ** `gif` **` gif tags`",
   "hello": "Hallå",
+  "help_all": "Lista alla tillgängliga kommandon i privat chatt",
   "help_fun": "Lista över roliga kommandon",
   "help_games": "Lista över spelkommandon",
   "help_info": "Lista över informationskommandon",

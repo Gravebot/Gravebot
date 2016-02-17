@@ -32,6 +32,7 @@
   "gif_error": "我无法找到一个GIF",
   "gif_usage": "用法：**`gif` **`GIF tags`",
   "hello": "您好",
+  "help_all": "列出私聊所有可用的命令",
   "help_fun": "有趣的命令列表",
   "help_games": "游戏命令的列表",
   "help_info": "信息的命令列表",
