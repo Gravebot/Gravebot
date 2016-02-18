@@ -11,6 +11,11 @@ if (!process.env.TRANSIFEX_KEY) {
   process.exit(1);
 }
 
+if (!process.env.GOOGLE_TRANSLATE_API) {
+  console.log('GOOGLE_TRANSLATE_API env is not set. Exiting.');
+  process.exit(1);
+}
+
 const translations_path = path.join(__dirname, '../../i18n');
 let translations = R.map(file_path => {
   return {
