@@ -33,6 +33,7 @@ export default function captureError(err, source, method) {
   };
 
   if (source && !method) options.tags.method = source;
+  if (err.level) options.level = err.level;
 
   client.captureError(err, options);
 }
