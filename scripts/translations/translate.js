@@ -7,7 +7,7 @@ import glob from 'glob';
 import path from 'path';
 import R from 'ramda';
 
-import { toTitleCase } from '../src/helpers';
+import { toTitleCase } from '../../src/helpers';
 
 const fs = Promise.promisifyAll(_fs);
 const gt = Promise.promisify(googleTranslate(process.env.GOOGLE_TRANSLATE_API).translate);
@@ -54,7 +54,7 @@ const supported_languages = [
   'zh-tw' // Chinese Traditional
 ];
 
-const translations_path = path.join(__dirname, '../i18n');
+const translations_path = path.join(__dirname, '../../i18n');
 const translations = R.fromPairs(R.map(file_name => {
   return [path.basename(file_name).replace(/.json/g, ''), require(file_name)];
 }, glob.sync(`${translations_path}/*(!(_source.json))`)));

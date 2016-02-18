@@ -79,7 +79,8 @@
     "start": "node index.js",
     "test": "npm run lint && npm run mocha",
     "test-coverage": "npm run lint && TEST=true babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
-    "translate": "babel-node ./scripts/translate.js"
+    "translate": "babel-node ./scripts/translations/translate.js",
+    "transifex:upload": "babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
     "node": "4.2.6",
