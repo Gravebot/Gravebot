@@ -7,11 +7,11 @@ cache:
   apt: true
   directories:
     - node_modules
+before_install:
+  - npm install -g npm@3.7.2
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-  # - bash ./scripts/docker/travis.sh
 node_js:
-  # - "stable"
   - "4.2"
 env:
   global:
