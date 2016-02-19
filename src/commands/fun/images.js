@@ -60,9 +60,40 @@ function pug(bot, msg, suffix) {
     });
 }
 
+function snake(bot, msg, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+
+  const options = {
+    url: 'http://fur.im/snek/snek.php',
+    json: true
+  };
+
+  Promise.resolve(R.repeat('snek', count))
+    .map(() => {
+      return request(options)
+        .then(R.path(['body', 'file']))
+        .then(encodeURI);
+    })
+    .then(R.join('\n'))
+    .then(text => bot.sendMessage(msg.channel, text))
+    .catch(err => {
+      sentry(err, 'images', 'snek');
+      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+    });
+}
+
 export default {
   cat,
   cats: cat,
+  '\ud83d\udc31': cat,
   pug,
-  pugs: pug
+  pugs: pug,
+  snake,
+  snek: snake,
+  '\ud83d\udc0d': snake
 };
