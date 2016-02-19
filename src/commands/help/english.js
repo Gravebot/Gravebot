@@ -37,6 +37,8 @@ export default {
     Responds with a quote, if no number is written, a random one
 **\`!roll\`** \`times\` \`sides\`
     Rolls the dice a number of times with a number of sides
+**\`!snake\`** bomb \`count\`
+    Bombs chat with adorable snakes.
 **\`!snoopify\`** \`sentence\`
     Snoopifies tha sentence
 **\`!yoda\`** \`sentence\`
