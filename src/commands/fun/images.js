@@ -73,7 +73,7 @@ function snake(bot, msg, suffix) {
     json: true
   };
 
-  Promise.resolve(R.repeat('snek', count))
+  Promise.resolve(R.repeat('snake', count))
     .map(() => {
       return request(options)
         .then(R.path(['body', 'file']))
@@ -82,7 +82,7 @@ function snake(bot, msg, suffix) {
     .then(R.join('\n'))
     .then(text => bot.sendMessage(msg.channel, text))
     .catch(err => {
-      sentry(err, 'images', 'snek');
+      sentry(err, 'images', 'snake');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
