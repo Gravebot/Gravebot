@@ -6,10 +6,8 @@ RUN apt-get update
 RUN apt-get -y install build-essential libxml2-dev python git libfontconfig1
 
 # Setup Node
-ARG NODE_VERSION
-ARG NPM_VERSION
-ENV NODE_VERSION $NODE_VERSION
-ENV NPM_VERSION $NPM_VERSION
+ENV NODE_VERSION 4.2.6
+ENV NPM_VERSION 3.7.2
 
 RUN git clone https://github.com/creationix/nvm.git /.nvm
 RUN echo "source /.nvm/nvm.sh" >> /etc/bash.bashrc
