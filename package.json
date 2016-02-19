@@ -22,7 +22,7 @@
     "glob": "^6.0.3",
     "imgflipper": "git+https://git@github.com/Gravebot/imgflipper.git#json-body",
     "jade": "^1.11.0",
-    "moment": "^2.11.1",
+    "moment": "^2.11.2",
     "nconf": "^0.8.2",
     "nib": "^1.1.0",
     "node-horseman": "git+https://git@github.com/Gravebot/node-horseman.git#debug-inspector",
