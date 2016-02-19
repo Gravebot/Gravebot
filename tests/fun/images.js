@@ -84,7 +84,7 @@ http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`);
       images.pug({sendMessage}, {channel: 'test'}, 'bomb 5');
     });
   });
-  
+
   describe('snake', () => {
     it('should return snake images', done => {
       function sendMessage(channel, res) {
