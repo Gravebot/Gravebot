@@ -35,4 +35,4 @@ Tests are required for all new functions, examples can be found in [/tests](/tes
 
 
 #### Pull Requests
-Once everything is up to par, feel free to through up a pull request. For pull request formatting, check out [#7](https://github.com/Gravestorm/Gravebot/pull/7) and [#2](https://github.com/Gravestorm/Gravebot/pull/2)
+Once everything is up to par, feel free to through up a pull request. For pull request formatting, check out [#7](https://github.com/Gravebot/Gravebot/pull/7) and [#2](https://github.com/Gravebot/Gravebot/pull/2)
