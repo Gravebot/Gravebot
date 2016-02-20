@@ -1,18 +1,12 @@
-FROM phusion/baseimage:0.9.18
+FROM alpine:3.3
 MAINTAINER Gravebot
 
 # Setup system deps
-RUN apt-get update
-RUN apt-get -y install build-essential libxml2-dev python git libfontconfig1
+RUN apk add --update fontconfig git libxml2-dev nodejs python build-base curl bash
+RUN npm install -g npm@3.7.2
 
-# Setup Node
-ENV NODE_VERSION 4.2.6
-ENV NPM_VERSION 3.7.2
-
-RUN git clone https://github.com/creationix/nvm.git /.nvm
-RUN echo "source /.nvm/nvm.sh" >> /etc/bash.bashrc
-RUN /bin/bash -c 'source /.nvm/nvm.sh && nvm install $NODE_VERSION && nvm use $NODE_VERSION && nvm alias default $NODE_VERSION && ln -s /.nvm/versions/node/v$NODE_VERSION/bin/node /usr/local/bin/node && ln -s /.nvm/versions/node/v$NODE_VERSION/bin/npm /usr/local/bin/npm'
-RUN npm install -g npm@$NPM_VERSION
+# Fix PhantomJS
+RUN curl -Ls "https://github.com/Gravebot/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz" | tar xz -C /
 
 # Copy bot
 COPY . /app/
@@ -20,14 +14,15 @@ WORKDIR /app/
 
 # Install node deps
 RUN npm install --production
+# For some reason postinstall fails when done through npm install
 RUN npm run postinstall
 
 # Cleanup
-RUN apt-get -y remove --purge --auto-remove build-essential libxml2-dev python git
-RUN apt-get clean && apt-get autoclean
+RUN rm -rf tests/ src/
 RUN node scripts/docker/remove-babel.js
 RUN npm prune --production
-RUN rm -rf src/ scripts/ /var/lib/apt/lists/* /var/tmp/* /usr/share/man /tmp/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+RUN apk del git libxml2-dev python build-base curl
+RUN rm -rf /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
 ENV PREFIX !
 ENV PORT 5000
