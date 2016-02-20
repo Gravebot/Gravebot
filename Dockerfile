@@ -18,10 +18,10 @@ RUN npm install --production
 RUN npm run postinstall
 
 # Cleanup
-RUN rm -rf tests/ src/
 RUN node scripts/docker/remove-babel.js
 RUN npm prune --production
 RUN apk del git libxml2-dev python build-base curl
+RUN rm -rf tests/ src/ scripts/
 RUN rm -rf /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
 ENV PREFIX !
