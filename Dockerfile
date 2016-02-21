@@ -14,7 +14,7 @@ RUN apk add --update git libxml2-dev nodejs python build-base curl bash && \
   node scripts/docker/remove-babel.js && \
   npm prune --production && \
   apk del git libxml2-dev python build-base curl && \
-  rm -rf tests/ src/ scripts/ /usr/lib/node_modules/ /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+  rm -rf tests/ src/ scripts/ /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
 ENV PREFIX !
 ENV PORT 5000
