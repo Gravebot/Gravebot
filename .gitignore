@@ -32,6 +32,7 @@ config.js
 
 # Test files
 test.js
+docker-compose.yml
 
 # Dist
 dist/
