@@ -6,7 +6,7 @@ RUN apk add --update fontconfig git libxml2-dev nodejs python build-base curl ba
 RUN npm install -g npm@3.7.2
 
 # Fix PhantomJS
-RUN curl -Ls "https://github.com/Gravebot/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz" | tar xz -C /
+RUN curl -Ls "https://github.com/dustinblackman/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz" | tar xz -C /
 
 # Copy bot
 COPY . /app/
