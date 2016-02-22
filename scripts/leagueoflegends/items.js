@@ -27,7 +27,7 @@ requester({url: 'https://ddragon.leagueoflegends.com/realms/na.json', json: true
   .tap(data => {
     let vals = R.values(data);
     let item_data = R.zipObj(R.keys(data), R.pluck('name')(vals));
-    fs.writeFileSync(path.join(__dirname, '../../data/lol_items.json'), JSON.stringify(item_data, null, 2), 'utf8');
+    fs.writeFileSync(path.join(__dirname, '../../src/data/lol_items.json'), JSON.stringify(item_data, null, 2), 'utf8');
   })
   .then(R.keys)
   .map(id => {
