@@ -11,6 +11,7 @@ before_install:
   - npm install -g npm@3.7.2
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - ./scripts/docker/trigger.sh
 node_js:
   - "4.2"
 env:
