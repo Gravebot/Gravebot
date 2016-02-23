@@ -70,7 +70,7 @@
     "lint-json": "find ./src/data -name \\*.json -type f -maxdepth 1 -exec jsonlint -q {} \\;",
     "lint-styl": "stylint --config ./.stylintrc ./web/styl",
     "mocha": "mocha --compilers js:babel-core/register ./tests/index.js",
-    "postinstall": "npm run build",
+    "postinstall": "rm -rf ./dist && babel src --out-dir dist --copy-files",
     "push-image": "npm run test && npm run build && docker build --rm -t gravebot/gravebot:latest . && docker push gravebot/gravebot:latest",
     "start": "node index.js",
     "test": "npm run lint && npm run mocha",
