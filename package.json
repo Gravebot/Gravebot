@@ -77,8 +77,8 @@
     "test-coverage": "npm run lint && babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js"
   },
   "engines": {
-    "node": "4.2.6",
-    "npm": "3.7.2"
+    "node": "4.3.1",
+    "npm": "3.7.3"
   },
   "babel": {
     "presets": [
