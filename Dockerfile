@@ -1,20 +1,31 @@
 FROM alpine:3.3
 MAINTAINER Gravebot
 
-# Copy bot
-COPY . /app/
+# Install setup that rarely changes.
+RUN apk add --update nodejs && \
+  npm install -g npm@3.7.3 && \
+  rm -rf /usr/share/man /tmp/* /var/tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+
+# Copy package.json and scripts
+COPY ./package.json /app/package.json
+COPY ./scripts/docker/remove-postinstall.js /app/scripts/docker/remove-postinstall.js
 WORKDIR /app/
 
-# Installs apks, fixes phantom, npm install and removes unused deps after babel build, then major cleanup.
-RUN apk add --update git libxml2-dev nodejs python build-base curl bash && \
-  npm install -g npm@3.7.2 && \
+# Install required APKs needed for building, install node modules, fix phantom, then cleanup.
+RUN apk add --update git libxml2-dev python build-base curl bash && \
+  echo "Fixing PhantomJS" && \
   curl -Ls "https://github.com/dustinblackman/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz" | tar xz -C / && \
+  echo "Installing node modules" && \
+  node ./scripts/docker/remove-postinstall.js && \
   npm install --production && \
-  npm run postinstall && \
-  node scripts/docker/remove-babel.js && \
-  npm prune --production && \
   apk del git libxml2-dev python build-base curl && \
-  rm -rf tests/ src/ scripts/ /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+  rm -rf /usr/share/man /tmp/* /var/tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+
+# Copy bot
+COPY . /app/
+
+# Post install
+RUN npm run build
 
 ENV PREFIX !
 ENV PORT 5000
