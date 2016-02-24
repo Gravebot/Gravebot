@@ -66,10 +66,10 @@ export function subCommands(bot, msg, method) {
 function helpCategory(bot, msg, category, lang = 'en') {
   let methods, channel;
   if (category === 'all') {
-    channel = msg.channel;
+    channel = msg.author;
     methods = R.flatten(R.values(categories)).sort();
   } else {
-    channel = msg.author;
+    channel = msg.channel;
     methods = categories[category].sort();
   }
 
@@ -117,7 +117,7 @@ function help(bot, msg, suffix) {
 
     let command_text = `**\`${nconf.get('PREFIX')}${name}\`**`;
     if (parameters) command_text += ` \`${parameters}\``;
-    if (translation) command_text += `\n\t\t${translation}`;
+    if (translation) command_text += `\n\t${translation}`;
     text.push(command_text);
   }, categories.help);
 
