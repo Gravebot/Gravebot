@@ -11,13 +11,13 @@ COPY ./package.json /app/package.json
 WORKDIR /app/
 
 # Install required APKs needed for building, install node modules, fix phantom, then cleanup.
-RUN apk add --update git libxml2-dev python build-base curl bash && \
+RUN apk add --update git python build-base curl bash && \
   echo "Fixing PhantomJS" && \
   curl -Ls "https://github.com/dustinblackman/phantomized/releases/download/2.1.1/dockerized-phantomjs.tar.gz" | tar xz -C / && \
   echo "Installing node modules" && \
   sed -i '/postinstall/d' package.json && \
   npm install --production && \
-  apk del git libxml2-dev python build-base curl && \
+  apk del git python build-base curl && \
   rm -rf /usr/share/man /tmp/* /var/tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp
 
 # Copy bot
