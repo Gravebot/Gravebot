@@ -2,7 +2,9 @@
 
 Contributing to Gravebot is super easy, we just have a few rules.
 
-## Rules
+## Code
+
+#### Rules
 
 Gravebot is written in ES6/Babel javascript, we try to avoid ES5 specific syntax as much as possible.
 
@@ -15,9 +17,9 @@ Gravebot is written in ES6/Babel javascript, we try to avoid ES5 specific syntax
 - Avoid adding new modules if there is already one that does something similar. For example, don't add `lodash` as we're already using `ramda`, or don't add `Q` as we're already using `bluebird`.
 - Avoid adding images to the repo if possible, but instead upload them to [imgur](https://imgur.com/) to improve performance.
 
-## Instructions
+#### Instructions
 
-#### Creating a new module
+__Creating a new module__
 To add a new command, create a new javascript file in [`/src/commands`](/src/commands) and name it to something that resembles your to be functions. For example all the Discord server commands can be found in [`/src/commands/info.js`](/src/commands/info.js).
 
 All functions are sent the [discord client instance](https://discordjs.readthedocs.org/en/latest/docs_client.html), [msg object](https://discordjs.readthedocs.org/en/latest/docs_message.html), and the command text *(minus the command itself)* as parameters. A good example of this can be found in [`/src/commands/fun/transate.js`](/src/commands/fun/transate.js).
@@ -26,13 +28,71 @@ It's good to default to some help text if someone is improperly using your comma
 
 After you've completed writing, export a default object with the key name being the name of the discord command. Again, a good example of this can be found in [`/src/commands/fun/transate.js`](/src/commands/fun/transate.js). You can export multiple commands and everything will be merged on run.
 
-#### Image Responses
-
+__Image Responses__
 If you'd prefer to develop an image response instead of a text response, take a look at the League of Legends [`items`](https://github.com/Gravestorm/Gravebot/blob/master/src/commands/games/leagueoflegends/championgg.js) commands. The images are HTML/Jade views using Stylus as the css pre-compiler. The images should try to fit in with the look of Discord. Please reframe from loading remote dependencies, but instead save them locally in the repo within the `web` folder.
 
-#### Tests
+__Tests__
 Tests are required for all new functions, examples can be found in [/tests](/tests) This project already uses [`mocha`](https://mochajs.org/), [`nock`](https://github.com/pgte/nock), [`chai`](http://chaijs.com/), and [`sinon`](http://sinonjs.org/docs/), which should be more than enough to write any tests needed. Tests are run with `npm run mocha`.
 
 
-#### Pull Requests
+__Pull Requests__
 Once everything is up to par, feel free to through up a pull request. For pull request formatting, check out [#7](https://github.com/Gravestorm/Gravebot/pull/7) and [#2](https://github.com/Gravestorm/Gravebot/pull/2)
+
+
+## Translations
+We use [Transifex](https://www.transifex.com/gravebot/gravebot) to manage all translations, it's super easy and lets everyone contribute! The initial translations were done with Google Translate, so just because a translation exists doesn't mean it's correct. You can also check out the language status list below to see which have been done by Google, and which has had attention from a native speaker.
+
+__Rules__
+- Make sure to check if a translation has been done already before writing it over again.
+- If you have an issue with someone else's translation, please use the comments section.
+- Don't add extra punctuations (such as `...`) to the end of translations if the English version doesn't have it.
+
+__Setup__
+- Create an account with [Transifex](https://www.transifex.com/signin/) (Or login with Github/Google/Facebook/ect)
+- Join the Gravebot team with the language you'd like to work on
+- Start!
+
+__Language Status__
+
+| Language | Finished |
+| ------------- | -----:|
+| English | Yes |
+| Arabic | No |
+| Bosnian | No |
+| Bulgarian | No |
+| Catalan | No |
+| Croatian | No |
+| Chinese Simplified | No |
+| Chinese Traditional | No |
+| Danish | No |
+| Dutch | No |
+| Finnish | No |
+| French | No |
+| German | No |
+| Georgian | No |
+| Greek | No |
+| Hebrew | No |
+| Hungarian | No |
+| Indonesian | No |
+| Italian | No |
+| Japanese | No |
+| Korean | No |
+| Latvian | No |
+| Lithuanian | No |
+| Malay | No |
+| Norwegian | No |
+| Polish | No |
+| Portuguese | No |
+| Portuguese Brazil | No |
+| Romanian | No |
+| Russian | No |
+| Serbian | No |
+| Slovak | No |
+| Slovenian | No |
+| Spanish | No |
+| Swedish | No |
+| Thai | No |
+| Turkish | No |
+| Vietnamese | No |
+
+Please prevent from putting translations in PRs, we'd rather keep those for code.
