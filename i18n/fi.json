@@ -55,6 +55,7 @@
   "lol_unknown_position": "En ymmärrä asemaa",
   "meme": "Luo meme kanssa annetaan meme nimi ja teksti",
   "meme_usage": "Käyttö: ** `! Meme` **` meme Nimitys-`\" top teksti \"` `\" alhaalta teksti \"` Kirjoita ** `! Memelist` ** on luettelo meme nimiä.",
+  "memelist": "Luettelo meme nimiä ** `! Meme` ** komento",
   "no_counters": "Minulla ei ole laskurit",
   "no_item_sets": "Minulla ei ole esinesarjaa varten",
   "no_skills": "Minulla ei ole taitoa tilauksia",

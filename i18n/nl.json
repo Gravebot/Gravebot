@@ -55,6 +55,7 @@
   "lol_unknown_position": "Ik heb geen positie begrijpen",
   "meme": "Maakt een meme met de gegeven meme naam en de tekst",
   "meme_usage": "Usage: ** `meme` **` meme name` `\" top tekst \"` `\" bottom tekst \"` Schrijf ** `memelist` ** voor een lijst van meme namen!.",
+  "memelist": "Lijst van meme namen voor de ** `! Meme` ** command",
   "no_counters": "Ik heb geen tellers voor hebben",
   "no_item_sets": "Ik heb geen punt sets voor",
   "no_skills": "Ik heb geen vaardigheid orders voor hebben",

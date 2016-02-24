@@ -55,6 +55,7 @@
   "lol_unknown_position": "Jeg forstår ikke stilling",
   "meme": "Oppretter en meme med den gitte meme navn og tekst",
   "meme_usage": "Bruk:! ** `Meme` **` meme name` `\" top teksten \"` `\" bottom teksten \"` Skriv ** `memelist` ** for en liste over meme navn!.",
+  "memelist": "Liste over meme navn på ** `! Meme` ** kommando",
   "no_counters": "Jeg har ikke stanger for",
   "no_item_sets": "Jeg har ikke elementsett for",
   "no_skills": "Jeg har ikke ferdighets ordrer for",

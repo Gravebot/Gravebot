@@ -55,6 +55,7 @@
   "lol_unknown_position": "Nie rozumiem stanowiska",
   "meme": "Tworzy mema o podanej nazwie i tekście meme",
   "meme_usage": "Sposób użycia: ** `**` mem meme` name` `\" top tekst \"` \"z dołu tekst\" `` memelist` Napisz ** ** o listę nazwisk meme!.",
+  "memelist": "Lista nazw Meme Dla ** `! Meme` polecenia **",
   "no_counters": "Nie mam liczniki",
   "no_item_sets": "Nie mam rzecz dla zestawów",
   "no_skills": "Nie mam rozkazy umiejętnością",

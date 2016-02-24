@@ -55,6 +55,7 @@
   "lol_unknown_position": "No entiendo la posición",
   "meme": "Crea un meme meme con el nombre dado y el texto",
   "meme_usage": "Uso: ** ** `` meme` meme name` `\" texto superior \"` `\" texto inferior \"` `Escribe ** ** memelist` para obtener una lista de los nombres de memes!.",
+  "memelist": "Lista de nombres para el meme ** `! Meme` ** comando",
   "no_counters": "No tengo contadores para",
   "no_item_sets": "No tengo los conjuntos de elementos de",
   "no_skills": "No tengo órdenes de habilidad para",

@@ -55,6 +55,7 @@
   "lol_unknown_position": "Ich verstehe nicht, Position",
   "meme": "Erstellt ein meme mit dem angegebenen meme Namen und Text",
   "meme_usage": "Verwendungszweck: ** `meme` **` meme name` `\" Top Text \"` `\" unten Text \"` schreiben ** `memelist` ** für eine Liste von meme Namen!.",
+  "memelist": "Liste der meme Namen für die ** `! Meme` ** Befehl",
   "no_counters": "Ich habe keine Zähler für",
   "no_item_sets": "Ich habe keine Artikel Sätze für",
   "no_skills": "Ich habe keine Fähigkeiten Aufträge für",

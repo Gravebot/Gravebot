@@ -55,6 +55,7 @@
   "lol_unknown_position": "Es nesaprotu pozīciju",
   "meme": "Izveido meme ar doto même nosaukumu un tekstu",
   "meme_usage": "Lietošana: ** `meme` **` meme name` `\" top teksts \"` `\" no apakšas teksts \"` Rakstīt ** `memelist` ** par sarakstu meme vārdiem!.",
+  "memelist": "Saraksts meme nosaukumi ** `! Meme` ** komanda",
   "no_counters": "Man nav skaitītāji",
   "no_item_sets": "Man nav posteni komplekti",
   "no_skills": "Man nav prasmju pasūtījumus",

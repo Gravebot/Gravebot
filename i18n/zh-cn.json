@@ -55,6 +55,7 @@
   "lol_unknown_position": "我不明白的位置",
   "meme": "用给定的米姆名称和文本的米姆",
   "meme_usage": "用法：**`meme` **梅梅``name`“顶部的文本”``“底部的文字”写``** ** memelist`对米姆的名单！",
+  "memelist": "对于米姆名单**`！meme` **命令",
   "no_counters": "我没有对柜台",
   "no_item_sets": "我没有项目集",
   "no_skills": "我不具备的技能订单",

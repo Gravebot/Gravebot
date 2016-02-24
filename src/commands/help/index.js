@@ -9,7 +9,7 @@ import T from '../../translate';
 
 const help_parameters = {};
 const categories = {
-  help: [],
+  help: ['memelist'],
   info: [],
   fun: [],
   games: [],
@@ -113,7 +113,10 @@ function help(bot, msg, suffix) {
     const translation = T(name, lang);
     if (!translation) return;
 
-    const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+    let parameters;
+    if (help_parameters[name]) {
+      parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+    }
 
     let command_text = `**\`${nconf.get('PREFIX')}${name}\`**`;
     if (parameters) command_text += ` \`${parameters}\``;

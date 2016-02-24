@@ -55,6 +55,7 @@
   "lol_unknown_position": "No entenc la posició",
   "meme": "Crea un meme meme amb el nom i el text",
   "meme_usage": "Ús: ** ** `` meme` meme name` `\" text superior \"` `\" text inferior \"` `Escriu ** ** memelist` per obtenir una llista dels noms de memes !.",
+  "memelist": "Llista de noms per al meme ** `! Meme` ** comandament",
   "no_counters": "No tinc comptadors per",
   "no_item_sets": "No tinc els conjunts d'elements de",
   "no_skills": "No tinc ordres d'habilitat per",

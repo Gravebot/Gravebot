@@ -55,6 +55,7 @@
   "lol_unknown_position": "Ben pozisyon anlamıyorum",
   "meme": "Verilen meme isim ve metin ile bir meme oluşturur",
   "meme_usage": "Kullanımı: ** `meme` **` meme name` `\" üst metin \"` `\" alt metin \"` yazın ** `memelist` ** mem adları listesi için!.",
+  "memelist": "için meme isimleri listesi ** `! meme` ** komutu",
   "no_counters": "Ben sayaçlarını yok",
   "no_item_sets": "Ben et kümeleri yok",
   "no_skills": "Ben beceri emir yok",

@@ -55,6 +55,7 @@
   "lol_unknown_position": "Ne razumijem poziciju",
   "meme": "Stvara meme sa datim meme ime i tekst",
   "meme_usage": "Uporaba: ** `meme` **` meme name` `\" top tekst \"` `\" dnu teksta \"` Napišite ** `memelist` ** za popis imena meme!.",
+  "memelist": "Popis imena meme za ** `! Meme` ** komandu",
   "no_counters": "Nemam brojači za",
   "no_item_sets": "Nemam stavka kompleta za",
   "no_skills": "Nemam vještina naloge za",

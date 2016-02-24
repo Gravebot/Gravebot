@@ -55,6 +55,7 @@
   "lol_unknown_position": "Tôi không hiểu vị trí",
   "meme": "Tạo ra một meme với tên meme định và văn bản",
   "meme_usage": "Cách sử dụng:! ** 'Meme` **' meme name` `\" trên văn bản \"` `\" dưới chữ \"` Viết ** 'memelist` ** cho một danh sách tên meme!.",
+  "memelist": "Danh sách tên meme cho ** `! Meme` ** lệnh",
   "no_counters": "Tôi không có quầy cho",
   "no_item_sets": "Tôi không có bộ mục cho",
   "no_skills": "Tôi không có đơn đặt hàng cho kỹ năng",

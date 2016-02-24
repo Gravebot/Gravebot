@@ -55,6 +55,7 @@
   "lol_unknown_position": "Jeg forstår ikke position",
   "meme": "Opretter en meme med det givne meme navn og tekst",
   "meme_usage": "Anvendelse:! ** `Meme` **` meme Betegnelse `\" top tekst \"` `\" bottom tekst \"` Skriv ** `memelist` ** for en liste over meme navne!.",
+  "memelist": "Liste over meme navne til ** `! Meme` ** kommando",
   "no_counters": "Jeg har ikke skranker til",
   "no_item_sets": "Jeg har ikke element sæt til",
   "no_skills": "Jeg har ikke dygtighed ordrer til",

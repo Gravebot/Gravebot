@@ -55,6 +55,7 @@
   "lol_unknown_position": "Nu înțeleg poziția",
   "meme": "Creează o memă cu numele memă dat și textul",
   "meme_usage": "Utilizare:! ** `Meme` **` meme name` `\" text de sus \"` `\" text de jos \"` Scrie ** `memelist` ** pentru o listă de nume meme!.",
+  "memelist": "Lista numelor meme pentru m ** `! Meme` ** comandă",
   "no_counters": "Nu am standuri de",
   "no_item_sets": "Nu am seturi de elemente de",
   "no_skills": "Nu am ordine de calificare pentru",

@@ -44,7 +44,7 @@ export default {
 
 export const help = {
   'set-language': {
-    parameters: 'language code',
+    parameters: 'language',
     category: 'help'
   }
 };

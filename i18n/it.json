@@ -55,6 +55,7 @@
   "lol_unknown_position": "Non capisco la posizione",
   "meme": "Crea un meme con il nome di battesimo meme e il testo",
   "meme_usage": "Uso:! ** `` Meme` ** meme name` `\" testo top \"` `\" testo inferiore \"` `Scrivi ** ** memelist` per un elenco di nomi di meme!.",
+  "memelist": "Lista dei nomi meme per la ** `! Meme` comando **",
   "no_counters": "Non ho contatori per",
   "no_item_sets": "Non ho set di oggetti per",
   "no_skills": "Non ho ordini di abilità per",

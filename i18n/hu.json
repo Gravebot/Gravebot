@@ -55,6 +55,7 @@
   "lol_unknown_position": "Nem értem helyzetben",
   "meme": "Létrehoz egy mém az adott mém nevet és szöveges",
   "meme_usage": "Használat: ** `! Meme` **` `name` meme\" top text \"` `\" alulról text \"` `írása **! Memelist` ** listáját mém nevek.",
+  "memelist": "Listája mém neveket ** `! Meme` ** parancs",
   "no_counters": "Nem kell számlálókat",
   "no_item_sets": "Nem kell elemet készlet",
   "no_skills": "Nem kell készség megrendelések",

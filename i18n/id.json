@@ -55,6 +55,7 @@
   "lol_unknown_position": "Saya tidak mengerti posisi",
   "meme": "Menciptakan meme dengan nama meme yang diberikan dan teks",
   "meme_usage": "Penggunaan:! ** `Meme` **` meme name` `\" atas teks \"` `\" text bawah \"` Tulis ** `memelist` ** untuk daftar nama meme!.",
+  "memelist": "Daftar nama meme untuk ** `! Meme` ** perintah",
   "no_counters": "Saya tidak memiliki counter untuk",
   "no_item_sets": "Saya tidak memiliki barang set untuk",
   "no_skills": "Saya tidak memiliki perintah keterampilan untuk",

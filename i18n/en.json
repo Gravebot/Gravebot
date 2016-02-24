@@ -55,6 +55,7 @@
   "lol_unknown_position": "I don't understand position",
   "meme": "Creates a meme with the given meme name and text",
   "meme_usage": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
+  "memelist": "List of meme names for the **`!meme`** command",
   "no_counters": "I don't have counters for",
   "no_item_sets": "I don't have item sets for",
   "no_skills": "I don't have skill orders for",

@@ -147,10 +147,6 @@
     "text": "List of information commands",
     "done": true
   },
-  "help_memelist": {
-    "text": "List of meme names for the **`!meme`** command",
-    "done": true
-  },
   "help_other": {
     "text": "List of other commands",
     "done": true
@@ -221,6 +217,10 @@
   },
   "meme_usage": {
     "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
+    "done": true
+  },
+  "memelist": {
+    "text": "List of meme names for the **`!meme`** command",
     "done": true
   },
   "no_counters": {

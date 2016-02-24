@@ -55,6 +55,7 @@
   "lol_unknown_position": "Jag förstår inte ställning",
   "meme": "Skapar en meme med det givna meme namn och text",
   "meme_usage": "Användning: ** `meme` **` meme name` `\" top text \"` `\" bottom text \"` Skriv ** `memelist` ** för en lista över meme namn!.",
+  "memelist": "Lista över meme namn för ** '! Meme` ** kommandot",
   "no_counters": "Jag har inte diskar",
   "no_item_sets": "Jag har inte föremålsuppsättningar för",
   "no_skills": "Jag har inte kompetens order för",
