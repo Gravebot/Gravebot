@@ -43,6 +43,8 @@ function translate(lang, key) {
   if (!_source[key].done || !translations[lang][key]) {
     const original_text = _source[key].text
       .replace(/\n/g, '<n>')
+      .replace(/\*\*/g, '<**>')
+      .replace(/!/g, '<!>')
       .replace(/#{/g, '<')
       .replace(/\}/g, '>');
     return gt(original_text, 'en', lang)
@@ -52,6 +54,8 @@ function translate(lang, key) {
       })
       .then(data => translations[lang][key] = data.translatedText
         .replace(/ <n> /g, '\n').replace(/<n>/g, '\n')
+        .replace(/ <\*\*> /g, '**').replace(/<\*\*>/g, '**')
+        .replace(/ <!> /g, '!').replace(/<!>/g, '!')
         .replace(/</g, '#{')
         .replace(/\>/g, '}'));
   }
