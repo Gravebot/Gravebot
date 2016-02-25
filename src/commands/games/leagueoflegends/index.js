@@ -33,6 +33,10 @@ export const help = {
   lol: {
     category: 'games',
     header_text: 'lol_header_text',
+    static_texts: {
+      lol_positions: '**Top, Mid, ADC, Jungle, Support**',
+      lol_regions: '**br, eune, euw, kr, lan, las, na, oce, pbe, ru, and tr**'
+    },
     subcommands: [
       {name: 'bans'},
       {

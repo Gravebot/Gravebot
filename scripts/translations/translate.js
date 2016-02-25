@@ -41,12 +41,19 @@ function translate(lang, key) {
   }
 
   if (!_source[key].done || !translations[lang][key]) {
-    return gt(_source[key].text, 'en', lang)
+    const original_text = _source[key].text
+      .replace(/\n/g, '<n>')
+      .replace(/#{/g, '<')
+      .replace(/\}/g, '>');
+    return gt(original_text, 'en', lang)
       .tap(data => {
         // If the key is the same, sometimes google translate doens't like how letters are capitialized.
         if (_source[key].text === data.translatedText) return gt(toTitleCase(_source[key].text), 'en', lang);
       })
-      .then(data => translations[lang][key] = data.translatedText);
+      .then(data => translations[lang][key] = data.translatedText
+        .replace(/ <n> /g, '\n').replace(/<n>/g, '\n')
+        .replace(/</g, '#{')
+        .replace(/\>/g, '}'));
   }
 }
 

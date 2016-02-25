@@ -256,6 +256,9 @@ export default {
 export const help = {
   dota2: {
     header_text: 'dota2_header_text',
+    static_texts: {
+      dota_positions: '**Mid**, **Off**, **Safe**, and **Jungle**'
+    },
     subcommands: [
       {
         name: 'best',

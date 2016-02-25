@@ -96,7 +96,7 @@
     "done": true
   },
   "dota2_header_text": {
-    "text": "Dota 2 help commands.\nAccepted positions are **Mid**, **Off**, **Safe**, and **Jungle**.",
+    "text": "Dota 2 help commands.\nAccepted positions are #{dota_positions}.",
     "done": true
   },
   "dota2_impact": {
@@ -180,7 +180,7 @@
     "done": true
   },
   "lol_header_text": {
-    "text": "League of Legends help commands\n\nAccepted positions are **Top, Mid, ADC, Jungle,** and **Support**.\nAccepted regions are **br, eune, euw, kr, lan, las, na, oce, pbe, ru, and tr**.",
+    "text": "League of Legends help commands\n\nAccepted positions are #{lol_positions}.\nAccepted regions are #{lol_regions}.",
     "done": true
   },
   "lol_items": {
@@ -192,7 +192,7 @@
     "done": true
   },
   "lol_positions": {
-    "text": "Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?",
+    "text": "Did you mean #{lol_positions}?",
     "done": true
   },
   "lol_skills": {
