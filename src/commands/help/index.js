@@ -75,9 +75,12 @@ function helpCategory(bot, msg, category, lang = 'en') {
 
   const text = R.map(name => {
     const translation = T(name, lang);
-    if (!translation && category !== 'other') return;
+    if (!translation && category !== 'other' && !R.contains(name, categories.other)) return;
 
-    const parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+    let parameters;
+    if (help_parameters[name] && help_parameters[name].parameters) {
+      parameters = !R.is(String, help_parameters[name].parameters) ? R.join(' ', help_parameters[name].parameters || []) : help_parameters[name].parameters;
+    }
     let text = `**\`${nconf.get('PREFIX')}${name}\`**`;
     if (parameters) text += ` \`${parameters}\``;
     if (translation) text += `\n\t\t${translation}`;

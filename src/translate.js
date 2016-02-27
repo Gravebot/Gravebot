@@ -22,8 +22,8 @@ if (!process.env.TEST) {
 }
 
 export default function translate(key, lang = 'en') {
-  let translation = translations[lang][key] || translations.en[key];
-  if (!translation) return console.log(chalk.yellow(`[WARN] ${key} does not have a translation`));
+  let translation = translations[lang][key] || translations.en[key] || '';
+  // if (!translation) return console.log(chalk.yellow(`[WARN] ${key} does not have a translation`));
   if (!translations[lang][key]) console.log(chalk.yellow(`[WARN] ${key} in language ${lang} does not exist`));
 
   const static_text = translation.match(/[^#{]+(?=\})/g);
