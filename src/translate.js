@@ -14,7 +14,7 @@ const translations = R.fromPairs(R.map(file_path => {
 // TODO: Temporary workaround to fix tests failing.
 let static_texts = {};
 if (!process.env.TEST) {
-  let static_texts = R.map(js_path => {
+  static_texts = R.map(js_path => {
     const help_data = require(js_path).help;
     if (help_data) return R.map(R.prop('static_texts'), R.values(help_data));
   }, require('./commands').command_files);
