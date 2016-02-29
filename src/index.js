@@ -39,7 +39,7 @@ function clearOldMessages() {
           }, channel.messages);
 
           const message_time = moment.unix(timestamp / 1000);
-          if (message_time.isBefore(moment().subtract(2, 'days'))) {
+          if (message_time.isBefore(moment().subtract(2, 'hours'))) {
             count++;
             return channel.delete();
           }
