@@ -36,7 +36,7 @@ requester({url: 'https://ddragon.leagueoflegends.com/realms/na.json', json: true
     }, R.values(data));
     champs = R.zipObj(R.pluck('nid')(champs), champs);
 
-    fs.writeFileSync(path.join(__dirname, '../../data/lol_champs.json'), JSON.stringify(champs, null, 2), 'utf8');
+    fs.writeFileSync(path.join(__dirname, '../../src/data/lol_champs.json'), JSON.stringify(champs, null, 2), 'utf8');
   })
   .then(R.keys)
   .map(id => {

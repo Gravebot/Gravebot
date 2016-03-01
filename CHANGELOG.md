@@ -59,7 +59,7 @@
 ## 1.4.0 (Janurary 17th, 2016)
 
 #### Features
-- `!lol items` is the first command to return an [image response](https://github.com/Gravestorm/Gravebot/pull/94) instead of text
+- `!lol items` is the first command to return an [image response](https://github.com/Gravebot/Gravebot/pull/94) instead of text
 - `!lol match` command to get player stats of a current match
 - `!cat` command to send a cute cat picture
 - `!dota2` commands now give stats and builds for DOTA2

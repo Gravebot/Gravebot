@@ -1,9 +1,10 @@
 # Gravebot
 
-[![Build Status](https://david-dm.org/gravestorm/gravebot.svg)](https://david-dm.org/gravestorm/gravebot)
-[![Build Status](https://travis-ci.org/Gravestorm/Gravebot.svg?branch=master)](https://travis-ci.org/Gravestorm/Gravebot)
-[![Coverage Status](https://img.shields.io/coveralls/Gravestorm/Gravebot/master.svg)](https://coveralls.io/github/Gravestorm/Gravebot?branch=master)
+[![Build Status](https://david-dm.org/gravebot/gravebot.svg)](https://david-dm.org/gravebot/gravebot)
+[![Build Status](https://travis-ci.org/Gravebot/Gravebot.svg?branch=master)](https://travis-ci.org/Gravebot/Gravebot)
+[![Coverage Status](https://img.shields.io/coveralls/Gravebot/Gravebot/master.svg)](https://coveralls.io/github/Gravebot/Gravebot?branch=master)
 <a href="https://zenhub.io"><img src="https://img.shields.io/badge/KanBan%20Board-Zenhub.io-blue.svg"></a>
+[![](https://badge.imagelayers.io/gravebot/gravebot:latest.svg)](https://imagelayers.io/?images=gravebot/gravebot:latest 'Get your own badge on imagelayers.io')
 [![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/gravebot/gravebot/)
 
 ## About
@@ -20,7 +21,7 @@ The easiest way to set this bot up on your server is to invite it to your Discor
 
 Join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and either PM Gravebot an invitation link or write in the general chat !join **invite-link-here** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr). You can also give the bot a first try in that server as well.
 
-If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm, as well as opening an [issue on Github](https://github.com/Gravestorm/Gravebot/issues/new).
+If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
 
 For self hosting, click [here](#localconfig).
 
@@ -152,7 +153,7 @@ Updating Gravebot is like any other NodeJS app. Just run `git pull && npm instal
 
 ## Feature Requests
 
-Have a feature in mind? We'd love to hear about it. Feel free to [open an issue](https://github.com/Gravestorm/Gravebot/issues/new) and let us know.
+Have a feature in mind? We'd love to hear about it. Feel free to [open an issue](https://github.com/Gravebot/Gravebot/issues/new) and let us know.
 
 ## Contribute
 
