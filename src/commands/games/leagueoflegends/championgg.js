@@ -9,6 +9,7 @@ import sentry from '../../../sentry';
 import { lol_champs, lol_items } from '../../../data';
 import { getOrdinal, toTitleCase } from '../../../helpers';
 import phantom from '../../../phantom';
+import T from '../../../translate';
 
 
 const request = Promise.promisify(_request);
@@ -71,7 +72,7 @@ function _verifyName(champ) {
 
 export function counters(bot, msg, suffix) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, 'Please setup Champion.gg in config.js to use the **`!lol`** command.');
+    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -79,9 +80,9 @@ export function counters(bot, msg, suffix) {
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
   const champ_reg = _verifyName(champ);
 
-  if (position === champ) return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
+  if (position === champ) return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
 
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `I don't understand position **${position}**. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?`);
+  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
   const gg_position = positions[position];
 
   const options = {
@@ -90,7 +91,7 @@ export function counters(bot, msg, suffix) {
   return _makeRequest(options)
     .then(body => {
       let results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`I don't have counters for **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_counters', msg.author.lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(R.prop('matchups'))
@@ -125,7 +126,7 @@ export function counters(bot, msg, suffix) {
 
 export function items(bot, msg, suffix) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, 'Please setup Champion.gg in config.js to use the **`!lol`** command.');
+    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -133,24 +134,24 @@ export function items(bot, msg, suffix) {
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
   const champ_reg = _verifyName(champ);
 
-  if (position === champ) return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
+  if (position === champ) return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
 
   const options = {
     url: `http://api.champion.gg/champion/${champ_reg}/items/finished/mostWins`
   };
 
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `I don't understand position **${position}**. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?`);
+  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
   let gg_position = positions[position];
 
   return _makeRequest(options)
     .then(body => {
       const results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`I don't have item sets for **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_item_sets', msg.author.lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(item_data => {
       const champ_data = lol_champs[champ_reg];
-      if (!item_data.items.length) throw new Warning(`I don't have item sets for **${champ}** **${position}**.`);
+      if (!item_data.items.length) throw new Warning(`${T('no_item_sets', msg.author.lang)} **${champ}** **${position}**.`);
 
       item_data.names = R.map(item_id => lol_items[item_id], item_data.items);
       item_data.champ_name = champ_data.name;
@@ -166,7 +167,7 @@ export function items(bot, msg, suffix) {
 
 export function skills(bot, msg, suffix) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, 'Please setup Champion.gg in config.js to use the **`!lol`** command.');
+    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -175,19 +176,19 @@ export function skills(bot, msg, suffix) {
   const champ_reg = _verifyName(champ);
   const champ_data = lol_champs[champ_reg];
 
-  if (position === champ) return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
+  if (position === champ) return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
 
   const options = {
     url: `http://api.champion.gg/champion/${champ_reg}/skills/mostWins`
   };
 
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `I don't understand position **${position}**. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?`);
+  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
   const gg_position = positions[position];
 
   return _makeRequest(options)
     .then(body => {
       let results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`I don't have skill orders for **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_skills', msg.author.lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(R.prop('order'))
@@ -216,7 +217,7 @@ export function skills(bot, msg, suffix) {
 
 export function bans(bot, msg) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, 'Please setup Champion.gg in config.js to use the **`!lol`** command.');
+    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
   }
 
   const options = {
@@ -246,13 +247,13 @@ export function bans(bot, msg) {
 
 export function best(bot, msg, suffix) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, 'Please setup Champion.gg in config.js to use the **`!lol`** command.');
+    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
   }
 
   const position = R.last(suffix.split(' ')).toLowerCase();
 
-  if (!position || position === 'best') return bot.sendMessage(msg.channel, 'You didn\'t specifiy a position. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?');
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `I don't understand position **${position}**. Did you mean **top**, **mid**, **adc**, **support**, or **jungle**?`);
+  if (!position || position === 'best') return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
   const gg_position = positions[position];
 
   const options = {

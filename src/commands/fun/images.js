@@ -97,3 +97,12 @@ export default {
   snek: snake,
   '\ud83d\udc0d': snake
 };
+
+export const help = {
+  cat: {
+    parameters: ['bomb', 'number']
+  },
+  dog: {
+    parameters: ['bomb', 'number']
+  }
+};

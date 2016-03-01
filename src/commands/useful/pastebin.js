@@ -4,17 +4,18 @@ import R from 'ramda';
 import _request from 'request';
 
 import sentry from '../../sentry';
+import T from '../../translate';
 
 
 const request = Promise.promisify(_request);
 
 function makePaste(bot, msg, paste) {
   if (!nconf.get('PASTEBIN_KEY')) {
-    return bot.sendMessage(msg.channel, 'Please setup Pastebin in config.js to use the **`!paste`** command.');
+    return bot.sendMessage(msg.channel, T('pastebin_setup', msg.author.lang));
   }
 
   if (!paste) {
-    bot.sendMessage(msg.channel, 'Usage: **`!paste`** `text`');
+    bot.sendMessage(msg.channel, T('pastebin_usage', msg.author.lang));
     return;
   }
 
@@ -41,4 +42,8 @@ export default {
   paste: makePaste,
   pastebin: makePaste,
   makepaste: makePaste
+};
+
+export const help = {
+  pastebin: {parameters: ['text']}
 };

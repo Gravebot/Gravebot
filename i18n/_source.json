@@ -1,0 +1,366 @@
+{
+  "8ball": {
+    "text": "Answers the question",
+    "done": true
+  },
+  "accepted_languages": {
+    "text": "Accepted languages are",
+    "done": true
+  },
+  "avatar": {
+    "text": "Responds with the avatar of the user, if no user is written, the avatar of the sender",
+    "done": true
+  },
+  "cat": {
+    "text": "Bombs chat with adorable cats",
+    "done": true
+  },
+  "champgg_setup": {
+    "text": "Please setup Champion.gg in config.js to use the **`!lol`** command.",
+    "done": true
+  },
+  "chat": {
+    "text": "Chats with you",
+    "done": true
+  },
+  "chat_usage": {
+    "text": "Please setup cleverbot in config.js to use the **`!chat`** command.",
+    "done": true
+  },
+  "coin": {
+    "text": "Flips a coin",
+    "done": true
+  },
+  "comics": {
+    "text": "Get a random comic from a bunch of different artists",
+    "done": true
+  },
+  "comics_asp": {
+    "text": "Returns a Amazing Super Powers comic",
+    "done": true
+  },
+  "comics_az": {
+    "text": "Returns a Awkward Zombie comic",
+    "done": true
+  },
+  "comics_cah": {
+    "text": "Returns a Cyanide and Happimess comic",
+    "done": true
+  },
+  "comics_css": {
+    "text": "Returns a chainsawsuit comic",
+    "done": true
+  },
+  "comics_dhd": {
+    "text": "Returns a Dog House Diaries comic",
+    "done": true
+  },
+  "comics_header_text": {
+    "text": "Get random web comic strips",
+    "done": true
+  },
+  "comics_smbc": {
+    "text": "Returns a Saturday Morning Breakfast Cereal comic",
+    "done": true
+  },
+  "comics_to": {
+    "text": "Returns a The Oatmeal comic",
+    "done": true
+  },
+  "comics_xkcd": {
+    "text": "Returns a xkcd comic",
+    "done": true
+  },
+  "decide": {
+    "text": "Decides between given words",
+    "done": true
+  },
+  "decide_usage": {
+    "text": "Usage: **`!decide`** `something` **`or`** `something...`",
+    "done": true
+  },
+  "dota2": {
+    "text": "DOTA 2",
+    "done": true
+  },
+  "dota2_best": {
+    "text": "Get the top 10 Heroes for a specific position",
+    "done": true
+  },
+  "dota2_build": {
+    "text": "Get the most popular build for a Hero",
+    "done": true
+  },
+  "dota2_counters": {
+    "text": "Get the top 10 counters for a Hero",
+    "done": true
+  },
+  "dota2_header_text": {
+    "text": "Dota 2 help commands.\nAccepted positions are #{dota_positions}.",
+    "done": true
+  },
+  "dota2_impact": {
+    "text": "Get the top 10 Heroes with the biggest impact",
+    "done": true
+  },
+  "dota2_items": {
+    "text": "Get the top 10 most used items for a Hero",
+    "done": true
+  },
+  "drama": {
+    "text": "Responds with a drama image, if no number is written, a random one",
+    "done": true
+  },
+  "emoji": {
+    "text": "Responds with an emoji copypasta, if no number is written, a random one",
+    "done": true
+  },
+  "gif": {
+    "text": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",
+    "done": true
+  },
+  "gif_error": {
+    "text": "I couldn't find a gif for",
+    "done": true
+  },
+  "gif_usage": {
+    "text": "Usage: **`!gif`** `gif tags`",
+    "done": true
+  },
+  "hello": {
+    "text": "Hello",
+    "done": true
+  },
+  "help_all": {
+    "text": "List all available commands in private chat",
+    "done": true
+  },
+  "help_fun": {
+    "text": "List of fun commands",
+    "done": true
+  },
+  "help_games": {
+    "text": "List of game commands",
+    "done": true
+  },
+  "help_info": {
+    "text": "List of information commands",
+    "done": true
+  },
+  "help_other": {
+    "text": "List of other commands",
+    "done": true
+  },
+  "help_useful": {
+    "text": "List of useful commands",
+    "done": true
+  },
+  "join": {
+    "text": "Joins the server the bot is invited to",
+    "done": true
+  },
+  "join_usage": {
+    "text": "Usage: **`!join`** `invitation link`",
+    "done": true
+  },
+  "lol": {
+    "text": "League of Legends",
+    "done": true
+  },
+  "lol_bans": {
+    "text": "Get the top 10 most common bans",
+    "done": true
+  },
+  "lol_best": {
+    "text": "Get the top 10 best champs for a position",
+    "done": true
+  },
+  "lol_counters": {
+    "text": "Get the top 10 counters for a Champion and Position",
+    "done": true
+  },
+  "lol_header_text": {
+    "text": "League of Legends help commands\n\nAccepted positions are #{lol_positions}.\nAccepted regions are #{lol_regions}.",
+    "done": true
+  },
+  "lol_items": {
+    "text": "Get the highest win item sets for a Champion and Position",
+    "done": true
+  },
+  "lol_match": {
+    "text": "Get rank, champ, winrate, and games for all players in a __current__ match.",
+    "done": true
+  },
+  "lol_positions": {
+    "text": "Did you mean #{lol_positions}?",
+    "done": true
+  },
+  "lol_skills": {
+    "text": "Get the highest win skills for a Champion and Position",
+    "done": true
+  },
+  "lol_specify_position": {
+    "text": "You didn't specifiy a position.",
+    "done": true
+  },
+  "lol_status": {
+    "text": "Get the LoL Game and Client server status for all regions",
+    "done": true
+  },
+  "lol_unknown_position": {
+    "text": "I don't understand position",
+    "done": true
+  },
+  "meme": {
+    "text": "Creates a meme with the given meme name and text",
+    "done": true
+  },
+  "meme_usage": {
+    "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
+    "done": true
+  },
+  "memelist": {
+    "text": "List of meme names for the **`!meme`** command",
+    "done": true
+  },
+  "no_counters": {
+    "text": "I don't have counters for",
+    "done": true
+  },
+  "no_item_sets": {
+    "text": "I don't have item sets for",
+    "done": true
+  },
+  "no_skills": {
+    "text": "I don't have skill orders for",
+    "done": true
+  },
+  "paste": {
+    "text": "Creates a paste on Pastebin.com and returns the url",
+    "done": true
+  },
+  "pastebin_setup": {
+    "text": "Please setup Pastebin in config.js to use the **`!paste`** command.",
+    "done": true
+  },
+  "pastebin_usage": {
+    "text": "Usage: **`!paste`** `text`",
+    "done": true
+  },
+  "popkey_setup": {
+    "text": "Please setup Popkey in config.js to use the **`!popkey`** command.",
+    "done": true
+  },
+  "popkey_usage": {
+    "text": "Usage: **`!popkey`** `gif tags`",
+    "done": true
+  },
+  "pug": {
+    "text": "Bombs chat with adorable pugs.",
+    "done": true
+  },
+  "quote": {
+    "text": "Responds with a quote, if no number is written, a random one",
+    "done": true
+  },
+  "riot_setup": {
+    "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
+    "done": true
+  },
+  "roll": {
+    "text": "Rolls the dice a number of times with a number of sides",
+    "done": true
+  },
+  "serverinfo": {
+    "text": "Gives information about the server",
+    "done": true
+  },
+  "serverlist": {
+    "text": "Lists all the servers the bot is connected to",
+    "done": true
+  },
+  "servers": {
+    "text": "Lists how many servers, channels and users the bot is connected to",
+    "done": true
+  },
+  "set-language": {
+    "text": "Set all commands to respond in a specified language",
+    "done": true
+  },
+  "snoopify": {
+    "text": "Snoopifies tha sentence",
+    "done": true
+  },
+  "specify_summoner": {
+    "text": "You need to specify a summoner name.",
+    "done": true
+  },
+  "uptime": {
+    "text": "Shows how long the bot has been online",
+    "done": true
+  },
+  "urban": {
+    "text": "Returns the summary of the first matching search result from Urban Dictionary",
+    "done": true
+  },
+  "urban_error": {
+    "text": "I couldn't find a definition for",
+    "done": true
+  },
+  "urban_usage": {
+    "text": "Usage: **`!urban`** `search terms`",
+    "done": true
+  },
+  "userinfo": {
+    "text": "Gives information about the user, if no user is written, yourself",
+    "done": true
+  },
+  "version": {
+    "text": "Get information on the latest version of Gravebot",
+    "done": true
+  },
+  "videocall": {
+    "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.",
+    "done": true
+  },
+  "wiki": {
+    "text": "Returns the summary of the first matching search result from Wikipedia",
+    "done": true
+  },
+  "wiki_usage": {
+    "text": "Usage: **`!wiki`** `search terms`",
+    "done": true
+  },
+  "wolfram": {
+    "text": "Query Wolfram Alpha for almost anything",
+    "done": true
+  },
+  "wolfram_setup": {
+    "text": "Please setup Wolfram in config.js to use the **`!wolfram`** command.",
+    "done": true
+  },
+  "wolfram_usage": {
+    "text": "Usage: **`!wolfram`** `query`",
+    "done": true
+  },
+  "yoda": {
+    "text": "Yodaify a sentence",
+    "done": true
+  },
+  "youtube": {
+    "text": "Gets a video from Youtube matching the given tags",
+    "done": true
+  },
+  "youtube_error": {
+    "text": "I couldn't find a video for",
+    "done": true
+  },
+  "youtube_setup": {
+    "text": "Please setup Youtube in config.js to use the **`!youtube`** command.",
+    "done": true
+  },
+  "youtube_usage": {
+    "text": "Usage: **`!youtube`** `video tags`",
+    "done": true
+  }
+}

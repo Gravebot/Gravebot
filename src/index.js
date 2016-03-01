@@ -11,6 +11,8 @@ import './sentry';
 import './phantom';
 import commands from './commands';
 
+import { getUserLang } from './redis';
+
 
 // Verify both username and password are set before launching the bot.
 if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
@@ -76,7 +78,10 @@ bot.on('disconnected', () => {
 
 function callCmd(cmd, name, bot, msg, suffix) {
   console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
-  cmd(bot, msg, suffix);
+  getUserLang(msg.author.id).then(lang => {
+    msg.author.lang = lang;
+    cmd(bot, msg, suffix);
+  });
 }
 
 function onMessage(msg, new_msg) {

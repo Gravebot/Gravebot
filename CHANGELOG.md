@@ -1,3 +1,25 @@
+<a name="2.1.0" />
+## 2.1.0 (March 1st, 2016)
+
+#### Features
+- Added `!snake`
+- `!help` now comes in 40 different languages, users can use `!set-language` to set their preference
+
+#### Bug Fixes
+- Fixed LoL matches on EUNE servers
+- Patched crashes when meme generator returns an invalid response
+- Fixed editing messages not executing commands
+- Temporarily disabled some comics providers due to errors
+- Fixed bomb commands with negative numbers
+
+#### Technical Details/Features
+- Optimized docker image
+- Upgraded to Phantom JS 2.1.1
+- Clear DiscordJS cache on boot to optimize memory usage
+- Upgraded Node to 4.3.1
+- Upgraded NPM to 3.7.3
+
+
 <a name="2.0.0" />
 ## 2.0.0 (February 3rd, 2016)
 

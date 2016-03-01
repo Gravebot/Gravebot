@@ -19,3 +19,9 @@ export default {
   videocall: appearin,
   videochat: appearin
 };
+
+export const help = {
+  videocall: {
+    parameters: ['@username']
+  }
+};

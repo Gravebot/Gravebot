@@ -7,11 +7,11 @@ const glob_options = {
   nodir: true
 };
 
-const command_files = R.flatten([
-  glob.sync(`${__dirname}/*(!(index.js|helpers.js))`, glob_options),
+export const command_files = R.flatten([
+  glob.sync(`${__dirname}/*(!(index.js))`, glob_options),
   glob.sync(`${__dirname}/*/index.js`, glob_options),
   glob.sync(`${__dirname}/*/*/index.js`, glob_options),
-  glob.sync(`${__dirname}/*(!(help|config))/*.js`, glob_options)
+  glob.sync(`${__dirname}/*(!(help))/*.js`, glob_options)
 ]);
 
 // Merge all the commands objecs together and export.

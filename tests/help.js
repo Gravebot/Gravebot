@@ -2,8 +2,6 @@ import Promise from 'bluebird';
 import chai from 'chai';
 
 import help from '../src/commands/help';
-import english from '../src/commands/help/english';
-import french from '../src/commands/help/french';
 import meme from '../src/commands/help/meme';
 
 
@@ -21,95 +19,12 @@ function isString(func, chnl, response, count, cmd) {
       if (current_calls === count) return resolve();
     }
 
-    let msg = {channel: 'test', author: 'author'};
+    const msg = {channel: 'test', author: 'author'};
     help[func]({sendMessage}, msg, cmd);
   });
 }
 
 describe('help', () => {
-  describe('aide', () => {
-    describe('fun', () => {
-      it('should return the correct help text', done => {
-        isString('aide', 'test', french.fun, 1, 'fun').asCallback(done);
-      });
-    });
-
-    describe('utile', () => {
-      it('should return the correct help text', done => {
-        isString('aide', 'test', french.useful, 1, 'utile').asCallback(done);
-      });
-    });
-
-    describe('info', () => {
-      it('should return the correct help text', done => {
-        isString('aide', 'test', french.info, 1, 'info').asCallback(done);
-      });
-    });
-
-    describe('jeux', () => {
-      it('should return the correct help text', done => {
-        isString('aide', 'test', english.games, 1, 'jeux').asCallback(done);
-      });
-    });
-
-    describe('autres', () => {
-      it('should return the correct help text', done => {
-        isString('aide', 'test', english.other, 1, 'autres').asCallback(done);
-      });
-    });
-
-
-    describe('none', () => {
-      it('should return the correct help text', done => {
-        isString('aide', 'test', english.other, 1, '').asCallback(done);
-      });
-    });
-  });
-
-  describe('commands', () => {
-    it('should return a string', done => {
-      isString('commands', 'test', english.all, 1).asCallback(done);
-    });
-  });
-
-  describe('help', () => {
-    describe('fun', () => {
-      it('should return the correct help text', done => {
-        isString('help', 'test', english.fun, 1, 'fun').asCallback(done);
-      });
-    });
-
-    describe('useful', () => {
-      it('should return the correct help text', done => {
-        isString('help', 'test', english.useful, 1, 'useful').asCallback(done);
-      });
-    });
-
-    describe('info', () => {
-      it('should return the correct help text', done => {
-        isString('help', 'test', english.info, 1, 'info').asCallback(done);
-      });
-    });
-
-    describe('games', () => {
-      it('should return the correct help text', done => {
-        isString('help', 'test', english.games, 1, 'games').asCallback(done);
-      });
-    });
-
-    describe('other', () => {
-      it('should return the correct help text', done => {
-        isString('help', 'test', english.other, 1, 'other').asCallback(done);
-      });
-    });
-
-    describe('none', () => {
-      it('should return the correct help text', done => {
-        isString('help', 'test', english.all, 1, '').asCallback(done);
-      });
-    });
-  });
-
   describe('memelist', () => {
     describe('1', () => {
       it('should return the correct help text', done => {

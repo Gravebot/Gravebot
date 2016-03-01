@@ -3,31 +3,11 @@ import cheerio from 'cheerio';
 import _request from 'request';
 import R from 'ramda';
 
+import { subCommands as helpText } from '../help';
 import sentry from '../../sentry';
 
 
 const request = Promise.promisify(_request);
-
-const help_text = `Get random web comic strips
-
-**\`!comic random\`**
-    Returns a random comic from any of the artists
-**\`!comic asp\`** or **\`!comic amazing super powers\`**
-    Returns a Amazing Super Powers comic
-**\`!comic az\`** or **\`!comic awkward zombie\`**
-    Returns a Awkward Zombie comic
-**\`!comic cah\`** or **\`!comic cyanide and happiness\`**
-    Returns a Cyanide and Happimess comic
-**\`!comic css\`** or **\`!comic chainsawsuit\`**
-    Returns a chainsawsuit comic
-**\`!comic dhd\`** or **\`!comic dog house diaries\`**
-    Returns a Dog House Diaries comic
-**\`!comic smbc\`** or ** \`!comic saturday morning breakfast cereal\`**
-    Returns a Saturday Morning Breakfast Cereal comic
-**\`!comic to\`** or **\`!comic the oatmeal\`**
-    Returns a The Oatmeal comic
-**\`!comic xkcd\`**
-    Returns a xkcd comic`;
 
 // Cyanide and Happiness
 function cah(bot, msg) {
@@ -220,10 +200,48 @@ function comics(bot, msg, suffix) {
   // xkcd
   if (suffix === 'xkcd') return xkcd(bot, msg);
 
-  return bot.sendMessage(msg.channel, help_text);
+  return bot.sendMessage(msg.channel, helpText(bot, msg, 'comics'));
 }
 
 export default {
   comic: comics,
   comics
+};
+
+export const help = {
+  comics: {
+    header_text: 'comics_header_text',
+    subcommands: [
+      {name: 'random'},
+      {
+        name: 'asp',
+        secondary_name: 'amazing super powers'
+      },
+      {
+        name: 'az',
+        secondary_name: 'awkward zombie'
+      },
+      {
+        name: 'cah',
+        secondary_name: 'cyanide and happiness'
+      },
+      {
+        name: 'css',
+        secondary_name: 'chainsawsuit'
+      },
+      {
+        name: 'dhd',
+        secondary_name: 'dog house diaries'
+      },
+      {
+        name: 'smbc',
+        secondary_name: 'saturday morning breakfast cereal'
+      },
+      {
+        name: 'to',
+        secondary_name: 'the oatmeal'
+      },
+      {name: 'xkcd'}
+    ]
+  }
 };

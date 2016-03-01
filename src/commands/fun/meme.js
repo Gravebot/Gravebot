@@ -2,6 +2,7 @@ import Imgflipper from 'imgflipper';
 import nconf from 'nconf';
 
 import sentry from '../../sentry';
+import T from '../../translate';
 
 import { memes } from '../../data';
 
@@ -14,16 +15,15 @@ function meme(bot, msg, suffix) {
     return;
   }
 
-  const usage_message = 'Usage: **`!meme`** `meme name` `"top text"` `"bottom text"`\nWrite **`!memelist`** for a list of meme names.';
   if (!suffix) {
-    bot.sendMessage(msg.channel, usage_message);
+    bot.sendMessage(msg.channel, T('meme_usage', msg.author.lang));
     return;
   }
   const tags = suffix.split('"');
   const memetype = tags[0].trim();
 
   // Still send blank meme, but also send usage message.
-  if (!tags[1] && !tags[3]) bot.sendMessage(msg.channel, usage_message);
+  if (!tags[1] && !tags[3]) bot.sendMessage(msg.channel, T('meme_usage', msg.author.lang));
 
   imgflipper.generateMeme(memes[memetype], tags[1] ? tags[1] : ' ', tags[3] ? tags[3] : ' ', (err, image) => {
     if (err) {
@@ -38,4 +38,10 @@ function meme(bot, msg, suffix) {
 export default {
   meme,
   memes: meme
+};
+
+export const help = {
+  meme: {
+    parameters: ['meme', '"top text"', '"bottom text"']
+  }
 };
