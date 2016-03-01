@@ -16,6 +16,8 @@
 - Optimized docker image
 - Upgraded to Phantom JS 2.1.1
 - Clear DiscordJS cache on boot to optimize memory usage
+- Upgraded Node to 4.3.1
+- Upgraded NPM to 3.7.3
 
 
 <a name="2.0.0" />
