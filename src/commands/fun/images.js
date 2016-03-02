@@ -102,7 +102,7 @@ export const help = {
   cat: {
     parameters: ['bomb', 'number']
   },
-  dog: {
+  pug: {
     parameters: ['bomb', 'number']
   }
 };
