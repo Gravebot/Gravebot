@@ -13,6 +13,7 @@
 - Fixed bomb commands with negative numbers
 
 #### Technical Details/Features
+- Redis is now a dependency. See the README.
 - Optimized docker image
 - Upgraded to Phantom JS 2.1.1
 - Clear DiscordJS cache on boot to optimize memory usage
