@@ -84,7 +84,8 @@ export function callCmd(cmd, name, bot, msg, suffix) {
   });
 }
 
-function onMessage(msg) {
+function onMessage(msg, new_msg) {
+  msg = new_msg || msg;
   if (bot.user.username === msg.author.username) return;
 
   // Checks for PREFIX
