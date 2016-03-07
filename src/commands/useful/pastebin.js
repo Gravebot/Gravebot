@@ -45,5 +45,5 @@ export default {
 };
 
 export const help = {
-  pastebin: {parameters: ['text']}
+  paste: {parameters: ['text']}
 };
