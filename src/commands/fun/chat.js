@@ -10,7 +10,7 @@ const clever = new Cleverbot(nconf.get('CLEVERBOT_API_NAME'), nconf.get('CLEVERB
 
 function chat(bot, msg, suffix) {
   if (!nconf.get('CLEVERBOT_API_NAME') || !nconf.get('CLEVERBOT_API_KEY')) {
-    bot.sendMessage(msg.channel, T('chat_usage', msg.author.lang));
+    bot.sendMessage(msg.channel, T('chat_setup', msg.author.lang));
     return;
   }
 

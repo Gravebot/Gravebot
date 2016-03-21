@@ -11,8 +11,6 @@
 
 A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
 
-[Russian version/Pусская версия](https://github.com/Gravestorm/GravebotRU).
-
 ## [Changelog](CHANGELOG.md)
 
 ## How to use
@@ -33,11 +31,15 @@ For self hosting, click [here](#localconfig).
 - `!help games` - List of game commands
 - `!help other` - List of other commands
 - `!memelist` - List of meme names for the `!meme` command
-- `!aide` - Liste des commandes en Francais
+- `!setlanguage` -
 
 #### Fun:
 - `!8ball` *question* - Answers the question
-- `!cat` bomb *count* - Returns a random cat picture
+- `!animals` - Get various animal pictures
+- `!cat` bomb *count* - Bombs chat with adorable cats
+- `!dog` bomb *count* - Bombs chat with adorable dogs
+- `!pug` bomb *count* - Bombs chat with adorable pugs
+- `!snake` bomb *count* - Bombs chat with adorable snakes
 - `!chat` *text* - Chats with you
 - `!coin` - Flips a coin
 - `!comics` - Get a random comic from a bunch of different artists
@@ -45,11 +47,12 @@ For self hosting, click [here](#localconfig).
 - `!drama` *number* - Responds with a drama image, if no number is written, a random one
 - `!emoji` *number* - Responds with an emoji copypasta, if no number is written, a random one
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
-- `!pug` bomb *count* - Bombs chat with adorable pugs
 - `!quote` *number* - Responds with a quote, if no number is written, a random one
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
-- `!snoopify` *sentence* - Snoopifies tha sentence
-- `!yoda` *sentence* - Yodaify a sentence
+- `!translate` - Translate text in funny ways
+- `!leet` *sentence* - 1337ifies the sentence
+- `!snoop` *sentence* - Snoopifies tha sentence
+- `!yoda` *sentence* - Yodaifies the sentence
 
 #### Useful:
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
@@ -61,12 +64,14 @@ For self hosting, click [here](#localconfig).
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
 
 #### Information:
-- `!avatar` *@username* - Responds with the avatar of the user, if no user is written, the avatar of the sender
-- `!serverinfo` - Gives information about the server
+- `!avatar` *username* - Responds with your avatar, unless a username is specified
+- `!channelinfo` *channel name* - Gives information about this channel, unless a name is specified
+- `!ping` - Pong! Check Gravebot's pulse
+- `!serverinfo` *server name* - Gives information about this server, unless a name is specified
 - `!serverlist` - Lists all the servers the bot is connected to
 - `!servers` - Lists how many servers, channels and users the bot is connected to
 - `!uptime` - Shows how long the bot has been online
-- `!userinfo` *@username* - Gives information about the user, if no user is written, yourself
+- `!userinfo` *username* - Gives information about this user, unless a name is specified
 - `!version` - Get information on the latest version of Gravebot
 
 #### Games:
@@ -111,14 +116,14 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 
 ## Local Installation
 #### Windows:
-**Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependecies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty, and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
+**Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependencies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty, and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
 
 - Install [node.js](https://nodejs.org/en/) v4.0 or higher
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
 - Install [redis](http://redis.io/download)
-- Install [libxml2](https://www.zlatkovic.com/pub/libxml/) and add it to your PATH (note that this may not work and some extra tinkering may be needed, if you find a better way of installing it, please share it)
+- Install [libxml2](https://www.zlatkovic.com/libxml.en.html) and add it to your PATH (note that this may not work and some extra tinkering may be needed, if you find a better way of installing it, please share it)
 - If you are unable to install it, you may remove the wolfram-alpha dependency from package.json, and remove wolfram.js in the lib folder. That is the only command that uses libxml2.
 - Run `npm-install.bat` to install the Node dependencies
 - Run `launch.bat` to start the bot

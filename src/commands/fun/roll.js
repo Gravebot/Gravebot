@@ -5,6 +5,9 @@ function roll(bot, msg, suffix) {
   let times = suffix.split(' ')[0];
   let sides = suffix.split(' ')[1];
 
+  if (!times) times = 1;
+  if (!sides) sides = 6;
+
   if (isNaN(times) || isNaN(sides)) {
     return bot.sendMessage(msg.channel, `${msg.author} rolled ${suffix}\nUsage: **\`!roll\`** \`times\` \`sides\``);
   }
@@ -12,9 +15,6 @@ function roll(bot, msg, suffix) {
   if (times > 1000 || sides > 1000000) {
     return bot.sendMessage(msg.channel, `${msg.author} I\'m too high to calculate that high number.`);
   }
-
-  if (!times) times = 1;
-  if (!sides) sides = 6;
 
   let total = 0;
   let msg_array = R.map(num => {
