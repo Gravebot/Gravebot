@@ -31,7 +31,7 @@ For self hosting, click [here](#localconfig).
 - `!help games` - List of game commands
 - `!help other` - List of other commands
 - `!memelist` - List of meme names for the `!meme` command
-- `!setlanguage` -
+- `!setlanguage` - Set all help text to respond in a specified language
 
 #### Fun:
 - `!8ball` *question* - Answers the question
@@ -58,10 +58,10 @@ For self hosting, click [here](#localconfig).
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
 - `!join` *invitation link* - Joins the server the bot is invited to
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
-- `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
-- `!youtube` *video tags* - Gets a video from Youtube matching the given tags
-- `!wolfram` *query* - Query Wolfram Alpha for almost anything
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
+- `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
+- `!wolfram` *query* - Query Wolfram Alpha for almost anything
+- `!youtube` *video tags* - Gets a video from Youtube matching the given tags
 
 #### Information:
 - `!avatar` *username* - Responds with your avatar, unless a username is specified
