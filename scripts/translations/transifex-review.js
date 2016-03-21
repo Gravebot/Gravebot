@@ -41,10 +41,10 @@ trans_keys
       .then(body => {
         new_translations[lang] = body;
         R.forEach(key => {
-          if (translations[key] !== new_translations[key]) {
+          if (translations[lang][key] !== new_translations[lang][key]) {
             to_review[lang][key] = {
-              translation: new_translations[key],
-              original: translations[key]
+              translation: new_translations[lang][key],
+              original: translations[lang][key]
             };
           }
         }, R.keys(body));
@@ -66,12 +66,12 @@ trans_keys
       .then(() => {
         R.forEach(key => {
           console.log(`-----------------------------------
-Lang        | ${console.log(chalk.white.bold(lang))}
-Key         | ${console.log(chalk.bold.red(key))}
-English     | ${console.log(chalk.bold.blue(_source[key].text))}
-Reserve     | ${console.log(chalk.bold.green(to_review[lang][key].reserve))}
-Old Trans   | ${console.log(chalk.bold.yellow(to_review[lang][key].original))}
-New Trans   | ${console.log(chalk.bold.magenta(to_review[lang][key].translation))}`);
+Lang        | ${chalk.white.bold(lang)}
+Key         | ${chalk.bold.red(key)}
+English     | ${chalk.bold.blue(_source[key] ? _source[key].text : '!!!MISSING!!!')}
+Reserve     | ${chalk.bold.green(to_review[lang][key].reserve)}
+Old Trans   | ${chalk.bold.yellow(to_review[lang][key].original)}
+New Trans   | ${chalk.bold.magenta(to_review[lang][key].translation)}`);
         }, R.keys(to_review[lang]));
 
         return new Promise((resolve, reject) => {
@@ -90,7 +90,7 @@ New Trans   | ${console.log(chalk.bold.magenta(to_review[lang][key].translation)
 
             if (res.answer === 'y') {
               const merged_translations = R.merge(translations[lang], new_translations[lang]);
-              resolve(fs.wrilteFileAsync(path.join(translations_path), `${lang}.json`), JSON.stringify(merged_translations, null, 2), 'utf8');
+              resolve(fs.writeFileAsync(path.join(translations_path, `${lang}.json`), JSON.stringify(merged_translations, null, 2), 'utf8'));
             } else {
               console.log(chalk.bold.red('Translation not saved...'));
               resolve();
