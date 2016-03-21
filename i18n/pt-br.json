@@ -1,8 +1,8 @@
 {
   "8ball": "Responde à pergunta",
   "accepted_languages": "idiomas aceitos são",
-  "avatar": "Responde com o avatar do usuário, se nenhum usuário está escrito, o avatar do remetente",
-  "cat": "bate-papo bombas com gatos adoráveis",
+  "avatar": "Responde com o avatar do usuário, se não escrever nenhum usuário, o avatar do remetente",
+  "cat": "Faz aparecer adoráveis gatos no chat",
   "champgg_setup": "Por favor Champion.gg configuração em config.js usar o**`!lol`**comando.",
   "chat": "Bate-papo com você",
   "chat_usage": "Por favor Cleverbot configuração em config.js usar o**`!chat`**comando.",
