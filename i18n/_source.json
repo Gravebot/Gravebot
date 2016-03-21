@@ -5,7 +5,7 @@
   },
   "8ball_usage": {
     "text": "You call that a question?",
-    "done": false
+    "done": true
   },
   "accepted_languages": {
     "text": "Accepted languages are",
@@ -13,11 +13,11 @@
   },
   "animals": {
     "text": "Get various animal pictures",
-    "done": false
+    "done": true
   },
   "avatar": {
     "text": "Responds with your avatar, unless a username is specified",
-    "done": false
+    "done": true
   },
   "cat": {
     "text": "Bombs chat with adorable cats",
@@ -29,7 +29,7 @@
   },
   "channelinfo": {
     "text": "Gives information about this channel, unless a name is specified",
-    "done": false
+    "done": true
   },
   "chat": {
     "text": "Chats with you",
@@ -37,7 +37,7 @@
   },
   "chat_setup": {
     "text": "Please setup cleverbot in config.js to use the **`!chat`** command.",
-    "done": false
+    "done": true
   },
   "coin": {
     "text": "Flips a coin",
@@ -93,7 +93,7 @@
   },
   "dog": {
     "text": "Bombs chat with adorable dogs",
-    "done": false
+    "done": true
   },
   "dota2": {
     "text": "DOTA 2",
@@ -145,7 +145,7 @@
   },
   "giphy_usage": {
     "text": "Usage: **`!giphy`** `gif tags`",
-    "done": false
+    "done": true
   },
   "hello": {
     "text": "Hello",
@@ -185,11 +185,11 @@
   },
   "leet": {
     "text": "1337ifies the sentence",
-    "done": false
+    "done": true
   },
   "leet_usage": {
     "text": "Usage: **`!leet`** `sentence`",
-    "done": false
+    "done": true
   },
   "lol": {
     "text": "League of Legends",
@@ -245,7 +245,7 @@
   },
   "meme_setup": {
     "text": "Please setup Imgflip in config.js to use the **`!meme`** command.",
-    "done": false
+    "done": true
   },
   "meme_usage": {
     "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
@@ -281,7 +281,7 @@
   },
   "ping": {
     "text": "Pong! Check Gravebot's pulse",
-    "done": false
+    "done": true
   },
   "popkey_setup": {
     "text": "Please setup Popkey in config.js to use the **`!popkey`** command.",
@@ -293,7 +293,7 @@
   },
   "pug": {
     "text": "Bombs chat with adorable pugs",
-    "done": false
+    "done": true
   },
   "quote": {
     "text": "Responds with a quote, if no number is written, a random one",
@@ -309,7 +309,7 @@
   },
   "serverinfo": {
     "text": "Gives information about this server, unless a name is specified",
-    "done": false
+    "done": true
   },
   "serverlist": {
     "text": "Lists all the servers the bot is connected to",
@@ -321,15 +321,15 @@
   },
   "set-language": {
     "text": "Set all help text to respond in a specified language",
-    "done": false
+    "done": true
   },
   "snoop": {
     "text": "Snoopifies tha sentence",
-    "done": false
+    "done": true
   },
   "snoop_usage": {
     "text": "Usage: **`!snoop`** `sentence`",
-    "done": false
+    "done": true
   },
   "specify_summoner": {
     "text": "You need to specify a summoner name.",
@@ -385,11 +385,11 @@
   },
   "yoda": {
     "text": "Yodaifies the sentence",
-    "done": false
+    "done": true
   },
   "yoda_usage": {
     "text": "Usage: **`!yoda`** `sentence`",
-    "done": false
+    "done": true
   },
   "youtube": {
     "text": "Gets a video from Youtube matching the given tags",
