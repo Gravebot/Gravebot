@@ -25,41 +25,41 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 const bot = new Discord();
 
 // Checks for PMs older than 2 hours and deletes them..
-function clearOldMessages() {
-  console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
-  let count = 0;
-
-  const getLastMessage = R.curry(Promise.promisify(bot.getChannelLogs).bind(bot))(R.__, 1, {});
-  Promise.resolve(bot.privateChannels)
-    .map(channel => {
-      return getLastMessage(channel)
-        .then(R.head)
-        .then(R.prop('timestamp'))
-        .then(timestamp => {
-          // Remove cache from RAM
-          R.forEach(message => {
-            channel.messages.remove(message);
-          }, channel.messages);
-
-          const message_time = moment.unix(timestamp / 1000);
-          if (message_time.isBefore(moment().subtract(2, 'hours'))) {
-            count++;
-            return channel.delete();
-          }
-        })
-        .catch(() => {
-          // This sometimes get thrown by channel.delete even though the channel does get deleted.
-          // It can be ignored
-        });
-    }, {concurrency: 5})
-    .then(() => {
-      console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Removed ${count} private channels`));
-    })
-    .catch(err => {
-      console.log(chalk.red(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Error removing private channels`));
-      console.log(chalk.red(err));
-    });
-}
+// function clearOldMessages() {
+//   console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
+//   let count = 0;
+//
+//   const getLastMessage = R.curry(Promise.promisify(bot.getChannelLogs).bind(bot))(R.__, 1, {});
+//   Promise.resolve(bot.privateChannels)
+//     .map(channel => {
+//       return getLastMessage(channel)
+//         .then(R.head)
+//         .then(R.prop('timestamp'))
+//         .then(timestamp => {
+//           // Remove cache from RAM
+//           R.forEach(message => {
+//             channel.messages.remove(message);
+//           }, channel.messages);
+//
+//           const message_time = moment.unix(timestamp / 1000);
+//           if (message_time.isBefore(moment().subtract(2, 'hours'))) {
+//             count++;
+//             return channel.delete();
+//           }
+//         })
+//         .catch(() => {
+//           // This sometimes get thrown by channel.delete even though the channel does get deleted.
+//           // It can be ignored
+//         });
+//     }, {concurrency: 5})
+//     .then(() => {
+//       console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Removed ${count} private channels`));
+//     })
+//     .catch(err => {
+//       console.log(chalk.red(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Error removing private channels`));
+//       console.log(chalk.red(err));
+//     });
+// }
 
 // Clear PMs once a day.
 // setInterval(() => clearOldMessages(), 86400000);
