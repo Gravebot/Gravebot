@@ -17,23 +17,23 @@
   },
   "animals_cat": {
     "text": "Bombs chat with adorable cats",
-    "done": false
+    "done": true
   },
   "animals_dog": {
     "text": "Bombs chat with adorable dogs",
-    "done": false
+    "done": true
   },
   "animals_header_text": {
     "text": "Responds with a picture.\nYou can specify a number of pictures by writing `bomb` `number` after a command. (e.g. `!cat bomb 2`)",
-    "done": false
+    "done": true
   },
   "animals_pug": {
     "text": "Bombs chat with adorable pugs",
-    "done": false
+    "done": true
   },
   "animals_snake": {
     "text": "Bombs chat with adorable snakes",
-    "done": false
+    "done": true
   },
   "avatar": {
     "text": "Responds with your avatar, unless a username is specified",
@@ -337,23 +337,23 @@
   },
   "translate": {
     "text": "Translate text in funny ways",
-    "done": false
+    "done": true
   },
   "translate_header_text": {
     "text": "Translation commands:",
-    "done": false
+    "done": true
   },
   "translate_leet": {
     "text": "1337ifies the sentence",
-    "done": false
+    "done": true
   },
   "translate_snoop": {
     "text": "Snoopifies tha sentence",
-    "done": false
+    "done": true
   },
   "translate_yoda": {
     "text": "Yodaifies the sentence",
-    "done": false
+    "done": true
   },
   "uptime": {
     "text": "Shows how long the bot has been online",
