@@ -75,6 +75,7 @@ export default {
 
 export const help = {
   translate: {
+    prefix: false,
     header_text: 'translate_header_text',
     subcommands: [
       {name: 'leet'},

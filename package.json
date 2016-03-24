@@ -37,6 +37,7 @@
     "stylus": "^0.53.0",
     "super-error": "^2.0.0",
     "urban": "^0.3.0",
+    "url-unshort": "^1.1.3",
     "wikijs": "^0.1.3",
     "wolfram-alpha": "^0.3.0",
     "youtube-node": "^1.3.0"

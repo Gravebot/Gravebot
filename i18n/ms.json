@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies hukuman itu",
   "translate_snoop": "Snoopifies hukuman tha",
   "translate_yoda": "Yodaifies hukuman itu",
+  "unshorten": "Unshortens link yang dipendekkan",
+  "unshorten_usage": "Penggunaan:**`!unshorten`**`url`",
   "uptime": "Menunjukkan berapa lama bot yang telah online",
   "urban": "Mengembalikan ringkasan hasil carian pertama yang sepadan dari Kamus Urban",
   "urban_error": "Saya tidak dapat mencari definisi bagi",

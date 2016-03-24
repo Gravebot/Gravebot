@@ -96,6 +96,8 @@
   "translate_leet": "문장을 1337ifies",
   "translate_snoop": "그쪽으로 문장을 Snoopifies",
   "translate_yoda": "문장을 Yodaifies",
+  "unshorten": "단축 링크를 Unshortens",
+  "unshorten_usage": "사용법 : **`!unshorten` **`url`",
   "uptime": "봇 온라인으로 시간을 표시합니다",
   "urban": "도시 사전에서 첫 번째 일치하는 검색 결과의 요약을 반환",
   "urban_error": "나는에 대한 정의를 찾을 수 없습니다",

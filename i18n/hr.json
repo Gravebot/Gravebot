@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies rečenicu",
   "translate_snoop": "Snoopifies tha kaznu",
   "translate_yoda": "Yodaifies rečenicu",
+  "unshorten": "Unshortens skraćenu vezu",
+  "unshorten_usage": "Upotreba:**'!unshorten`**'url`",
   "uptime": "Pokazuje koliko dugo bot je online",
   "urban": "Vraća sažetak prvi rezultat podudaranja za pretraživanje iz Urban Dictionary",
   "urban_error": "Nisam mogao naći definiciju",

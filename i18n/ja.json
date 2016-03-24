@@ -96,6 +96,8 @@
   "translate_leet": "文章を1337ifies",
   "translate_snoop": "thaの文章をSnoopifies",
   "translate_yoda": "文章をYodaifies",
+  "unshorten": "短縮リンクをUnshortens",
+  "unshorten_usage": "使用方法：** `!unshorten`**`url`",
   "uptime": "ボットがオンラインになっている時間を表示します",
   "urban": "アーバン辞書から最初に一致した検索結果の要約を返します",
   "urban_error": "私は、の定義を見つけることができませんでした",

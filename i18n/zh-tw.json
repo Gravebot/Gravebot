@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies句子",
   "translate_snoop": "Snoopifies塔句子",
   "translate_yoda": "Yodaifies句子",
+  "unshorten": "Unshortens縮短的鏈接",
+  "unshorten_usage": "用法：**`!unshorten` **`url`",
   "uptime": "顯示機器人一直在線多久",
   "urban": "返回從城市詞典第一個匹配搜索結果的匯總",
   "urban_error": "我無法找到一個定義",

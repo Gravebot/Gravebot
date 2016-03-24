@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies lauseen",
   "translate_snoop": "Snoopifies tha virke",
   "translate_yoda": "Yodaifies lauseen",
+  "unshorten": "Unshortens lyhennetty linkki",
+  "unshorten_usage": "Käyttö:**`!unshorten`**`url`",
   "uptime": "Näyttää kuinka kauan botti on ollut verkossa",
   "urban": "Palauttaa yhteenveto ensimmäisen vastaavan haun tulos Urban Dictionary",
   "urban_error": "En löytänyt määritelmää",

@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies изречението",
   "translate_snoop": "Snoopifies Tha изречение",
   "translate_yoda": "Yodaifies изречението",
+  "unshorten": "Unshortens съкратен връзка",
+  "unshorten_usage": "Употреба:**`!unshorten`**`url`",
   "uptime": "Показва колко време бота е онлайн",
   "urban": "Връща резюмето на първия резултат, съответстващи на търсенето от Urban речник",
   "urban_error": "Не можах да намеря определение за",

@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies την ποινή",
   "translate_snoop": "Snoopifies tha φράση",
   "translate_yoda": "Yodaifies την ποινή",
+  "unshorten": "Unshortens μια πιο σύντομη σύνδεση",
+  "unshorten_usage": "Χρήση:**`!unshorten`**`url`",
   "uptime": "Δείχνει πόσο καιρό το bot έχει απευθείας σύνδεση",
   "urban": "Επιστρέφει την περίληψη του πρώτου αποτελέσματος που ταιριάζουν αναζήτησης από Urban Dictionary",
   "urban_error": "Δεν μπόρεσα να βρω έναν ορισμό για",

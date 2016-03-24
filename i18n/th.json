@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies ประโยค",
   "translate_snoop": "Snoopifies ประโยคท่า",
   "translate_yoda": "Yodaifies ประโยค",
+  "unshorten": "Unshortens การเชื่อมโยงสั้นลง",
+  "unshorten_usage": "การใช้งาน:**`!unshorten`**`url`",
   "uptime": "แสดงให้เห็นว่าระยะเวลาที่ธนาคารแห่งประเทศไทยได้รับการออนไลน์",
   "urban": "ผลตอบแทนที่ได้บทสรุปของผลการค้นหาของการจับคู่ครั้งแรกจากพจนานุกรมผังเมืองที่",
   "urban_error": "ฉันไม่สามารถหาคำนิยามสำหรับ",

@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies bausmę",
   "translate_snoop": "Snoopifies tha bausmę",
   "translate_yoda": "Yodaifies bausmę",
+  "unshorten": "Unshortens sutrumpintą nuorodą",
+  "unshorten_usage": "Naudojimas:**\"!unshorten`**\"url`",
   "uptime": "Parodo kiek laiko botas buvo įjungtas",
   "urban": "Gražina santrauka pirmo atitikusio rezultato iš Urban Dictionary",
   "urban_error": "Aš neradau apibrėžimo užklausai",

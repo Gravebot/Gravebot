@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies vetu",
   "translate_snoop": "Snoopifies tha vetu",
   "translate_yoda": "Yodaifies vetu",
+  "unshorten": "Unshortens skrátený odkaz",
+  "unshorten_usage": "Použitie:**`!unshorten`**`url`",
   "uptime": "Ukazuje, ako dlho topánok je on-line",
   "urban": "Vráti zhrnutie prvý výsledok hľadaného z Urban Dictionary",
   "urban_error": "Nemohol som nájsť definíciu",

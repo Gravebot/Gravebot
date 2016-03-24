@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies setningen",
   "translate_snoop": "Snoopifies tha setning",
   "translate_yoda": "Yodaifies setningen",
+  "unshorten": "Unshortens en forkortet lenke",
+  "unshorten_usage": "Bruk:**`!unshorten`**`url`",
   "uptime": "Viser hvor lenge boten har vært på nett",
   "urban": "Returnerer oppsummering av den første samsvar søkeresultat fra Urban Dictionary",
   "urban_error": "Jeg kunne ikke finne en definisjon for",
