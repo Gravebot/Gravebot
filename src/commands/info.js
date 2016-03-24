@@ -8,23 +8,23 @@ import sentry from '../sentry';
 const request = Promise.promisify(_request);
 
 function avatar(bot, msg, suffix) {
-  if (!suffix) {
-    if (msg.author.avatarURL === null) {
+  if (!suffix && !msg.mentions.length) {
+    if (!msg.author.avatarURL) {
       bot.sendMessage(msg.channel, 'You are naked.');
     } else {
       bot.sendMessage(msg.channel, `Your avatar:\n${msg.author.avatarURL}`);
     }
-  } else if (msg.mentions.length !== 0) {
+  } else if (msg.mentions.length) {
     R.forEach(user => {
-      if (user.avatarURL === null) {
+      if (!user.avatarURL) {
         bot.sendMessage(msg.channel, `${user.username} is naked.`);
       } else {
-        bot.sendMessage(msg.channel, `${user.username}'s' avatar:\n${user.avatarURL}`);
+        bot.sendMessage(msg.channel, `${user.username}'s avatar:\n${user.avatarURL}`);
       }
     }, msg.mentions);
   } else {
     R.forEach(user => {
-      if (user.avatarURL === null) {
+      if (!user.avatarURL) {
         bot.sendMessage(msg.channel, `${user.username} is naked.`);
       } else {
         bot.sendMessage(msg.channel, `${user.username}'s' avatar:\n${user.avatarURL}`);
@@ -196,7 +196,7 @@ Avatar: ${user.avatarURL}
         bot.sendMessage(msg.channel, userinfo);
       }, bot.users.getAll('name', suffix));
     }
-  } else if (!suffix) {
+  } else if (!suffix && !msg.mentions.length) {
     const userinfo = (`\`\`\`Name: ${msg.author.username}
 ID: ${msg.author.id}
 Discriminator: ${msg.author.discriminator}
@@ -205,7 +205,7 @@ Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(m
 Avatar: ${msg.author.avatarURL}
 \`\`\``);
     bot.sendMessage(msg.channel, userinfo);
-  } else if (msg.mentions.length !== 0) {
+  } else if (msg.mentions.length) {
     R.forEach(user => {
       const userinfo = (`\`\`\`Name: ${user.username}
 ID: ${user.id}
