@@ -11,7 +11,7 @@ const imgflipper = new Imgflipper(nconf.get('IMGFLIP_USERNAME'), nconf.get('IMGF
 
 function meme(bot, msg, suffix) {
   if (!nconf.get('IMGFLIP_USERNAME') || !nconf.get('IMGFLIP_PASSWORD')) {
-    bot.sendMessage(msg.channel, 'Please setup Imgflip in config.js to use the **`!meme`** command.');
+    bot.sendMessage(msg.channel, T('meme_setup', msg.author.lang));
     return;
   }
 

@@ -3,12 +3,20 @@
     "text": "Answers the question",
     "done": true
   },
+  "8ball_usage": {
+    "text": "You call that a question?",
+    "done": true
+  },
   "accepted_languages": {
     "text": "Accepted languages are",
     "done": true
   },
+  "animals": {
+    "text": "Get various animal pictures",
+    "done": true
+  },
   "avatar": {
-    "text": "Responds with the avatar of the user, if no user is written, the avatar of the sender",
+    "text": "Responds with your avatar, unless a username is specified",
     "done": true
   },
   "cat": {
@@ -19,11 +27,15 @@
     "text": "Please setup Champion.gg in config.js to use the **`!lol`** command.",
     "done": true
   },
+  "channelinfo": {
+    "text": "Gives information about this channel, unless a name is specified",
+    "done": true
+  },
   "chat": {
     "text": "Chats with you",
     "done": true
   },
-  "chat_usage": {
+  "chat_setup": {
     "text": "Please setup cleverbot in config.js to use the **`!chat`** command.",
     "done": true
   },
@@ -79,6 +91,10 @@
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
     "done": true
   },
+  "dog": {
+    "text": "Bombs chat with adorable dogs",
+    "done": true
+  },
   "dota2": {
     "text": "DOTA 2",
     "done": true
@@ -127,6 +143,10 @@
     "text": "Usage: **`!gif`** `gif tags`",
     "done": true
   },
+  "giphy_usage": {
+    "text": "Usage: **`!giphy`** `gif tags`",
+    "done": true
+  },
   "hello": {
     "text": "Hello",
     "done": true
@@ -161,6 +181,14 @@
   },
   "join_usage": {
     "text": "Usage: **`!join`** `invitation link`",
+    "done": true
+  },
+  "leet": {
+    "text": "1337ifies the sentence",
+    "done": true
+  },
+  "leet_usage": {
+    "text": "Usage: **`!leet`** `sentence`",
     "done": true
   },
   "lol": {
@@ -215,6 +243,10 @@
     "text": "Creates a meme with the given meme name and text",
     "done": true
   },
+  "meme_setup": {
+    "text": "Please setup Imgflip in config.js to use the **`!meme`** command.",
+    "done": true
+  },
   "meme_usage": {
     "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
     "done": true
@@ -247,6 +279,10 @@
     "text": "Usage: **`!paste`** `text`",
     "done": true
   },
+  "ping": {
+    "text": "Pong! Check Gravebot's pulse",
+    "done": true
+  },
   "popkey_setup": {
     "text": "Please setup Popkey in config.js to use the **`!popkey`** command.",
     "done": true
@@ -256,7 +292,7 @@
     "done": true
   },
   "pug": {
-    "text": "Bombs chat with adorable pugs.",
+    "text": "Bombs chat with adorable pugs",
     "done": true
   },
   "quote": {
@@ -272,7 +308,7 @@
     "done": true
   },
   "serverinfo": {
-    "text": "Gives information about the server",
+    "text": "Gives information about this server, unless a name is specified",
     "done": true
   },
   "serverlist": {
@@ -284,11 +320,15 @@
     "done": true
   },
   "set-language": {
-    "text": "Set all commands to respond in a specified language",
+    "text": "Set all help text to respond in a specified language",
     "done": true
   },
-  "snoopify": {
+  "snoop": {
     "text": "Snoopifies tha sentence",
+    "done": true
+  },
+  "snoop_usage": {
+    "text": "Usage: **`!snoop`** `sentence`",
     "done": true
   },
   "specify_summoner": {
@@ -312,7 +352,7 @@
     "done": true
   },
   "userinfo": {
-    "text": "Gives information about the user, if no user is written, yourself",
+    "text": "Gives information about this user, unless a name is specified",
     "done": true
   },
   "version": {
@@ -344,7 +384,11 @@
     "done": true
   },
   "yoda": {
-    "text": "Yodaify a sentence",
+    "text": "Yodaifies the sentence",
+    "done": true
+  },
+  "yoda_usage": {
+    "text": "Usage: **`!yoda`** `sentence`",
     "done": true
   },
   "youtube": {

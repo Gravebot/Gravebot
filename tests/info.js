@@ -32,12 +32,13 @@ describe('info', () => {
     it('should return a url to an avatar for a mentioned user', done => {
       function sendMessage(channel, res) {
         channel.should.equal('test');
-        res[0].should.equal('test\'s avatar:\nhttp://test.dev/img.jpg');
+        res.should.equal('test\'s avatar:\nhttp://test.dev/img.jpg');
         done();
       }
 
       let msg = {
         channel: 'test',
+        author: {},
         mentions: [{
           avatarURL: 'http://test.dev/img.jpg',
           username: 'test'

@@ -38,7 +38,10 @@ function setLang(bot, msg, suffix) {
 }
 
 export default {
+  lang: setLang,
+  language: setLang,
   setlang: setLang,
+  setlanguage: setLang,
   'set-language': setLang
 };
 

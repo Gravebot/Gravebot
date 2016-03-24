@@ -49,7 +49,7 @@ export function subCommands(bot, msg, method) {
     const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
     const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
 
-    return `**\`${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
+    return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
     ${translation}`;
   }, subcommands);
 
