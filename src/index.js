@@ -1,4 +1,4 @@
-import Promise from 'bluebird';
+// import Promise from 'bluebird';
 import { Client as Discord, PMChannel } from 'discord.js';
 import chalk from 'chalk';
 import moment from 'moment';
