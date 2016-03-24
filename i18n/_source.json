@@ -87,6 +87,10 @@
     "text": "Get random web comic strips",
     "done": true
   },
+  "comics_random": {
+    "text": "Returns a random comic",
+    "done": true
+  },
   "comics_smbc": {
     "text": "Returns a Saturday Morning Breakfast Cereal comic",
     "done": true

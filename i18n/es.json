@@ -23,6 +23,7 @@
   "comics_css": "Devuelve un cómic chainsawsuit",
   "comics_dhd": "Devuelve un cómic para perro Diarios",
   "comics_header_text": "Recibe las historietas web al azar",
+  "comics_random": "Devuelve un cómic al azar",
   "comics_smbc": "Devuelve un cómic de cereales sábado por la mañana desayuno",
   "comics_to": "Devuelve un cómic La harina de avena",
   "comics_xkcd": "Devuelve un cómic xkcd",

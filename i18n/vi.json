@@ -23,6 +23,7 @@
   "comics_css": "Trả về một truyện tranh chainsawsuit",
   "comics_dhd": "Trả về một truyện tranh Dog House Diaries",
   "comics_header_text": "Nhận truyện tranh web ngẫu nhiên",
+  "comics_random": "Trả về một truyện tranh ngẫu nhiên",
   "comics_smbc": "Trả về một Ngũ cốc truyện tranh Saturday Morning sáng",
   "comics_to": "Trả về một truyện tranh The Oatmeal",
   "comics_xkcd": "Trả về một truyện tranh xkcd",

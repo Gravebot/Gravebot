@@ -23,6 +23,7 @@
   "comics_css": "Retorna um comic chainsawsuit",
   "comics_dhd": "Retorna um comic casota Diaries",
   "comics_header_text": "Obter quadrinhos web aleatório",
+  "comics_random": "Retorna um comic aleatório",
   "comics_smbc": "Retorna um Cereal cômico Saturday Morning Breakfast",
   "comics_to": "Retorna uma história em quadrinhos The Oatmeal",
   "comics_xkcd": "Retorna um comic xkcd",

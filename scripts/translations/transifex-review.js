@@ -34,6 +34,9 @@ const transifex_langs = {
 const trans_keys = Promise.resolve(R.keys(translations));
 trans_keys
   .map(lang => {
+    // Temp fix
+    if (lang === 'zh-cn' || lang === 'zh-tw') return;
+
     const url = `https://${process.env.TRANSIFEX_KEY}@www.transifex.com/api/2/project/gravebot/resource/enjson-33/translation/${transifex_langs[lang] || lang}/?mode=default&file`;
     return request(url)
       .then(R.prop('body'))

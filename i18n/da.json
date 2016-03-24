@@ -23,6 +23,7 @@
   "comics_css": "Returnerer en chainsawsuit tegneserie",
   "comics_dhd": "Returnerer en hund House Diaries tegneserie",
   "comics_header_text": "Få tilfældig web tegneserier",
+  "comics_random": "Returnerer et tilfældigt tegneserie",
   "comics_smbc": "Returnerer en lørdag formiddag Breakfast Cereal tegneserie",
   "comics_to": "Returnerer en havregryn tegneserie",
   "comics_xkcd": "Returnerer en XKCD tegneserie",

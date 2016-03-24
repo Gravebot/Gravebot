@@ -23,6 +23,7 @@
   "comics_css": "Returns a chainsawsuit comic",
   "comics_dhd": "Returns a Dog House Diaries comic",
   "comics_header_text": "Get random web comic strips",
+  "comics_random": "Returns a random comic",
   "comics_smbc": "Returns a Saturday Morning Breakfast Cereal comic",
   "comics_to": "Returns a The Oatmeal comic",
   "comics_xkcd": "Returns a xkcd comic",
