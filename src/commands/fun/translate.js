@@ -5,6 +5,7 @@ import leetify from 'leet';
 import _request from 'request';
 import R from 'ramda';
 
+import { subCommands as helpText } from '../help';
 import sentry from '../../sentry';
 import T from '../../translate';
 
@@ -57,18 +58,28 @@ function yoda(bot, msg, phrase) {
     });
 }
 
+function translate(bot, msg) {
+  bot.sendMessage(msg.channel, helpText(bot, msg, 'translate'));
+}
+
 export default {
   leet,
   leetify: leet,
   1337: leet,
   snoop,
   snoopify: snoop,
+  translate,
   yoda: yoda,
   yodaify: yoda
 };
 
 export const help = {
-  leet: {parameters: 'sentence'},
-  snoopify: {parameters: 'sentence'},
-  yoda: {parameters: 'sentence'}
+  translate: {
+    header_text: 'translate_header_text',
+    subcommands: [
+      {name: 'leet'},
+      {name: 'snoop'},
+      {name: 'yoda'}
+    ]
+  }
 };
