@@ -23,7 +23,7 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 // Init
 const bot = new Discord({forceFetchUsers: true});
 
-// Checks for PMs older than 2 hours and deletes them.
+// Checks for PMs older than 2 hours and deletes them..
 function clearOldMessages() {
   console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
   let count = 0;
