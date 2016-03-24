@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies het vonnis",
   "translate_snoop": "Snoopifies tha zin",
   "translate_yoda": "Yodaifies het vonnis",
+  "unshorten": "Unshortens een verkorte koppeling",
+  "unshorten_usage": "Usage:**`!unshorten`**`url`",
   "uptime": "Laat zien hoe lang het bot online is geweest",
   "urban": "Geeft de samenvatting van de eerste overeenkomende zoekresultaat van Urban Dictionary",
   "urban_error": "Ik kon een definitie voor het niet vinden",

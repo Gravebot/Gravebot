@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies teikumu",
   "translate_snoop": "Snoopifies tha teikumu",
   "translate_yoda": "Yodaifies teikumu",
+  "unshorten": "Unshortens saīsinātu saiti",
+  "unshorten_usage": "Lietošana:**`!unshorten`**`url`",
   "uptime": "Parāda, cik ilgi bot ir online",
   "urban": "Atgriež kopsavilkumu pirmās saskaņošanas meklēšanas rezultāts no Urban Dictionary",
   "urban_error": "Es nevarēju atrast definīciju",

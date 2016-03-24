@@ -357,11 +357,11 @@
   },
   "unshorten": {
     "text": "Unshortens a shortened link",
-    "done": false
+    "done": true
   },
   "unshorten_usage": {
     "text": "Usage: **`!unshorten`** `url`",
-    "done": false
+    "done": true
   },
   "uptime": {
     "text": "Shows how long the bot has been online",

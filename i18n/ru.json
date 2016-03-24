@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies предложение",
   "translate_snoop": "Snoopifies тха предложение",
   "translate_yoda": "Yodaifies предложение",
+  "unshorten": "Unshortens укороченную ссылку",
+  "unshorten_usage": "Использование:**`!unshorten`**`url`",
   "uptime": "Показывает, как долго бот был онлайн",
   "urban": "Возвращает резюме первого результата поиска соответствия от Urban Dictionary",
   "urban_error": "Я не мог найти определение для",

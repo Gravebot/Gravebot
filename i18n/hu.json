@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies a mondat",
   "translate_snoop": "Snoopifies tha mondat",
   "translate_yoda": "Yodaifies a mondat",
+  "unshorten": "Unshortens egy rövidített linket",
+  "unshorten_usage": "Használat:**`!unshorten`**`url`",
   "uptime": "Megmutatja, milyen hosszú a bot már online",
   "urban": "Visszaadja az összefoglaló az első egyező találatokat a Urban Dictionary",
   "urban_error": "Én nem találtam a definíciót",

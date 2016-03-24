@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies המשפט",
   "translate_snoop": "Snoopifies tha משפט",
   "translate_yoda": "Yodaifies המשפט",
+  "unshorten": "Unshortens קישור מקוצר",
+  "unshorten_usage": "שימוש:**`!unshorten`**`url`",
   "uptime": "מראה כמה זמן בוט כבר באינטרנט",
   "urban": "החזרת הסיכום של תוצאת החיפוש המתאים הראשונה מהמילון העירוני",
   "urban_error": "לא הצלחתי למצוא הגדרה",

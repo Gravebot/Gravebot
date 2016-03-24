@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies stavek",
   "translate_snoop": "Snoopifies tha stavek",
   "translate_yoda": "Yodaifies stavek",
+  "unshorten": "Unshortens skrajšan povezave",
+  "unshorten_usage": "Uporaba:**'!unshorten`**`url`",
   "uptime": "Kaže, kako dolgo je bot bil na spletu",
   "urban": "Vrne povzetek prvega rezultata iskanja ujemanja Urban slovar",
   "urban_error": "Nisem mogel najti opredelitev",

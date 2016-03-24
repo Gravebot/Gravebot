@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies kazne",
   "translate_snoop": "Snoopifies tha kazna",
   "translate_yoda": "Yodaifies kazne",
+  "unshorten": "Unshortens skraćena link",
+  "unshorten_usage": "Upotreba:**`!unshorten`**`url`",
   "uptime": "Pokazuje koliko je bot je online",
   "urban": "Vraća rezime prvog odgovarajući rezultat pretrage iz Urban Dictionary",
   "urban_error": "Nisam mogao naći definiciju",

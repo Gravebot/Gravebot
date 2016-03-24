@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies სასჯელის",
   "translate_snoop": "Snoopifies tha სასჯელი",
   "translate_yoda": "Yodaifies სასჯელის",
+  "unshorten": "Unshortens შემცირდა ლინკები",
+  "unshorten_usage": "გამოყენება:**`!unshorten`**`url`",
   "uptime": "გადაცემები როდემდე ბოტი უკვე ონლაინ",
   "urban": "აბრუნებს რეზიუმე პირველი შესაბამისი ძებნის შედეგი საწყისი ურბანული ლექსიკონი",
   "urban_error": "მე ვერ იპოვა განმარტება for",

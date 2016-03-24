@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies propoziția",
   "translate_snoop": "Snoopifies tha teză",
   "translate_yoda": "Yodaifies propoziția",
+  "unshorten": "Unshortens un link scurtat",
+  "unshorten_usage": "Mod de utilizare:**`!unshorten`**`url`",
   "uptime": "Arată cât de mult timp de bot a fost on-line",
   "urban": "Returnează rezumatul primul rezultat al căutării de potrivire de la Urban dicționar",
   "urban_error": "Nu am putut găsi o definiție a",

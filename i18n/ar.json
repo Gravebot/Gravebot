@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies الجملة",
   "translate_snoop": "Snoopifies ثا الجملة",
   "translate_yoda": "Yodaifies الجملة",
+  "unshorten": "Unshortens وصلة مختصرة",
+  "unshorten_usage": "الاستعمال:**`!unshorten`**`url`",
   "uptime": "يبين متى تم بوت على الانترنت",
   "urban": "يعود ملخص نتائج البحث مطابقة الأولى من قاموس العمراني",
   "urban_error": "لم أجد تعريفا لل",

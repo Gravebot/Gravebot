@@ -96,6 +96,8 @@
   "translate_leet": "cümle 1337ifies",
   "translate_snoop": "Tha cümle Snoopifies",
   "translate_yoda": "cümle Yodaifies",
+  "unshorten": "kısaltılmış bağlantı Unshortens",
+  "unshorten_usage": "Kullanımı:**`!unshorten`**`url`",
   "uptime": "bot çevrimiçi ne kadar süredir gösteriyor",
   "urban": "Kentsel Dictionary ilk eşleşen arama sonucu özeti döndürür",
   "urban_error": "Ben bir tanım bulamadı",

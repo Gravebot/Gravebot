@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies la sentencia",
   "translate_snoop": "Snoopifies tha frase",
   "translate_yoda": "Yodaifies la sentencia",
+  "unshorten": "Unshortens un enlace acortado",
+  "unshorten_usage": "Uso:**`!unshorten`**`url`",
   "uptime": "Muestra el tiempo que el robot ha estado en línea",
   "urban": "Devuelve el resumen del primer resultado de la búsqueda a juego de Urban Dictionary",
   "urban_error": "No he podido encontrar una definición para",

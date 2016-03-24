@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies zdanie",
   "translate_snoop": "Snoopifies tha zdanie",
   "translate_yoda": "Yodaifies zdanie",
+  "unshorten": "Unshortens skrócony odnośnik",
+  "unshorten_usage": "Sposób użycia:**`!unshorten`**`url`",
   "uptime": "Pokazuje, jak długo bot został on-line",
   "urban": "Zwraca podsumowanie pierwszego wyniku szukanego od miejskiego Słownik",
   "urban_error": "Nie mogłem znaleźć definicję",

@@ -96,6 +96,8 @@
   "translate_leet": "1337ifies câu",
   "translate_snoop": "Snoopifies tha câu",
   "translate_yoda": "Yodaifies câu",
+  "unshorten": "Unshortens một liên kết rút ngắn",
+  "unshorten_usage": "Cách sử dụng:**`!unshorten`**`url`",
   "uptime": "Cho thấy bao lâu bot đã được trực tuyến",
   "urban": "Trả về bản tóm tắt các kết quả tìm kiếm phù hợp đầu tiên từ Urban Dictionary",
   "urban_error": "Tôi không thể tìm thấy một định nghĩa cho",
