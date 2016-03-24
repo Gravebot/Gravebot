@@ -15,12 +15,28 @@
     "text": "Get various animal pictures",
     "done": true
   },
+  "animals_cat": {
+    "text": "Bombs chat with adorable cats",
+    "done": false
+  },
+  "animals_dog": {
+    "text": "Bombs chat with adorable dogs",
+    "done": false
+  },
+  "animals_header_text": {
+    "text": "Responds with a picture.\nYou can specify a number of pictures by writing `bomb` `number` after a command. (e.g. `!cat bomb 2`)",
+    "done": false
+  },
+  "animals_pug": {
+    "text": "Bombs chat with adorable pugs",
+    "done": false
+  },
+  "animals_snake": {
+    "text": "Bombs chat with adorable snakes",
+    "done": false
+  },
   "avatar": {
     "text": "Responds with your avatar, unless a username is specified",
-    "done": true
-  },
-  "cat": {
-    "text": "Bombs chat with adorable cats",
     "done": true
   },
   "champgg_setup": {
@@ -89,10 +105,6 @@
   },
   "decide_usage": {
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
-    "done": true
-  },
-  "dog": {
-    "text": "Bombs chat with adorable dogs",
     "done": true
   },
   "dota2": {
@@ -181,10 +193,6 @@
   },
   "join_usage": {
     "text": "Usage: **`!join`** `invitation link`",
-    "done": true
-  },
-  "leet": {
-    "text": "1337ifies the sentence",
     "done": true
   },
   "leet_usage": {
@@ -291,10 +299,6 @@
     "text": "Usage: **`!popkey`** `gif tags`",
     "done": true
   },
-  "pug": {
-    "text": "Bombs chat with adorable pugs",
-    "done": true
-  },
   "quote": {
     "text": "Responds with a quote, if no number is written, a random one",
     "done": true
@@ -323,10 +327,6 @@
     "text": "Set all help text to respond in a specified language",
     "done": true
   },
-  "snoop": {
-    "text": "Snoopifies tha sentence",
-    "done": true
-  },
   "snoop_usage": {
     "text": "Usage: **`!snoop`** `sentence`",
     "done": true
@@ -334,6 +334,26 @@
   "specify_summoner": {
     "text": "You need to specify a summoner name.",
     "done": true
+  },
+  "translate": {
+    "text": "Translate text in funny ways",
+    "done": false
+  },
+  "translate_header_text": {
+    "text": "Translation commands:",
+    "done": false
+  },
+  "translate_leet": {
+    "text": "1337ifies the sentence",
+    "done": false
+  },
+  "translate_snoop": {
+    "text": "Snoopifies tha sentence",
+    "done": false
+  },
+  "translate_yoda": {
+    "text": "Yodaifies the sentence",
+    "done": false
   },
   "uptime": {
     "text": "Shows how long the bot has been online",
@@ -381,10 +401,6 @@
   },
   "wolfram_usage": {
     "text": "Usage: **`!wolfram`** `query`",
-    "done": true
-  },
-  "yoda": {
-    "text": "Yodaifies the sentence",
     "done": true
   },
   "yoda_usage": {

@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import _request from 'request';
 import R from 'ramda';
 
+import { subCommands as helpText } from '../help';
 import sentry from '../../sentry';
 
 
@@ -97,7 +98,13 @@ function snake(bot, msg, suffix) {
     });
 }
 
+function animals(bot, msg) {
+  bot.sendMessage(msg.channel, helpText(bot, msg, 'animals'));
+}
+
 export default {
+  animal: animals,
+  animals,
   cat,
   cats: cat,
   '\ud83d\udc31': cat,
@@ -114,13 +121,13 @@ export default {
 };
 
 export const help = {
-  cat: {
-    parameters: ['bomb', 'number']
-  },
-  dog: {
-    parameters: ['bomb', 'number']
-  },
-  pug: {
-    parameters: ['bomb', 'number']
+  animals: {
+    header_text: 'animals_header_text',
+    subcommands: [
+      {name: 'cat'},
+      {name: 'dog'},
+      {name: 'pug'},
+      {name: 'snake'}
+    ]
   }
 };
