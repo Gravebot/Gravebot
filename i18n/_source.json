@@ -355,6 +355,14 @@
     "text": "Yodaifies the sentence",
     "done": true
   },
+  "unshorten": {
+    "text": "Unshortens a shortened link",
+    "done": false
+  },
+  "unshorten_usage": {
+    "text": "Usage: **`!unshorten`** `url`",
+    "done": false
+  },
   "uptime": {
     "text": "Shows how long the bot has been online",
     "done": true

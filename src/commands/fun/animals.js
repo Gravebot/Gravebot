@@ -122,6 +122,7 @@ export default {
 
 export const help = {
   animals: {
+    prefix: false,
     header_text: 'animals_header_text',
     subcommands: [
       {name: 'cat'},

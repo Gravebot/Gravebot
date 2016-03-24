@@ -48,7 +48,10 @@ export function subCommands(bot, msg, method) {
 
     const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
     const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
-
+    if (help_parameters[method].prefix === false) {
+      return `**\`${nconf.get('PREFIX')}${subcommand.name}\`**
+      ${translation}`;
+    }
     return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
     ${translation}`;
   }, subcommands);
@@ -58,8 +61,7 @@ export function subCommands(bot, msg, method) {
     const header_text = T(help_parameters[method].header_text, lang);
     text = `${header_text}\n\n${text}`;
   }
-
-  return bot.sendMessage(msg.channel, text);
+  bot.sendMessage(msg.channel, text);
 }
 
 // E.g. !help useful
