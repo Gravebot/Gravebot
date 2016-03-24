@@ -22,8 +22,6 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 
 // Init
 const bot = new Discord();
-bot.sendMessage = function() {};
-bot.sendFile = function() {};
 
 // Checks for PMs older than 2 hours and deletes them..
 function clearOldMessages() {
