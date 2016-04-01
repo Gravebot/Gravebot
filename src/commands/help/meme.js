@@ -54,7 +54,7 @@ export default {
   list2: `**\`johnny\`** - Here's Johnny
 **\`joker\`** - And everybody loses their minds
 **\`karate\`** - Karate Kyle
-**\`keepcalm\`** -- Keep calm and ...
+**\`keepcalm\`** - Keep calm and ...
 **\`kermit\`** - But that's none of my business
 **\`koala\`** - Surprised Koala :koala:
 **\`laugh\`** - Leonardo Dicaprio laughs :laughing:

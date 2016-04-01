@@ -11,7 +11,7 @@ const request = Promise.promisify(_request);
 
 function giphy(bot, msg, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, 'Usage: **`!giphy`** `gif tags`');
+    bot.sendMessage(msg.channel, T('giphy_usage', msg.author.lang));
     return;
   }
 

@@ -10,6 +10,7 @@ import R from 'ramda';
 import { toTitleCase } from '../../src/helpers';
 import supported_languages from './supported_languages';
 
+
 if (!process.env.GOOGLE_TRANSLATE_API) {
   console.log('GOOGLE_TRANSLATE_API env is not set. Exiting.');
   process.exit(1);

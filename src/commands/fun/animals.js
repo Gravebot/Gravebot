@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import _request from 'request';
 import R from 'ramda';
 
+import { subCommands as helpText } from '../help';
 import sentry from '../../sentry';
 
 
@@ -32,6 +33,16 @@ function cat(bot, msg, suffix) {
       sentry(err, 'images', 'cat');
       bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
+}
+
+function dog(bot, msg, suffix) {
+  let count = 1;
+  if (suffix && suffix.split(' ')[0] === 'bomb') {
+    count = Number(suffix.split(' ')[1]) || 5;
+    if (count > 15) count = 15;
+    if (count < 0) count = 5;
+  }
+  for (let i = 0; i < count; i++) bot.sendFile(msg.channel, 'http://randomdoggiegenerator.com/randomdoggie.php', 'dog.png');
 }
 
 function pug(bot, msg, suffix) {
@@ -87,22 +98,37 @@ function snake(bot, msg, suffix) {
     });
 }
 
+function animals(bot, msg) {
+  bot.sendMessage(msg.channel, helpText(bot, msg, 'animals'));
+}
+
 export default {
+  animal: animals,
+  animals,
   cat,
   cats: cat,
   '\ud83d\udc31': cat,
+  dog,
+  dogs: dog,
+  '\ud83d\udc36': dog,
   pug,
   pugs: pug,
   snake,
+  snakes: snake,
   snek: snake,
+  sneks: snake,
   '\ud83d\udc0d': snake
 };
 
 export const help = {
-  cat: {
-    parameters: ['bomb', 'number']
-  },
-  pug: {
-    parameters: ['bomb', 'number']
+  animals: {
+    prefix: false,
+    header_text: 'animals_header_text',
+    subcommands: [
+      {name: 'cat'},
+      {name: 'dog'},
+      {name: 'pug'},
+      {name: 'snake'}
+    ]
   }
 };

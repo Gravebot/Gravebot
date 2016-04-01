@@ -4,10 +4,12 @@ module.exports = {
   PORT: 5000,
 
   // *Required* Discord email and password for your bot.
+  // Register here. https://discordapp.com/
   EMAIL: '',
   PASSWORD: '',
 
   // *Required* Redis URL
+  // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',
 
   // Youtube API key, used for searching videos with `!youtube`.

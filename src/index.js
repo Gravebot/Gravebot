@@ -23,7 +23,7 @@ if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
 // Init
 const bot = new Discord();
 
-// Checks for PMs older than 2 days and deletes them.
+// Checks for PMs older than 2 hours and deletes them..
 function clearOldMessages() {
   console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
   let count = 0;
@@ -61,12 +61,12 @@ function clearOldMessages() {
 }
 
 // Clear PMs once a day.
-setInterval(() => clearOldMessages(), 86400000);
+if (nconf.get('CLEAN_MESSAGES') === 'true') setInterval(() => clearOldMessages(), 86400000);
 
 // Listen for events on Discord
 bot.on('ready', () => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Serving in ${bot.servers.length} servers`));
-  if (nconf.get('CLEAN_ON_BOOT') !== 'false') setTimeout(() => clearOldMessages(), 5000);
+  if (nconf.get('CLEAN_MESSAGES') === 'true' && nconf.get('CLEAN_ON_BOOT') !== 'false') setTimeout(() => clearOldMessages(), 5000);
 });
 
 bot.on('disconnected', () => {
