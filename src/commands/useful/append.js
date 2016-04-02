@@ -1,15 +1,35 @@
 import Promise from 'bluebird';
 import sentry from '../../sentry';
-import commands from '../index';
-import { callCmd } from '../../index';
+import glob from 'glob';
+import R from 'ramda';
+
+function getCommands() {
+  const glob_options = {
+    realpath: true,
+    nodir: true
+  };
+
+  const command_files = R.flatten([
+    glob.sync(`${__dirname}/../*(!(index.js))`, glob_options),
+    glob.sync(`${__dirname}/../*/index.js`, glob_options),
+    glob.sync(`${__dirname}/../*/*/index.js`, glob_options),
+    glob.sync(`${__dirname}/../*(!(help))/*.js`, glob_options)
+  ]);
+
+  // Merge all the commands objecs together and export.
+  return R.mergeAll(R.map(js_path => {
+    return require(js_path).default;
+  }, command_files));
+}
 
 function parseMessage(bot, content, msg) {
   let command = content.toLowerCase().split(' ')[0].substring(1);
   let suffix = content.substring(command.length + 3);
+  let commands = getCommands();
   let cmd = commands[command];
 
   if (cmd) {
-    callCmd(cmd, command, bot, msg, suffix);
+    cmd(bot, msg, suffix);
   }
   return;
 }
