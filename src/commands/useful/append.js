@@ -3,6 +3,8 @@ import sentry from '../../sentry';
 import glob from 'glob';
 import R from 'ramda';
 
+let commands;
+
 function getCommands() {
   const glob_options = {
     realpath: true,
@@ -25,7 +27,9 @@ function getCommands() {
 function parseMessage(bot, content, msg) {
   let command = content.toLowerCase().split(' ')[0].substring(1);
   let suffix = content.substring(command.length + 3);
-  let commands = getCommands();
+  if (!commands) {
+    commands = getCommands();
+  }
   let cmd = commands[command];
 
   if (cmd) {
