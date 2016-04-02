@@ -64,3 +64,7 @@ function append(bot, msg, suffix) {
 export default {
   append: append
 };
+
+export const help = {
+  append: {parameters: '[text to append]'}
+};
