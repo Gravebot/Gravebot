@@ -9,9 +9,9 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function giphy(bot, msg, suffix) {
+function giphy(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('giphy_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('giphy_usage', e.message.author.lang));
     return;
   }
 
@@ -31,25 +31,25 @@ function giphy(bot, msg, suffix) {
     .then(R.prop('body'))
     .then(body => {
       if (body.data.id) {
-        bot.sendMessage(msg.channel, body.data.image_original_url);
+        e.message.channel.sendMessage(body.data.image_original_url);
       } else {
-        bot.sendMessage(msg.channel, `${T('gif_error', msg.author.lang)}: ${suffix}`);
+        e.message.channel.sendMessage(`${T('gif_error', e.message.author.lang)}: ${suffix}`);
       }
     })
     .catch(err => {
       sentry(err, 'gif', 'giphy');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function popkey(bot, msg, suffix) {
+function popkey(client, e, suffix) {
   if (!nconf.get('POPKEY_KEY')) {
-    bot.sendMessage(msg.channel, T('popkey_setup', msg.author.lang));
+    e.message.channel.sendMessage(T('popkey_setup', e.message.author.lang));
     return;
   }
 
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('popkey_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('popkey_usage', e.message.author.lang));
     return;
   }
 
@@ -67,32 +67,32 @@ function popkey(bot, msg, suffix) {
     .then(body => {
       if (body[0].id) {
         const gif = body[Math.floor(Math.random() * body.length)].source.url;
-        bot.sendMessage(msg.channel, gif);
+        e.message.channel.sendMessage(gif);
       } else {
-        bot.sendMessage(msg.channel, `${T('gif_error', msg.author.lang)}: ${suffix}`);
+        e.message.channel.sendMessage(`${T('gif_error', e.message.author.lang)}: ${suffix}`);
       }
     })
     .catch(err => {
       if (err instanceof TypeError) {
-        bot.sendMessage(msg.channel, `${T('gif_error', msg.author.lang)}: ${suffix}`);
+        e.message.channel.sendMessage(`${T('gif_error', e.message.author.lang)}: ${suffix}`);
       } else {
         sentry(err, 'gif', 'popkey');
-        bot.sendMessage(msg.channel, `Error: ${err.message}`);
+        e.message.channel.sendMessage(`Error: ${err.message}`);
       }
     });
 }
 
-function gif(bot, msg, suffix) {
+function gif(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('gif_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('gif_usage', e.message.author.lang));
     return;
   }
 
   const number = Math.floor(Math.random() * 2) + 1;
   if (number === 1) {
-    popkey(bot, msg, suffix);
+    popkey(client, e, suffix);
   } else {
-    giphy(bot, msg, suffix);
+    giphy(client, e, suffix);
   }
 }
 

@@ -12,29 +12,29 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function leet(bot, msg, suffix) {
+function leet(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('leet_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('leet_usage', e.message.author.lang));
     return;
   }
   let translation = leetify.convert(suffix);
-  bot.sendMessage(msg.channel, translation);
+  e.message.channel.sendMessage(translation);
 }
 
-function snoop(bot, msg, suffix) {
+function snoop(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('snoop_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('snoop_usage', e.message.author.lang));
     return;
   }
   gizoogle.string(suffix, (err, translation) => {
     if (err) sentry(err, 'translate', 'snoop');
-    bot.sendMessage(msg.channel, translation);
+    e.message.channel.sendMessage(translation);
   });
 }
 
-function yoda(bot, msg, phrase) {
+function yoda(client, e, phrase) {
   if (!phrase) {
-    bot.sendMessage(msg.channel, T('yoda_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('yoda_usage', e.message.author.lang));
     return;
   }
 
@@ -51,15 +51,15 @@ function yoda(bot, msg, phrase) {
     .then(R.prop('body'))
     .then(cheerio.load)
     .then($ => $('textarea[name="YodaSpeak"]').first().text())
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'translate', 'yoda');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function translate(bot, msg) {
-  bot.sendMessage(msg.channel, helpText(bot, msg, 'translate'));
+function translate(client, e) {
+  e.message.channel.sendMessage(helpText(client, e, 'translate'));
 }
 
 export default {

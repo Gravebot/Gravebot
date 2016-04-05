@@ -37,8 +37,8 @@ if (!process.env.TEST) {
   }, command_files);
 }
 
-export function subCommands(bot, msg, method) {
-  const lang = msg.author.lang;
+export function subCommands(client, e, method) {
+  const lang = e.message.author.lang;
   const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
   let text = R.map(subcommand => {
@@ -61,17 +61,17 @@ export function subCommands(bot, msg, method) {
     const header_text = T(help_parameters[method].header_text, lang);
     text = `${header_text}\n\n${text}`;
   }
-  bot.sendMessage(msg.channel, text);
+  e.message.channel.sendMessage(text);
 }
 
 // E.g. !help useful
-function helpCategory(bot, msg, category, lang = 'en') {
-  let methods, channel;
+function helpCategory(client, e, category, lang = 'en') {
+  let methods;
   if (category === 'all') {
-    channel = msg.author;
+    channel = e.message.author;
     methods = R.flatten(R.values(categories)).sort();
   } else {
-    channel = msg.channel;
+    channel = e.message.channel;
     methods = categories[category].sort();
   }
 
@@ -92,17 +92,17 @@ function helpCategory(bot, msg, category, lang = 'en') {
 
   if (category === 'all') {
     R.forEach(commands_text => {
-      return bot.sendMessage(channel, R.join('\n', R.reject(R.isNil, commands_text)));
+      return e.message.channel.sendMessage(R.join('\n', R.reject(R.isNil, commands_text)));
     }, R.splitEvery(10)(text));
   } else {
-    return bot.sendMessage(channel, R.join('\n', R.reject(R.isNil, text)));
+    return e.message.channel.sendMessage(R.join('\n', R.reject(R.isNil, text)));
   }
 }
 
-function help(bot, msg, suffix) {
-  const lang = msg.author.lang;
+function help(client, e, suffix) {
+  const lang = e.message.author.lang;
   const category = suffix.toLowerCase();
-  if (categories[category] || category === 'all') return helpCategory(bot, msg, category, lang);
+  if (categories[category] || category === 'all') return helpCategory(client, e, category, lang);
 
   const help_methods = R.keys(categories).sort();
   help_methods.push('all');
@@ -129,23 +129,23 @@ function help(bot, msg, suffix) {
     text.push(command_text);
   }, categories.help);
 
-  return bot.sendMessage(msg.channel, R.join('\n', text));
+  return e.message.channel.sendMessage(R.join('\n', text));
 }
 
-function memelist(bot, msg, suffix) {
+function memelist(client, e, suffix) {
   suffix = suffix.toLowerCase();
   if (suffix === '1') {
-    bot.sendMessage(msg.author, meme.list1);
+    e.message.author.sendMessage(meme.list1);
   } else if (suffix === '2') {
-    bot.sendMessage(msg.author, meme.list2);
+    e.message.author.sendMessage(meme.list2);
   } else if (suffix === '3') {
-    bot.sendMessage(msg.author, meme.list3);
+    e.message.author.sendMessage(meme.list3);
   } else if (suffix === 'full') {
-    bot.sendMessage(msg.author, meme.list1);
-    bot.sendMessage(msg.author, meme.list2);
-    bot.sendMessage(msg.author, meme.list3);
+    e.message.author.sendMessage(meme.list1);
+    e.message.author.sendMessage(meme.list2);
+    e.message.author.sendMessage(meme.list3);
   } else {
-    bot.sendMessage(msg.channel, meme.all);
+    e.message.channel.sendMessage(meme.all);
   }
 }
 

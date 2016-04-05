@@ -8,25 +8,25 @@ const youtube = new YoutubeNode();
 youtube.setKey(nconf.get('YOUTUBE_API_KEY'));
 youtube.addParam('type', 'video,playlist');
 
-function search(bot, msg, suffix) {
+function search(client, e, suffix) {
   if (!nconf.get('YOUTUBE_API_KEY')) {
-    bot.sendMessage(msg.channel, T('youtube_setup', msg.author.lang));
+    e.message.channel.sendMessage(T('youtube_setup', e.message.author.lang));
     return;
   }
 
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('youtube_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('youtube_usage', e.message.author.lang));
     return;
   }
 
   youtube.search(suffix, 1, (err, result) => {
     if (err) console.log(err);
     if (!result || !result.items || result.items.length < 1) {
-      bot.sendMessage(msg.channel, `${T('youtube_error', msg.author.lang)}: ${suffix}`);
+      e.message.channel.sendMessage(`${T('youtube_error', e.message.author.lang)}: ${suffix}`);
     } else {
       const id_obj = result.items[0].id;
-      if (id_obj.playlistId) return bot.sendMessage(msg.channel, `https://www.youtube.com/playlist?list=${id_obj.playlistId}`);
-      bot.sendMessage(msg.channel, `http://www.youtube.com/watch?v=${id_obj.videoId}`);
+      if (id_obj.playlistId) return e.message.channel.sendMessage(`https://www.youtube.com/playlist?list=${id_obj.playlistId}`);
+      e.message.channel.sendMessage(`http://www.youtube.com/watch?v=${id_obj.videoId}`);
     }
   });
 }

@@ -7,240 +7,296 @@ import sentry from '../sentry';
 
 const request = Promise.promisify(_request);
 
-function avatar(bot, msg, suffix) {
-  if (!suffix && !msg.mentions.length) {
-    if (!msg.author.avatarURL) {
-      bot.sendMessage(msg.channel, 'You are naked.');
+function avatar(client, e, suffix) {
+  if (!suffix && !e.message.mentions.length) {
+    if (!e.message.author.avatarURL) {
+      e.message.channel.sendMessage('You are naked.');
     } else {
-      bot.sendMessage(msg.channel, `Your avatar:\n${msg.author.avatarURL}`);
+      e.message.channel.sendMessage(`Your avatar:\n${e.message.author.avatarURL}`);
     }
-  } else if (msg.mentions.length) {
+  } else if (e.message.mentions.length) {
     R.forEach(user => {
       if (!user.avatarURL) {
-        bot.sendMessage(msg.channel, `${user.username} is naked.`);
+        e.message.channel.sendMessage(`${user.username} is naked.`);
       } else {
-        bot.sendMessage(msg.channel, `${user.username}'s avatar:\n${user.avatarURL}`);
+        e.message.channel.sendMessage(`${user.username}'s avatar:\n${user.avatarURL}`);
       }
-    }, msg.mentions);
+    }, e.message.mentions);
   } else {
     R.forEach(user => {
       if (!user.avatarURL) {
-        bot.sendMessage(msg.channel, `${user.username} is naked.`);
+        e.message.channel.sendMessage(`${user.username} is naked.`);
       } else {
-        bot.sendMessage(msg.channel, `${user.username}'s' avatar:\n${user.avatarURL}`);
+        e.message.channel.sendMessage(`${user.username}'s' avatar:\n${user.avatarURL}`);
       }
-    }, bot.users.getAll('name', suffix));
+    }, client.UserCollection.getBy('name', suffix));
   }
 }
 
-function channelinfo(bot, msg, suffix) {
-  if (!msg.channel.server) {
+function channelinfo(client, e, suffix) {
+  if (e.message.channel.is_private) {
     if (!suffix) {
-      const channelinfo = (`\`\`\`Name: ${bot.user.name}
-ID: ${msg.channel.id}
+      const channelinfo = (`\`\`\`Name: ${client.User.name}
+ID: ${e.message.DirectMessageChannel.id}
 Type: Direct Message
-New Messages: ${msg.channel.messages.length} (since the bot was restarted)
+New Messages: ${e.message.DirectMessageChannel.messages.length} (since the bot was restarted)
+Created At: ${e.message.DirectMessageChannel.createdAt}
 \`\`\``);
-      bot.sendMessage(msg.channel, channelinfo);
-    } else if (msg.content.indexOf('<#') !== -1) {
+      e.message.channel.sendMessage(channelinfo);
+    } else if (e.message.content.indexOf('<#') !== -1) {
       R.forEach(suffix => {
         R.forEach(channel => {
-          const channelinfo = (`\`\`\`Server: ${channel.server}
+          if (channel.type === 'text') {
+            const channelinfo = (`\`\`\`Server: ${channel.guild}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
 Position: ${channel.position}
 New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-          bot.sendMessage(msg.channel, channelinfo);
-        }, bot.channels.getAll('id', suffix.substring(2, suffix.length - 1)));
+            e.message.channel.sendMessage(channelinfo);
+          } else {
+            const channelinfo = (`\`\`\`Server: ${channel.guild}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
+\`\`\``);
+            e.message.channel.sendMessage(channelinfo);
+          }
+        }, client.ChannelCollection.getBy('id', suffix.substring(2, suffix.length - 1)));
       }, suffix.split(' '));
     } else {
       R.forEach(channel => {
-        const channelinfo = (`\`\`\`Server: ${channel.server}
+        if (channel.type === 'text') {
+          const channelinfo = (`\`\`\`Server: ${channel.guild}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
 Position: ${channel.position}
 New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-        bot.sendMessage(msg.channel, channelinfo);
-      }, bot.channels.getAll('name', suffix));
+          e.message.channel.sendMessage(channelinfo);
+        } else {
+          const channelinfo = (`\`\`\`Server: ${channel.guild}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
+\`\`\``);
+          e.message.channel.sendMessage(channelinfo);
+        }
+      }, client.ChannelCollection.getBy('name', suffix));
     }
   } else if (!suffix) {
-    const channelinfo = (`\`\`\`Server: ${msg.channel.server}
-Name: ${msg.channel.name}
-ID: ${msg.channel.id}
-Type: ${msg.channel.type}
-Position: ${msg.channel.position}
-New Messages: ${msg.channel.messages.length} (since the bot was restarted)
-Topic: ${msg.channel.topic}
+    const channelinfo = (`\`\`\`Server: ${e.message.channel.guild}
+Name: ${e.message.channel.name}
+ID: ${e.message.channel.id}
+Type: ${e.message.channel.type}
+Position: ${e.message.channel.position}
+New Messages: ${e.message.channel.messages.length} (since the bot was restarted)
+Created At: ${e.message.channel.createdAt}
+Topic: ${e.message.channel.topic}
 \`\`\``);
-    bot.sendMessage(msg.channel, channelinfo);
-  } else if (msg.content.indexOf('<#') !== -1) {
+    e.message.channel.sendMessage(channelinfo);
+  } else if (e.message.content.indexOf('<#') !== -1) {
     R.forEach(suffix => {
       R.forEach(channel => {
-        const channelinfo = (`\`\`\`Server: ${channel.server}
+        if (channel.type === 'text') {
+          const channelinfo = (`\`\`\`Server: ${channel.guild}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
 Position: ${channel.position}
 New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-        bot.sendMessage(msg.channel, channelinfo);
-      }, bot.channels.getAll('id', suffix.substring(2, suffix.length - 1)));
+          e.message.channel.sendMessage(channelinfo);
+        } else {
+          const channelinfo = (`\`\`\`Server: ${channel.guild}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
+\`\`\``);
+          e.message.channel.sendMessage(channelinfo);
+        }
+      }, client.ChannelCollection.getBy('id', suffix.substring(2, suffix.length - 1)));
     }, suffix.split(' '));
   } else {
     R.forEach(channel => {
-      const channelinfo = (`\`\`\`Server: ${channel.server}
+      if (channel.type === 'text') {
+        const channelinfo = (`\`\`\`Server: ${channel.guild}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
 Position: ${channel.position}
-New Messages: ${channel.messages.length ? channel.messages.length : undefined} (since the bot was restarted)
+New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-      bot.sendMessage(msg.channel, channelinfo);
-    }, bot.servers.get('id', msg.channel.server.id).channels.getAll('name', suffix));
+        e.message.channel.sendMessage(channelinfo);
+      } else {
+        const channelinfo = (`\`\`\`Server: ${channel.guild}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
+\`\`\``);
+        e.message.channel.sendMessage(channelinfo);
+      }
+    }, client.GuildCollection.getBy('id', e.message.channel.server.id).ChannelCollection.getBy('name', suffix));
   }
 }
 
-function ping(bot, msg) {
+function ping(client, e) {
   let time = process.hrtime();
   setTimeout(() => {
     let diff = process.hrtime(time);
-    bot.sendMessage(msg.channel, `Pong!\n${diff[0]}s ${diff[1] / 1000000}ms`);
+    e.message.channel.sendMessage(`Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`);
   }, 1);
 }
 
-function serverinfo(bot, msg, suffix) {
+function serverinfo(client, e, suffix) {
   if (suffix) {
     R.forEach(server => {
       const roles = R.join(', ', R.remove(0, 1, R.pluck('name', server.roles)));
       const serverinfo = (`\`\`\`Name: ${server.name}
 ID: ${server.id}
 Region: ${server.region}
-Owner: ${server.owner.username}
-Channels: ${server.channels.length}
-Default Channel: ${server.defaultChannel.name}
-AFK Channel: ${server.afkChannel ? server.afkChannel.name : null}
+Owner: ${server.owner}
+Channels: ${server.channels.length} (${server.textChannels.length} text | ${server.voiceChannels.length} voice)
+Default Channel: ${server.generalChannel.name}
+AFK Channel: ${server.afk_channel}
 Members: ${server.members.length}
+Created At: ${server.createdAt}
 Roles: ${roles}
 Icon: ${server.iconURL}
   \`\`\``);
-      bot.sendMessage(msg.channel, serverinfo);
-    }, bot.servers.getAll('name', suffix));
-  } else if (!msg.channel.server) {
-    const serverinfo = (`\`\`\`Name: ${bot.user.name}
-ID: ${bot.user.id}
+      e.message.channel.sendMessage(serverinfo);
+    }, client.GuildCollection.getBy('name', suffix));
+  } else if (e.message.channel.is_private) {
+    const serverinfo = (`\`\`\`Name: ${client.User.name}
+ID: ${client.User.id}
 Region: Discord
-Owner: ${bot.user.name}
+Owner: ${client.User.name}
 Channels: 1
-Default Channel: ${bot.user.name}
-AFK Channel: ${bot.user.name}
+Default Channel: ${client.User.name}
+AFK Channel: ${client.User.name}
 Members: 2
+Created At: Soon™
 Roles: @everyone
-Icon: ${bot.user.avatarURL}
+Icon: ${client.User.avatarURL}
 \`\`\``);
-    bot.sendMessage(msg.channel, serverinfo);
+    e.message.channel.sendMessage(serverinfo);
   } else if (!suffix) {
-    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', msg.channel.server.roles)));
-    const serverinfo = (`\`\`\`Name: ${msg.channel.server.name}
-ID: ${msg.channel.server.id}
-Region: ${msg.channel.server.region}
-Owner: ${msg.channel.server.owner.username}
-Channels: ${msg.channel.server.channels.length}
-Default Channel: ${msg.channel.server.defaultChannel.name}
-AFK Channel: ${msg.channel.server.afkChannel ? msg.channel.server.afkChannel.name : null}
-Members: ${msg.channel.server.members.length}
+    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', e.message.channel.server.roles)));
+    const serverinfo = (`\`\`\`Name: ${e.message.channel.server.name}
+ID: ${e.message.channel.server.id}
+Region: ${e.message.channel.server.region}
+Owner: ${e.message.channel.server.owner}
+Channels: ${e.message.channel.server.channels.length} (${e.message.server.textChannels.length} text | ${e.message.server.voiceChannels.length} voice)
+Default Channel: ${e.message.channel.server.generalChannel.name}
+AFK Channel: ${e.message.channel.server.afk_channel}
+Members: ${e.message.channel.server.members.length}
+Created At: ${e.message.channel.server.createdAt}
 Roles: ${roles}
-Icon: ${msg.channel.server.iconURL}
+Icon: ${e.message.channel.server.iconURL}
 \`\`\``);
-    bot.sendMessage(msg.channel, serverinfo);
+    e.message.channel.sendMessage(serverinfo);
   }
 }
-
-function serverlist(bot, msg) {
-  const server_list = R.map(server => {
-    const online = server.members.reduce((count, member) => count + (member.status === 'online' ? 1 : 0), 0);
-    return `**\`${server.name}\`** ${server.members.length} members (${online} online)`;
-  }, bot.servers.sort());
-  bot.sendMessage(msg.channel, server_list.join('\n'));
+// ? e.message.channel.server.afkChannel.name : null
+function servers(client, e) {
+  e.message.channel.sendMessage(`Connected to ${client.GuildCollection.length} servers, ${client.ChannelCollection.length} channels and ${client.UserCollection.length} users.`);
 }
 
-function servers(bot, msg) {
-  bot.sendMessage(msg.channel, `Connected to ${bot.servers.length} servers, ${bot.channels.length} channels and ${bot.users.length} users.`);
-}
-
-function userinfo(bot, msg, suffix) {
-  if (!msg.channel.server) {
+function userinfo(client, e, suffix) {
+  if (e.message.channel.is_private) {
     if (!suffix) {
-      const userinfo = (`\`\`\`Name: ${msg.author.username}
-ID: ${msg.author.id}
-Discriminator: ${msg.author.discriminator}
-Status: ${msg.author.status}
-Avatar: ${msg.author.avatarURL}
+      const userinfo = (`\`\`\`Name: ${e.message.author.username}
+ID: ${e.message.author.id}
+Discriminator: ${e.message.author.discriminator}
+Status: ${e.message.author.status} (${e.message.author.gameName})
+Created At: ${e.message.author.registeredAt}
+Joined At: ${e.message.author.joinedAt}
+Avatar: ${e.message.author.avatarURL}
 \`\`\``);
-      bot.sendMessage(msg.channel, userinfo);
+      e.message.channel.sendMessage(userinfo);
     } else {
       R.forEach(user => {
         const userinfo = (`\`\`\`Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
-Status: ${user.status}
+Status: ${user.status} (${user.gameName})
+Created At: ${user.registeredAt}
+Joined At: ${user.joinedAt}
 Avatar: ${user.avatarURL}
 \`\`\``);
-        bot.sendMessage(msg.channel, userinfo);
-      }, bot.users.getAll('name', suffix));
+        e.message.channel.sendMessage(userinfo);
+      }, client.UserCollection.getBy('name', suffix));
     }
-  } else if (!suffix && !msg.mentions.length) {
-    const userinfo = (`\`\`\`Name: ${msg.author.username}
-ID: ${msg.author.id}
-Discriminator: ${msg.author.discriminator}
-Status: ${msg.author.status}
-Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(msg.author).joinedAt).toUTCString()}
-Avatar: ${msg.author.avatarURL}
+  } else if (!suffix && !e.message.mentions.length) {
+    const userinfo = (`\`\`\`Name: ${e.message.author.username}
+ID: ${e.message.author.id}
+Discriminator: ${e.message.author.discriminator}
+Status: ${e.message.author.status} (${e.message.author.gameName})
+Created At: ${e.message.author.registeredAt}
+Joined At: ${e.message.author.joinedAt}
+Avatar: ${e.message.author.avatarURL}
 \`\`\``);
-    bot.sendMessage(msg.channel, userinfo);
-  } else if (msg.mentions.length) {
+    e.message.channel.sendMessage(userinfo);
+  } else if (e.message.mentions.length) {
     R.forEach(user => {
       const userinfo = (`\`\`\`Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
-Status: ${user.status}
-Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(user).joinedAt).toUTCString()}
+Status: ${user.status} (${user.gameName})
+Created At: ${user.registeredAt}
+Joined At: ${user.joinedAt}
 Avatar: ${user.avatarURL}
 \`\`\``);
-      bot.sendMessage(msg.channel, userinfo);
-    }, msg.mentions);
+      e.message.channel.sendMessage(userinfo);
+    }, e.message.mentions);
   } else {
     R.forEach(user => {
       const userinfo = (`\`\`\`Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
-Status: ${user.status}
-Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(user).joinedAt).toUTCString()}
+Status: ${user.status} (${user.gameName})
+Created At: ${user.registeredAt}
+Joined At: ${user.joinedAt}
 Avatar: ${user.avatarURL}
 \`\`\``);
-      bot.sendMessage(msg.channel, userinfo);
-    }, bot.servers.get('id', msg.channel.server.id).members.getAll('name', suffix));
+      e.message.channel.sendMessage(userinfo);
+    }, client.GuildCollection.getBy('id', e.message.channel.server.id).UserCollection.getBy('name', suffix));
   }
 }
 
-function uptime(bot, msg) {
-  const uptimeh = Math.floor((bot.uptime / 1000) / (60 * 60));
-  const uptimem = Math.floor((bot.uptime / 1000) % (60 * 60) / 60);
-  const uptimes = Math.floor((bot.uptime / 1000) % 60);
-  bot.sendMessage(msg.channel, `I have been alive for:
+function uptime(client, e) {
+  const uptimeh = Math.floor((client.uptime / 1000) / (60 * 60));
+  const uptimem = Math.floor((client.uptime / 1000) % (60 * 60) / 60);
+  const uptimes = Math.floor((client.uptime / 1000) % 60);
+  e.message.channel.sendMessage(`I have been alive for:
 ${uptimeh} Hours
 ${uptimem} Minutes
 ${uptimes} Seconds`);
 }
 
-function version(bot, msg) {
+function version(client, e) {
   request('https://raw.githubusercontent.com/Gravestorm/Gravebot/master/CHANGELOG.md')
     .then(R.prop('body'))
     .then(R.split(/<a name="*.*.*" \/>/g))
@@ -249,10 +305,10 @@ function version(bot, msg) {
     .then(R.replace(/#/g, ''))
     .then(R.slice(1, -1))
     .then(R.trim)
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'info', 'version');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
@@ -265,7 +321,6 @@ export default {
   'new-features': version,
   ping,
   serverinfo,
-  serverlist,
   servers,
   statistics: servers,
   stats: servers,
@@ -280,7 +335,6 @@ export const help = {
   channelinfo: {parameters: ['channel name'], category: 'info'},
   ping: {category: 'info'},
   serverinfo: {parameters: ['server name'], category: 'info'},
-  serverlist: {category: 'info'},
   servers: {category: 'info'},
   userinfo: {parameters: ['username'], category: 'info'},
   uptime: {category: 'info'},

@@ -2,7 +2,7 @@ import { choices } from '../../data';
 import T from '../../translate';
 
 
-function decide(bot, msg, suffix) {
+function decide(client, e, suffix) {
   function multipleDecide(options) {
     const selected = options[Math.floor(Math.random() * options.length)];
     if (!selected) return multipleDecide(options);
@@ -12,9 +12,9 @@ function decide(bot, msg, suffix) {
   const split = suffix.split(' or ');
   const rand = Math.floor(Math.random() * choices.length);
   if (split.length > 1) {
-    bot.sendMessage(msg.channel, `${choices[rand]} **${multipleDecide(split)}**`);
+    e.message.channel.sendMessage(`${choices[rand]} **${multipleDecide(split)}**`);
   } else {
-    bot.sendMessage(msg.channel, T('decide_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('decide_usage', e.message.author.lang));
   }
 }
 

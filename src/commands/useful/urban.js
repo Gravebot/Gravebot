@@ -3,9 +3,9 @@ import urbanQuery from 'urban';
 import T from '../../translate';
 
 
-function urban(bot, msg, suffix) {
+function urban(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('urban_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('urban_usage', e.message.author.lang));
     return;
   }
   urbanQuery(suffix).first((json) => {
@@ -14,9 +14,9 @@ function urban(bot, msg, suffix) {
 :arrow_up: ${json.thumbs_up}   :arrow_down: ${json.thumbs_down}
 
 Example: ${json.example}`;
-      bot.sendMessage(msg.channel, definition);
+      e.message.channel.sendMessage(definition);
     } else {
-      bot.sendMessage(msg.channel, `${T('urban_error', msg.author.lang)}: ${suffix}`);
+      e.message.channel.sendMessage(`${T('urban_error', e.message.author.lang)}: ${suffix}`);
     }
   });
 }

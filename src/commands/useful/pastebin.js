@@ -9,13 +9,13 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function makePaste(bot, msg, paste) {
+function makePaste(client, e, paste) {
   if (!nconf.get('PASTEBIN_KEY')) {
-    return bot.sendMessage(msg.channel, T('pastebin_setup', msg.author.lang));
+    return e.message.channel.sendMessage(T('pastebin_setup', e.message.author.lang));
   }
 
   if (!paste) {
-    bot.sendMessage(msg.channel, T('pastebin_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('pastebin_usage', e.message.author.lang));
     return;
   }
 
@@ -31,10 +31,10 @@ function makePaste(bot, msg, paste) {
 
   request(options)
     .then(R.prop('body'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'pastebin');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 

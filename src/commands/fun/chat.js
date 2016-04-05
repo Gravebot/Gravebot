@@ -8,18 +8,14 @@ import T from '../../translate';
 
 const clever = new Cleverbot(nconf.get('CLEVERBOT_API_NAME'), nconf.get('CLEVERBOT_API_KEY'));
 
-function chat(bot, msg, suffix) {
+function chat(client, e, suffix) {
   if (!nconf.get('CLEVERBOT_API_NAME') || !nconf.get('CLEVERBOT_API_KEY')) {
-    bot.sendMessage(msg.channel, T('chat_setup', msg.author.lang));
+    e.message.channel.sendMessage(T('chat_setup', e.message.author.lang));
     return;
   }
 
   if (!suffix) suffix = 'Hello.';
 
-  // If cleverbot doesn't respond in 15 seconds, stop typing.
-  let typingTimeout = setTimeout(() => bot.stopTyping(msg.channel), 15000);
-
-  bot.startTyping(msg.channel);
   Cleverbot.prepare(() => {
     try {
       clever.write(suffix, (response) => {
@@ -29,15 +25,11 @@ function chat(bot, msg, suffix) {
             return String.fromCharCode(parseInt(grp, 16));
           });
         }
-        bot.sendMessage(msg, ent.decodeHTML(response.message));
-        bot.stopTyping(msg.channel);
-        clearTimeout(typingTimeout);
+        e.message.channel.sendMessage(ent.decodeHTML(response.message));
       });
     } catch (err) {
       sentry(err, 'chat');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-      bot.stopTyping(msg.channel);
-      clearTimeout(typingTimeout);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     }
   });
 }

@@ -1,7 +1,7 @@
 import R from 'ramda';
 
 
-function roll(bot, msg, suffix) {
+function roll(client, e, suffix) {
   let times = suffix.split(' ')[0];
   let sides = suffix.split(' ')[1];
 
@@ -9,11 +9,11 @@ function roll(bot, msg, suffix) {
   if (!sides) sides = 6;
 
   if (isNaN(times) || isNaN(sides)) {
-    return bot.sendMessage(msg.channel, `${msg.author} rolled ${suffix}\nUsage: **\`!roll\`** \`times\` \`sides\``);
+    return e.message.channel.sendMessage(`${e.message.author} rolled ${suffix}\nUsage: **\`!roll\`** \`times\` \`sides\``);
   }
 
   if (times > 1000 || sides > 1000000) {
-    return bot.sendMessage(msg.channel, `${msg.author} I\'m too high to calculate that high number.`);
+    return e.message.channel.sendMessage(`${e.message.author} I\'m too high to calculate that high number.`);
   }
 
   let total = 0;
@@ -25,12 +25,12 @@ function roll(bot, msg, suffix) {
 
   const average = total / times;
 
-  let return_text = `${msg.author} rolled a ${sides} sided dice ${times} times for a total of **${total}** (average: ${average}):\n${msg_array}`;
+  let return_text = `${e.message.author} rolled a ${sides} sided dice ${times} times for a total of **${total}** (average: ${average}):\n${msg_array}`;
   if (return_text.length >= 1999) {
-    return bot.sendMessage(msg.channel, `${msg.author} I\'m too high to calculate that high number.`);
+    return e.message.channel.sendMessage(`${e.message.author} I\'m too high to calculate that high number.`);
   }
 
-  bot.sendMessage(msg.channel, return_text);
+  e.message.channel.sendMessage(return_text);
 
   // Attempt clearing RAM early
   return_text = null;

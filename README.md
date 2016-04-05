@@ -57,6 +57,7 @@ For self hosting, click [here](#localconfig).
 #### Useful:
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
 - `!join` *invitation link* - Joins the server the bot is invited to
+- `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
@@ -68,7 +69,6 @@ For self hosting, click [here](#localconfig).
 - `!channelinfo` *channel name* - Gives information about this channel, unless a name is specified
 - `!ping` - Pong! Check Gravebot's pulse
 - `!serverinfo` *server name* - Gives information about this server, unless a name is specified
-- `!serverlist` - Lists all the servers the bot is connected to
 - `!servers` - Lists how many servers, channels and users the bot is connected to
 - `!uptime` - Shows how long the bot has been online
 - `!userinfo` *username* - Gives information about this user, unless a name is specified

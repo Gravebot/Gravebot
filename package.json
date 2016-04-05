@@ -14,7 +14,7 @@
     "cheerio": "^0.20.0",
     "cleverbot-node": "^0.2.1",
     "didyoumean": "^1.2.1",
-    "discord.js": "6.0.0",
+    "discordie": "^0.4.1",
     "entities": "^1.1.1",
     "express": "^4.13.3",
     "forever": "^0.15.1",
@@ -88,8 +88,8 @@
     "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
-    "node": "4.3.1",
-    "npm": "3.7.3"
+    "node": "4.4.2",
+    "npm": "3.8.5"
   },
   "babel": {
     "presets": [

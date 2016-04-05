@@ -16,13 +16,13 @@ function queryWolf(wolf, query) {
   });
 }
 
-function wolfram(bot, msg, query) {
+function wolfram(client, e, query) {
   if (!nconf.get('WOLFRAM_KEY')) {
-    return bot.sendMessage(msg.channel, T('wolfram_setup', msg.author.lang));
+    return e.message.channel.sendMessage(T('wolfram_setup', e.messages.author.lang));
   }
 
   if (!query) {
-    bot.sendMessage(msg.channel, T('wolfram_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('wolfram_usage', e.messages.author.lang));
   }
 
   const wolf = wolframalpha.createClient(nconf.get('WOLFRAM_KEY'));
@@ -34,10 +34,10 @@ function wolfram(bot, msg, query) {
     .then(R.prop('subpods'))
     .then(R.nth(0))
     .then(R.prop('image'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'wolfram');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 

@@ -8,7 +8,7 @@ import sentry from '../../sentry';
 
 const request = Promise.promisify(_request);
 
-function cat(bot, msg, suffix) {
+function cat(client, e, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -28,24 +28,24 @@ function cat(bot, msg, suffix) {
         .then(encodeURI);
     })
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'images', 'cat');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function dog(bot, msg, suffix) {
+function dog(client, e, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
     if (count > 15) count = 15;
     if (count < 0) count = 5;
   }
-  for (let i = 0; i < count; i++) bot.sendFile(msg.channel, 'http://randomdoggiegenerator.com/randomdoggie.php', 'dog.png');
+  for (let i = 0; i < count; i++) e.message.channel.uploadFile('http://randomdoggiegenerator.com/randomdoggie.php', 'dog.png');
 }
 
-function pug(bot, msg, suffix) {
+function pug(client, e, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -64,14 +64,14 @@ function pug(bot, msg, suffix) {
   request(options)
     .then(R.path(['body', 'pugs']))
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'images', 'pug');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function snake(bot, msg, suffix) {
+function snake(client, e, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -91,15 +91,15 @@ function snake(bot, msg, suffix) {
         .then(encodeURI);
     })
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'images', 'snake');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function animals(bot, msg) {
-  bot.sendMessage(msg.channel, helpText(bot, msg, 'animals'));
+function animals(client, e) {
+  e.message.channel.sendMessage(helpText(client, e, 'animals'));
 }
 
 export default {

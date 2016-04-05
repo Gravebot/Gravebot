@@ -8,6 +8,11 @@ module.exports = {
   EMAIL: '',
   PASSWORD: '',
 
+  // Alternatively you can use a token.
+  // Press CTRL+SHIFT+I in your browser or the desktop app to open developer tools
+  // Then type localStorage.token in console and copy paste the token here
+  TOKEN: '',
+
   // *Required* Redis URL
   // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',

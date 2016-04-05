@@ -3,9 +3,9 @@ import Wiki from 'wikijs';
 
 import T from '../../translate';
 
-function wiki(bot, msg, suffix) {
+function wiki(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('wiki_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('wiki_usage', e.message.author.lang));
     return;
   }
   new Wiki().search(suffix, 1).then(data => {
@@ -13,7 +13,7 @@ function wiki(bot, msg, suffix) {
       page.summary().then(summary => {
         const sum_text = summary.toString().split('\n');
         R.forEach(paragraph => {
-          bot.sendMessage(msg.channel, paragraph);
+          e.message.channel.sendMessage(paragraph);
         }, sum_text);
       });
     });

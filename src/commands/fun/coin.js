@@ -1,9 +1,9 @@
-function coin(bot, msg) {
+function coin(client, e) {
   const number = Math.floor(Math.random() * 2) + 1;
   if (number === 1) {
-    bot.sendFile(msg.channel, './images/Heads.png');
+    e.message.channel.sendFile('./images/Heads.png');
   } else {
-    bot.sendFile(msg.channel, './images/Tails.png');
+    e.message.channel.sendFile('./images/Tails.png');
   }
 }
 

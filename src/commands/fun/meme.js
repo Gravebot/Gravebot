@@ -9,28 +9,28 @@ import { memes } from '../../data';
 
 const imgflipper = new Imgflipper(nconf.get('IMGFLIP_USERNAME'), nconf.get('IMGFLIP_PASSWORD'));
 
-function meme(bot, msg, suffix) {
+function meme(client, e, suffix) {
   if (!nconf.get('IMGFLIP_USERNAME') || !nconf.get('IMGFLIP_PASSWORD')) {
-    bot.sendMessage(msg.channel, T('meme_setup', msg.author.lang));
+    e.message.channel.sendMessage(T('meme_setup', e.message.author.lang));
     return;
   }
 
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('meme_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('meme_usage', e.message.author.lang));
     return;
   }
   const tags = suffix.split('"');
   const memetype = tags[0].trim();
 
   // Still send blank meme, but also send usage message.
-  if (!tags[1] && !tags[3]) bot.sendMessage(msg.channel, T('meme_usage', msg.author.lang));
+  if (!tags[1] && !tags[3]) e.message.channel.sendMessage(T('meme_usage', e.message.author.lang));
 
   imgflipper.generateMeme(memes[memetype], tags[1] ? tags[1] : ' ', tags[3] ? tags[3] : ' ', (err, image) => {
     if (err) {
       if (err.message !== 'No texts supplied') sentry(err, 'meme');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     } else {
-      bot.sendMessage(msg.channel, image);
+      e.message.channel.sendMessage(image);
     }
   });
 }

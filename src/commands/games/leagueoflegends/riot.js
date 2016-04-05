@@ -46,7 +46,7 @@ function _makeRequest(url) {
     .then(R.prop('body'));
 }
 
-export function serverStatus(bot, msg) {
+export function serverStatus(client, e) {
   const options = {
     url: 'http://status.leagueoflegends.com/shards',
     json: true
@@ -72,10 +72,10 @@ export function serverStatus(bot, msg) {
         });
     }, {concurrency: Infinity})
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'leagueoflegends', 'serverStatus');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
@@ -158,27 +158,27 @@ function _formatPlayerStats(summoners) {
   }, summoners);
 }
 
-export function matchDetails(bot, msg, suffix) {
+export function matchDetails(client, e, suffix) {
   if (!nconf.get('RIOT_KEY')) {
-    return bot.sendMessage(msg.channel, T('riot_setup', msg.author.lang));
+    return e.message.channel.sendMessage(T('riot_setup', e.message.author.lang));
   }
 
   const suffix_split = suffix.split(' ');
-  if (!suffix_split[1]) return bot.sendMessage(msg.channel, `Accepted regions are **${R.join(', ', regions)}**.`);
+  if (!suffix_split[1]) return e.message.channel.sendMessage(`Accepted regions are **${R.join(', ', regions)}**.`);
 
   const region = suffix_split[1].toLowerCase();
   let name = R.join(' ', R.slice(2, 20, suffix_split));
   let summoner_id;
 
   // If it's a mention
-  if (msg.mentions.length !== 0) name = msg.mentions[0].username;
+  if (e.message.mentions.length !== 0) name = e.message.mentions[0].username;
   // If no name, use authorx
-  if (!name) name = msg.author.username;
+  if (!name) name = e.message.author.username;
 
-  if (!R.contains(region, regions)) return bot.sendMessage(msg.channel, `I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
+  if (!R.contains(region, regions)) return e.message.channel.sendMessage(`I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
   if (!name) {
-    bot.sendMessage(msg.channel, T('specify_summoner', msg.author.lang));
-    return bot.sendMessage(msg.channel, helpText(bot, msg, 'lol'));
+    e.message.channel.sendMessage(T('specify_summoner', e.message.author.lang));
+    return e.message.channel.sendMessage(helpText(client, e, 'lol'));
   }
 
   _makeRequest(`https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}`)
@@ -205,10 +205,10 @@ export function matchDetails(bot, msg, suffix) {
       const summoner_team = summoner_team_id === 100 ? 'Blue' : 'Red';
 
       const title_text = `Game on! You can find **${name}** on __${summoner_team}__ side.`;
-      bot.sendMessage(msg.channel, R.join('\n\n', [title_text, blue_side_text, red_side_text]));
+      e.message.channel.sendMessage(R.join('\n\n', [title_text, blue_side_text, red_side_text]));
     })
     .catch(err => {
       sentry(err, 'leagueoflegends', 'matchDetails');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }

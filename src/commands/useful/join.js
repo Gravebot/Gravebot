@@ -1,16 +1,16 @@
 import T from '../../translate';
 
 
-function joinServer(bot, msg, suffix) {
+function joinServer(client, e, suffix) {
   if (!suffix) {
-    bot.sendMessage(msg.channel, T('join_usage', msg.author.lang));
+    e.message.channel.sendMessage(T('join_usage', e.message.author.lang));
     return;
   }
-  bot.joinServer(suffix, (err, server) => {
+  client.InviteManager.accept(suffix, (err, server) => {
     if (err) {
-      bot.sendMessage(msg.channel, `Failed to join: ${err}`);
+      e.message.channel.sendMessage(`Failed to join: ${err}`);
     } else {
-      bot.sendMessage(msg.channel, `Successfully joined ${server}`);
+      e.message.channel.sendMessage(`Successfully joined ${server}`);
     }
   });
 }

@@ -22,10 +22,10 @@ const positions = {
   jg: 'jungle'
 };
 
-function best(bot, msg, suffix) {
+function best(client, e, suffix) {
   const position = suffix.replace('best', '').toLowerCase().trim();
   const db_position = positions[position];
-  if (!db_position) return bot.sendMessage(msg.channel, `I don't understand position **${position}**. Did you mean **mid**, **off**, **safe**, or **jungle**?`);
+  if (!db_position) return e.message.channel.sendMessage(`I don't understand position **${position}**. Did you mean **mid**, **off**, **safe**, or **jungle**?`);
 
   const options = {
     url: `http://www.dotabuff.com/heroes/lanes?lane=${db_position}`,
@@ -64,14 +64,14 @@ function best(bot, msg, suffix) {
     })
     .then(R.prepend(`Okay! Here's the top 10 **statistical** Heroes for **${position}**:\n`))
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'dota2', 'best');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function build(bot, msg, suffix) {
+function build(client, e, suffix) {
   const hero = suffix.toLowerCase().split(' ').slice(1, 10).join(' ');
   const options = {
     url: `http://www.dotabuff.com/heroes/${hero.replace(/ /g, '-')}/builds`,
@@ -92,15 +92,15 @@ function build(bot, msg, suffix) {
       }).get().join(' > ');
 
       const text = `You got it! Here's most popular build priorities for **${toTitleCase(hero)}**.\n${priorities}`;
-      bot.sendMessage(msg.channel, text);
+      e.message.channel.sendMessage(text);
     })
     .catch(err => {
       sentry(err, 'dota2', 'build');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function counters(bot, msg, suffix) {
+function counters(client, e, suffix) {
   const hero = suffix.toLowerCase().split(' ').slice(1, 10).join(' ');
   const options = {
     url: `http://www.dotabuff.com/heroes/${hero.replace(/ /g, '-')}/matchups`,
@@ -137,14 +137,14 @@ function counters(bot, msg, suffix) {
     })
     .then(R.prepend(`Sure! Here's the top 10 **statistical** counters for **${toTitleCase(hero)}** this month:\n`))
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'dota2', 'counters');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function impact(bot, msg) {
+function impact(client, e) {
   const options = {
     url: `http://www.dotabuff.com/heroes/impact`,
     headers: {
@@ -181,14 +181,14 @@ function impact(bot, msg) {
     })
     .then(R.prepend(`Alright! Here's the top 10 Heroes with the biggest impact this month:\n`))
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'dota2', 'impact');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function items(bot, msg, suffix) {
+function items(client, e, suffix) {
   const hero = suffix.toLowerCase().split(' ').slice(1, 10).join(' ');
   const options = {
     url: `http://www.dotabuff.com/heroes/${hero.replace(/ /g, '-')}/items`,
@@ -223,29 +223,29 @@ function items(bot, msg, suffix) {
     })
     .then(R.prepend(`Alright! Here's the top 10 **most used** items for **${toTitleCase(hero)}** this month:\n`))
     .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
+    .then(text => e.message.channel.sendMessage(text))
     .catch(err => {
       sentry(err, 'dota2', 'items');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
+      e.message.channel.sendMessage(`Error: ${err.message}`);
     });
 }
 
-function commands(bot, msg, suffix) {
+function commands(client, e, suffix) {
   const command = suffix.toLowerCase().split(' ')[0];
 
-  if (command === 'build') return build(bot, msg, suffix);
-  if (command === 'builds') return build(bot, msg, suffix);
-  if (command === 'best') return best(bot, msg, suffix);
-  if (command === 'counter') return counters(bot, msg, suffix);
-  if (command === 'counters') return counters(bot, msg, suffix);
-  if (command === 'impact') return impact(bot, msg);
-  if (command === 'item') return items(bot, msg, suffix);
-  if (command === 'items') return items(bot, msg, suffix);
-  if (command === 'matchup') return counters(bot, msg, suffix);
-  if (command === 'matchups') return counters(bot, msg, suffix);
-  if (command === 'skill') return build(bot, msg, suffix);
-  if (command === 'skills') return build(bot, msg, suffix);
-  return bot.sendMessage(msg.channel, helpText(bot, msg, 'dota2'));
+  if (command === 'build') return build(client, e, suffix);
+  if (command === 'builds') return build(client, e, suffix);
+  if (command === 'best') return best(client, e, suffix);
+  if (command === 'counter') return counters(client, e, suffix);
+  if (command === 'counters') return counters(client, e, suffix);
+  if (command === 'impact') return impact(client, e);
+  if (command === 'item') return items(client, e, suffix);
+  if (command === 'items') return items(client, e, suffix);
+  if (command === 'matchup') return counters(client, e, suffix);
+  if (command === 'matchups') return counters(client, e, suffix);
+  if (command === 'skill') return build(client, e, suffix);
+  if (command === 'skills') return build(client, e, suffix);
+  return e.message.channel.sendMessage(helpText(client, e, 'dota2'));
 }
 
 export default {

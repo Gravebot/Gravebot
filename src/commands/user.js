@@ -1,4 +1,3 @@
-import { PMChannel } from 'discord.js';
 import R from 'ramda';
 
 import sentry from '../sentry';
@@ -8,7 +7,7 @@ import T, { langs } from '../translate';
 const lang_defs = require('../data/lang_defs.json');
 
 
-function setLang(bot, msg, suffix) {
+function setLang(client, e, suffix) {
   let lang = suffix.toLowerCase().trim();
 
   if (lang_defs[lang]) lang = lang_defs[lang];
@@ -21,19 +20,19 @@ function setLang(bot, msg, suffix) {
     }, R.keys(lang_defs));
 
     const langs = R.join('\n', R.map(R.join(', '), R.values(lang_options)));
-    return bot.sendMessage(msg.channel, `${T('accepted_languages', 'en')}:\n\n**${langs}**`);
+    return e.message.channel.sendMessage(`${T('accepted_languages', 'en')}:\n\n**${langs}**`);
   }
 
-  setUserLang(msg.author.id, lang).then(() => {
-    if (msg.channel instanceof PMChannel) {
-      bot.sendMessage(msg.channel, `${T('hello', lang)}, ${msg.author.name}!`);
+  setUserLang(e.message.author.id, lang).then(() => {
+    if (e.message.channel.is_private) {
+      e.message.channel.sendMessage(`${T('hello', lang)}, ${e.message.author.name}!`);
     } else {
-      bot.sendMessage(msg.channel, `${T('hello', lang)}, ${msg.author}!`);
+      e.message.channel.sendMessage(`${T('hello', lang)}, ${e.message.author}!`);
     }
   })
   .catch(err => {
     sentry(err, 'user', 'setlang');
-    bot.sendMessage(msg.channel, `Error: ${err.message}`);
+    e.message.channel.sendMessage(`Error: ${err.message}`);
   });
 }
 
