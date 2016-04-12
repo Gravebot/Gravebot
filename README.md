@@ -7,6 +7,7 @@
 [![](https://badge.imagelayers.io/gravebot/gravebot:latest.svg)](https://imagelayers.io/?images=gravebot/gravebot:latest 'Get your own badge on imagelayers.io')
 [![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/gravebot/gravebot/)
 
+[![Discord](https://discordapp.com/api/servers/128598463947472897/widget.png?style=banner3)](https://discord.gg/0iXEgtjdHgkpdsVr)
 ## About
 
 A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
