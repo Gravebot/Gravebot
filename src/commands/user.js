@@ -24,11 +24,7 @@ function setLang(client, e, suffix) {
   }
 
   setUserLang(e.message.author.id, lang).then(() => {
-    if (e.message.channel.is_private) {
-      e.message.channel.sendMessage(`${T('hello', lang)}, ${e.message.author.name}!`);
-    } else {
-      e.message.channel.sendMessage(`${T('hello', lang)}, ${e.message.author}!`);
-    }
+    e.message.channel.sendMessage(`${T('hello', lang)}, ${e.message.author.username}!`);
   })
   .catch(err => {
     sentry(err, 'user', 'setlang');

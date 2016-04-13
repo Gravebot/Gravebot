@@ -152,9 +152,9 @@ function randomComic(client, e) {
     cah,
     smbc,
     amazingSuperPowers,
-    // awkwardZombie,
+    awkwardZombie,
     chainsawsuit,
-    // dogHouseDiaries,
+    dogHouseDiaries,
     theOatmeal,
     xkcd
   ];

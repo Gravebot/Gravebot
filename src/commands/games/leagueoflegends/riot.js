@@ -158,9 +158,9 @@ function _formatPlayerStats(summoners) {
   }, summoners);
 }
 
-export function matchDetails(client, e, suffix) {
+export function matchDetails(client, e, suffix, lang) {
   if (!nconf.get('RIOT_KEY')) {
-    return e.message.channel.sendMessage(T('riot_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('riot_setup', lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -177,7 +177,7 @@ export function matchDetails(client, e, suffix) {
 
   if (!R.contains(region, regions)) return e.message.channel.sendMessage(`I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
   if (!name) {
-    e.message.channel.sendMessage(T('specify_summoner', e.message.author.lang));
+    e.message.channel.sendMessage(T('specify_summoner', lang));
     return e.message.channel.sendMessage(helpText(client, e, 'lol'));
   }
 

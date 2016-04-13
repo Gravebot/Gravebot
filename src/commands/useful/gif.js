@@ -9,9 +9,9 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function giphy(client, e, suffix) {
+function giphy(client, e, suffix, lang) {
   if (!suffix) {
-    e.message.channel.sendMessage(T('giphy_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('giphy_usage', lang));
     return;
   }
 
@@ -33,7 +33,7 @@ function giphy(client, e, suffix) {
       if (body.data.id) {
         e.message.channel.sendMessage(body.data.image_original_url);
       } else {
-        e.message.channel.sendMessage(`${T('gif_error', e.message.author.lang)}: ${suffix}`);
+        e.message.channel.sendMessage(`${T('gif_error', lang)}: ${suffix}`);
       }
     })
     .catch(err => {
@@ -42,14 +42,14 @@ function giphy(client, e, suffix) {
     });
 }
 
-function popkey(client, e, suffix) {
+function popkey(client, e, suffix, lang) {
   if (!nconf.get('POPKEY_KEY')) {
-    e.message.channel.sendMessage(T('popkey_setup', e.message.author.lang));
+    e.message.channel.sendMessage(T('popkey_setup', lang));
     return;
   }
 
   if (!suffix) {
-    e.message.channel.sendMessage(T('popkey_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('popkey_usage', lang));
     return;
   }
 
@@ -69,12 +69,12 @@ function popkey(client, e, suffix) {
         const gif = body[Math.floor(Math.random() * body.length)].source.url;
         e.message.channel.sendMessage(gif);
       } else {
-        e.message.channel.sendMessage(`${T('gif_error', e.message.author.lang)}: ${suffix}`);
+        e.message.channel.sendMessage(`${T('gif_error', lang)}: ${suffix}`);
       }
     })
     .catch(err => {
       if (err instanceof TypeError) {
-        e.message.channel.sendMessage(`${T('gif_error', e.message.author.lang)}: ${suffix}`);
+        e.message.channel.sendMessage(`${T('gif_error', lang)}: ${suffix}`);
       } else {
         sentry(err, 'gif', 'popkey');
         e.message.channel.sendMessage(`Error: ${err.message}`);
@@ -82,17 +82,17 @@ function popkey(client, e, suffix) {
     });
 }
 
-function gif(client, e, suffix) {
+function gif(client, e, suffix, lang) {
   if (!suffix) {
-    e.message.channel.sendMessage(T('gif_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('gif_usage', lang));
     return;
   }
 
   const number = Math.floor(Math.random() * 2) + 1;
   if (number === 1) {
-    popkey(client, e, suffix);
+    popkey(client, e, suffix, lang);
   } else {
-    giphy(client, e, suffix);
+    giphy(client, e, suffix, lang);
   }
 }
 

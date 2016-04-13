@@ -9,13 +9,13 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function makePaste(client, e, paste) {
+function makePaste(client, e, paste, lang) {
   if (!nconf.get('PASTEBIN_KEY')) {
-    return e.message.channel.sendMessage(T('pastebin_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('pastebin_setup', lang));
   }
 
   if (!paste) {
-    e.message.channel.sendMessage(T('pastebin_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('pastebin_usage', lang));
     return;
   }
 

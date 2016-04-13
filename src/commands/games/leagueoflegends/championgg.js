@@ -70,9 +70,9 @@ function _verifyName(champ) {
   return champ_reg;
 }
 
-export function counters(client, e, suffix) {
+export function counters(client, e, suffix, lang) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return e.message.channel.sendMessage(T('champgg_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('champgg_setup', lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -80,9 +80,9 @@ export function counters(client, e, suffix) {
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
   const champ_reg = _verifyName(champ);
 
-  if (position === champ) return e.message.channel.sendMessage(`${T('lol_specify_position', e.message.author.lang)} ${T('lol_positions', e.message.author.lang)}`);
+  if (position === champ) return e.message.channel.sendMessage(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
 
-  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', e.message.author.lang)} **${position}**. ${T('lol_positions', e.message.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   const gg_position = positions[position];
 
   const options = {
@@ -91,7 +91,7 @@ export function counters(client, e, suffix) {
   return _makeRequest(options)
     .then(body => {
       let results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_counters', e.message.author.lang)} **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_counters', lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(R.prop('matchups'))
@@ -124,9 +124,9 @@ export function counters(client, e, suffix) {
     });
 }
 
-export function items(client, e, suffix) {
+export function items(client, e, suffix, lang) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return e.message.channel.sendMessage(T('champgg_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('champgg_setup', lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -134,24 +134,24 @@ export function items(client, e, suffix) {
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
   const champ_reg = _verifyName(champ);
 
-  if (position === champ) return e.message.channel.sendMessage(`${T('lol_specify_position', e.message.author.lang)} ${T('lol_positions', e.message.author.lang)}`);
+  if (position === champ) return e.message.channel.sendMessage(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
 
   const options = {
     url: `http://api.champion.gg/champion/${champ_reg}/items/finished/mostWins`
   };
 
-  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', e.message.author.lang)} **${position}**. ${T('lol_positions', e.message.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   let gg_position = positions[position];
 
   return _makeRequest(options)
     .then(body => {
       const results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_item_sets', e.message.author.lang)} **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_item_sets', lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(item_data => {
       const champ_data = lol_champs[champ_reg];
-      if (!item_data.items.length) throw new Warning(`${T('no_item_sets', e.message.author.lang)} **${champ}** **${position}**.`);
+      if (!item_data.items.length) throw new Warning(`${T('no_item_sets', lang)} **${champ}** **${position}**.`);
 
       item_data.names = R.map(item_id => lol_items[item_id], item_data.items);
       item_data.champ_name = champ_data.name;
@@ -165,9 +165,9 @@ export function items(client, e, suffix) {
     });
 }
 
-export function skills(client, e, suffix) {
+export function skills(client, e, suffix, lang) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return e.message.channel.sendMessage(T('champgg_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('champgg_setup', lang));
   }
 
   const suffix_split = suffix.split(' ');
@@ -176,19 +176,19 @@ export function skills(client, e, suffix) {
   const champ_reg = _verifyName(champ);
   const champ_data = lol_champs[champ_reg];
 
-  if (position === champ) return e.message.channel.sendMessage(`${T('lol_specify_position', e.message.author.lang)} ${T('lol_positions', e.message.author.lang)}`);
+  if (position === champ) return e.message.channel.sendMessage(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
 
   const options = {
     url: `http://api.champion.gg/champion/${champ_reg}/skills/mostWins`
   };
 
-  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', e.message.author.lang)} **${position}**. ${T('lol_positions', e.message.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   const gg_position = positions[position];
 
   return _makeRequest(options)
     .then(body => {
       let results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_skills', e.message.author.lang)} **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_skills', lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(R.prop('order'))
@@ -215,9 +215,9 @@ export function skills(client, e, suffix) {
     });
 }
 
-export function bans(client, e) {
+export function bans(client, e, lang) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return e.message.channel.sendMessage(T('champgg_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('champgg_setup', lang));
   }
 
   const options = {
@@ -245,15 +245,15 @@ export function bans(client, e) {
     });
 }
 
-export function best(client, e, suffix) {
+export function best(client, e, suffix, lang) {
   if (!nconf.get('CHAMPIONGG_API')) {
-    return e.message.channel.sendMessage(T('champgg_setup', e.message.author.lang));
+    return e.message.channel.sendMessage(T('champgg_setup', lang));
   }
 
   const position = R.last(suffix.split(' ')).toLowerCase();
 
-  if (!position || position === 'best') return e.message.channel.sendMessage(`${T('lol_specify_position', e.message.author.lang)} ${T('lol_positions', e.message.author.lang)}`);
-  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', e.message.author.lang)} **${position}**. ${T('lol_positions', e.message.author.lang)}`);
+  if (!position || position === 'best') return e.message.channel.sendMessage(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
+  if (!R.contains(position, R.keys(positions))) return e.message.channel.sendMessage(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   const gg_position = positions[position];
 
   const options = {

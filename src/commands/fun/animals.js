@@ -35,16 +35,6 @@ function cat(client, e, suffix) {
     });
 }
 
-function dog(client, e, suffix) {
-  let count = 1;
-  if (suffix && suffix.split(' ')[0] === 'bomb') {
-    count = Number(suffix.split(' ')[1]) || 5;
-    if (count > 15) count = 15;
-    if (count < 0) count = 5;
-  }
-  for (let i = 0; i < count; i++) e.message.channel.uploadFile('http://randomdoggiegenerator.com/randomdoggie.php', 'dog.png');
-}
-
 function pug(client, e, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
@@ -108,9 +98,6 @@ export default {
   cat,
   cats: cat,
   '\ud83d\udc31': cat,
-  dog,
-  dogs: dog,
-  '\ud83d\udc36': dog,
   pug,
   pugs: pug,
   snake,
@@ -126,7 +113,6 @@ export const help = {
     header_text: 'animals_header_text',
     subcommands: [
       {name: 'cat'},
-      {name: 'dog'},
       {name: 'pug'},
       {name: 'snake'}
     ]

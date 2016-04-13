@@ -67,8 +67,7 @@ client.Dispatcher.on('GATEWAY_READY', e => {
 function callCmd(cmd, name, client, e, suffix) {
   console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
   getUserLang(e.message.author.id).then(lang => {
-    e.message.author.lang = lang;
-    cmd(client, e, suffix);
+    cmd(client, e, suffix, lang);
   });
 }
 
@@ -105,7 +104,7 @@ function onMessage(e) {
   if (e.message.channel.is_private) {
     // Accept invite links directly through PMs
     if (e.message.content.indexOf('https://discord.gg/') > -1 || e.message.content.indexOf('https://discordapp.com/invite/') > -1) {
-      return commands.join(client, e.message, e.message.content);
+      e.message.channel.sendMessage('To invite Gravebot to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite the bot to it.');
     }
 
     let msg_split = e.message.content.split(' ');
@@ -133,7 +132,7 @@ function connect() {
     };
     client.connect(auth);
   } else {
-    console.error('Please setup the EMAIL and PASSWORD or TOKEN in config.js to use Gravebot');
+    console.error('Please setup TOKEN or EMAIL and PASSWORD in config.js to use Gravebot');
     process.exit(1);
   }
 }

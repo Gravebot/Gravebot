@@ -12,18 +12,18 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function leet(client, e, suffix) {
+function leet(client, e, suffix, lang) {
   if (!suffix) {
-    e.message.channel.sendMessage(T('leet_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('leet_usage', lang));
     return;
   }
   let translation = leetify.convert(suffix);
   e.message.channel.sendMessage(translation);
 }
 
-function snoop(client, e, suffix) {
+function snoop(client, e, suffix, lang) {
   if (!suffix) {
-    e.message.channel.sendMessage(T('snoop_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('snoop_usage', lang));
     return;
   }
   gizoogle.string(suffix, (err, translation) => {
@@ -32,9 +32,9 @@ function snoop(client, e, suffix) {
   });
 }
 
-function yoda(client, e, phrase) {
+function yoda(client, e, phrase, lang) {
   if (!phrase) {
-    e.message.channel.sendMessage(T('yoda_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('yoda_usage', lang));
     return;
   }
 

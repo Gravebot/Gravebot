@@ -68,10 +68,8 @@ export function subCommands(client, e, method) {
 function helpCategory(client, e, category, lang = 'en') {
   let methods;
   if (category === 'all') {
-    channel = e.message.author;
     methods = R.flatten(R.values(categories)).sort();
   } else {
-    channel = e.message.channel;
     methods = categories[category].sort();
   }
 

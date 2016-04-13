@@ -9,21 +9,21 @@ import { memes } from '../../data';
 
 const imgflipper = new Imgflipper(nconf.get('IMGFLIP_USERNAME'), nconf.get('IMGFLIP_PASSWORD'));
 
-function meme(client, e, suffix) {
+function meme(client, e, suffix, lang) {
   if (!nconf.get('IMGFLIP_USERNAME') || !nconf.get('IMGFLIP_PASSWORD')) {
-    e.message.channel.sendMessage(T('meme_setup', e.message.author.lang));
+    e.message.channel.sendMessage(T('meme_setup', lang));
     return;
   }
 
   if (!suffix) {
-    e.message.channel.sendMessage(T('meme_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('meme_usage', lang));
     return;
   }
   const tags = suffix.split('"');
   const memetype = tags[0].trim();
 
   // Still send blank meme, but also send usage message.
-  if (!tags[1] && !tags[3]) e.message.channel.sendMessage(T('meme_usage', e.message.author.lang));
+  if (!tags[1] && !tags[3]) e.message.channel.sendMessage(T('meme_usage', lang));
 
   imgflipper.generateMeme(memes[memetype], tags[1] ? tags[1] : ' ', tags[3] ? tags[3] : ' ', (err, image) => {
     if (err) {

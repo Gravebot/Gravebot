@@ -8,9 +8,9 @@ import T from '../../translate';
 
 const clever = new Cleverbot(nconf.get('CLEVERBOT_API_NAME'), nconf.get('CLEVERBOT_API_KEY'));
 
-function chat(client, e, suffix) {
+function chat(client, e, suffix, lang) {
   if (!nconf.get('CLEVERBOT_API_NAME') || !nconf.get('CLEVERBOT_API_KEY')) {
-    e.message.channel.sendMessage(T('chat_setup', e.message.author.lang));
+    e.message.channel.sendMessage(T('chat_setup', lang));
     return;
   }
 

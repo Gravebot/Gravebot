@@ -19,10 +19,6 @@
     "text": "Bombs chat with adorable cats",
     "done": true
   },
-  "animals_dog": {
-    "text": "Bombs chat with adorable dogs",
-    "done": true
-  },
   "animals_header_text": {
     "text": "Responds with a picture.\nYou can specify a number of pictures by writing `bomb` `number` after a command. (e.g. `!cat bomb 2`)",
     "done": true
@@ -106,6 +102,10 @@
   "decide": {
     "text": "Decides between given words",
     "done": true
+  },
+  "decide_split": {
+    "text": "or",
+    "done": false
   },
   "decide_usage": {
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
@@ -192,12 +192,8 @@
     "done": true
   },
   "join": {
-    "text": "Joins the server the bot is invited to",
-    "done": true
-  },
-  "join_usage": {
-    "text": "Usage: **`!join`** `invitation link`",
-    "done": true
+    "text": "To invite Gravebot to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite the bot to it.",
+    "done": false
   },
   "leet_usage": {
     "text": "Usage: **`!leet`** `sentence`",
@@ -398,6 +394,10 @@
   "wiki": {
     "text": "Returns the summary of the first matching search result from Wikipedia",
     "done": true
+  },
+  "wiki_error": {
+    "text": "I couldn't find an article for",
+    "done": false
   },
   "wiki_usage": {
     "text": "Usage: **`!wiki`** `search terms`",

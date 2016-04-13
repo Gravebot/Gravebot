@@ -3,9 +3,9 @@ import T from '../../translate';
 const uu = require('url-unshort')({nesting: 3});
 
 
-function unshorten(client, e, suffix) {
+function unshorten(client, e, suffix, lang) {
   if (!suffix) {
-    e.message.channel.sendMessage(T('unshorten_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('unshorten_usage', lang));
     return;
   }
 

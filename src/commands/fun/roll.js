@@ -9,11 +9,11 @@ function roll(client, e, suffix) {
   if (!sides) sides = 6;
 
   if (isNaN(times) || isNaN(sides)) {
-    return e.message.channel.sendMessage(`${e.message.author} rolled ${suffix}\nUsage: **\`!roll\`** \`times\` \`sides\``);
+    return e.message.channel.sendMessage(`${e.message.author.mention} rolled ${suffix}\nUsage: **\`!roll\`** \`times\` \`sides\``);
   }
 
   if (times > 1000 || sides > 1000000) {
-    return e.message.channel.sendMessage(`${e.message.author} I\'m too high to calculate that high number.`);
+    return e.message.channel.sendMessage(`${e.message.author.mention} I\'m too high to calculate that high number.`);
   }
 
   let total = 0;
@@ -25,9 +25,9 @@ function roll(client, e, suffix) {
 
   const average = total / times;
 
-  let return_text = `${e.message.author} rolled a ${sides} sided dice ${times} times for a total of **${total}** (average: ${average}):\n${msg_array}`;
+  let return_text = `${e.message.author.mention} rolled a ${sides} sided dice ${times} times for a total of **${total}** (average: ${average}):\n${msg_array}`;
   if (return_text.length >= 1999) {
-    return e.message.channel.sendMessage(`${e.message.author} I\'m too high to calculate that high number.`);
+    return e.message.channel.sendMessage(`${e.message.author.mention} I\'m too high to calculate that high number.`);
   }
 
   e.message.channel.sendMessage(return_text);

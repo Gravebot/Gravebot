@@ -1,9 +1,9 @@
 function coin(client, e) {
   const number = Math.floor(Math.random() * 2) + 1;
   if (number === 1) {
-    e.message.channel.sendFile('./images/Heads.png');
+    e.message.channel.uploadFile('./images/Heads.png');
   } else {
-    e.message.channel.sendFile('./images/Tails.png');
+    e.message.channel.uploadFile('./images/Tails.png');
   }
 }
 

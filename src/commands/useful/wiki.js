@@ -3,9 +3,10 @@ import Wiki from 'wikijs';
 
 import T from '../../translate';
 
-function wiki(client, e, suffix) {
+
+function wiki(client, e, suffix, lang) {
   if (!suffix) {
-    e.message.channel.sendMessage(T('wiki_usage', e.message.author.lang));
+    e.message.channel.sendMessage(T('wiki_usage', lang));
     return;
   }
   new Wiki().search(suffix, 1).then(data => {

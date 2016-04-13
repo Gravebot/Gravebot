@@ -16,13 +16,14 @@ function queryWolf(wolf, query) {
   });
 }
 
-function wolfram(client, e, query) {
+function wolfram(client, e, query, lang) {
   if (!nconf.get('WOLFRAM_KEY')) {
-    return e.message.channel.sendMessage(T('wolfram_setup', e.messages.author.lang));
+    return e.message.channel.sendMessage(T('wolfram_setup', lang));
   }
 
   if (!query) {
-    e.message.channel.sendMessage(T('wolfram_usage', e.messages.author.lang));
+    e.message.channel.sendMessage(T('wolfram_usage', lang));
+    return;
   }
 
   const wolf = wolframalpha.createClient(nconf.get('WOLFRAM_KEY'));
