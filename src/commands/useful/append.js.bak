@@ -1,3 +1,5 @@
+// Temporarily disabled due to issue with Discord API
+
 import Promise from 'bluebird';
 import sentry from '../../sentry';
 import glob from 'glob';
