@@ -105,7 +105,7 @@
   },
   "decide_split": {
     "text": "or",
-    "done": false
+    "done": true
   },
   "decide_usage": {
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
@@ -193,7 +193,7 @@
   },
   "join": {
     "text": "To invite Gravebot to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite the bot to it.",
-    "done": false
+    "done": true
   },
   "leet_usage": {
     "text": "Usage: **`!leet`** `sentence`",
@@ -397,7 +397,7 @@
   },
   "wiki_error": {
     "text": "I couldn't find an article for",
-    "done": false
+    "done": true
   },
   "wiki_usage": {
     "text": "Usage: **`!wiki`** `search terms`",
