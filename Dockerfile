@@ -3,7 +3,7 @@ MAINTAINER Gravebot
 
 # Install setup that rarely changes.
 RUN apk add --update nodejs && \
-  npm install -g npm@3.7.3 && \
+  npm install -g npm@3.8.5 && \
   rm -rf /usr/share/man /tmp/* /var/tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
 # Copy package.json
