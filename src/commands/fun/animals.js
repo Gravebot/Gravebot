@@ -44,9 +44,10 @@ function pug(client, e, suffix) {
   }
 
   const options = {
-    url: `https://pugme.herokuapp.com/bomb?count=${count}`,
+    url: `http://pugme.herokuapp.com/bomb?count=${count}`,
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
+      'User-Agent': 'Gravebot'
     },
     json: true
   };
