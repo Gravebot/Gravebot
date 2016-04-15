@@ -93,5 +93,5 @@ client.Dispatcher.on('DISCONNECTED', e => {
   console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
   setTimeout(() => {
     connect();
-  }, 5000);
+  }, 2000);
 });
