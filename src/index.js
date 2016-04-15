@@ -72,7 +72,7 @@ function onMessage(e) {
 
 function connect() {
   if (!nconf.get('TOKEN')) {
-    console.error('Please setup TOKEN or EMAIL and PASSWORD in config.js to use Gravebot');
+    console.error('Please setup TOKEN in config.js to use Gravebot');
     process.exit(1);
   }
 
