@@ -19,7 +19,7 @@ const client = new Discordie();
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', e => {
   client.Users.fetchMembers();
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully.`));
+  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
 });
 
 function callCmd(cmd, name, client, e, suffix) {
