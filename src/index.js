@@ -14,13 +14,12 @@ import { getUserLang } from './redis';
 
 
 // Init
-var client = new Discordie();
+const client = new Discordie();
 
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', e => {
   client.Users.fetchMembers();
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully.`));
-  // if (nconf.get('CLEAN_MESSAGES') === 'true' && nconf.get('CLEAN_ON_BOOT') !== 'false') setTimeout(() => clearOldMessages(), 5000);
 });
 
 function callCmd(cmd, name, client, e, suffix) {
@@ -80,20 +79,12 @@ client.Dispatcher.on('MESSAGE_CREATE', onMessage);
 client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
 
 function connect() {
-  if (nconf.get('TOKEN')) {
-    client.connect({
-      token: nconf.get('TOKEN')
-    });
-  } else if (nconf.get('EMAIL') && nconf.get('PASSWORD')) {
-    let auth = {
-      email: nconf.get('EMAIL'),
-      password: nconf.get('PASSWORD')
-    };
-    client.connect(auth);
-  } else {
+  if (!nconf.get('TOKEN')) {
     console.error('Please setup TOKEN or EMAIL and PASSWORD in config.js to use Gravebot');
     process.exit(1);
   }
+
+  client.connect({token: nconf.get('TOKEN')});
 }
 
 connect();
