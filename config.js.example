@@ -3,15 +3,11 @@ module.exports = {
   PREFIX: '!',
   PORT: 5000,
 
-  // *Required* Discord email and password for your bot.
-  // Register here. https://discordapp.com/
-  EMAIL: '',
-  PASSWORD: '',
-
-  // Alternatively you can use a token.
-  // Press CTRL+SHIFT+I in your browser or the desktop app to open developer tools
-  // Then type localStorage.token in console and copy paste the token here
+  // *Required* Bot Token. Can be found in your bots application page
   TOKEN: '',
+
+  // *Required* Join link. Can be found in your bots application page.
+  JOIN_LINK: '',
 
   // *Required* Redis URL
   // Learn more here. http://redis.io/topics/quickstart

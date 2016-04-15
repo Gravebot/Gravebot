@@ -1,8 +1,9 @@
+import nconf from 'nconf';
 import T from '../../translate';
 
 
-function joinServer(client, e, lang) {
-  e.message.channel.sendMessage(T('join_link', lang) + '\nLINK HERE');
+function joinServer(client, e, suffix, lang) {
+  e.message.channel.sendMessage(`${T('join_link', lang)}\n${nconf.get('JOIN_LINK')}`);
 }
 
 export default {
