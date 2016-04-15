@@ -58,8 +58,8 @@ function yoda(client, e, phrase, lang) {
     });
 }
 
-function translate(client, e) {
-  e.message.channel.sendMessage(helpText(client, e, 'translate'));
+function translate(client, e, suffix, lang) {
+  e.message.channel.sendMessage(helpText(client, e, 'translate', lang));
 }
 
 export default {

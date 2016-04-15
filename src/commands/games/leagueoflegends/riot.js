@@ -178,7 +178,7 @@ export function matchDetails(client, e, suffix, lang) {
   if (!R.contains(region, regions)) return e.message.channel.sendMessage(`I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
   if (!name) {
     e.message.channel.sendMessage(T('specify_summoner', lang));
-    return e.message.channel.sendMessage(helpText(client, e, 'lol'));
+    return e.message.channel.sendMessage(helpText(client, e, 'lol', lang));
   }
 
   _makeRequest(`https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}`)

@@ -162,7 +162,7 @@ function randomComic(client, e) {
   commands[rand](client, e);
 }
 
-function comics(client, e, suffix) {
+function comics(client, e, suffix, lang) {
   suffix = suffix.toLowerCase();
   if (suffix === 'random') return randomComic(client, e);
 
@@ -200,7 +200,7 @@ function comics(client, e, suffix) {
   // xkcd
   if (suffix === 'xkcd') return xkcd(client, e);
 
-  return e.message.channel.sendMessage(helpText(client, e, 'comics'));
+  return e.message.channel.sendMessage(helpText(client, e, 'comics', lang));
 }
 
 export default {

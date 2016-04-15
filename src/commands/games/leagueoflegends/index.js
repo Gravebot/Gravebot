@@ -5,7 +5,7 @@ import { serverStatus, matchDetails } from './riot';
 
 
 export default {
-  lol: (client, e, suffix) => {
+  lol: (client, e, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
 
     if (command === 'ban') return bans(client, e);
@@ -25,7 +25,7 @@ export default {
     if (command === 'servers') return serverStatus(client, e, suffix);
     if (command === 'serverstatus') return serverStatus(client, e, suffix);
     if (command === 'status') return serverStatus(client, e, suffix);
-    return helpText(client, e, 'lol');
+    return helpText(client, e, 'lol', lang);
   }
 };
 

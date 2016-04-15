@@ -88,8 +88,8 @@ function snake(client, e, suffix) {
     });
 }
 
-function animals(client, e) {
-  e.message.channel.sendMessage(helpText(client, e, 'animals'));
+function animals(client, e, suffix, lang) {
+  e.message.channel.sendMessage(helpText(client, e, 'animals', lang));
 }
 
 export default {

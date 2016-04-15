@@ -230,7 +230,7 @@ function items(client, e, suffix) {
     });
 }
 
-function commands(client, e, suffix) {
+function commands(client, e, suffix, lang) {
   const command = suffix.toLowerCase().split(' ')[0];
 
   if (command === 'build') return build(client, e, suffix);
@@ -245,7 +245,7 @@ function commands(client, e, suffix) {
   if (command === 'matchups') return counters(client, e, suffix);
   if (command === 'skill') return build(client, e, suffix);
   if (command === 'skills') return build(client, e, suffix);
-  return e.message.channel.sendMessage(helpText(client, e, 'dota2'));
+  return e.message.channel.sendMessage(helpText(client, e, 'dota2', lang));
 }
 
 export default {
