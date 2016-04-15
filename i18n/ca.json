@@ -53,7 +53,7 @@
   "help_other": "Llista d'altres comandaments",
   "help_useful": "Llista d'ordres útils",
   "join": "Mostra un enllaç que pot ser utilitzat per convidar-me al seu servidor",
-  "join_link": "Per convidar-me al seu servidor, feu clic a l'enllaç de sota i seleccionar un servidor.\nNomés els usuaris amb**Gestiona servidor**permís a aquest servidor són capaços de convidar-me a ella.",
+  "join_link": "Per convidar-me al seu servidor, feu clic a l'enllaç de sota i seleccionar un servidor.\nNomés els usuaris amb**Gestiona servidor**permís a aquest servidor són capaços de convidar-me a ella. És possible eliminar alguns dels permisos en si ho desitja, però tingues en compte que pot trencar les característiques actuals i futures.",
   "join_usage": "Ús:**`!join`**`link` invitació",
   "leet": "1337ifies la sentència",
   "leet_usage": "Ús:**`!leet`**`sentence`",

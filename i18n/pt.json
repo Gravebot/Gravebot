@@ -53,7 +53,7 @@
   "help_other": "Lista de outros comandos",
   "help_useful": "Lista de comandos úteis",
   "join": "Mostra um link que pode ser usado para me convidar para seu servidor",
-  "join_link": "Para me convidar para o seu servidor, clique no link abaixo e selecione um servidor.\nSomente os usuários com**Manage Server**permissão por esse servidor são capazes de me convidar para ele.",
+  "join_link": "Para me convidar para o seu servidor, clique no link abaixo e selecione um servidor.\nSomente os usuários com**Manage Server**permissão por esse servidor são capazes de me convidar para ele. Você pode remover alguns dos permissons se quiser, mas seja advertido que pode quebrar características atuais e futuros.",
   "join_usage": "Uso:**`!join`**`link` convite",
   "leet": "1337ifies a sentença",
   "leet_usage": "Uso:**`!leet`**`sentence`",

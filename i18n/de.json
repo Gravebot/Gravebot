@@ -53,7 +53,7 @@
   "help_other": "Liste mit sonstigen Befehlen",
   "help_useful": "Liste nützlicher Befehle",
   "join": "Zeigt einen Link, der verwendet werden kann, um mich einladen zu Ihrem Server",
-  "join_link": "So laden Sie mich zu Ihrem Server, klicken Sie auf den Link unten und einen Server auswählen.\nNur mit Benutzer**Server verwalten**Erlaubnis in diesem Server sind in der Lage, mich zu ihm einzuladen.",
+  "join_link": "So laden Sie mich zu Ihrem Server, klicken Sie auf den Link unten und einen Server auswählen.\nNur mit Benutzer**Server verwalten**Erlaubnis in diesem Server sind in der Lage, mich zu ihm einzuladen. Sie können einige der Zugriffsrechte zu entfernen, wenn Sie wollen, aber seien Sie gewarnt, es brechen können aktuelle und kommende Features.",
   "join_usage": "Befehl:**`!join`**`Einladungslink`",
   "leet": "1337ifies den Satz",
   "leet_usage": "Verbrauch:**`!leet`**`sentence`",

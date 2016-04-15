@@ -53,7 +53,7 @@
   "help_other": "List of other commands",
   "help_useful": "List of useful commands",
   "join": "Shows a link that can be used to invite me to your server",
-  "join_link": "To invite me to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite me to it.",
+  "join_link": "To invite me to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite me to it. You may remove some of the permissons if you wish, but be warned it may break current and upcoming features.",
   "join_usage": "Usage: **`!join`** `invitation link`",
   "leet": "1337ifies the sentence",
   "leet_usage": "Usage: **`!leet`** `sentence`",

@@ -53,7 +53,7 @@
   "help_other": "Listă de alte comenzi",
   "help_useful": "Lista de comenzi utile",
   "join": "Arată un link care poate fi folosit pentru a mă invita la server",
-  "join_link": "Pentru a mă invita la server-ul dvs., faceți clic pe link-ul de mai jos și selectați un server.\nNumai utilizatorii cu**Gestionare server**permisiune în acel server sunt în măsură să mă invite la ea.",
+  "join_link": "Pentru a mă invita la server-ul dvs., faceți clic pe link-ul de mai jos și selectați un server.\nNumai utilizatorii cu**Gestionare server**permisiune în acel server sunt în măsură să mă invite la ea. Aveți dreptul să eliminați unele dintre dacă doriți permisiuni, dar să fie avertizat că se poate rupe caracteristicile actuale și viitoare.",
   "join_usage": "Utilizare:**`!join`**`invitație link`",
   "leet": "1337ifies propoziția",
   "leet_usage": "Mod de utilizare:**`!leet`**`sentence`",

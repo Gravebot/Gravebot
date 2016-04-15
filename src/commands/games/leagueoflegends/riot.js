@@ -172,7 +172,7 @@ export function matchDetails(client, e, suffix, lang) {
 
   // If it's a mention
   if (e.message.mentions.length !== 0) name = e.message.mentions[0].username;
-  // If no name, use authorx
+  // If no name, use author
   if (!name) name = e.message.author.username;
 
   if (!R.contains(region, regions)) return e.message.channel.sendMessage(`I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);

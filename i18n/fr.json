@@ -53,7 +53,7 @@
   "help_other": "Liste des commandes",
   "help_useful": "Liste des commandes utiles",
   "join": "Affiche un lien qui peut être utilisé pour me inviter à votre serveur",
-  "join_link": "Pour me inviter à votre serveur, cliquez sur le lien ci-dessous et sélectionnez un serveur.\nSeuls les utilisateurs disposant**Gérer serveur**autorisation dans ce serveur sont en mesure de me inviter à elle.",
+  "join_link": "Pour me inviter à votre serveur, cliquez sur le lien ci-dessous et sélectionnez un serveur.\nSeuls les utilisateurs disposant**Gérer serveur**autorisation dans ce serveur sont en mesure de me inviter à elle. Vous pouvez supprimer certains des permissons si vous le souhaitez, mais attention, il peut briser les caractéristiques actuelles et à venir.",
   "join_usage": "Utilisation:**`!join`**`link` d'invitation",
   "leet": "1337ifies la phrase",
   "leet_usage": "Utilisation:**`!leet`**`sentence`",

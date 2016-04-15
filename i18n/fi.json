@@ -53,7 +53,7 @@
   "help_other": "Luettelo muut komennot",
   "help_useful": "Luettelo hyödyllisiä komentoja",
   "join": "Näyttää linkin, joka voidaan kutsua minut palvelimelle",
-  "join_link": "Kutsua minut palvelimelle, napsauttamalla alla olevaa linkkiä ja valitse palvelin.\nVain käyttäjät, joilla**Hallitse Server**lupaa, että palvelin pystyvät kutsua minut sitä.",
+  "join_link": "Kutsua minut palvelimelle, napsauttamalla alla olevaa linkkiä ja valitse palvelin.\nVain käyttäjät, joilla**Hallitse Server**lupaa, että palvelin pystyvät kutsua minut sitä. Voit poistaa joitakin käyttölupaa, jos haluat, mutta varoitan se voi katketa ​​nykyisistä ja tulevista ominaisuuksista.",
   "join_usage": "Käyttö:**`!join`**`kutsu link`",
   "leet": "1337ifies lauseen",
   "leet_usage": "Käyttö:**`!leet`**`sentence`",

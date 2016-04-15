@@ -53,7 +53,7 @@
   "help_other": "Lijst van andere commando's",
   "help_useful": "Lijst van bruikbare commando's",
   "join": "Toont een link die kan worden gebruikt om me uit te nodigen voor uw server",
-  "join_link": "Voor mij uitnodigen om uw server, klikt u op de onderstaande link en selecteer een server.\nAlleen gebruikers met**beheren Server**toestemming die server in staat zijn om me uit te nodigen voor het.",
+  "join_link": "Voor mij uitnodigen om uw server, klikt u op de onderstaande link en selecteer een server.\nAlleen gebruikers met**beheren Server**toestemming die server in staat zijn om me uit te nodigen voor het. U kunt een aantal van de permissons te verwijderen indien u dat wenst, maar wees gewaarschuwd: het kan de huidige en toekomstige functies te breken.",
   "join_usage": "Usage:**`!join`**`uitnodiging link`",
   "leet": "1337ifies het vonnis",
   "leet_usage": "Usage:**`!leet`**`sentence`",

@@ -53,7 +53,7 @@
   "help_other": "Popis ostalih naredbi",
   "help_useful": "Popis korisnih naredbi",
   "join": "Prikazuje vezu koja se može koristiti na mene pozvati na poslužitelj",
-  "join_link": "Ako me pozvati na poslužitelj, kliknite na link ispod i odaberite poslužitelj.\nSamo korisnici s**Upravljanje Server**dozvola u tom poslužitelju su u mogućnosti da me pozovu na njega.",
+  "join_link": "Ako me pozvati na poslužitelj, kliknite na link ispod i odaberite poslužitelj.\nSamo korisnici s**Upravljanje Server**dozvola u tom poslužitelju su u mogućnosti da me pozovu na njega. Vi svibanj ukloniti neke od dozvola: ako želite, ali je upozorio da bi se moglo razbiti trenutne i nadolazeće značajke.",
   "join_usage": "Upotreba:**'!join`**'Poziv link`",
   "leet": "1337ifies rečenicu",
   "leet_usage": "Upotreba:**'!leet`**'sentence`",

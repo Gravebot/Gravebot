@@ -53,7 +53,7 @@
   "help_other": "Saraksts citas komandas",
   "help_useful": "Saraksts noderīgas komandas",
   "join": "Parāda saiti, ko var izmantot, lai uzaicināt mani uz jūsu serveri",
-  "join_link": "Uzaicināt mani uz jūsu serveri, noklikšķiniet uz saites zemāk, un izvēlieties serveri.\nTikai lietotāji ar**Pārvaldīt Server**atļauju šajā serverī ir iespēja uzaicināt mani uz to.",
+  "join_link": "Uzaicināt mani uz jūsu serveri, noklikšķiniet uz saites zemāk, un izvēlieties serveri.\nTikai lietotāji ar**Pārvaldīt Server**atļauju šajā serverī ir iespēja uzaicināt mani uz to. Jūs varat noņemt dažus permissons ja vēlaties, bet jābrīdina tas var saplīst pašreizējo un gaidāmo funkcijas.",
   "join_usage": "Lietošana:**`!join`**`ielūgums link`",
   "leet": "1337ifies teikumu",
   "leet_usage": "Lietošana:**`!leet`**`sentence`",

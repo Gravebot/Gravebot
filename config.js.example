@@ -3,11 +3,13 @@ module.exports = {
   PREFIX: '!',
   PORT: 5000,
 
-  // *Required* Bot Token. Can be found in your bots application page
+  // *Required* Bot token. Can be found in your bots application page.
+  // https://discordapp.com/developers/applications/me
   TOKEN: '',
 
-  // *Required* Join link. Can be found in your bots application page.
-  JOIN_LINK: '',
+  // *Required* Bot client id. Can be found in your bots application page.
+  // https://discordapp.com/developers/applications/me
+  CLIENT_ID: '',
 
   // *Required* Redis URL
   // Learn more here. http://redis.io/topics/quickstart

@@ -93,7 +93,6 @@ client.Dispatcher.on('DISCONNECTED', e => {
   }, 2000);
 });
 
-
 client.Dispatcher.on('MESSAGE_CREATE', onMessage);
 client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
 

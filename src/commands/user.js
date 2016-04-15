@@ -23,13 +23,14 @@ function setLang(client, e, suffix) {
     return e.message.channel.sendMessage(`${T('accepted_languages', 'en')}:\n\n**${langs}**`);
   }
 
-  setUserLang(e.message.author.id, lang).then(() => {
-    e.message.channel.sendMessage(`${T('hello', lang)}, ${e.message.author.username}!`);
-  })
-  .catch(err => {
-    sentry(err, 'user', 'setlang');
-    e.message.channel.sendMessage(`Error: ${err.message}`);
-  });
+  setUserLang(e.message.author.id, lang)
+    .then(() => {
+      e.message.reply(`${T('hello', lang)}!`);
+    })
+    .catch(err => {
+      sentry(err, 'user', 'setlang');
+      e.message.channel.sendMessage(`Error: ${err.message}`);
+    });
 }
 
 export default {

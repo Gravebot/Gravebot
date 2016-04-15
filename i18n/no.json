@@ -53,7 +53,7 @@
   "help_other": "Liste over andre kommandoer",
   "help_useful": "Liste over nyttige kommandoer",
   "join": "Viser en lenke som kan brukes til å invitere meg til serveren din",
-  "join_link": "Hvis du vil invitere meg til serveren din, klikk på linken nedenfor og velg en server.\nBare brukere med**Administrer Server**tillatelse i denne serveren er i stand til å invitere meg til det.",
+  "join_link": "Hvis du vil invitere meg til serveren din, klikk på linken nedenfor og velg en server.\nBare brukere med**Administrer Server**tillatelse i denne serveren er i stand til å invitere meg til det. Du kan fjerne noen av de permissons hvis du ønsker, men vær advart det kan bryte nåværende og kommende funksjoner.",
   "join_usage": "Bruk:**`!join`**`invitasjon link`",
   "leet": "1337ifies setningen",
   "leet_usage": "Bruk:**`!leet`**`sentence`",

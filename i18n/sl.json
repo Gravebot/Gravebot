@@ -53,7 +53,7 @@
   "help_other": "Seznam ukazov",
   "help_useful": "Seznam uporabnih ukazov",
   "join": "Kaže na povezavo, ki se lahko uporablja, da me povabi na strežnik",
-  "join_link": "Da me povabi na vaš strežnik, kliknite na spodnjo povezavo in izberite strežnik.\nSamo uporabniki z**Upravljanje Server**dovoljenje v tem strežniku so sposobni, da me povabijo nanjo.",
+  "join_link": "Da me povabi na vaš strežnik, kliknite na spodnjo povezavo in izberite strežnik.\nSamo uporabniki z**Upravljanje Server**dovoljenje v tem strežniku so sposobni, da me povabijo nanjo. Morda boste odstranili nekaj permissons če želite, vendar je treba opozoriti, da lahko zlomi sedanje in prihodnje funkcije.",
   "join_usage": "Uporaba:**'!join`**'vabilo link`",
   "leet": "1337ifies stavek",
   "leet_usage": "Uporaba:**'!leet`**`sentence`",

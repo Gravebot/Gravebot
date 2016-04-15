@@ -53,7 +53,7 @@
   "help_other": "Lista över andra kommandon",
   "help_useful": "Lista över användbara kommandon",
   "join": "Visar en länk som kan användas för att bjuda in mig till din server",
-  "join_link": "Att bjuda in mig till din server genom att klicka på länken nedan och välj en server.\nEndast användare med**Hantera Server**tillstånd i servern kan bjuda in mig till det.",
+  "join_link": "Att bjuda in mig till din server genom att klicka på länken nedan och välj en server.\nEndast användare med**Hantera Server**tillstånd i servern kan bjuda in mig till det. Du kan ta bort en del av de permissons om du vill, men varnas det kan bryta nuvarande och kommande funktioner.",
   "join_usage": "Användning:**`!join`**'inbjudan link`",
   "leet": "1337ifies meningen",
   "leet_usage": "Användning:**`!leet`**'sentence`",

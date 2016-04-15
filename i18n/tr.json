@@ -53,7 +53,7 @@
   "help_other": "diğer komutlar listesi",
   "help_useful": "yararlı komutlar listesi",
   "join": "sunucuya beni davet için kullanılabilecek bir bağlantı gösterir",
-  "join_link": "sunucunuza beni davet etmek için aşağıdaki linki tıklayın ve bir sunucu seçin.\n** Ile sadece kullanıcılar Sunucunuzu Yönetin**o sunucuda izin kendisine beni davet edebiliyoruz.",
+  "join_link": "sunucunuza beni davet etmek için aşağıdaki linki tıklayın ve bir sunucu seçin.\n** Ile sadece kullanıcılar Sunucunuzu Yönetin**o sunucuda izin kendisine beni davet edebiliyoruz. İsterseniz izinler bazı kaldırabilir, ancak mevcut ve gelecek özellikler kırılabilir uyardı.",
   "join_usage": "Kullanımı:**`!join`**`davetiye link`",
   "leet": "cümle 1337ifies",
   "leet_usage": "Kullanımı:**`!leet`**`sentence`",

@@ -53,7 +53,7 @@
   "help_other": "Kitų komandų sąrašas",
   "help_useful": "Naudingų komandų sąrašas",
   "join": "Parodos nuorodą, kad gali būti naudojamas pakviesti mane į savo serverį",
-  "join_link": "Norėdami pakviesti mane į savo serverį, spauskite žemiau esančią nuorodą ir pasirinkite serverį.\nTik turintys**Tvarkyti Server**leidimas, kad serveris galėtų pakviesti mane į jį.",
+  "join_link": "Norėdami pakviesti mane į savo serverį, spauskite žemiau esančią nuorodą ir pasirinkite serverį.\nTik turintys**Tvarkyti Server**leidimas, kad serveris galėtų pakviesti mane į jį. Jūs galite pašalinti kai permissons, jei norite, bet bus įspėjami jis gali sulūžti esamas ir būsimas funkcijas.",
   "join_usage": "Naudojimas: **`!join`** `kvietimo nuoroda`",
   "leet": "1337ifies bausmę",
   "leet_usage": "Naudojimas:**\"!leet`**\"sentence`",

@@ -53,7 +53,7 @@
   "help_other": "Wykaz poleceń",
   "help_useful": "Lista przydatnych komend",
   "join": "Pokazuje link, który może być użyty do mnie zaprosić na serwer",
-  "join_link": "Aby zaprosić mnie do swojego serwera, kliknij link poniżej i wybrać serwer.\nTylko użytkownicy z**Zarządzanie serwerem**Pozwolenie na tym serwerze są w stanie zaprosić mnie do niego.",
+  "join_link": "Aby zaprosić mnie do swojego serwera, kliknij link poniżej i wybrać serwer.\nTylko użytkownicy z**Zarządzanie serwerem**Pozwolenie na tym serwerze są w stanie zaprosić mnie do niego. Możesz usunąć niektóre z sekcji publicznej, jeśli chcesz, ale ostrzegamy może złamać obecne i nadchodzące możliwości.",
   "join_usage": "Sposób użycia:**`!join`**`Zaproszenie link`",
   "leet": "1337ifies zdanie",
   "leet_usage": "Sposób użycia:**`!leet`**`sentence`",

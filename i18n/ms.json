@@ -53,7 +53,7 @@
   "help_other": "Senarai arahan lain",
   "help_useful": "Senarai arahan berguna",
   "join": "Menunjukkan pautan yang boleh digunakan untuk menjemput saya ke pelayan anda",
-  "join_link": "Untuk menjemput saya untuk pelayan anda, klik link di bawah dan pilih pelayan.\nHanya pengguna-pengguna dengan**Urus Server**kebenaran dalam pelayan yang dapat menjemput saya kepadanya.",
+  "join_link": "Untuk menjemput saya untuk pelayan anda, klik link di bawah dan pilih pelayan.\nHanya pengguna-pengguna dengan**Urus Server**kebenaran dalam pelayan yang dapat menjemput saya kepadanya. Anda boleh mengeluarkan sebahagian daripada Untuk menentukan jika anda mahu, tetapi diberi amaran ia boleh memecah ciri semasa dan akan datang.",
   "join_usage": "Penggunaan:**`!join`**`jemputan link`",
   "leet": "1337ifies hukuman itu",
   "leet_usage": "Penggunaan:**`!leet`**`sentence`",

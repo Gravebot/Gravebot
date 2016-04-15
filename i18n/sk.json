@@ -53,7 +53,7 @@
   "help_other": "Zoznam ďalších príkazov",
   "help_useful": "Zoznam užitočných príkazov",
   "join": "Ukazuje odkaz, ktorý môže byť použitý pre mňa pozvať na váš server",
-  "join_link": "Aby ma pozvať k serveru, kliknite na odkaz nižšie a vyberte server.\nIba používatelia s**Správa servera**Oprávnenie v tomto serveri sú schopné pozvať ma k tomu.",
+  "join_link": "Aby ma pozvať k serveru, kliknite na odkaz nižšie a vyberte server.\nIba používatelia s**Správa servera**Oprávnenie v tomto serveri sú schopné pozvať ma k tomu. Môžete odstrániť niektoré z permissons, ak chcete, ale pozor, to môže zlomiť aktuálne a pripravované funkcie.",
   "join_usage": "Použitie:**`!join`**`pozvanie link`",
   "leet": "1337ifies vetu",
   "leet_usage": "Použitie:**`!leet`**`sentence`",

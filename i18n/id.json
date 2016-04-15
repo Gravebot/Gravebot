@@ -53,7 +53,7 @@
   "help_other": "Daftar perintah lain",
   "help_useful": "Daftar perintah yang berguna",
   "join": "Menunjukkan link yang dapat digunakan untuk mengundang saya ke server Anda",
-  "join_link": "Untuk mengundang saya ke server Anda, klik link di bawah ini dan pilih server.\nHanya pengguna dengan**Kelola Server**izin di server yang mampu mengundang saya untuk itu.",
+  "join_link": "Untuk mengundang saya ke server Anda, klik link di bawah ini dan pilih server.\nHanya pengguna dengan**Kelola Server**izin di server yang mampu mengundang saya untuk itu. Anda dapat menghapus beberapa hak izin jika Anda ingin, tetapi memperingatkan itu bisa pecah fitur saat ini dan yang akan datang.",
   "join_usage": "Penggunaan:**`!join`**`link` undangan",
   "leet": "1337ifies kalimat",
   "leet_usage": "Penggunaan:**`!leet`**`sentence`",

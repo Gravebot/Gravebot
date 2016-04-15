@@ -53,7 +53,7 @@
   "help_other": "Listája parancsok",
   "help_useful": "Listát hasznos parancsok",
   "join": "Megmutatja egy linket, hogy lehet használni, hogy hívja meg a szerver",
-  "join_link": "Hogy meghívjon a szerverre, kattintson az alábbi linkre, és válassza ki a szerver.\nCsak azok a felhasználók**Manage Server**engedélyt, hogy a kiszolgáló képes hívja meg azt.",
+  "join_link": "Hogy meghívjon a szerverre, kattintson az alábbi linkre, és válassza ki a szerver.\nCsak azok a felhasználók**Manage Server**engedélyt, hogy a kiszolgáló képes hívja meg azt. El lehet távolítani néhány jogosultságokkal ha akarja, de vigyázz eltörhet jelenlegi és a következő funkciókat.",
   "join_usage": "Használat:**`!join`**`meghívást link`",
   "leet": "1337ifies a mondat",
   "leet_usage": "Használat:**`!leet`**`sentence`",
