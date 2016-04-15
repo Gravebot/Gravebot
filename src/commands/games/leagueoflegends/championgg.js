@@ -117,7 +117,7 @@ export function counters(client, e, suffix, lang) {
 
       return phantom('lol_counters', counters_data);
     })
-    .then(buf => e.message.channel.uploadFile(buf))
+    .then(buf => e.message.channel.uploadFile(buf, 'counters.png'))
     .catch(err => {
       if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'counters');
       e.message.channel.sendMessage(`Error: ${err.message}`);
@@ -158,7 +158,7 @@ export function items(client, e, suffix, lang) {
       item_data.image = champ_data.image;
       return phantom('lol_items', item_data, 500, 300);
     })
-    .then(buf => e.message.channel.uploadFile(buf))
+    .then(buf => e.message.channel.uploadFile(buf, 'items.png'))
     .catch(err => {
       if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'items');
       e.message.channel.sendMessage(`Error: ${err.message}`);
