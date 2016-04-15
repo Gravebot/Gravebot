@@ -105,7 +105,10 @@
     "Discord",
     "Bot"
   ],
-  "author": "Gravestorm",
+  "contributors": [
+    "Gravestorm",
+    "Dustin Blackman"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Gravebot/Gravebot/issues"
