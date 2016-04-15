@@ -37,8 +37,7 @@ if (!process.env.TEST) {
   }, command_files);
 }
 
-export function subCommands(client, e, method) {
-  const lang = e.message.author.lang;
+export function subCommands(client, e, method, lang) {
   const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
   let text = R.map(subcommand => {
@@ -90,15 +89,14 @@ function helpCategory(client, e, category, lang = 'en') {
 
   if (category === 'all') {
     R.forEach(commands_text => {
-      return e.message.channel.sendMessage(R.join('\n', R.reject(R.isNil, commands_text)));
+      return client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(R.join('\n', R.reject(R.isNil, commands_text))));
     }, R.splitEvery(10)(text));
   } else {
     return e.message.channel.sendMessage(R.join('\n', R.reject(R.isNil, text)));
   }
 }
 
-function help(client, e, suffix) {
-  const lang = e.message.author.lang;
+function help(client, e, suffix, lang) {
   const category = suffix.toLowerCase();
   if (categories[category] || category === 'all') return helpCategory(client, e, category, lang);
 
@@ -133,15 +131,15 @@ function help(client, e, suffix) {
 function memelist(client, e, suffix) {
   suffix = suffix.toLowerCase();
   if (suffix === '1') {
-    e.message.author.sendMessage(meme.list1);
+    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
   } else if (suffix === '2') {
-    e.message.author.sendMessage(meme.list2);
+    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
   } else if (suffix === '3') {
-    e.message.author.sendMessage(meme.list3);
+    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else if (suffix === 'full') {
-    e.message.author.sendMessage(meme.list1);
-    e.message.author.sendMessage(meme.list2);
-    e.message.author.sendMessage(meme.list3);
+    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
+    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
+    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else {
     e.message.channel.sendMessage(meme.all);
   }

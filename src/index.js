@@ -1,4 +1,3 @@
-// import Promise from 'bluebird';
 import Discordie from 'discordie';
 import chalk from 'chalk';
 import moment from 'moment';
@@ -17,46 +16,6 @@ import { getUserLang } from './redis';
 // Init
 var client = new Discordie();
 
-// Checks for PMs older than 2 hours and deletes them..
-/* function clearOldMessages() {
-  console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
-  let count = 0;
-
-  const getLastMessage = R.curry(Promise.promisify(bot.getChannelLogs).bind(bot))(R.__, 1, {});
-  Promise.resolve(bot.privateChannels)
-    .map(channel => {
-      return getLastMessage(channel)
-        .then(R.head)
-        .then(R.prop('timestamp'))
-        .then(timestamp => {
-          // Remove cache from RAM
-          R.forEach(message => {
-            channel.messages.remove(message);
-          }, channel.messages);
-
-          const message_time = moment.unix(timestamp / 1000);
-          if (message_time.isBefore(moment().subtract(2, 'hours'))) {
-            count++;
-            return channel.delete();
-          }
-        })
-        .catch(() => {
-          // This sometimes get thrown by channel.delete even though the channel does get deleted.
-          // It can be ignored
-        });
-    }, {concurrency: 5})
-    .then(() => {
-      console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Removed ${count} private channels`));
-    })
-    .catch(err => {
-      console.log(chalk.red(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Error removing private channels`));
-      console.log(chalk.red(err));
-    });
-}
-
-// Clear PMs once a day.
-if (nconf.get('CLEAN_MESSAGES') === 'true') setInterval(() => clearOldMessages(), 86400000);
-*/
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', e => {
   client.Users.fetchMembers();
@@ -102,9 +61,9 @@ function onMessage(e) {
 
   // Check personal messages
   if (e.message.channel.is_private) {
-    // Accept invite links directly through PMs
+    // Handle invite links
     if (e.message.content.indexOf('https://discord.gg/') > -1 || e.message.content.indexOf('https://discordapp.com/invite/') > -1) {
-      e.message.channel.sendMessage('To invite Gravebot to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite the bot to it.');
+      return commands.join(client, e, e.message.content);
     }
 
     let msg_split = e.message.content.split(' ');

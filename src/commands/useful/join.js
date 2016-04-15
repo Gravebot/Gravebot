@@ -2,7 +2,7 @@ import T from '../../translate';
 
 
 function joinServer(client, e, lang) {
-  e.message.channel.sendMessage(T('join', lang) + '\nlink');
+  e.message.channel.sendMessage(T('join_link', lang) + '\nLINK HERE');
 }
 
 export default {

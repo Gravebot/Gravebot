@@ -192,8 +192,12 @@
     "done": true
   },
   "join": {
+    "text": "Shows a link that can be used to invite Gravebot to your server",
+    "done": false
+  },
+  "join_link": {
     "text": "To invite Gravebot to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite the bot to it.",
-    "done": true
+    "done": false
   },
   "leet_usage": {
     "text": "Usage: **`!leet`** `sentence`",

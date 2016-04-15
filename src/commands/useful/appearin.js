@@ -9,8 +9,10 @@ function appearin(client, e) {
   if (!e.message.mentions.length) return e.message.channel.sendMessage(url);
 
   // Send url back to author and mentioned users
-  e.DirectMessageChannel.recipient.sendMessage(url);
-  R.forEach(user => e.message.user.sendMessage(`${e.message.author.mention} would like you to join a videocall/screenshare.\n${url}`), e.message.mentions);
+  client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(url));
+  R.forEach(user => {
+    client.Users.get(user.id).openDM().then(dm => dm.sendMessage(`${e.message.author.username} would like you to join a videocall/screenshare.\n${url}`));
+  }, e.message.mentions);
 }
 
 export default {
