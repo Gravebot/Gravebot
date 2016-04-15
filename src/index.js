@@ -16,11 +16,6 @@ import { getUserLang } from './redis';
 // Init
 const client = new Discordie();
 
-// Listen for events on Discord
-client.Dispatcher.on('GATEWAY_READY', e => {
-  client.Users.fetchMembers();
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
-});
 
 function callCmd(cmd, name, client, e, suffix) {
   console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
@@ -75,9 +70,6 @@ function onMessage(e) {
   }
 }
 
-client.Dispatcher.on('MESSAGE_CREATE', onMessage);
-client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
-
 function connect() {
   if (!nconf.get('TOKEN')) {
     console.error('Please setup TOKEN or EMAIL and PASSWORD in config.js to use Gravebot');
@@ -87,7 +79,12 @@ function connect() {
   client.connect({token: nconf.get('TOKEN')});
 }
 
-connect();
+// Listen for events on Discord
+client.Dispatcher.on('GATEWAY_READY', e => {
+  client.Users.fetchMembers();
+  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
+});
+
 
 client.Dispatcher.on('DISCONNECTED', e => {
   console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
@@ -95,3 +92,9 @@ client.Dispatcher.on('DISCONNECTED', e => {
     connect();
   }, 2000);
 });
+
+
+client.Dispatcher.on('MESSAGE_CREATE', onMessage);
+client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+
+connect();
