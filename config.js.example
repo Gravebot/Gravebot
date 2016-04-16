@@ -48,5 +48,9 @@ module.exports = {
 
   // Popkey API key, used for searching GIFs with `!popkey`.
   // Apply for a key here. http://popkey.co/api/submit
-  POPKEY_KEY: ''
+  POPKEY_KEY: '',
+
+  // Carbon key, used for displaying server count.
+  // More information here. https://www.carbonitex.net/discord/bots
+  CARBON_KEY: ''
 };
