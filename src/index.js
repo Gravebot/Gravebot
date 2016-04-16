@@ -1,9 +1,9 @@
+import Promise from 'bluebird';
 import Discordie from 'discordie';
 import chalk from 'chalk';
 import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
-import request from 'request';
 
 import './init-config';
 import './express';
@@ -12,6 +12,8 @@ import './phantom';
 import commands from './commands';
 
 import { getUserLang } from './redis';
+
+const request = Promise.promisify(require('request'));
 
 
 // Init
@@ -76,8 +78,7 @@ function carbon() {
     request({
       url: 'https://www.carbonitex.net/discord/data/botdata.php',
       headers: {'content-type': 'application/json'},
-      json: true,
-      body: {
+      json: {
         key: nconf.get('CARBON_KEY'),
         servercount: client.Guilds.length
       }
