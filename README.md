@@ -17,7 +17,7 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Grave
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-In order to do that, just click here and choose a server. You need to have **Manage Server** permission on that server.
+In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=170664340968570880&scope=bot&permissions=63175686) and choose a server. You need to have **Manage Server** permission on that server.
 
 If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
 
