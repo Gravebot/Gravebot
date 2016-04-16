@@ -6,18 +6,14 @@ import T from '../../translate';
 const permissions = [
   '0x0000002', // Kick Members
   '0x0000004', // Ban Members
+  '0x0000008', // Manage Roles
+  '0x0000010', // Manage Channels
   '0x0000400', // Read Messages
   '0x0000800', // Send Messages
-  '0x0001000', // Send TTS Messages
   '0x0002000', // Manage messages
   '0x0004000', // Embed Links,
   '0x0008000', // Attach files
-  '0x0010000', // Read message history
-  '0x0020000', // Mention everyone
-  '0x0400000', // Mute memebers
-  '0x0800000', // Deafen Members
-  '0x1000000', // Move Members
-  '0x2000000' // Voice activity
+  '0x0010000' // Read message history
 ];
 
 const permission_value = R.sum(R.map(parseInt, permissions));
