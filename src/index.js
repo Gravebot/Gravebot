@@ -73,17 +73,15 @@ function onMessage(e) {
 
 function carbon() {
   if (nconf.get('CARBON_KEY')) {
-    request.post({
+    request({
       url: 'https://www.carbonitex.net/discord/data/botdata.php',
-      headers: 'content-type": "application/json',
+      headers: 'content-type': 'application/json',
       json: true,
       body: {
         key: nconf.get('CARBON_KEY'),
         servercount: client.Guilds.length
       }
-    }, (error, response, body) => {
-      if (error) console.log(error);
-    });
+    }).catch(console.log);
   }
 }
 setInterval(() => carbon(), 3600000);
