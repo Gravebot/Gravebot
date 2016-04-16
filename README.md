@@ -18,9 +18,11 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Grave
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-Join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and either PM Gravebot an invitation link or write in the general chat !join **invite-link-here** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr). You can also give the bot a first try in that server as well.
+In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=170664340968570880&scope=bot&permissions=63175686) and choose a server. You need to have **Manage Server** permission on that server.
 
-If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
+If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
+
+If you have any questions, feedback or want to request features, you may also do that by leaving a message in [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm or Zalik, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
 
 For self hosting, click [here](#localconfig).
 
