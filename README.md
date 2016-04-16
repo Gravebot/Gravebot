@@ -17,9 +17,11 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Grave
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-Join [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) and either PM Gravebot an invitation link or write in the general chat !join **invite-link-here** (e.g. https://discord.gg/0iXEgtjdHgkpdsVr **or** 0iXEgtjdHgkpdsVr). You can also give the bot a first try in that server as well.
+In order to do that, just click here and choose a server. You need to have **Manage Server** permission on that server.
 
-If you have any questions, feedback or want to request features, you may also do that by leaving a message in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
+If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
+
+If you have any questions, feedback or want to request features, you may also do that by leaving a message in [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm or Zalik, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
 
 For self hosting, click [here](#localconfig).
 
@@ -30,6 +32,7 @@ For self hosting, click [here](#localconfig).
 - `!help info` - List of information commands
 - `!help games` - List of game commands
 - `!help other` - List of other commands
+- `!help all` - List all available commands in private chat
 - `!memelist` - List of meme names for the `!meme` command
 - `!setlanguage` - Set all help text to respond in a specified language
 
@@ -37,7 +40,6 @@ For self hosting, click [here](#localconfig).
 - `!8ball` *question* - Answers the question
 - `!animals` - Get various animal pictures
 - `!cat` bomb *count* - Bombs chat with adorable cats
-- `!dog` bomb *count* - Bombs chat with adorable dogs
 - `!pug` bomb *count* - Bombs chat with adorable pugs
 - `!snake` bomb *count* - Bombs chat with adorable snakes
 - `!chat` *text* - Chats with you
@@ -56,7 +58,7 @@ For self hosting, click [here](#localconfig).
 
 #### Useful:
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
-- `!join` *invitation link* - Joins the server the bot is invited to
+- `!join` - Shows a link that can be used to invite Gravebot to your server
 - `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
@@ -65,13 +67,13 @@ For self hosting, click [here](#localconfig).
 - `!youtube` *video tags* - Gets a video from Youtube matching the given tags
 
 #### Information:
-- `!avatar` *username* - Responds with your avatar, unless a username is specified
-- `!channelinfo` *channel name* - Gives information about this channel, unless a name is specified
+- `!avatar` *@username* - Responds with your avatar, unless a username is specified
+- `!channelinfo` *#channelname* - Gives information about this channel, unless a channelname is specified
 - `!ping` - Pong! Check Gravebot's pulse
-- `!serverinfo` *server name* - Gives information about this server, unless a name is specified
+- `!serverinfo` - Gives information about this server
 - `!servers` - Lists how many servers, channels and users the bot is connected to
 - `!uptime` - Shows how long the bot has been online
-- `!userinfo` *username* - Gives information about this user, unless a name is specified
+- `!userinfo` *username* - Gives information about this user, unless a username is specified
 - `!version` - Get information on the latest version of Gravebot
 
 #### Games:
