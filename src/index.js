@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
+import request from 'request';
 
 import './init-config';
 import './express';
@@ -70,6 +71,23 @@ function onMessage(e) {
   }
 }
 
+function carbon() {
+  if (nconf.get('CARBON_KEY')) {
+    request.post({
+      url: 'https://www.carbonitex.net/discord/data/botdata.php',
+      headers: 'content-type": "application/json',
+      json: true,
+      body: {
+        key: nconf.get('CARBON_KEY'),
+        servercount: client.Guilds.length
+      }
+    }, (error, response, body) => {
+      if (error) console.log(error);
+    });
+  }
+}
+setInterval(() => carbon(), 3600000);
+
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
     console.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
@@ -81,8 +99,8 @@ function connect() {
 
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', e => {
-  client.Users.fetchMembers();
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
+  carbon();
 });
 
 
