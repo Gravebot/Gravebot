@@ -99,7 +99,7 @@ function connect() {
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', e => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
-  carbon();
+  setTimeout(() => carbon(), 20000);
 });
 
 
