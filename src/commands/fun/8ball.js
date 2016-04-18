@@ -1,14 +1,14 @@
+import Promise from 'bluebird';
+
 import { eightball } from '../../data';
 import T from '../../translate';
 
 
-function eightBall(client, e, suffix, lang) {
-  if (!suffix) {
-    e.message.channel.sendMessage(`${T('8ball_usage', lang)}\nhttp://i.imgur.com/PcXHbt6.gif`);
-  } else {
-    const rand = Math.floor(Math.random() * eightball.length);
-    e.message.channel.sendMessage(`🎱 **${eightball[rand]}** 🎱`);
-  }
+function eightBall(client, evt, suffix, lang) {
+  if (!suffix) return Promise.resolve(`${T('8ball_usage', lang)}\nhttp://i.imgur.com/PcXHbt6.gif`);
+
+  const rand = Math.floor(Math.random() * eightball.length);
+  return Promise.resolve(`🎱 **${eightball[rand]}** 🎱`);
 }
 
 export default {

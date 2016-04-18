@@ -1,3 +1,4 @@
+import Promise from 'bluebird';
 import chalk from 'chalk';
 import nconf from 'nconf';
 import path from 'path';
@@ -60,7 +61,8 @@ export function subCommands(client, e, method, lang) {
     const header_text = T(help_parameters[method].header_text, lang);
     text = `${header_text}\n\n${text}`;
   }
-  e.message.channel.sendMessage(text);
+
+  return Promise.resolve(text);
 }
 
 // E.g. !help useful
@@ -92,7 +94,7 @@ function helpCategory(client, e, category, lang = 'en') {
       return client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(R.join('\n', R.reject(R.isNil, commands_text))));
     }, R.splitEvery(10)(text));
   } else {
-    return e.message.channel.sendMessage(R.join('\n', R.reject(R.isNil, text)));
+    return Promise.resolve(R.join('\n', R.reject(R.isNil, text)));
   }
 }
 
@@ -125,7 +127,7 @@ function help(client, e, suffix, lang) {
     text.push(command_text);
   }, categories.help);
 
-  return e.message.channel.sendMessage(R.join('\n', text));
+  return Promise.resolve(R.join('\n', text));
 }
 
 function memelist(client, e, suffix) {

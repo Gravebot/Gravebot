@@ -3,21 +3,14 @@ import nconf from 'nconf';
 import R from 'ramda';
 import _request from 'request';
 
-import sentry from '../../sentry';
 import T from '../../translate';
 
 
 const request = Promise.promisify(_request);
 
-function makePaste(client, e, paste, lang) {
-  if (!nconf.get('PASTEBIN_KEY')) {
-    return e.message.channel.sendMessage(T('pastebin_setup', lang));
-  }
-
-  if (!paste) {
-    e.message.channel.sendMessage(T('pastebin_usage', lang));
-    return;
-  }
+function makePaste(client, evt, paste, lang) {
+  if (!nconf.get('PASTEBIN_KEY')) return Promise.resolve(T('pastebin_setup', lang));
+  if (!paste) return Promise.resolve(T('pastebin_usage', lang));
 
   const options = {
     url: 'http://pastebin.com/api/api_post.php',
@@ -29,13 +22,7 @@ function makePaste(client, e, paste, lang) {
     }
   };
 
-  request(options)
-    .then(R.prop('body'))
-    .then(text => e.message.channel.sendMessage(text))
-    .catch(err => {
-      sentry(err, 'pastebin');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+  return request(options).then(R.prop('body'));
 }
 
 export default {

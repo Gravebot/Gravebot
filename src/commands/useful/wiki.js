@@ -1,21 +1,19 @@
-import R from 'ramda';
+import Promise from 'bluebird';
 import Wiki from 'wikijs';
 
 import T from '../../translate';
 
 
-function wiki(client, e, suffix, lang) {
-  if (!suffix) {
-    e.message.channel.sendMessage(T('wiki_usage', lang));
-    return;
-  }
-  new Wiki().search(suffix, 1).then(data => {
-    new Wiki().page(data.results[0]).then(page => {
-      page.summary().then(summary => {
-        const sum_text = summary.toString().split('\n');
-        R.forEach(paragraph => {
-          e.message.channel.sendMessage(paragraph);
-        }, sum_text);
+function wiki(client, evt, suffix, lang) {
+  if (!suffix) return Promise.resolve(T('wiki_usage', lang));
+
+  return new Promise(resolve => {
+    new Wiki().search(suffix, 1).then(data => {
+      new Wiki().page(data.results[0]).then(page => {
+        page.summary().then(summary => {
+          if (!summary) return resolve(T('wiki_error', lang));
+          resolve(summary.toString().split('\n'));
+        });
       });
     });
   });

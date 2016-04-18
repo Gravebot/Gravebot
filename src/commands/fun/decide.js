@@ -1,8 +1,10 @@
+import Promise from 'bluebird';
+
 import { choices } from '../../data';
 import T from '../../translate';
 
 
-function decide(client, e, suffix, lang) {
+function decide(client, evt, suffix, lang) {
   function multipleDecide(options) {
     const selected = options[Math.floor(Math.random() * options.length)];
     if (!selected) return multipleDecide(options);
@@ -11,11 +13,9 @@ function decide(client, e, suffix, lang) {
 
   const split = suffix.split(` ${T('decide_split', lang)} `);
   const rand = Math.floor(Math.random() * choices.length);
-  if (split.length > 1) {
-    e.message.channel.sendMessage(`${choices[rand]} **${multipleDecide(split)}**`);
-  } else {
-    e.message.channel.sendMessage(T('decide_usage', lang));
-  }
+  if (split.length > 1) return Promise.resolve(`${choices[rand]} **${multipleDecide(split)}**`);
+
+  return Promise.resolve(T('decide_usage', lang));
 }
 
 export default {

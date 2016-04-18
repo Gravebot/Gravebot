@@ -1,13 +1,12 @@
 import R from 'ramda';
 
-import sentry from '../sentry';
 import { setUserLang } from '../redis';
 import T, { langs } from '../translate';
 
 const lang_defs = require('../data/lang_defs.json');
 
 
-function setLang(client, e, suffix) {
+function setLang(client, evt, suffix) {
   let lang = suffix.toLowerCase().trim();
 
   if (lang_defs[lang]) lang = lang_defs[lang];
@@ -20,17 +19,11 @@ function setLang(client, e, suffix) {
     }, R.keys(lang_defs));
 
     const langs = R.join('\n', R.map(R.join(', '), R.values(lang_options)));
-    return e.message.channel.sendMessage(`${T('accepted_languages', 'en')}:\n\n**${langs}**`);
+    return evt.message.channel.sendMessage(`${T('accepted_languages', 'en')}:\n\n**${langs}**`);
   }
 
-  setUserLang(e.message.author.id, lang)
-    .then(() => {
-      e.message.reply(`${T('hello', lang)}!`);
-    })
-    .catch(err => {
-      sentry(err, 'user', 'setlang');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+  return setUserLang(evt.message.author.id, lang)
+    .then(() => `${T('hello', lang)}!`);
 }
 
 export default {

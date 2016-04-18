@@ -7,9 +7,10 @@ import R from 'ramda';
 
 import './init-config';
 import './express';
-import './sentry';
 import './phantom';
+
 import commands from './commands';
+import sentry from './sentry';
 
 import { getUserLang } from './redis';
 
@@ -20,55 +21,83 @@ const request = Promise.promisify(require('request'));
 const client = new Discordie();
 
 
-function callCmd(cmd, name, client, e, suffix) {
+function callCmd(cmd, name, client, evt, suffix) {
   console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
-  getUserLang(e.message.author.id).then(lang => {
-    cmd(client, e, suffix, lang);
+
+  function processEntry(entry) {
+    // If string or number, send as a message
+    if (R.is(String, entry)) evt.message.channel.sendMessage(entry);
+    if (R.is(Number, entry)) evt.message.channel.sendMessage(entry);
+    // If buffer, send as a file, with a default name
+    if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png');
+    // If it's an object that contains key 'upload', send file with an optional file name
+    // This works for both uploading local files and buffers
+    if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename);
+  }
+
+  getUserLang(evt.message.author.id).then(lang => {
+    const cmd_return = cmd(client, evt, suffix, lang);
+
+    // All command returns must be a bluebird promise.
+    if (cmd_return instanceof Promise) {
+      cmd_return.then(res => {
+        // If null, don't do anything.
+        if (!res) return;
+        // If it's an array, process each entry.
+        if (R.is(Array, res)) return R.forEach(processEntry, res);
+        // Process single entry
+        processEntry(res);
+      })
+      .catch(err => {
+        sentry(err, name);
+        evt.message.channel.sendMessage(`Error: ${err.message}`);
+      });
+    }
   });
 }
 
-function onMessage(e) {
-  if (client.User.id === e.message.author.id) return;
+function onMessage(evt) {
+  if (client.User.id === evt.message.author.id) return;
 
   // Checks for PREFIX
-  if (e.message.content[0] === nconf.get('PREFIX')) {
-    let command = e.message.content.toLowerCase().split(' ')[0].substring(1);
-    let suffix = e.message.content.substring(command.length + 2);
-    let cmd = commands[command];
+  if (evt.message.content[0] === nconf.get('PREFIX')) {
+    const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
+    const suffix = evt.message.content.substring(command.length + 2);
+    const cmd = commands[command];
 
-    if (cmd) callCmd(cmd, command, client, e, suffix);
+    if (cmd) callCmd(cmd, command, client, evt, suffix);
     return;
   }
 
   // Checks if bot was mentioned
-  if (client.User.isMentioned(e.message)) {
-    let msg_split = e.message.content.split(' ');
+  if (client.User.isMentioned(evt.message)) {
+    const msg_split = evt.message.content.split(' ');
 
     // If bot was mentioned without a command, then skip.
     if (!msg_split[1]) return;
 
-    let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
+    const suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
     if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
-    let cmd = commands[cmd_name];
+    const cmd = commands[cmd_name];
 
-    if (cmd) callCmd(cmd, cmd_name, client, e, suffix);
+    if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
     return;
   }
 
   // Check personal messages
-  if (e.message.channel.is_private) {
+  if (evt.message.channel.is_private) {
     // Handle invite links
-    if (e.message.content.indexOf('https://discord.gg/') > -1 || e.message.content.indexOf('https://discordapp.com/invite/') > -1) {
-      return commands.join(client, e, e.message.content);
+    if (evt.message.content.indexOf('https://discord.gg/') > -1 || evt.message.content.indexOf('https://discordapp.com/invite/') > -1) {
+      return commands.join(client, evt, evt.message.content);
     }
 
-    let msg_split = e.message.content.split(' ');
-    let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
-    let cmd_name = msg_split[0].toLowerCase();
-    let cmd = commands[cmd_name];
+    const msg_split = evt.message.content.split(' ');
+    const suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
+    const cmd_name = msg_split[0].toLowerCase();
+    const cmd = commands[cmd_name];
 
-    if (cmd) callCmd(cmd, cmd_name, client, e, suffix);
+    if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
     return;
   }
 }
