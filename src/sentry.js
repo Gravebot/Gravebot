@@ -5,7 +5,6 @@ import raven from 'raven';
 let client = {
   captureError: (err, options) => {
     if (options.tags && options.tags.source && !err.source) err.source = options.tags.source;
-    if (options.tags && options.tags.method && !err.method) err.method = options.tags.method;
     console.error(err.stack || err);
   }
 };
@@ -27,13 +26,13 @@ if (nconf.get('NODE_ENV') === 'production' && nconf.get('SENTRY_DSN')) {
   });
 }
 
-export default function captureError(err, source, method) {
+export default function captureError(err, source) {
   const options = {
-    tags: { source, method }
+    tags: {source}
   };
 
-  if (source && !method) options.tags.method = source;
   if (err.level) options.level = err.level;
+  if (err.level && err.level === 'warning') return;
 
   client.captureError(err, options);
 }

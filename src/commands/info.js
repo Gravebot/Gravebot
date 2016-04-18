@@ -1,54 +1,45 @@
 import Promise from 'bluebird';
 import R from 'ramda';
-import _request from 'request';
 
-import sentry from '../sentry';
+const request = Promise.promisify(require('request'));
 
 
-const request = Promise.promisify(_request);
-
-function avatar(client, e, suffix) {
-  if (!e.message.mentions.length) {
-    if (!e.message.author.avatarURL) {
-      e.message.channel.sendMessage('You are naked.');
-    } else {
-      e.message.channel.sendMessage(`Your avatar:\n${e.message.author.avatarURL}`);
-    }
-  } else {
-    R.forEach(user => {
-      if (!user.avatarURL) {
-        e.message.channel.sendMessage(`${user.username} is naked.`);
-      } else {
-        e.message.channel.sendMessage(`${user.username}'s avatar:\n${user.avatarURL}`);
-      }
-    }, e.message.mentions);
+function avatar(client, evt, suffix) {
+  if (!evt.message.mentions.length) {
+    if (!evt.message.author.avatarURL) return Promise.resolve('You are naked.');
+    return Promise.resolve(`Your avatar:\n${evt.message.author.avatarURL}`);
   }
+
+  return Promise.resolve(evt.message.mentions)
+    .map(user => {
+      if (!user.avatarURL) return `${user.username} is naked.`;
+      return `${user.username}'s avatar:\n${user.avatarURL}`;
+    });
 }
 
-function channelinfo(client, e, suffix) {
-  if (e.message.channel.is_private) {
-    const channelinfo = (`\`\`\`ID: ${e.message.channel.id}
+function channelinfo(client, evt, suffix) {
+  const channelinfo = [];
+  if (evt.message.channel.is_private) {
+    channelinfo.push(`\`\`\`ID: ${evt.message.channel.id}
 Type: Direct Message
-New Messages: ${e.message.channel.messages.length} (since the bot was restarted)
-Created At: ${e.message.channel.createdAt}
+New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
+Created At: ${evt.message.channel.createdAt}
 \`\`\``);
-    e.message.channel.sendMessage(channelinfo);
   } else if (!suffix) {
-    const channelinfo = (`\`\`\`Server: ${e.message.guild.name}
-Name: ${e.message.channel.name}
-ID: ${e.message.channel.id}
-Type: ${e.message.channel.type}
-Position: ${e.message.channel.position}
-New Messages: ${e.message.channel.messages.length} (since the bot was restarted)
-Created At: ${e.message.channel.createdAt}
-Topic: ${e.message.channel.topic}
+    channelinfo.push(`\`\`\`Server: ${evt.message.guild.name}
+Name: ${evt.message.channel.name}
+ID: ${evt.message.channel.id}
+Type: ${evt.message.channel.type}
+Position: ${evt.message.channel.position}
+New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
+Created At: ${evt.message.channel.createdAt}
+Topic: ${evt.message.channel.topic}
 \`\`\``);
-    e.message.channel.sendMessage(channelinfo);
-  } else if (e.message.content.indexOf('<#') !== -1) {
+  } else if (evt.message.content.indexOf('<#') !== -1) {
     R.forEach(suffix => {
       let channel = client.Channels.get(suffix.substring(2, suffix.length - 1));
       if (channel.type === 'text') {
-        const channelinfo = (`\`\`\`Server: ${channel.guild.name}
+        channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
@@ -57,9 +48,8 @@ New Messages: ${channel.messages.length} (since the bot was restarted)
 Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-        e.message.channel.sendMessage(channelinfo);
       } else {
-        const channelinfo = (`\`\`\`Server: ${channel.guild.name}
+        channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
@@ -67,103 +57,98 @@ Position: ${channel.position}
 Created At: ${channel.createdAt}
 Bitrate: ${channel.bitrate}
 \`\`\``);
-        e.message.channel.sendMessage(channelinfo);
       }
     }, suffix.split(' '));
   }
+
+  return Promise.resolve(channelinfo);
 }
 
-function ping(client, e) {
-  let time = process.hrtime();
-  setTimeout(() => {
-    let diff = process.hrtime(time);
-    e.message.channel.sendMessage(`Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`);
-  }, 1);
+function ping() {
+  const start = process.hrtime();
+  return Promise.delay(1).then(() => {
+    const diff = process.hrtime(start);
+    return `Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`;
+  });
 }
 
-function serverinfo(client, e) {
-  if (e.message.channel.is_private) {
-    e.message.channel.sendMessage('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
-  } else {
-    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', e.message.guild.roles)));
-    const serverinfo = (`\`\`\`Name: ${e.message.guild.name}
-ID: ${e.message.guild.id}
-Region: ${e.message.guild.region}
-Owner: ${e.message.guild.owner.username}
-Channels: ${e.message.guild.channels.length} (${e.message.guild.textChannels.length} text & ${e.message.guild.voiceChannels.length} voice)
-Default Channel: ${e.message.guild.generalChannel.name}
-AFK Channel: ${e.message.guild.afk_channel.name}
-AFK Timeout: ${e.message.guild.afk_timeout / 60} minutes
-Members: ${e.message.guild.members.length}
-Created At: ${e.message.guild.createdAt}
+function serverinfo(client, evt) {
+  if (evt.message.channel.is_private) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
+
+  const roles = R.join(', ', R.remove(0, 1, R.pluck('name', evt.message.guild.roles)));
+  const serverinfo = (`\`\`\`Name: ${evt.message.guild.name}
+ID: ${evt.message.guild.id}
+Region: ${evt.message.guild.region}
+Owner: ${evt.message.guild.owner.username}
+Channels: ${evt.message.guild.channels.length} (${evt.message.guild.textChannels.length} text & ${evt.message.guild.voiceChannels.length} voice)
+Default Channel: ${evt.message.guild.generalChannel.name}
+AFK Channel: ${evt.message.guild.afk_channel.name}
+AFK Timeout: ${evt.message.guild.afk_timeout / 60} minutes
+Members: ${evt.message.guild.members.length}
+Created At: ${evt.message.guild.createdAt}
 Roles: ${roles}
-Icon: ${e.message.guild.iconURL}
+Icon: ${evt.message.guild.iconURL}
 \`\`\``);
-    e.message.channel.sendMessage(serverinfo);
-  }
+
+  return Promise.resolve(serverinfo);
 }
 
-function servers(client, e) {
-  e.message.channel.sendMessage(`Connected to ${client.Guilds.length} servers, ${client.Channels.length} channels and ${client.Users.length} users.`);
+function servers(client) {
+  return Promise.resolve(`Connected to ${client.Guilds.length} servers, ${client.Channels.length} channels and ${client.Users.length} users.`);
 }
 
-function userinfo(client, e, suffix) {
-  if (e.message.channel.is_private) {
-    const userinfo = (`\`\`\`Name: ${e.message.author.username}
-ID: ${e.message.author.id}
-Discriminator: ${e.message.author.discriminator}
-Status: ${e.message.author.status} (${e.message.author.gameName})
-Registered At: ${e.message.author.registeredAt}
-Avatar: ${e.message.author.avatarURL}
+function userinfo(client, evt, suffix) {
+  const userinfo = [];
+  if (evt.message.channel.is_private) {
+    userinfo.push(`\`\`\`Name: ${evt.message.author.username}
+ID: ${evt.message.author.id}
+Discriminator: ${evt.message.author.discriminator}
+Status: ${evt.message.author.status} (${evt.message.author.gameName})
+Registered At: ${evt.message.author.registeredAt}
+Avatar: ${evt.message.author.avatarURL}
 \`\`\``);
-    e.message.channel.sendMessage(userinfo);
-  } else if (!e.message.mentions.length) {
-    const userinfo = (`\`\`\`Name: ${e.message.author.username}
-ID: ${e.message.author.id}
-Discriminator: ${e.message.author.discriminator}
-Status: ${e.message.author.status} (${e.message.author.gameName})
-Registered At: ${e.message.author.registeredAt}
-Avatar: ${e.message.author.avatarURL}
+  } else if (!evt.message.mentions.length) {
+    userinfo.push(`\`\`\`Name: ${evt.message.author.username}
+ID: ${evt.message.author.id}
+Discriminator: ${evt.message.author.discriminator}
+Status: ${evt.message.author.status} (${evt.message.author.gameName})
+Registered At: ${evt.message.author.registeredAt}
+Avatar: ${evt.message.author.avatarURL}
 \`\`\``);
-    e.message.channel.sendMessage(userinfo);
   } else {
     R.forEach(user => {
-      const userinfo = (`\`\`\`Name: ${user.username}
+      userinfo.push(`\`\`\`Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} (${user.gameName})
 Registered At: ${user.registeredAt}
 Avatar: ${user.avatarURL}
 \`\`\``);
-      e.message.channel.sendMessage(userinfo);
-    }, e.message.mentions);
+    }, evt.message.mentions);
   }
+
+  return Promise.resolve(userinfo);
 }
 
-function uptime(client, e) {
+function uptime() {
   const uptimeh = Math.floor(process.uptime() / (60 * 60));
   const uptimem = Math.floor(process.uptime() % (60 * 60) / 60);
   const uptimes = Math.floor(process.uptime() % 60);
-  e.message.channel.sendMessage(`I have been alive for:
+  return Promise.resolve(`I have been alive for:
 ${uptimeh} Hours
 ${uptimem} Minutes
 ${uptimes} Seconds`);
 }
 
-function version(client, e) {
-  request('https://raw.githubusercontent.com/Gravestorm/Gravebot/master/CHANGELOG.md')
+function version() {
+  return request('https://raw.githubusercontent.com/Gravestorm/Gravebot/master/CHANGELOG.md')
     .then(R.prop('body'))
     .then(R.split(/<a name="*.*.*" \/>/g))
     .then(R.nth(1))
     .then(R.replace(/#### /g, ''))
     .then(R.replace(/#/g, ''))
     .then(R.slice(1, -1))
-    .then(R.trim)
-    .then(text => e.message.channel.sendMessage(text))
-    .catch(err => {
-      sentry(err, 'info', 'version');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+    .then(R.trim);
 }
 
 export default {

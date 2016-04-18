@@ -1,23 +1,18 @@
 import Promise from 'bluebird';
 import nconf from 'nconf';
-import _request from 'request';
 import R from 'ramda';
 
-import sentry from '../../sentry';
 import T from '../../translate';
 
+const request = Promise.promisify(require('request'));
 
-const request = Promise.promisify(_request);
 
-function giphy(client, e, suffix, lang) {
-  if (!suffix) {
-    e.message.channel.sendMessage(T('giphy_usage', lang));
-    return;
-  }
+function giphy(client, evt, suffix, lang) {
+  if (!suffix) return Promise.resolve(T('giphy_usage', lang));
 
   // limit=1 will only return 1 gif
   const options = {
-    url: 'http://api.giphy.com/v1/gifs/random?tag=' + encodeURI(suffix),
+    url: `http://api.giphy.com/v1/gifs/random?tag=${encodeURI(suffix)}`,
     qs: {
       api_key: 'dc6zaTOxFJmzC',
       rating: 'r',
@@ -27,73 +22,45 @@ function giphy(client, e, suffix, lang) {
     json: true
   };
 
-  request(options)
+  return request(options)
     .then(R.prop('body'))
     .then(body => {
-      if (body.data.id) {
-        e.message.channel.sendMessage(body.data.image_original_url);
-      } else {
-        e.message.channel.sendMessage(`${T('gif_error', lang)}: ${suffix}`);
-      }
-    })
-    .catch(err => {
-      sentry(err, 'gif', 'giphy');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
+      if (body.data.id) return body.data.image_original_url;
+      return `${T('gif_error', lang)}: ${suffix}`;
     });
 }
 
-function popkey(client, e, suffix, lang) {
-  if (!nconf.get('POPKEY_KEY')) {
-    e.message.channel.sendMessage(T('popkey_setup', lang));
-    return;
-  }
-
-  if (!suffix) {
-    e.message.channel.sendMessage(T('popkey_usage', lang));
-    return;
-  }
+function popkey(client, evt, suffix, lang) {
+  if (!nconf.get('POPKEY_KEY')) return Promise.resolve(T('popkey_setup', lang));
+  if (!suffix) return Promise.resolve(T('popkey_usage', lang));
 
   const options = {
-    url: 'http://api.popkey.co/v2/media/search?q=' + encodeURI(suffix),
+    url: `http://api.popkey.co/v2/media/search?q=${encodeURI(suffix)}`,
+    json: true,
     headers: {
       Authorization: 'Basic ' + nconf.get('POPKEY_KEY'),
       Accept: 'application/json'
     }
   };
 
-  request(options)
+  return request(options)
     .then(R.prop('body'))
-    .then(JSON.parse)
     .then(body => {
-      if (body[0].id) {
-        const gif = body[Math.floor(Math.random() * body.length)].source.url;
-        e.message.channel.sendMessage(gif);
-      } else {
-        e.message.channel.sendMessage(`${T('gif_error', lang)}: ${suffix}`);
-      }
+      if (body[0].id) return body[Math.floor(Math.random() * body.length)].source.url;
+      return `${T('gif_error', lang)}: ${suffix}`;
     })
     .catch(err => {
-      if (err instanceof TypeError) {
-        e.message.channel.sendMessage(`${T('gif_error', lang)}: ${suffix}`);
-      } else {
-        sentry(err, 'gif', 'popkey');
-        e.message.channel.sendMessage(`Error: ${err.message}`);
-      }
+      if (err instanceof TypeError) return `${T('gif_error', lang)}: ${suffix}`;
+      throw err;
     });
 }
 
-function gif(client, e, suffix, lang) {
-  if (!suffix) {
-    e.message.channel.sendMessage(T('gif_usage', lang));
-    return;
-  }
+function gif(client, evt, suffix, lang) {
+  if (!suffix) return Promise.resolve(T('gif_usage', lang));
 
   const number = Math.floor(Math.random() * 2) + 1;
-  if (number === 1) {
-    popkey(client, e, suffix, lang);
-  } else {
-    giphy(client, e, suffix, lang);
-  }
+  if (number === 1) return popkey(client, evt, suffix, lang);
+  return giphy(client, evt, suffix, lang);
 }
 
 export default {

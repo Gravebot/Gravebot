@@ -5,27 +5,27 @@ import { serverStatus, matchDetails } from './riot';
 
 
 export default {
-  lol: (client, e, suffix, lang) => {
+  lol: (client, evt, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
 
-    if (command === 'ban') return bans(client, e);
-    if (command === 'bans') return bans(client, e);
-    if (command === 'best') return best(client, e, suffix);
-    if (command === 'build') return items(client, e, suffix);
-    if (command === 'builds') return items(client, e, suffix);
-    if (command === 'counter') return counters(client, e, suffix);
-    if (command === 'counters') return counters(client, e, suffix);
-    if (command === 'item') return items(client, e, suffix);
-    if (command === 'items') return items(client, e, suffix);
-    if (command === 'match') return matchDetails(client, e, suffix);
-    if (command === 'skill') return skills(client, e, suffix);
-    if (command === 'skills') return skills(client, e, suffix);
-    if (command === 'server') return serverStatus(client, e, suffix);
-    if (command === 'server-status') return serverStatus(client, e, suffix);
-    if (command === 'servers') return serverStatus(client, e, suffix);
-    if (command === 'serverstatus') return serverStatus(client, e, suffix);
-    if (command === 'status') return serverStatus(client, e, suffix);
-    return helpText(client, e, 'lol', lang);
+    if (command === 'ban') return bans();
+    if (command === 'bans') return bans();
+    if (command === 'best') return best(suffix, lang);
+    if (command === 'build') return items(suffix, lang);
+    if (command === 'builds') return items(suffix, lang);
+    if (command === 'counter') return counters(suffix, lang);
+    if (command === 'counters') return counters(suffix, lang);
+    if (command === 'item') return items(suffix, lang);
+    if (command === 'items') return items(suffix, lang);
+    if (command === 'match') return matchDetails(client, evt, suffix, lang);
+    if (command === 'skill') return skills(suffix, lang);
+    if (command === 'skills') return skills(suffix, lang);
+    if (command === 'server') return serverStatus(suffix, lang);
+    if (command === 'server-status') return serverStatus(suffix, lang);
+    if (command === 'servers') return serverStatus(suffix, lang);
+    if (command === 'serverstatus') return serverStatus(suffix, lang);
+    if (command === 'status') return serverStatus(suffix, lang);
+    return helpText(client, evt, 'lol', lang);
   }
 };
 

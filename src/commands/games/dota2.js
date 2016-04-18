@@ -3,7 +3,6 @@ import cheerio from 'cheerio';
 import R from 'ramda';
 import _request from 'request';
 
-import sentry from '../../sentry';
 import { subCommands as helpText } from '../help';
 import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../helpers';
 
@@ -22,10 +21,10 @@ const positions = {
   jg: 'jungle'
 };
 
-function best(client, e, suffix) {
+function best(suffix) {
   const position = suffix.replace('best', '').toLowerCase().trim();
   const db_position = positions[position];
-  if (!db_position) return e.message.channel.sendMessage(`I don't understand position **${position}**. Did you mean **mid**, **off**, **safe**, or **jungle**?`);
+  if (!db_position) return Promise.resolve(`I don't understand position **${position}**. Did you mean **mid**, **off**, **safe**, or **jungle**?`);
 
   const options = {
     url: `http://www.dotabuff.com/heroes/lanes?lane=${db_position}`,
@@ -34,7 +33,7 @@ function best(client, e, suffix) {
     }
   };
 
-  request(options)
+  return request(options)
     .tap(res => {
       if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
     })
@@ -63,15 +62,10 @@ function best(client, e, suffix) {
     Presence: __${secondDec(hero.presence)}%__ | Winrate: __${secondDec(hero.winrate)}%__ | KDA: __${hero.kda}__ | GPM: __${hero.gpm}__ | XPM: __${hero.xpm}__`, data);
     })
     .then(R.prepend(`Okay! Here's the top 10 **statistical** Heroes for **${position}**:\n`))
-    .then(R.join('\n'))
-    .then(text => e.message.channel.sendMessage(text))
-    .catch(err => {
-      sentry(err, 'dota2', 'best');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
-function build(client, e, suffix) {
+function build(suffix) {
   const hero = suffix.toLowerCase().split(' ').slice(1, 10).join(' ');
   const options = {
     url: `http://www.dotabuff.com/heroes/${hero.replace(/ /g, '-')}/builds`,
@@ -80,7 +74,7 @@ function build(client, e, suffix) {
     }
   };
 
-  request(options)
+  return request(options)
     .tap(res => {
       if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
     })
@@ -91,16 +85,11 @@ function build(client, e, suffix) {
         return $(el).text();
       }).get().join(' > ');
 
-      const text = `You got it! Here's most popular build priorities for **${toTitleCase(hero)}**.\n${priorities}`;
-      e.message.channel.sendMessage(text);
-    })
-    .catch(err => {
-      sentry(err, 'dota2', 'build');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
+      return `You got it! Here's most popular build priorities for **${toTitleCase(hero)}**.\n${priorities}`;
     });
 }
 
-function counters(client, e, suffix) {
+function counters(suffix) {
   const hero = suffix.toLowerCase().split(' ').slice(1, 10).join(' ');
   const options = {
     url: `http://www.dotabuff.com/heroes/${hero.replace(/ /g, '-')}/matchups`,
@@ -109,7 +98,7 @@ function counters(client, e, suffix) {
     }
   };
 
-  request(options)
+  return request(options)
     .tap(res => {
       if (res.statusCode === 404) throw new Error(`Hero **${hero}** not found`);
       if (res.statusCode >= 500) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
@@ -136,12 +125,7 @@ function counters(client, e, suffix) {
       return R.addIndex(R.map)((hero, idx) => `*${getOrdinal(idx + 1)}*. **${hero.name}** - ${secondDec(100 - hero.winrate)}% win rate over ${numberWithCommas(hero.matches)} matches.`, data);
     })
     .then(R.prepend(`Sure! Here's the top 10 **statistical** counters for **${toTitleCase(hero)}** this month:\n`))
-    .then(R.join('\n'))
-    .then(text => e.message.channel.sendMessage(text))
-    .catch(err => {
-      sentry(err, 'dota2', 'counters');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
 function impact(client, e) {
@@ -152,7 +136,7 @@ function impact(client, e) {
     }
   };
 
-  request(options)
+  return request(options)
     .tap(res => {
       if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
     })
@@ -180,15 +164,10 @@ function impact(client, e) {
     KDA: __${hero.kda}__ | Kills: __${hero.kills}__ | Deaths: __${hero.deaths}__ | Assists: __${hero.assists}__`, data);
     })
     .then(R.prepend(`Alright! Here's the top 10 Heroes with the biggest impact this month:\n`))
-    .then(R.join('\n'))
-    .then(text => e.message.channel.sendMessage(text))
-    .catch(err => {
-      sentry(err, 'dota2', 'impact');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
-function items(client, e, suffix) {
+function items(suffix) {
   const hero = suffix.toLowerCase().split(' ').slice(1, 10).join(' ');
   const options = {
     url: `http://www.dotabuff.com/heroes/${hero.replace(/ /g, '-')}/items`,
@@ -197,7 +176,7 @@ function items(client, e, suffix) {
     }
   };
 
-  request(options)
+  return request(options)
     .tap(res => {
       if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
     })
@@ -222,30 +201,25 @@ function items(client, e, suffix) {
       return R.addIndex(R.map)((item, idx) => `*${getOrdinal(idx + 1)}*. **${item.name}** with ${secondDec(item.winrate)}% winrate over ${numberWithCommas(item.matches)} matches`, data);
     })
     .then(R.prepend(`Alright! Here's the top 10 **most used** items for **${toTitleCase(hero)}** this month:\n`))
-    .then(R.join('\n'))
-    .then(text => e.message.channel.sendMessage(text))
-    .catch(err => {
-      sentry(err, 'dota2', 'items');
-      e.message.channel.sendMessage(`Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
 function commands(client, e, suffix, lang) {
   const command = suffix.toLowerCase().split(' ')[0];
 
-  if (command === 'build') return build(client, e, suffix);
-  if (command === 'builds') return build(client, e, suffix);
-  if (command === 'best') return best(client, e, suffix);
-  if (command === 'counter') return counters(client, e, suffix);
-  if (command === 'counters') return counters(client, e, suffix);
+  if (command === 'build') return build(suffix);
+  if (command === 'builds') return build(suffix);
+  if (command === 'best') return best(suffix);
+  if (command === 'counter') return counters(suffix);
+  if (command === 'counters') return counters(suffix);
   if (command === 'impact') return impact(client, e);
-  if (command === 'item') return items(client, e, suffix);
-  if (command === 'items') return items(client, e, suffix);
-  if (command === 'matchup') return counters(client, e, suffix);
-  if (command === 'matchups') return counters(client, e, suffix);
-  if (command === 'skill') return build(client, e, suffix);
-  if (command === 'skills') return build(client, e, suffix);
-  return e.message.channel.sendMessage(helpText(client, e, 'dota2', lang));
+  if (command === 'item') return items(suffix);
+  if (command === 'items') return items(suffix);
+  if (command === 'matchup') return counters(suffix);
+  if (command === 'matchups') return counters(suffix);
+  if (command === 'skill') return build(suffix);
+  if (command === 'skills') return build(suffix);
+  return helpText(client, e, 'dota2', lang);
 }
 
 export default {

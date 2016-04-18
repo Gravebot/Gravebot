@@ -1,38 +1,21 @@
+import Promise from 'bluebird';
 import path from 'path';
 
 
 export default {
-  ayylmao: (client, e) => {
-    e.message.channel.sendMessage('http://i.imgur.com/m7NaGVx.gif');
-    e.message.channel.uploadFile(path.join(__dirname, '../../images/Ayylmao.png'));
-  },
-  chillenmyb: (client, e) => {
-    e.message.channel.sendMessage('http://i.imgur.com/Qh75Dsi.jpg');
-  },
-  endall: (client, e) => {
-    e.message.channel.sendMessage('http://i.imgur.com/SNmMCQV.png');
-  },
-  feelsgoodman: (client, e) => {
-    e.message.channel.uploadFile(path.join(__dirname, '../../images/Feelsgoodman.png'));
-  },
-  jpeg: (client, e) => {
-    e.message.channel.sendMessage('https://www.youtube.com/watch?v=QEzhxP-pdos');
-  },
-  kappa: (client, e) => {
-    e.message.channel.uploadFile(path.join(__dirname, '../../images/Kappa.png'));
-  },
-  kappahd: (client, e) => {
-    e.message.channel.uploadFile(path.join(__dirname, '../../images/Kappahd.png'));
-  },
-  skeltal: (client, e) => {
-    e.message.channel.sendMessage('http://i.imgur.com/ZX79Q4S.gif');
-  },
-  starwars4: (client, e) => {
-    e.message.channel.sendMessage('http://i.imgur.com/l9VKWWF.gif');
-  },
-  starwars5: (client, e) => {
-    e.message.channel.sendMessage('http://i.imgur.com/eCpwo6J.gif');
-  }
+  ayylmao: () => Promise.resolve([
+    'http://i.imgur.com/m7NaGVx.gif',
+    {upload: path.join(__dirname, '../../images/Ayylmao.png')}
+  ]),
+  chillenmyb: () => Promise.resolve('http://i.imgur.com/Qh75Dsi.jpg'),
+  endall: () => Promise.resolve('http://i.imgur.com/SNmMCQV.png'),
+  feelsgoodman: () => Promise.resolve({upload: path.join(__dirname, '../../images/Feelsgoodman.png')}),
+  jpeg: () => Promise.resolve('https://www.youtube.com/watch?v=QEzhxP-pdos'),
+  kappa: () => Promise.resolve({upload: path.join(__dirname, '../../images/Kappa.png')}),
+  kappahd: () => Promise.resolve({upload: path.join(__dirname, '../../images/Kappahd.png')}),
+  skeltal: () => Promise.resolve('http://i.imgur.com/ZX79Q4S.gif'),
+  starwars4: () => Promise.resolve('http://i.imgur.com/l9VKWWF.gif'),
+  starwars5: () => Promise.resolve('http://i.imgur.com/eCpwo6J.gif')
 };
 
 export const help = {
