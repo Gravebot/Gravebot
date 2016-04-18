@@ -128,7 +128,7 @@ function counters(suffix) {
     .then(R.join('\n'));
 }
 
-function impact(client, e) {
+function impact() {
   const options = {
     url: `http://www.dotabuff.com/heroes/impact`,
     headers: {
@@ -212,7 +212,7 @@ function commands(client, e, suffix, lang) {
   if (command === 'best') return best(suffix);
   if (command === 'counter') return counters(suffix);
   if (command === 'counters') return counters(suffix);
-  if (command === 'impact') return impact(client, e);
+  if (command === 'impact') return impact();
   if (command === 'item') return items(suffix);
   if (command === 'items') return items(suffix);
   if (command === 'matchup') return counters(suffix);
