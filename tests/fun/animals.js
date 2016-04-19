@@ -57,7 +57,7 @@ http://random.cat/i/7VnxKqw.jpg`);
         .get('/bomb?count=5')
         .reply(200, res_fixture_pugbomb);
 
-      images.pug({}, {}, 'bomb 5').then(res => {
+      return images.pug({}, {}, 'bomb 5').then(res => {
         res.should.equal(`http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
 http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
 http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
@@ -74,7 +74,7 @@ http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`);
         .get('/snek.php')
         .reply(200, res_fixture_snake);
 
-      images.snake()
+      return images.snake()
         .then(res => res.should.equal('http://fur.im/snek/61.png'));
     });
 
@@ -85,7 +85,7 @@ http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`);
         .times(5)
         .reply(200, res_fixture_snake);
 
-      images.snake({}, {}, 'bomb 5').then(res => {
+      return images.snake({}, {}, 'bomb 5').then(res => {
         res.should.equal(`http://fur.im/snek/61.png
 http://fur.im/snek/61.png
 http://fur.im/snek/61.png
