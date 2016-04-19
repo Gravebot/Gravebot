@@ -217,10 +217,14 @@ Avatar: http://website.com/img.png
   });
 
   describe('version', () => {
-    it('should return the change log for the latest verion', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`1.2.3 (Janurary 8th, 2016)
+    it('should return the change log for the latest verion', () => {
+      nock('https://raw.githubusercontent.com/')
+        .get('/Gravestorm/Gravebot/master/CHANGELOG.md')
+        .reply(200, res_fixture);
+
+      return info.version()
+        .then(res => {
+          res.should.equal(`1.2.3 (Janurary 8th, 2016)
 
 Features
 - Test One
@@ -230,14 +234,7 @@ Bug Fixes
 
 Technical Features
 - Test Three`);
-        done();
-      }
-
-      nock('https://raw.githubusercontent.com/')
-        .get('/Gravestorm/Gravebot/master/CHANGELOG.md')
-        .reply(200, res_fixture);
-
-      info.version({sendMessage}, {channel: 'test'});
+        });
     });
   });
 });

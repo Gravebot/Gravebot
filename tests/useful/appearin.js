@@ -15,14 +15,9 @@ describe('appearin', () => {
 
   after(() => sandbox.restore());
 
-  it('should return a appearin URL to the channel', done => {
-    function sendMessage(channel, res) {
-      channel.should.equal('test');
-      res.should.equal('https://appear.in/0234342344');
-      done();
-    }
-
-    appearin.appearin({sendMessage}, {channel: 'test', mentions: []});
+  it('should return a appearin URL to the channel', () => {
+    return appearin.appearin({}, {})
+      .then(res => res.should.equal('https://appear.in/0234342344'));
   });
 
   it('should return a appearin url to the author and mentioned users in PMs', done => {

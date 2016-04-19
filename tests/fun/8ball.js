@@ -15,13 +15,8 @@ describe('8ball', () => {
 
   after(() => sandbox.restore());
 
-  it('should return an answer', done => {
-    function sendMessage(channel, res) {
-      channel.should.equal('test');
-      res.should.equal('author:crystal_ball:**In your dreams**:crystal_ball:');
-      done();
-    }
-
-    eightball.eightball({sendMessage}, {channel: 'test', author: 'author'}, 'Should I eat a burger?');
+  it('should return an answer', () => {
+    return eightball.eightball({}, {}, 'Should I eat a burger?')
+      .then(res => res.should.equal(`🎱 **In your dreams** 🎱`));
   });
 });

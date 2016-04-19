@@ -21,63 +21,61 @@ describe('league of legends', () => {
   });
 
   describe('counters', () => {
-    it('should return counters for ekko mid', function(done) {
+    it('should return counters for ekko mid', function() {
       this.timeout(7000);
-      function sendFile(channel, res) {
-        channel.should.equal('test');
-        res.length.should.be.at.least(70000);
-        done();
-      }
 
       nock('http://api.champion.gg')
         .get('/champion/ekko/matchup?api_key=api_key')
         .reply(200, FIXTURES.counters);
 
-      lol.lol({sendFile}, {channel: 'test'}, 'counters ekko mid');
+      return lol.lol({}, {}, 'counters ekko mid')
+        .then(res => {
+          res.upload.length.should.be.at.least(70000);
+          res.filename.should.equal('counters_ekko_Middle.png');
+        });
     });
   });
 
   describe('items', () => {
-    it('should return an image buffer larger than 70000', function(done) {
+    it('should return an image buffer larger than 70000', function() {
       this.timeout(7000);
-      function sendFile(channel, res) {
-        channel.should.equal('test');
-        res.length.should.be.at.least(70000);
-        done();
-      }
-
       nock('http://api.champion.gg')
         .get('/champion/ekko/items/finished/mostWins?api_key=api_key')
         .reply(200, FIXTURES.items);
 
-      lol.lol({sendFile}, {channel: 'test'}, 'items ekko mid');
+      return lol.lol({}, {}, 'items ekko mid')
+        .then(res => {
+          res.upload.length.should.be.at.least(70000);
+          res.filename.should.equal('items_ekko_Middle.png');
+        });
     });
   });
 
   describe('skills', () => {
-    it('should return skills for ekko mid', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Okay! Here's the skill order for **Ekko Middle**.
-
-**Skill Priority:** Q>E>W
-**Full Order:** Q,E,Q,W,Q,R,Q,E,Q,E,R,E,E,W,W,R,W,W`);
-        done();
-      }
-
+    it('should return skills for ekko mid', () => {
       nock('http://api.champion.gg')
         .get('/champion/ekko/skills/mostWins?api_key=api_key')
         .reply(200, FIXTURES.skills);
 
-      lol.lol({sendMessage}, {channel: 'test'}, 'skills ekko mid');
+      return lol.lol({}, {}, 'skills ekko mid')
+        .then(res => {
+          res.should.equal(`Okay! Here's the skill order for **Ekko Middle**.
+
+**Skill Priority:** Q>E>W
+**Full Order:** Q,E,Q,W,Q,R,Q,E,Q,E,R,E,E,W,W,R,W,W`);
+        });
     });
   });
 
   describe('bans', () => {
-    it('should return the top bans', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`You got it! Here's the top 10 most common bans:
+    it('should return the top bans', () => {
+      nock('http://api.champion.gg')
+        .get('/stats/champs/mostBanned?api_key=api_key&limit=25&page=1')
+        .reply(200, FIXTURES.bans);
+
+      return lol.lol({}, {}, 'bans')
+        .then(res => {
+          res.should.equal(`You got it! Here's the top 10 most common bans:
 
 *1st*. **Dr. Mundo**
 *2nd*. **Jax**
@@ -89,23 +87,20 @@ describe('league of legends', () => {
 *8th*. **Fiora**
 *9th*. **Rengar**
 *10th*. **Kindred**`);
-        done();
-      }
-
-      nock('http://api.champion.gg')
-        .get('/stats/champs/mostBanned?api_key=api_key&limit=25&page=1')
-        .reply(200, FIXTURES.bans);
-
-      lol.lol({sendMessage}, {channel: 'test'}, 'bans');
+        });
     });
   });
 
   // TODO: Test for all lanes.
   describe('best', () => {
-    it('should return the best champs for mid lane', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Sick! Here's the top 10 **statistically** best for **Middle**:
+    it('should return the best champs for mid lane', () => {
+      nock('http://api.champion.gg')
+        .get('/stats/role/Middle/bestPerformance?api_key=api_key&limit=10&page=1')
+        .reply(200, FIXTURES.best);
+
+      return lol.lol({}, {}, 'best mid')
+        .then(res => {
+          res.should.equal(`Sick! Here's the top 10 **statistically** best for **Middle**:
 
 *1st*. **Gangplank** with a 53.81% winrate.
 *2nd*. **Lux** with a 54.35% winrate.
@@ -117,31 +112,12 @@ describe('league of legends', () => {
 *8th*. **Morgana** with a 54.72% winrate.
 *9th*. **Talon** with a 53.41% winrate.
 *10th*. **Malzahar** with a 52.58% winrate.`);
-        done();
-      }
-
-      nock('http://api.champion.gg')
-        .get('/stats/role/Middle/bestPerformance?api_key=api_key&limit=10&page=1')
-        .reply(200, FIXTURES.best);
-
-      lol.lol({sendMessage}, {channel: 'test'}, 'best mid');
+        });
     });
   });
 
   describe('match details', () => {
-    it('should return match details for a specific player', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Game on! You can find **omervalentine** on __Red__ side.
-
-__Blue Side:__
-    **OmerValentine1** - Gold V - **Zed**,  __0%__ winrate over __0 games__
-
-__Red Side:__
-    **OmerValentine** - Gold V - **Lucian**,  __50%__ winrate over __2 games__`);
-        done();
-      }
-
+    it('should return match details for a specific player', () => {
       // Summoner Lookup
       nock('https://na.api.pvp.net')
         .get('/api/lol/na/v1.4/summoner/by-name/omervalentine?api_key=api_key')
@@ -156,7 +132,17 @@ __Red Side:__
         .get('/api/lol/na/v1.3/stats/by-summoner/432609201/ranked?api_key=api_key')
         .reply(200, FIXTURES.match_details_5);
 
-      lol.lol({sendMessage}, {channel: 'test', mentions: []}, 'match na omervalentine');
+      const evt = {message: {mentions: []}};
+      return lol.lol({}, evt, 'match na omervalentine')
+        .then(res => {
+          res.should.equal(`Game on! You can find **omervalentine** on __Red__ side.
+
+__Blue Side:__
+    **OmerValentine1** - Gold V - **Zed**,  __0%__ winrate over __0 games__
+
+__Red Side:__
+    **OmerValentine** - Gold V - **Lucian**,  __50%__ winrate over __2 games__`);
+        });
     });
   });
 });

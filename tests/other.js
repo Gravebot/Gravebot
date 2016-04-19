@@ -8,127 +8,77 @@ chai.should();
 
 describe('other', () => {
   describe('ayylmao', () => {
-    it('should return the correct imgur url and local file', done => {
-      let completed = 0;
-
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/m7NaGVx.gif');
-
-        completed++;
-        if (completed === 2) return done();
-      }
-
-      function sendFile(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(path.join(__dirname, '../images/Ayylmao.png'));
-
-        completed++;
-        if (completed === 2) return done();
-      }
-      other.ayylmao({
-        sendMessage,
-        sendFile
-      }, {channel: 'test'});
+    it('should return the correct imgur url and local file', () => {
+      return other.ayylmao()
+        .then(res => {
+          res.should.eql([
+            'http://i.imgur.com/m7NaGVx.gif',
+            {upload: path.join(__dirname, '../images/Ayylmao.png')}
+          ]);
+        });
     });
   });
 
   describe('chillenmyb', () => {
-    it('should return the correct imgur url', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/Qh75Dsi.jpg');
-        done();
-      }
-      other.chillenmyb({sendMessage}, {channel: 'test'});
+    it('should return the correct imgur url', () => {
+      return other.chillenmyb()
+        .then(res => res.should.equal('http://i.imgur.com/Qh75Dsi.jpg'));
     });
   });
 
   describe('endall', () => {
-    it('should return the correct imgur url', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/SNmMCQV.png');
-        done();
-      }
-      other.endall({sendMessage}, {channel: 'test'});
+    it('should return the correct imgur url', () => {
+      return other.endall()
+        .then(res => res.should.equal('http://i.imgur.com/SNmMCQV.png'));
     });
   });
 
   describe('feelsgoodman', () => {
-    it('should return the correct local file', done => {
-      function sendFile(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(path.join(__dirname, '../images/Feelsgoodman.png'));
-        done();
-      }
-      other.feelsgoodman({sendFile}, {channel: 'test'});
+    it('should return the correct local file', () => {
+      return other.feelsgoodman()
+        .then(res => res.upload.should.equal(path.join(__dirname, '../images/Feelsgoodman.png')));
     });
   });
 
   describe('jpeg', () => {
-    it('should return the correct youtube url', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('https://www.youtube.com/watch?v=QEzhxP-pdos');
-        done();
-      }
-      other.jpeg({sendMessage}, {channel: 'test'});
+    it('should return the correct youtube url', () => {
+      return other.jpeg()
+        .then(res => res.should.equal('https://www.youtube.com/watch?v=QEzhxP-pdos'));
     });
   });
 
   describe('kappa', () => {
-    it('should return the correct local file', done => {
-      function sendFile(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(path.join(__dirname, '../images/Kappa.png'));
-        done();
-      }
-      other.kappa({sendFile}, {channel: 'test'});
+    it('should return the correct local file', () => {
+      return other.kappa()
+        .then(res => res.upload.should.equal(path.join(__dirname, '../images/Kappa.png')));
     });
   });
 
   describe('kappahd', () => {
-    it('should return the correct local file', done => {
-      function sendFile(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(path.join(__dirname, '../images/Kappahd.png'));
-        done();
-      }
-      other.kappahd({sendFile}, {channel: 'test'});
+    it('should return the correct local file', () => {
+      return other.kappahd()
+        .then(res => res.upload.should.equal(path.join(__dirname, '../images/Kappahd.png')));
     });
   });
 
   describe('skeltal', () => {
-    it('should return the correct imgur url', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/ZX79Q4S.gif');
-        done();
-      }
-      other.skeltal({sendMessage}, {channel: 'test'});
+    it('should return the correct imgur url', () => {
+      return other.skeltal()
+        .then(res => res.should.equal('http://i.imgur.com/ZX79Q4S.gif'));
     });
   });
 
   describe('starwars4', () => {
-    it('should return the correct imgur url', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/l9VKWWF.gif');
-        done();
-      }
-      other.starwars4({sendMessage}, {channel: 'test'});
+    it('should return the correct imgur url', () => {
+      return other.starwars4()
+        .then(res => res.should.equal('http://i.imgur.com/l9VKWWF.gif'));
     });
   });
 
   describe('starwars5', () => {
-    it('should return the correct imgur url', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://i.imgur.com/eCpwo6J.gif');
-        done();
-      }
-      other.starwars5({sendMessage}, {channel: 'test'});
+    it('should return the correct imgur url', () => {
+      return other.starwars5()
+        .then(res => res.should.equal('http://i.imgur.com/eCpwo6J.gif'));
     });
   });
 });

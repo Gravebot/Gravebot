@@ -15,13 +15,10 @@ describe('coin', () => {
 
   after(() => sandbox.restore());
 
-  it('should return heads', done => {
-    function sendFile(channel, res) {
-      channel.should.equal('test');
-      res.should.equal('./images/Heads.png');
-      done();
-    }
-
-    coin.coin({sendFile}, {channel: 'test'});
+  it('should return heads', () => {
+    return coin.coin()
+      .then(res => {
+        res.upload.should.equal('./images/Heads.png');
+      });
   });
 });

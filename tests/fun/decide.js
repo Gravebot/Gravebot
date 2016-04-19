@@ -15,13 +15,8 @@ describe('decide', () => {
 
   after(() => sandbox.restore());
 
-  it('should pick hotdogs', done => {
-    function sendMessage(channel, res) {
-      channel.should.equal('test');
-      res.should.equal('I would choose **hotdogs**');
-      done();
-    }
-
-    decide.decide({sendMessage}, {channel: 'test', author: 'author'}, 'hotdogs or burgers?');
+  it('should pick hotdogs', () => {
+    return decide.decide({}, {}, 'hotdogs or burgers?')
+      .then(res => res.should.equal('I would choose **hotdogs**'));
   });
 });

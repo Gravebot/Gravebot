@@ -11,10 +11,15 @@ const FIXTURES = loadFixtures(path.join(__dirname, '../fixtures/dota2/'));
 
 describe('dota2', () => {
   describe('best', () => {
-    it('it should return a list of the top 10 best heroes', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Okay! Here's the top 10 **statistical** Heroes for **mid**:
+    it('it should return a list of the top 10 best heroes', () => {
+      nock.cleanAll();
+      nock('http://www.dotabuff.com')
+        .get('/heroes/lanes?lane=mid')
+        .reply(200, FIXTURES.best);
+
+      return dota.dota2({}, {}, 'best mid')
+        .then(res => {
+          res.should.equal(`Okay! Here's the top 10 **statistical** Heroes for **mid**:
 
 *1st*. **Shadow Fiend**
     Presence: __90.74%__ | Winrate: __51.22%__ | KDA: __2.7691__ | GPM: __546.8119__ | XPM: __571.5334__
@@ -36,41 +41,35 @@ describe('dota2', () => {
     Presence: __62.36%__ | Winrate: __49.15%__ | KDA: __2.5247__ | GPM: __452.8678__ | XPM: __514.715__
 *10th*. **Zeus**
     Presence: __61.04%__ | Winrate: __56.12%__ | KDA: __4.1543__ | GPM: __433.3088__ | XPM: __512.4047__`);
-        done();
-      }
-
-      nock.cleanAll();
-      nock('http://www.dotabuff.com')
-        .get('/heroes/lanes?lane=mid')
-        .reply(200, FIXTURES.best);
-
-      dota.dota2({sendMessage}, {channel: 'test'}, 'best mid');
+        });
     });
   });
 
   describe('build', () => {
-    it('it should return the most popular build for anti-mage', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`You got it! Here's most popular build priorities for **Anti Mage**.
-R > Q > W > E`);
-        done();
-      }
-
+    it('it should return the most popular build for anti-mage', () => {
       nock.cleanAll();
       nock('http://www.dotabuff.com')
         .get('/heroes/anti-mage/builds')
         .reply(200, FIXTURES.build);
 
-      dota.dota2({sendMessage}, {channel: 'test'}, 'build anti mage');
+      return dota.dota2({}, {}, 'build anti mage')
+        .then(res => {
+          res.should.equal(`You got it! Here's most popular build priorities for **Anti Mage**.
+R > Q > W > E`);
+        });
     });
   });
 
   describe('counters', () => {
-    it('it should counters for anti-mage', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Sure! Here's the top 10 **statistical** counters for **Anti Mage** this month:
+    it('it should counters for anti-mage', () => {
+      nock.cleanAll();
+      nock('http://www.dotabuff.com')
+        .get('/heroes/anti-mage/matchups')
+        .reply(200, FIXTURES.counters);
+
+      return dota.dota2({}, {}, 'counters anti mage')
+        .then(res => {
+          res.should.equal(`Sure! Here's the top 10 **statistical** counters for **Anti Mage** this month:
 
 *1st*. **Wraith King** - 56.14% win rate over 590,941 matches.
 *2nd*. **Zeus** - 55.4% win rate over 482,486 matches.
@@ -82,23 +81,20 @@ R > Q > W > E`);
 *8th*. **Slark** - 50.93% win rate over 443,573 matches.
 *9th*. **Undying** - 55.01% win rate over 190,340 matches.
 *10th*. **Phoenix** - 53.06% win rate over 104,058 matches.`);
-        done();
-      }
-
-      nock.cleanAll();
-      nock('http://www.dotabuff.com')
-        .get('/heroes/anti-mage/matchups')
-        .reply(200, FIXTURES.counters);
-
-      dota.dota2({sendMessage}, {channel: 'test'}, 'counters anti mage');
+        });
     });
   });
 
   describe('impact', () => {
-    it('it should return the highest impacting heroes', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Alright! Here's the top 10 Heroes with the biggest impact this month:
+    it('it should return the highest impacting heroes', () => {
+      nock.cleanAll();
+      nock('http://www.dotabuff.com')
+        .get('/heroes/impact')
+        .reply(200, FIXTURES.impact);
+
+      return dota.dota2({}, {}, 'impact')
+        .then(res => {
+          res.should.equal(`Alright! Here's the top 10 Heroes with the biggest impact this month:
 
 *1st*. **Spectre**
     KDA: __3.7913__ | Kills: __9.4035__ | Deaths: __6.9009__ | Assists: __16.76__
@@ -120,23 +116,20 @@ R > Q > W > E`);
     KDA: __2.7901__ | Kills: __10.5562__ | Deaths: __7.5115__ | Assists: __10.4022__
 *10th*. **Viper**
     KDA: __2.7874__ | Kills: __10.2064__ | Deaths: __7.8425__ | Assists: __11.6541__`);
-        done();
-      }
-
-      nock.cleanAll();
-      nock('http://www.dotabuff.com')
-        .get('/heroes/impact')
-        .reply(200, FIXTURES.impact);
-
-      dota.dota2({sendMessage}, {channel: 'test'}, 'impact');
+        });
     });
   });
 
   describe('items', () => {
-    it('it should return the most used items for anti-mage', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`Alright! Here's the top 10 **most used** items for **Anti Mage** this month:
+    it('it should return the most used items for anti-mage', () => {
+      nock.cleanAll();
+      nock('http://www.dotabuff.com')
+        .get('/heroes/anti-mage/items')
+        .reply(200, FIXTURES.items);
+
+      return dota.dota2({}, {}, 'items anti mage')
+        .then(res => {
+          res.should.equal(`Alright! Here's the top 10 **most used** items for **Anti Mage** this month:
 
 *1st*. **Battle Fury** with 49.21% winrate over 4,875,904 matches
 *2nd*. **Power Treads** with 43.9% winrate over 3,963,102 matches
@@ -148,15 +141,7 @@ R > Q > W > E`);
 *8th*. **Heart of Tarrasque** with 71.67% winrate over 1,159,192 matches
 *9th*. **Boots of Travel** with 68.93% winrate over 844,483 matches
 *10th*. **Butterfly** with 79.96% winrate over 826,125 matches`);
-        done();
-      }
-
-      nock.cleanAll();
-      nock('http://www.dotabuff.com')
-        .get('/heroes/anti-mage/items')
-        .reply(200, FIXTURES.items);
-
-      dota.dota2({sendMessage}, {channel: 'test'}, 'items anti mage');
+        });
     });
   });
 });

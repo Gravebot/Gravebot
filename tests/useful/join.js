@@ -3,17 +3,13 @@ import join from '../../src/commands/useful/join';
 
 describe('join/join-server', () => {
   it('should join execute joinServer and respond with with a success message', done => {
-    function sendMessage(channel, res) {
-      channel.should.equal('test');
-      res.should.equal('Successfully joined Test Server');
+    function reply(res) {
+      res.should.equal(`To invite me to your server, click the link below and select a server.
+Only users with **Manage Server** permission in that server are able to invite me to it. You may remove some of the permissons if you wish, but be warned it may break current and upcoming features.
+https://discordapp.com/oauth2/authorize?&client_id=123&scope=bot&permissions=125982`);
       done();
     }
 
-    function joinServer(url, next) {
-      return next(null, 'Test Server');
-    }
-
-    let invite_url = 'http://discord.gg/123456';
-    join.join({sendMessage, joinServer}, {channel: 'test', content: invite_url}, invite_url);
+    return join.join({}, {message: {reply}});
   });
 });

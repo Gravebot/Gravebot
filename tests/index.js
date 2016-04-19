@@ -1,4 +1,5 @@
 import glob from 'glob';
+import nconf from 'nconf';
 import R from 'ramda';
 
 import '../src/init-config';
@@ -6,6 +7,9 @@ import '../src/express';
 import '../src/redis';
 import '../src/phantom';
 
+
+// Defaults
+nconf.set('CLIENT_ID', '123');
 
 const glob_options = {
   realpath: true,

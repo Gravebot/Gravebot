@@ -13,112 +13,85 @@ const res_fixture_pugbomb = require(path.join(__dirname, '../fixtures/pugbomb.js
 
 describe('images', () => {
   describe('cat', () => {
-    it('should return cat images', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://random.cat/i/7VnxKqw.jpg');
-        done();
-      }
-
+    it('should return cat images', () => {
       nock.cleanAll();
       nock('http://random.cat')
         .get('/meow.php')
         .reply(200, res_fixture_cat);
 
-      images.cat({sendMessage}, {channel: 'test'});
+      return images.cat()
+        .then(res => res.should.equal('http://random.cat/i/7VnxKqw.jpg'));
     });
 
-    it('should return 5 cat images', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
+    it('should return 5 cat images', () => {
+      nock.cleanAll();
+      nock('http://random.cat')
+        .get('/meow.php')
+        .times(5)
+        .reply(200, res_fixture_cat);
+
+      return images.cat({}, {}, 'bomb 5').then(res => {
         res.should.equal(`http://random.cat/i/7VnxKqw.jpg
 http://random.cat/i/7VnxKqw.jpg
 http://random.cat/i/7VnxKqw.jpg
 http://random.cat/i/7VnxKqw.jpg
 http://random.cat/i/7VnxKqw.jpg`);
-        done();
-      }
-
-      nock.cleanAll();
-      nock('http://random.cat')
-        .get('/meow.php')
-        .times(5)
-        .reply(200, res_fixture_cat);
-
-      images.cat({sendMessage}, {channel: 'test'}, 'bomb 5');
+      });
     });
   });
 
   describe('pug', () => {
-    it('should return pug images', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`);
-        done();
-      }
-
+    it('should return pug images', () => {
       nock.cleanAll();
-      nock('https://pugme.herokuapp.com')
+      nock('http://pugme.herokuapp.com')
         .get('/bomb?count=1')
         .reply(200, res_fixture_pug);
 
-      images.pug({sendMessage}, {channel: 'test'});
+      return images.pug()
+        .then(res => res.should.equal(`http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`));
     });
 
-    it('should return 5 pug images', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
+    it('should return 5 pug images', () => {
+      nock.cleanAll();
+      nock('http://pugme.herokuapp.com')
+        .get('/bomb?count=5')
+        .reply(200, res_fixture_pugbomb);
+
+      images.pug({}, {}, 'bomb 5').then(res => {
         res.should.equal(`http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
 http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
 http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
 http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg
 http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg`);
-        done();
-      }
-
-      nock.cleanAll();
-      nock('https://pugme.herokuapp.com')
-        .get('/bomb?count=5')
-        .reply(200, res_fixture_pugbomb);
-
-      images.pug({sendMessage}, {channel: 'test'}, 'bomb 5');
+      });
     });
   });
 
   describe('snake', () => {
-    it('should return snake images', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://fur.im/snek/61.png');
-        done();
-      }
-
+    it('should return snake images', () => {
       nock.cleanAll();
       nock('http://fur.im/snek')
         .get('/snek.php')
         .reply(200, res_fixture_snake);
 
-      images.snake({sendMessage}, {channel: 'test'});
+      images.snake()
+        .then(res => res.should.equal('http://fur.im/snek/61.png'));
     });
 
-    it('should return 5 snake images', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal(`http://fur.im/snek/61.png
-http://fur.im/snek/61.png
-http://fur.im/snek/61.png
-http://fur.im/snek/61.png
-http://fur.im/snek/61.png`);
-        done();
-      }
-
+    it('should return 5 snake images', () => {
       nock.cleanAll();
       nock('http://fur.im/snek')
         .get('/snek.php')
         .times(5)
         .reply(200, res_fixture_snake);
 
-      images.snake({sendMessage}, {channel: 'test'}, 'bomb 5');
+      images.snake({}, {}, 'bomb 5').then(res => {
+        res.should.equal(`http://fur.im/snek/61.png
+http://fur.im/snek/61.png
+http://fur.im/snek/61.png
+http://fur.im/snek/61.png
+http://fur.im/snek/61.png`);
+      });
     });
   });
 });
