@@ -143,7 +143,7 @@ function memelist(client, evt, suffix) {
     client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
     client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else {
-    evt.message.channel.sendMessage(meme.all);
+    return Promise.resolve(meme.all);
   }
 }
 
