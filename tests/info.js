@@ -42,7 +42,7 @@ describe('info', () => {
     it('should return a string containing channel information', () => {
       const evt = {
         message: {
-          content: {},
+          content: '',
           guild: {
             name: 'server'
           },
@@ -72,8 +72,9 @@ Topic: abc
     it('should return a string containing mentioned channel information', () => {
       const evt = {
         message: {
-          content: '<#9876543210>, <#0123456789>',
+          content: '<#9876543210>',
           guild: {
+            channels: ['<#9876543210>'],
             name: 'server'
           },
           channel: {
@@ -87,7 +88,7 @@ Topic: abc
           }
         }
       };
-      return info.channelinfo({}, evt, '<#9876543210>, <#0123456789>')
+      return info.channelinfo({}, evt, '<#9876543210>')
       .then(res => res[0].should.equal(`\`\`\`Server: server
 Name: test
 ID: 1234
