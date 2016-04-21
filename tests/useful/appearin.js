@@ -28,14 +28,12 @@ describe('appearin', () => {
   it('should return a appearin url to the author and mentioned users in PMs', done => {
     let testcount = 0;
 
-    function sendMessage(msg) {
+    function sendMessage(res) {
       testcount++;
       if (testcount === 1) {
-        appearin.appearin({}, {}, 'sender')
-        .then(res => res.should.equal('https://appear.in/0234342344'));
+        res.should.equal('https://appear.in/0234342344');
       } else {
-        appearin.appearin({}, {}, 'sender')
-        .then(res => res.should.equal('sender would like you to join a videocall/screenshare.\nhttps://appear.in/0234342344'));
+        res.should.equal('sender would like you to join a videocall/screenshare.\nhttps://appear.in/0234342344');
       }
       if (testcount === 2) done();
     }
@@ -60,6 +58,6 @@ describe('appearin', () => {
       }
     };
 
-    return appearin.appearin(client, evt, 'sender');
+    return appearin.appearin(client, evt);
   });
 });
