@@ -23,7 +23,7 @@ __Creating a new module__
 
 To add a new command, create a new javascript file in [`/src/commands`](/src/commands) and name it to something that resembles your to be functions. For example all the Discord server commands can be found in [`/src/commands/info.js`](/src/commands/info.js).
 
-All functions are sent the [discord client instance](https://discordjs.readthedocs.org/en/latest/docs_client.html), [msg object](https://discordjs.readthedocs.org/en/latest/docs_message.html), and the command text *(minus the command itself)* as parameters. A good example of this can be found in [`/src/commands/fun/transate.js`](/src/commands/fun/transate.js).
+All functions are passed the [Discordie client](https://qeled.github.io/discordie/#/docs/Discordie?_k=7pztxz), [message event](https://qeled.github.io/discordie/#/docs/IMessage?_k=bjv5md), the command suffix, and the users language. All functions are to return a Bluebird promise of either a string, number, or Buffer. An array of any of the three is [also accepted](https://github.com/Gravebot/Gravebot/blob/Rewrite/src/index.js#L27-L56). A good example of this can be found in [`/src/commands/fun/transate.js`](/src/commands/fun/transate.js).
 
 It's good to default to some help text if someone is improperly using your commands. With a little string interpolation and some markdown, it's pretty easy to describe to a user how your commands work. Check out [`/src/commands/games/leagueoflegends/`](/src/commands/games/leagueoflegends/) or [`/src/commands/help`](/src/commands/help).
 

@@ -1,3 +1,28 @@
+<a name="3.0.0" />
+## 3.0.0 (April 20th, 2016)
+
+#### Breaking Changes
+- Gravebot no longer works with regular accounts (email and password). Instead a bot account is required (token and client_id). See https://discordapp.com/developers/applications/me
+
+#### Features
+- `!animals` command to see all the adorable animal pictures you can show off
+- `!leet` lets you talk like a real hacker... If that's what you consider a hacker.
+- `!ping` lets you know Gravebot is alive and well
+- `!channelinfo` gives details on the current channel
+- `!serverinfo` now lets you get server info about other servers if you know the name
+- `!unshorten` gives you the security of unshrinking a shortened link and avoiding your friends terrible troll attempts
+
+#### Bug Fixes
+- Various bugs with `!help` and language commands
+- `!avatar` and `!userinfo` work without having to mention a user
+- Fixed default values for `!roll`
+- Fixed users not getting PMs with commands like `!memelist`
+
+#### Technical Features
+- Switched from DiscordJS to Discordie (less crashes)
+- Major performance improvements (less cost on CPU and RAM)
+
+
 <a name="2.1.0" />
 ## 2.1.0 (March 1st, 2016)
 
