@@ -196,7 +196,7 @@
     "done": true
   },
   "join_link": {
-    "text": "To invite me to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite me to it. You may remove some of the permissons if you wish, but be warned it may break current and upcoming features.",
+    "text": "To invite me to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite me to it.\nYou may remove some of the permissions if you wish, but be warned it may break current and upcoming features.",
     "done": true
   },
   "leet_usage": {

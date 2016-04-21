@@ -5,16 +5,20 @@ const request = Promise.promisify(require('request'));
 
 
 function avatar(client, evt, suffix) {
-  if (!evt.message.mentions.length) {
+  if (!suffix && !evt.message.mentions.length) {
     if (!evt.message.author.avatarURL) return Promise.resolve('You are naked.');
     return Promise.resolve(`Your avatar:\n${evt.message.author.avatarURL}`);
+  } else if (evt.message.mentions.length) {
+    return Promise.resolve(evt.message.mentions)
+      .map(user => {
+        if (!user.avatarURL) return `${user.username} is naked.`;
+        return `${user.username}'s avatar:\n${user.avatarURL}`;
+      });
   }
-
-  return Promise.resolve(evt.message.mentions)
-    .map(user => {
-      if (!user.avatarURL) return `${user.username} is naked.`;
-      return `${user.username}'s avatar:\n${user.avatarURL}`;
-    });
+  const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
+  if (!user) return;
+  if (!user.avatarURL) return Promise.resolve(`${user.username} is naked.`);
+  return Promise.resolve(`${user.username}'s avatar:\n${user.avatarURL}`);
 }
 
 function channelinfo(client, evt, suffix) {
@@ -25,7 +29,7 @@ Type: Direct Message
 New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
 Created At: ${evt.message.channel.createdAt}
 \`\`\``);
-  } else if (!suffix) {
+  } else if (!suffix && evt.message.content.indexOf('<#') === -1) {
     channelinfo.push(`\`\`\`Server: ${evt.message.guild.name}
 Name: ${evt.message.channel.name}
 ID: ${evt.message.channel.id}
@@ -37,7 +41,7 @@ Topic: ${evt.message.channel.topic}
 \`\`\``);
   } else if (evt.message.content.indexOf('<#') !== -1) {
     R.forEach(suffix => {
-      let channel = client.Channels.get(suffix.substring(2, suffix.length - 1));
+      const channel = R.find(R.propEq('id', suffix.substring(2, suffix.length - 1)))(evt.message.guild.channels);
       if (channel.type === 'text') {
         channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
@@ -59,6 +63,29 @@ Bitrate: ${channel.bitrate}
 \`\`\``);
       }
     }, suffix.split(' '));
+  } else {
+    const channel = R.find(R.propEq('name', suffix))(evt.message.guild.channels);
+    if (!channel) return;
+    if (channel.type === 'text') {
+      channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
+Topic: ${channel.topic}
+\`\`\``);
+    } else {
+      channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
+\`\`\``);
+    }
   }
 
   return Promise.resolve(channelinfo);
@@ -72,11 +99,12 @@ function ping() {
   });
 }
 
-function serverinfo(client, evt) {
+function serverinfo(client, evt, suffix) {
+  const serverinfo = [];
   if (evt.message.channel.is_private) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
-
-  const roles = R.join(', ', R.remove(0, 1, R.pluck('name', evt.message.guild.roles)));
-  const serverinfo = (`\`\`\`Name: ${evt.message.guild.name}
+  if (!suffix) {
+    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', evt.message.guild.roles)));
+    serverinfo.push(`\`\`\`Name: ${evt.message.guild.name}
 ID: ${evt.message.guild.id}
 Region: ${evt.message.guild.region}
 Owner: ${evt.message.guild.owner.username}
@@ -89,6 +117,24 @@ Created At: ${evt.message.guild.createdAt}
 Roles: ${roles}
 Icon: ${evt.message.guild.iconURL}
 \`\`\``);
+  } else {
+    const guild = R.find(R.propEq('name', suffix))(client.Guilds);
+    if (!guild) return;
+    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', guild.roles)));
+    serverinfo.push(`\`\`\`Name: ${guild.name}
+ID: ${guild.id}
+Region: ${guild.region}
+Owner: ${guild.owner.username}
+Channels: ${guild.channels.length} (${guild.textChannels.length} text & ${guild.voiceChannels.length} voice)
+Default Channel: ${guild.generalChannel.name}
+AFK Channel: ${guild.afk_channel.name}
+AFK Timeout: ${guild.afk_timeout / 60} minutes
+Members: ${guild.members.length}
+Created At: ${guild.createdAt}
+Roles: ${roles}
+Icon: ${guild.iconURL}
+\`\`\``);
+  }
 
   return Promise.resolve(serverinfo);
 }
@@ -107,7 +153,7 @@ Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing '
 Registered At: ${evt.message.author.registeredAt}
 Avatar: ${evt.message.author.avatarURL}
 \`\`\``);
-  } else if (!evt.message.mentions.length) {
+  } else if (!suffix && !evt.message.mentions.length) {
     userinfo.push(`\`\`\`Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
@@ -115,7 +161,7 @@ Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing '
 Registered At: ${evt.message.author.registeredAt}
 Avatar: ${evt.message.author.avatarURL}
 \`\`\``);
-  } else {
+  } else if (evt.message.mentions.length) {
     R.forEach(user => {
       userinfo.push(`\`\`\`Name: ${user.username}
 ID: ${user.id}
@@ -125,6 +171,16 @@ Registered At: ${user.registeredAt}
 Avatar: ${user.avatarURL}
 \`\`\``);
     }, evt.message.mentions);
+  } else {
+    const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
+    if (!user) return;
+    userinfo.push(`\`\`\`Name: ${user.username}
+ID: ${user.id}
+Discriminator: ${user.discriminator}
+Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
+Registered At: ${user.registeredAt}
+Avatar: ${user.avatarURL}
+\`\`\``);
   }
 
   return Promise.resolve(userinfo);
@@ -170,12 +226,12 @@ export default {
 };
 
 export const help = {
-  avatar: {parameters: ['@username'], category: 'info'},
-  channelinfo: {parameters: ['#channelname'], category: 'info'},
+  avatar: {parameters: ['username'], category: 'info'},
+  channelinfo: {parameters: ['channelname'], category: 'info'},
   ping: {category: 'info'},
   serverinfo: {category: 'info'},
-  servers: {category: 'info'},
-  userinfo: {parameters: ['@username'], category: 'info'},
+  servers: {parameters: ['servername'], category: 'info'},
+  userinfo: {parameters: ['username'], category: 'info'},
   uptime: {category: 'info'},
   version: {category: 'info'}
 };

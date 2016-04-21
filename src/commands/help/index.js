@@ -38,7 +38,7 @@ if (!process.env.TEST) {
   }, command_files);
 }
 
-export function subCommands(client, e, method, lang) {
+export function subCommands(client, evt, method, lang) {
   const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
   let text = R.map(subcommand => {

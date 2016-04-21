@@ -9,58 +9,122 @@ chai.should();
 describe('help', () => {
   describe('memelist', () => {
     describe('1', () => {
-      it('should return the correct help text', () => {
+      it('should return the correct help text', done => {
+        let testcount = 0;
+
+        function sendMessage(res) {
+          testcount++;
+          if (testcount === 1) res.should.equal(meme.list1);
+          if (testcount === 2) done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
         const evt = {
           message: {
             author: {
-              id: '1234'
+              id: 1234
             }
           }
         };
-        return help.memelist({}, evt, '1')
-        .then(res => res.should.equal(meme.list1));
+
+        return help.memelist(client, evt);
       });
     });
 
     describe('2', () => {
-      it('should return the correct help text', () => {
+      it('should return the correct help text', done => {
+        let testcount = 0;
+
+        function sendMessage(res) {
+          testcount++;
+          if (testcount === 1) res.should.equal(meme.list1);
+          if (testcount === 2) done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
         const evt = {
           message: {
             author: {
-              id: '1234'
+              id: 1234
             }
           }
         };
-        return help.memelist({}, evt, '2')
-        .then(res => res.should.equal(meme.list2));
+
+        return help.memelist(client, evt);
       });
     });
 
     describe('3', () => {
-      it('should return the correct help text', () => {
+      it('should return the correct help text', done => {
+        let testcount = 0;
+
+        function sendMessage(res) {
+          testcount++;
+          if (testcount === 1) res.should.equal(meme.list1);
+          if (testcount === 2) done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
         const evt = {
           message: {
             author: {
-              id: '1234'
+              id: 1234
             }
           }
         };
-        return help.memelist({}, evt, '3')
-        .then(res => res.should.equal(meme.list3));
+
+        return help.memelist(client, evt);
       });
     });
 
     describe('full', () => {
-      it('should return the correct help text in three different messages', () => {
+      it('should return the correct help text', done => {
+        let testcount = 0;
+
+        function sendMessage(res) {
+          testcount++;
+          if (testcount === 1) res.should.equal(meme.list1);
+          if (testcount === 2) done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
         const evt = {
           message: {
             author: {
-              id: '1234'
+              id: 1234
             }
           }
         };
-        return help.memelist({}, evt, 'full')
-        .then(res => res.should.equal(meme.list1 + meme.list2 + meme.list3));
+
+        return help.memelist(client, evt);
       });
     });
 
