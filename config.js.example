@@ -24,11 +24,6 @@ module.exports = {
   IMGFLIP_USERNAME: '',
   IMGFLIP_PASSWORD: '',
 
-  // Cleverbot API name and key, used to talk to Cleverbot with `!chat`.
-  // Create a key here. https://cleverbot.io/keys
-  CLEVERBOT_API_NAME: '',
-  CLEVERBOT_API_KEY: '',
-
   // Champion.gg API key, used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
   CHAMPIONGG_API: '',

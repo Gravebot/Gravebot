@@ -66,7 +66,7 @@ export function subCommands(client, e, method, lang) {
 }
 
 // E.g. !help useful
-function helpCategory(client, e, category, lang = 'en') {
+function helpCategory(client, evt, category, lang = 'en') {
   let methods;
   if (category === 'all') {
     methods = R.flatten(R.values(categories)).sort();
@@ -91,16 +91,16 @@ function helpCategory(client, e, category, lang = 'en') {
 
   if (category === 'all') {
     R.forEach(commands_text => {
-      return client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(R.join('\n', R.reject(R.isNil, commands_text))));
+      return client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(R.join('\n', R.reject(R.isNil, commands_text))));
     }, R.splitEvery(10)(text));
   } else {
     return Promise.resolve(R.join('\n', R.reject(R.isNil, text)));
   }
 }
 
-function help(client, e, suffix, lang) {
+function help(client, evt, suffix, lang) {
   const category = suffix.toLowerCase();
-  if (categories[category] || category === 'all') return helpCategory(client, e, category, lang);
+  if (categories[category] || category === 'all') return helpCategory(client, evt, category, lang);
 
   const help_methods = R.keys(categories).sort();
   help_methods.push('all');
@@ -130,20 +130,20 @@ function help(client, e, suffix, lang) {
   return Promise.resolve(R.join('\n', text));
 }
 
-function memelist(client, e, suffix) {
+function memelist(client, evt, suffix) {
   suffix = suffix.toLowerCase();
   if (suffix === '1') {
-    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
   } else if (suffix === '2') {
-    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
   } else if (suffix === '3') {
-    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else if (suffix === 'full') {
-    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
-    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
-    client.Users.get(e.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else {
-    e.message.channel.sendMessage(meme.all);
+    evt.message.channel.sendMessage(meme.all);
   }
 }
 

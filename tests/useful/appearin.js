@@ -16,34 +16,50 @@ describe('appearin', () => {
   after(() => sandbox.restore());
 
   it('should return a appearin URL to the channel', () => {
-    return appearin.appearin({}, {})
-      .then(res => res.should.equal('https://appear.in/0234342344'));
+    const evt = {
+      message: {
+        mentions: []
+      }
+    };
+    return appearin.appearin({}, evt)
+    .then(res => res.should.equal('https://appear.in/0234342344'));
   });
 
   it('should return a appearin url to the author and mentioned users in PMs', done => {
-    let msg = {
-      channel: 'test',
-      mentions: [{name: 'usertest'}],
-      author: {
-        name: 'authortest'
-      }
-    };
-
     let testcount = 0;
 
-    function sendMessage(channel, res) {
+    function sendMessage(msg) {
       testcount++;
       if (testcount === 1) {
-        channel.should.equal(msg.author);
-        res.should.equal('https://appear.in/0234342344');
+        appearin.appearin({}, {}, 'sender')
+        .then(res => res.should.equal('https://appear.in/0234342344'));
       } else {
-        channel.should.equal(msg.mentions[0]);
-        res.should.equal('authortest would like you to join a videocall/screenshare.\nhttps://appear.in/0234342344');
+        appearin.appearin({}, {}, 'sender')
+        .then(res => res.should.equal('sender would like you to join a videocall/screenshare.\nhttps://appear.in/0234342344'));
       }
-
       if (testcount === 2) done();
     }
 
-    appearin.appearin({sendMessage}, msg);
+    const client = {
+      Users: {
+        get: () => ({
+          openDM: () => Promise.resolve({sendMessage})
+        })
+      }
+    };
+
+    const evt = {
+      message: {
+        author: {
+          username: 'sender',
+          id: 1234
+        },
+        mentions: [{
+          username: 'recipient'
+        }]
+      }
+    };
+
+    return appearin.appearin(client, evt, 'sender');
   });
 });

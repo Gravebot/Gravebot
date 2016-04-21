@@ -103,7 +103,7 @@ function userinfo(client, evt, suffix) {
     userinfo.push(`\`\`\`Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
-Status: ${evt.message.author.status} (${evt.message.author.gameName})
+Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
 Registered At: ${evt.message.author.registeredAt}
 Avatar: ${evt.message.author.avatarURL}
 \`\`\``);
@@ -111,7 +111,7 @@ Avatar: ${evt.message.author.avatarURL}
     userinfo.push(`\`\`\`Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
-Status: ${evt.message.author.status} (${evt.message.author.gameName})
+Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
 Registered At: ${evt.message.author.registeredAt}
 Avatar: ${evt.message.author.avatarURL}
 \`\`\``);
@@ -120,7 +120,7 @@ Avatar: ${evt.message.author.avatarURL}
       userinfo.push(`\`\`\`Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
-Status: ${user.status} (${user.gameName})
+Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
 Registered At: ${user.registeredAt}
 Avatar: ${user.avatarURL}
 \`\`\``);
@@ -141,7 +141,7 @@ ${uptimes} Seconds`);
 }
 
 function version() {
-  return request('https://raw.githubusercontent.com/Gravestorm/Gravebot/master/CHANGELOG.md')
+  return request('https://raw.githubusercontent.com/Gravebot/Gravebot/master/CHANGELOG.md')
     .then(R.prop('body'))
     .then(R.split(/<a name="*.*.*" \/>/g))
     .then(R.nth(1))
