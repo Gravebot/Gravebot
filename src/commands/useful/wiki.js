@@ -11,9 +11,11 @@ function wiki(client, evt, suffix, lang) {
     new Wiki().search(suffix, 1).then(data => {
       new Wiki().page(data.results[0]).then(page => {
         page.summary().then(summary => {
-          if (!summary) return resolve(T('wiki_error', lang));
           resolve(summary.toString().split('\n'));
         });
+      })
+      .catch(() => {
+        resolve(`${T('wiki_error', lang)} **${suffix}**`);
       });
     });
   });
