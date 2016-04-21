@@ -98,13 +98,6 @@ Topic: abc
     });
   });
 
-  describe('ping', () => {
-    it('should return a string containing ping information', () => {
-      return info.ping({}, {})
-      .then(res => res.should.equal('Pong!\n'));
-    });
-  });
-
   describe('serverinfo', () => {
     it('should return a string containing server information', () => {
       const evt = {
@@ -215,16 +208,6 @@ Status: online (Playing game)
 Registered At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
 Avatar: http://website.com/img.png
 \`\`\``));
-    });
-  });
-
-  describe('uptime', () => {
-    it('should return a string containing uptime information', () => {
-      return info.uptime({}, {})
-      .then(res => res.should.equal(`I have been alive for:
-67 Hours
-19 Minutes
-2 Seconds`));
     });
   });
 
