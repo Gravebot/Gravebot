@@ -126,12 +126,21 @@ function connect() {
   client.connect({token: nconf.get('TOKEN')});
 }
 
+function forceFetchUsers() {
+  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Force fetching users.`));
+  client.Users.fetchMembers();
+}
+
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', () => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
   setTimeout(() => carbon(), 20000);
-});
+  setTimeout(() => forceFetchUsers(), 45000);
 
+
+  client.Dispatcher.on('MESSAGE_CREATE', onMessage);
+  client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+});
 
 client.Dispatcher.on('DISCONNECTED', () => {
   console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
@@ -139,8 +148,5 @@ client.Dispatcher.on('DISCONNECTED', () => {
     connect();
   }, 2000);
 });
-
-client.Dispatcher.on('MESSAGE_CREATE', onMessage);
-client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
 
 connect();
