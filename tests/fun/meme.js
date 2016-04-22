@@ -28,15 +28,10 @@ describe('meme', () => {
     mockery.disable();
   });
 
-  it('should generate a meme and return a image url', done => {
-    function sendMessage(channel, res) {
-      channel.should.equal('test');
-      res.should.equal('http://url.dev/img.png');
-      done();
-    }
-
+  it('should generate a meme and return a image url', () => {
     nconf.set('IMGFLIP_USERNAME', '123');
     nconf.set('IMGFLIP_PASSWORD', '123');
-    meme.meme({sendMessage}, {channel: 'test'}, 'wonka "top text" "bottom text"');
+    return meme.meme({}, {}, 'wonka "top text" "bottom text"')
+      .then(res => res.should.equal('http://url.dev/img.png'));
   });
 });

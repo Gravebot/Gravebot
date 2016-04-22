@@ -1,3 +1,4 @@
+import Promise from 'bluebird';
 import chalk from 'chalk';
 import nconf from 'nconf';
 import path from 'path';
@@ -37,8 +38,7 @@ if (!process.env.TEST) {
   }, command_files);
 }
 
-export function subCommands(bot, msg, method) {
-  const lang = msg.author.lang;
+export function subCommands(client, evt, method, lang) {
   const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
   let text = R.map(subcommand => {
@@ -61,17 +61,16 @@ export function subCommands(bot, msg, method) {
     const header_text = T(help_parameters[method].header_text, lang);
     text = `${header_text}\n\n${text}`;
   }
-  bot.sendMessage(msg.channel, text);
+
+  return Promise.resolve(text);
 }
 
 // E.g. !help useful
-function helpCategory(bot, msg, category, lang = 'en') {
-  let methods, channel;
+function helpCategory(client, evt, category, lang = 'en') {
+  let methods;
   if (category === 'all') {
-    channel = msg.author;
     methods = R.flatten(R.values(categories)).sort();
   } else {
-    channel = msg.channel;
     methods = categories[category].sort();
   }
 
@@ -92,17 +91,16 @@ function helpCategory(bot, msg, category, lang = 'en') {
 
   if (category === 'all') {
     R.forEach(commands_text => {
-      return bot.sendMessage(channel, R.join('\n', R.reject(R.isNil, commands_text)));
+      return client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(R.join('\n', R.reject(R.isNil, commands_text))));
     }, R.splitEvery(10)(text));
   } else {
-    return bot.sendMessage(channel, R.join('\n', R.reject(R.isNil, text)));
+    return Promise.resolve(R.join('\n', R.reject(R.isNil, text)));
   }
 }
 
-function help(bot, msg, suffix) {
-  const lang = msg.author.lang;
+function help(client, evt, suffix, lang) {
   const category = suffix.toLowerCase();
-  if (categories[category] || category === 'all') return helpCategory(bot, msg, category, lang);
+  if (categories[category] || category === 'all') return helpCategory(client, evt, category, lang);
 
   const help_methods = R.keys(categories).sort();
   help_methods.push('all');
@@ -129,23 +127,23 @@ function help(bot, msg, suffix) {
     text.push(command_text);
   }, categories.help);
 
-  return bot.sendMessage(msg.channel, R.join('\n', text));
+  return Promise.resolve(R.join('\n', text));
 }
 
-function memelist(bot, msg, suffix) {
+function memelist(client, evt, suffix) {
   suffix = suffix.toLowerCase();
   if (suffix === '1') {
-    bot.sendMessage(msg.author, meme.list1);
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
   } else if (suffix === '2') {
-    bot.sendMessage(msg.author, meme.list2);
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
   } else if (suffix === '3') {
-    bot.sendMessage(msg.author, meme.list3);
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else if (suffix === 'full') {
-    bot.sendMessage(msg.author, meme.list1);
-    bot.sendMessage(msg.author, meme.list2);
-    bot.sendMessage(msg.author, meme.list3);
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list1));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list2));
+    client.Users.get(evt.message.author.id).openDM().then(dm => dm.sendMessage(meme.list3));
   } else {
-    bot.sendMessage(msg.channel, meme.all);
+    return Promise.resolve(meme.all);
   }
 }
 

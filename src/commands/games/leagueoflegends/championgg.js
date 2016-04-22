@@ -5,7 +5,6 @@ import R from 'ramda';
 import _request from 'request';
 import SuperError from 'super-error';
 
-import sentry from '../../../sentry';
 import { lol_champs, lol_items } from '../../../data';
 import { getOrdinal, toTitleCase } from '../../../helpers';
 import phantom from '../../../phantom';
@@ -70,19 +69,17 @@ function _verifyName(champ) {
   return champ_reg;
 }
 
-export function counters(bot, msg, suffix) {
-  if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
-  }
+export function counters(suffix, lang) {
+  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
 
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
   const champ_reg = _verifyName(champ);
 
-  if (position === champ) return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
+  if (position === champ) return Promise.resolve(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
 
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return Promise.resolve(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   const gg_position = positions[position];
 
   const options = {
@@ -91,7 +88,7 @@ export function counters(bot, msg, suffix) {
   return _makeRequest(options)
     .then(body => {
       let results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_counters', msg.author.lang)} **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_counters', lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(R.prop('matchups'))
@@ -117,58 +114,46 @@ export function counters(bot, msg, suffix) {
 
       return phantom('lol_counters', counters_data);
     })
-    .then(buf => bot.sendFile(msg.channel, buf))
-    .catch(err => {
-      if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'counters');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(buf => ({upload: buf, filename: `counters_${champ}_${gg_position}.png`}));
 }
 
-export function items(bot, msg, suffix) {
-  if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
-  }
+export function items(suffix, lang) {
+  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
 
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
   const champ = R.join(' ', R.slice(1, -1, suffix_split));
   const champ_reg = _verifyName(champ);
 
-  if (position === champ) return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
+  if (position === champ) return Promise.resolve(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
 
   const options = {
     url: `http://api.champion.gg/champion/${champ_reg}/items/finished/mostWins`
   };
 
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return Promise.resolve(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   let gg_position = positions[position];
 
   return _makeRequest(options)
     .then(body => {
       const results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_item_sets', msg.author.lang)} **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_item_sets', lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(item_data => {
       const champ_data = lol_champs[champ_reg];
-      if (!item_data.items.length) throw new Warning(`${T('no_item_sets', msg.author.lang)} **${champ}** **${position}**.`);
+      if (!item_data.items.length) throw new Warning(`${T('no_item_sets', lang)} **${champ}** **${position}**.`);
 
       item_data.names = R.map(item_id => lol_items[item_id], item_data.items);
       item_data.champ_name = champ_data.name;
       item_data.image = champ_data.image;
       return phantom('lol_items', item_data, 500, 300);
     })
-    .then(buf => bot.sendFile(msg.channel, buf))
-    .catch(err => {
-      if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'items');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(buf => ({upload: buf, filename: `items_${champ}_${gg_position}.png`}));
 }
 
-export function skills(bot, msg, suffix) {
-  if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
-  }
+export function skills(suffix, lang) {
+  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
 
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
@@ -176,19 +161,19 @@ export function skills(bot, msg, suffix) {
   const champ_reg = _verifyName(champ);
   const champ_data = lol_champs[champ_reg];
 
-  if (position === champ) return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
+  if (position === champ) return Promise.resolve(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
 
   const options = {
     url: `http://api.champion.gg/champion/${champ_reg}/skills/mostWins`
   };
 
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
+  if (!R.contains(position, R.keys(positions))) return Promise.resolve(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   const gg_position = positions[position];
 
   return _makeRequest(options)
     .then(body => {
       let results = R.zipObj(R.pluck('role')(body), body);
-      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_skills', msg.author.lang)} **${champ}** **${position}**.`);
+      if (!R.contains(gg_position, R.keys(results))) throw new Warning(`${T('no_skills', lang)} **${champ}** **${position}**.`);
       return results[gg_position];
     })
     .then(R.prop('order'))
@@ -202,23 +187,15 @@ export function skills(bot, msg, suffix) {
         return R.toUpper(skill_count[count_num]);
       }, counts));
 
-      const text = `Okay! Here's the skill order for **${champ_data.name} ${gg_position}**.
+      return `Okay! Here's the skill order for **${champ_data.name} ${gg_position}**.
 
 **Skill Priority:** ${skill_order}
 **Full Order:** ${skills.join(',')}`;
-
-      bot.sendMessage(msg.channel, text);
-    })
-    .catch(err => {
-      if (!(err instanceof SuperError)) sentry(err, 'leagueoflegends', 'skills');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
     });
 }
 
-export function bans(bot, msg) {
-  if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
-  }
+export function bans(lang) {
+  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
 
   const options = {
     url: `http://api.champion.gg/stats/champs/mostBanned`,
@@ -237,23 +214,16 @@ export function bans(bot, msg) {
       return R.addIndex(R.map)((champ, idx) => `*${getOrdinal(idx + 1)}*. **${toTitleCase(champ)}**`, champs);
     })
     .then(R.prepend(`You got it! Here's the top 10 most common bans:\n`))
-    .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'leagueoflegends', 'bans');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
-export function best(bot, msg, suffix) {
-  if (!nconf.get('CHAMPIONGG_API')) {
-    return bot.sendMessage(msg.channel, T('champgg_setup', msg.author.lang));
-  }
+export function best(suffix, lang) {
+  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
 
   const position = R.last(suffix.split(' ')).toLowerCase();
 
-  if (!position || position === 'best') return bot.sendMessage(msg.channel, `${T('lol_specify_position', msg.author.lang)} ${T('lol_positions', msg.author.lang)}`);
-  if (!R.contains(position, R.keys(positions))) return bot.sendMessage(msg.channel, `${T('lol_unknown_position', msg.author.lang)} **${position}**. ${T('lol_positions', msg.author.lang)}`);
+  if (!position || position === 'best') return Promise.resolve(`${T('lol_specify_position', lang)} ${T('lol_positions', lang)}`);
+  if (!R.contains(position, R.keys(positions))) return Promise.resolve(`${T('lol_unknown_position', lang)} **${position}**. ${T('lol_positions', lang)}`);
   const gg_position = positions[position];
 
   const options = {
@@ -270,10 +240,5 @@ export function best(bot, msg, suffix) {
       return R.addIndex(R.map)((champ, idx) => `*${getOrdinal(idx + 1)}*. **${champ.name}** with a ${champ.general.winPercent}% winrate.`, data);
     })
     .then(R.prepend(`Sick! Here's the top 10 **statistically** best for **${gg_position}**:\n`))
-    .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'leagueoflegends', 'best');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }

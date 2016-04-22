@@ -3,10 +3,13 @@ module.exports = {
   PREFIX: '!',
   PORT: 5000,
 
-  // *Required* Discord email and password for your bot.
-  // Register here. https://discordapp.com/
-  EMAIL: '',
-  PASSWORD: '',
+  // *Required* Bot token. Can be found in your bots application page.
+  // https://discordapp.com/developers/applications/me
+  TOKEN: '',
+
+  // *Required* Bot client id. Can be found in your bots application page.
+  // https://discordapp.com/developers/applications/me
+  CLIENT_ID: '',
 
   // *Required* Redis URL
   // Learn more here. http://redis.io/topics/quickstart
@@ -20,11 +23,6 @@ module.exports = {
   // Create an account here. https://imgflip.com
   IMGFLIP_USERNAME: '',
   IMGFLIP_PASSWORD: '',
-
-  // Cleverbot API name and key, used to talk to Cleverbot with `!chat`.
-  // Create a key here. https://cleverbot.io/keys
-  CLEVERBOT_API_NAME: '',
-  CLEVERBOT_API_KEY: '',
 
   // Champion.gg API key, used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
@@ -45,5 +43,9 @@ module.exports = {
 
   // Popkey API key, used for searching GIFs with `!popkey`.
   // Apply for a key here. http://popkey.co/api/submit
-  POPKEY_KEY: ''
+  POPKEY_KEY: '',
+
+  // Carbon key, used for displaying server count.
+  // More information here. https://www.carbonitex.net/discord/bots
+  CARBON_KEY: ''
 };

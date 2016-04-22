@@ -1,259 +1,210 @@
 import Promise from 'bluebird';
 import R from 'ramda';
-import _request from 'request';
 
-import sentry from '../sentry';
+const request = Promise.promisify(require('request'));
 
 
-const request = Promise.promisify(_request);
-
-function avatar(bot, msg, suffix) {
-  if (!suffix && !msg.mentions.length) {
-    if (!msg.author.avatarURL) {
-      bot.sendMessage(msg.channel, 'You are naked.');
-    } else {
-      bot.sendMessage(msg.channel, `Your avatar:\n${msg.author.avatarURL}`);
-    }
-  } else if (msg.mentions.length) {
-    R.forEach(user => {
-      if (!user.avatarURL) {
-        bot.sendMessage(msg.channel, `${user.username} is naked.`);
-      } else {
-        bot.sendMessage(msg.channel, `${user.username}'s avatar:\n${user.avatarURL}`);
-      }
-    }, msg.mentions);
-  } else {
-    R.forEach(user => {
-      if (!user.avatarURL) {
-        bot.sendMessage(msg.channel, `${user.username} is naked.`);
-      } else {
-        bot.sendMessage(msg.channel, `${user.username}'s' avatar:\n${user.avatarURL}`);
-      }
-    }, bot.users.getAll('name', suffix));
+function avatar(client, evt, suffix) {
+  if (!suffix && !evt.message.mentions.length) {
+    if (!evt.message.author.avatarURL) return Promise.resolve('You are naked.');
+    return Promise.resolve(`Your avatar:\n${evt.message.author.avatarURL}`);
+  } else if (evt.message.mentions.length) {
+    return Promise.resolve(evt.message.mentions)
+      .map(user => {
+        if (!user.avatarURL) return `${user.username} is naked.`;
+        return `${user.username}'s avatar:\n${user.avatarURL}`;
+      });
   }
+  const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
+  if (!user) return;
+  if (!user.avatarURL) return Promise.resolve(`${user.username} is naked.`);
+  return Promise.resolve(`${user.username}'s avatar:\n${user.avatarURL}`);
 }
 
-function channelinfo(bot, msg, suffix) {
-  if (!msg.channel.server) {
-    if (!suffix) {
-      const channelinfo = (`\`\`\`Name: ${bot.user.name}
-ID: ${msg.channel.id}
+function channelinfo(client, evt, suffix) {
+  const channelinfo = [];
+  if (evt.message.channel.is_private) {
+    channelinfo.push(`\`\`\`ID: ${evt.message.channel.id}
 Type: Direct Message
-New Messages: ${msg.channel.messages.length} (since the bot was restarted)
+New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
+Created At: ${evt.message.channel.createdAt}
 \`\`\``);
-      bot.sendMessage(msg.channel, channelinfo);
-    } else if (msg.content.indexOf('<#') !== -1) {
-      R.forEach(suffix => {
-        R.forEach(channel => {
-          const channelinfo = (`\`\`\`Server: ${channel.server}
-Name: ${channel.name}
-ID: ${channel.id}
-Type: ${channel.type}
-Position: ${channel.position}
-New Messages: ${channel.messages.length} (since the bot was restarted)
-Topic: ${channel.topic}
+  } else if (!suffix && evt.message.content.indexOf('<#') === -1) {
+    channelinfo.push(`\`\`\`Server: ${evt.message.guild.name}
+Name: ${evt.message.channel.name}
+ID: ${evt.message.channel.id}
+Type: ${evt.message.channel.type}
+Position: ${evt.message.channel.position}
+New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
+Created At: ${evt.message.channel.createdAt}
+Topic: ${evt.message.channel.topic}
 \`\`\``);
-          bot.sendMessage(msg.channel, channelinfo);
-        }, bot.channels.getAll('id', suffix.substring(2, suffix.length - 1)));
-      }, suffix.split(' '));
-    } else {
-      R.forEach(channel => {
-        const channelinfo = (`\`\`\`Server: ${channel.server}
-Name: ${channel.name}
-ID: ${channel.id}
-Type: ${channel.type}
-Position: ${channel.position}
-New Messages: ${channel.messages.length} (since the bot was restarted)
-Topic: ${channel.topic}
-\`\`\``);
-        bot.sendMessage(msg.channel, channelinfo);
-      }, bot.channels.getAll('name', suffix));
-    }
-  } else if (!suffix) {
-    const channelinfo = (`\`\`\`Server: ${msg.channel.server}
-Name: ${msg.channel.name}
-ID: ${msg.channel.id}
-Type: ${msg.channel.type}
-Position: ${msg.channel.position}
-New Messages: ${msg.channel.messages.length} (since the bot was restarted)
-Topic: ${msg.channel.topic}
-\`\`\``);
-    bot.sendMessage(msg.channel, channelinfo);
-  } else if (msg.content.indexOf('<#') !== -1) {
+  } else if (evt.message.content.indexOf('<#') !== -1) {
     R.forEach(suffix => {
-      R.forEach(channel => {
-        const channelinfo = (`\`\`\`Server: ${channel.server}
+      const channel = R.find(R.propEq('id', suffix.substring(2, suffix.length - 1)))(evt.message.guild.channels);
+      if (channel.type === 'text') {
+        channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
 Position: ${channel.position}
 New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-        bot.sendMessage(msg.channel, channelinfo);
-      }, bot.channels.getAll('id', suffix.substring(2, suffix.length - 1)));
+      } else {
+        channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
+\`\`\``);
+      }
     }, suffix.split(' '));
   } else {
-    R.forEach(channel => {
-      const channelinfo = (`\`\`\`Server: ${channel.server}
+    const channel = R.find(R.propEq('name', suffix))(evt.message.guild.channels);
+    if (!channel) return;
+    if (channel.type === 'text') {
+      channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
 Position: ${channel.position}
-New Messages: ${channel.messages.length ? channel.messages.length : undefined} (since the bot was restarted)
+New Messages: ${channel.messages.length} (since the bot was restarted)
+Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
-      bot.sendMessage(msg.channel, channelinfo);
-    }, bot.servers.get('id', msg.channel.server.id).channels.getAll('name', suffix));
-  }
-}
-
-function ping(bot, msg) {
-  let time = process.hrtime();
-  setTimeout(() => {
-    let diff = process.hrtime(time);
-    bot.sendMessage(msg.channel, `Pong!\n${diff[0]}s ${diff[1] / 1000000}ms`);
-  }, 1);
-}
-
-function serverinfo(bot, msg, suffix) {
-  if (suffix) {
-    R.forEach(server => {
-      const roles = R.join(', ', R.remove(0, 1, R.pluck('name', server.roles)));
-      const serverinfo = (`\`\`\`Name: ${server.name}
-ID: ${server.id}
-Region: ${server.region}
-Owner: ${server.owner.username}
-Channels: ${server.channels.length}
-Default Channel: ${server.defaultChannel.name}
-AFK Channel: ${server.afkChannel ? server.afkChannel.name : null}
-Members: ${server.members.length}
-Roles: ${roles}
-Icon: ${server.iconURL}
-  \`\`\``);
-      bot.sendMessage(msg.channel, serverinfo);
-    }, bot.servers.getAll('name', suffix));
-  } else if (!msg.channel.server) {
-    const serverinfo = (`\`\`\`Name: ${bot.user.name}
-ID: ${bot.user.id}
-Region: Discord
-Owner: ${bot.user.name}
-Channels: 1
-Default Channel: ${bot.user.name}
-AFK Channel: ${bot.user.name}
-Members: 2
-Roles: @everyone
-Icon: ${bot.user.avatarURL}
-\`\`\``);
-    bot.sendMessage(msg.channel, serverinfo);
-  } else if (!suffix) {
-    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', msg.channel.server.roles)));
-    const serverinfo = (`\`\`\`Name: ${msg.channel.server.name}
-ID: ${msg.channel.server.id}
-Region: ${msg.channel.server.region}
-Owner: ${msg.channel.server.owner.username}
-Channels: ${msg.channel.server.channels.length}
-Default Channel: ${msg.channel.server.defaultChannel.name}
-AFK Channel: ${msg.channel.server.afkChannel ? msg.channel.server.afkChannel.name : null}
-Members: ${msg.channel.server.members.length}
-Roles: ${roles}
-Icon: ${msg.channel.server.iconURL}
-\`\`\``);
-    bot.sendMessage(msg.channel, serverinfo);
-  }
-}
-
-function serverlist(bot, msg) {
-  const server_list = R.map(server => {
-    const online = server.members.reduce((count, member) => count + (member.status === 'online' ? 1 : 0), 0);
-    return `**\`${server.name}\`** ${server.members.length} members (${online} online)`;
-  }, bot.servers.sort());
-  bot.sendMessage(msg.channel, server_list.join('\n'));
-}
-
-function servers(bot, msg) {
-  bot.sendMessage(msg.channel, `Connected to ${bot.servers.length} servers, ${bot.channels.length} channels and ${bot.users.length} users.`);
-}
-
-function userinfo(bot, msg, suffix) {
-  if (!msg.channel.server) {
-    if (!suffix) {
-      const userinfo = (`\`\`\`Name: ${msg.author.username}
-ID: ${msg.author.id}
-Discriminator: ${msg.author.discriminator}
-Status: ${msg.author.status}
-Avatar: ${msg.author.avatarURL}
-\`\`\``);
-      bot.sendMessage(msg.channel, userinfo);
     } else {
-      R.forEach(user => {
-        const userinfo = (`\`\`\`Name: ${user.username}
-ID: ${user.id}
-Discriminator: ${user.discriminator}
-Status: ${user.status}
-Avatar: ${user.avatarURL}
+      channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+Name: ${channel.name}
+ID: ${channel.id}
+Type: ${channel.type}
+Position: ${channel.position}
+Created At: ${channel.createdAt}
+Bitrate: ${channel.bitrate}
 \`\`\``);
-        bot.sendMessage(msg.channel, userinfo);
-      }, bot.users.getAll('name', suffix));
     }
-  } else if (!suffix && !msg.mentions.length) {
-    const userinfo = (`\`\`\`Name: ${msg.author.username}
-ID: ${msg.author.id}
-Discriminator: ${msg.author.discriminator}
-Status: ${msg.author.status}
-Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(msg.author).joinedAt).toUTCString()}
-Avatar: ${msg.author.avatarURL}
-\`\`\``);
-    bot.sendMessage(msg.channel, userinfo);
-  } else if (msg.mentions.length) {
-    R.forEach(user => {
-      const userinfo = (`\`\`\`Name: ${user.username}
-ID: ${user.id}
-Discriminator: ${user.discriminator}
-Status: ${user.status}
-Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(user).joinedAt).toUTCString()}
-Avatar: ${user.avatarURL}
-\`\`\``);
-      bot.sendMessage(msg.channel, userinfo);
-    }, msg.mentions);
-  } else {
-    R.forEach(user => {
-      const userinfo = (`\`\`\`Name: ${user.username}
-ID: ${user.id}
-Discriminator: ${user.discriminator}
-Status: ${user.status}
-Joined ${msg.channel.server.name}: ${new Date(msg.channel.server.detailsOfUser(user).joinedAt).toUTCString()}
-Avatar: ${user.avatarURL}
-\`\`\``);
-      bot.sendMessage(msg.channel, userinfo);
-    }, bot.servers.get('id', msg.channel.server.id).members.getAll('name', suffix));
   }
+
+  return Promise.resolve(channelinfo);
 }
 
-function uptime(bot, msg) {
-  const uptimeh = Math.floor((bot.uptime / 1000) / (60 * 60));
-  const uptimem = Math.floor((bot.uptime / 1000) % (60 * 60) / 60);
-  const uptimes = Math.floor((bot.uptime / 1000) % 60);
-  bot.sendMessage(msg.channel, `I have been alive for:
+function ping() {
+  const start = process.hrtime();
+  return Promise.delay(1).then(() => {
+    const diff = process.hrtime(start);
+    return `Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`;
+  });
+}
+
+function serverinfo(client, evt, suffix) {
+  const serverinfo = [];
+  if (evt.message.channel.is_private) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
+  if (!suffix) {
+    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', evt.message.guild.roles)));
+    serverinfo.push(`\`\`\`Name: ${evt.message.guild.name}
+ID: ${evt.message.guild.id}
+Region: ${evt.message.guild.region}
+Owner: ${evt.message.guild.owner.username}
+Channels: ${evt.message.guild.channels.length} (${evt.message.guild.textChannels.length} text & ${evt.message.guild.voiceChannels.length} voice)
+Default Channel: ${evt.message.guild.generalChannel.name}
+AFK Channel: ${evt.message.guild.afk_channel.name}
+AFK Timeout: ${evt.message.guild.afk_timeout / 60} minutes
+Members: ${evt.message.guild.members.length}
+Created At: ${evt.message.guild.createdAt}
+Roles: ${roles}
+Icon: ${evt.message.guild.iconURL}
+\`\`\``);
+  } else {
+    const guild = R.find(R.propEq('name', suffix))(client.Guilds);
+    if (!guild) return;
+    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', guild.roles)));
+    serverinfo.push(`\`\`\`Name: ${guild.name}
+ID: ${guild.id}
+Region: ${guild.region}
+Owner: ${guild.owner.username}
+Channels: ${guild.channels.length} (${guild.textChannels.length} text & ${guild.voiceChannels.length} voice)
+Default Channel: ${guild.generalChannel.name}
+AFK Channel: ${guild.afk_channel.name}
+AFK Timeout: ${guild.afk_timeout / 60} minutes
+Members: ${guild.members.length}
+Created At: ${guild.createdAt}
+Roles: ${roles}
+Icon: ${guild.iconURL}
+\`\`\``);
+  }
+
+  return Promise.resolve(serverinfo);
+}
+
+function servers(client) {
+  return Promise.resolve(`Connected to ${client.Guilds.length} servers, ${client.Channels.length} channels and ${client.Users.length} users.`);
+}
+
+function userinfo(client, evt, suffix) {
+  const userinfo = [];
+  if (evt.message.channel.is_private) {
+    userinfo.push(`\`\`\`Name: ${evt.message.author.username}
+ID: ${evt.message.author.id}
+Discriminator: ${evt.message.author.discriminator}
+Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
+Registered At: ${evt.message.author.registeredAt}
+Avatar: ${evt.message.author.avatarURL}
+\`\`\``);
+  } else if (!suffix && !evt.message.mentions.length) {
+    userinfo.push(`\`\`\`Name: ${evt.message.author.username}
+ID: ${evt.message.author.id}
+Discriminator: ${evt.message.author.discriminator}
+Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
+Registered At: ${evt.message.author.registeredAt}
+Avatar: ${evt.message.author.avatarURL}
+\`\`\``);
+  } else if (evt.message.mentions.length) {
+    R.forEach(user => {
+      userinfo.push(`\`\`\`Name: ${user.username}
+ID: ${user.id}
+Discriminator: ${user.discriminator}
+Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
+Registered At: ${user.registeredAt}
+Avatar: ${user.avatarURL}
+\`\`\``);
+    }, evt.message.mentions);
+  } else {
+    const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
+    if (!user) return;
+    userinfo.push(`\`\`\`Name: ${user.username}
+ID: ${user.id}
+Discriminator: ${user.discriminator}
+Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
+Registered At: ${user.registeredAt}
+Avatar: ${user.avatarURL}
+\`\`\``);
+  }
+
+  return Promise.resolve(userinfo);
+}
+
+function uptime() {
+  const uptimeh = Math.floor(process.uptime() / (60 * 60));
+  const uptimem = Math.floor(process.uptime() % (60 * 60) / 60);
+  const uptimes = Math.floor(process.uptime() % 60);
+  return Promise.resolve(`I have been alive for:
 ${uptimeh} Hours
 ${uptimem} Minutes
 ${uptimes} Seconds`);
 }
 
-function version(bot, msg) {
-  request('https://raw.githubusercontent.com/Gravestorm/Gravebot/master/CHANGELOG.md')
+function version() {
+  return request('https://raw.githubusercontent.com/Gravebot/Gravebot/master/CHANGELOG.md')
     .then(R.prop('body'))
     .then(R.split(/<a name="*.*.*" \/>/g))
     .then(R.nth(1))
     .then(R.replace(/#### /g, ''))
     .then(R.replace(/#/g, ''))
     .then(R.slice(1, -1))
-    .then(R.trim)
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'info', 'version');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(R.trim);
 }
 
 export default {
@@ -265,7 +216,6 @@ export default {
   'new-features': version,
   ping,
   serverinfo,
-  serverlist,
   servers,
   statistics: servers,
   stats: servers,
@@ -277,11 +227,10 @@ export default {
 
 export const help = {
   avatar: {parameters: ['username'], category: 'info'},
-  channelinfo: {parameters: ['channel name'], category: 'info'},
+  channelinfo: {parameters: ['channelname'], category: 'info'},
   ping: {category: 'info'},
-  serverinfo: {parameters: ['server name'], category: 'info'},
-  serverlist: {category: 'info'},
-  servers: {category: 'info'},
+  serverinfo: {category: 'info'},
+  servers: {parameters: ['servername'], category: 'info'},
   userinfo: {parameters: ['username'], category: 'info'},
   uptime: {category: 'info'},
   version: {category: 'info'}

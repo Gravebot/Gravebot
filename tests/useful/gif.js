@@ -18,36 +18,26 @@ describe('gif', () => {
   });
 
   describe('giphy', () => {
-    it('should return a gif when querying "food"', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('http://media4.giphy.com/media/xTiTnKmRgF5KrpqRby/giphy.gif');
-        done();
-      }
-
+    it('should return a gif when querying "food"', () => {
       nock.cleanAll();
       nock('http://api.giphy.com')
         .get('/v1/gifs/random?tag=food&api_key=dc6zaTOxFJmzC&rating=r&format=json&limit=1')
         .reply(200, res_fixture_giphy);
 
-      gif.giphy({sendMessage}, {channel: 'test'}, 'food');
+      return gif.giphy({}, {}, 'food')
+        .then(res => res.should.equal('http://media4.giphy.com/media/xTiTnKmRgF5KrpqRby/giphy.gif'));
     });
   });
 
   describe('popkey', () => {
-    it('should return a gif when querying "food"', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('https://popkey-assets.s3.amazonaws.com/original-30ab9d03-a65b-4759-a953-143524c61765.GIF');
-        done();
-      }
-
+    it('should return a gif when querying "food"', () => {
       nock.cleanAll();
       nock('http://api.popkey.co')
         .get('/v2/media/search?q=food')
         .reply(200, res_fixture_popkey);
 
-      gif.popkey({sendMessage}, {channel: 'test'}, 'food');
+      return gif.popkey({}, {}, 'food')
+        .then(res => res.should.equal('https://popkey-assets.s3.amazonaws.com/original-30ab9d03-a65b-4759-a953-143524c61765.GIF'));
     });
   });
 
@@ -59,19 +49,14 @@ describe('gif', () => {
 
     after(() => sandbox.restore());
 
-    it('should choose between giphy and popkey', done => {
-      function sendMessage(channel, res) {
-        channel.should.equal('test');
-        res.should.equal('https://popkey-assets.s3.amazonaws.com/original-30ab9d03-a65b-4759-a953-143524c61765.GIF');
-        done();
-      }
-
+    it('should choose between giphy and popkey', () => {
       nock.cleanAll();
       nock('http://api.popkey.co')
         .get('/v2/media/search?q=food')
         .reply(200, res_fixture_popkey);
 
-      gif.gif({sendMessage}, {channel: 'test'}, 'food');
+      return gif.gif({}, {}, 'food')
+        .then(res => res.should.equal('https://popkey-assets.s3.amazonaws.com/original-30ab9d03-a65b-4759-a953-143524c61765.GIF'));
     });
   });
 });

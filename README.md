@@ -4,9 +4,7 @@
 [![Build Status](https://travis-ci.org/Gravebot/Gravebot.svg?branch=master)](https://travis-ci.org/Gravebot/Gravebot)
 [![Coverage Status](https://img.shields.io/coveralls/Gravebot/Gravebot/master.svg)](https://coveralls.io/github/Gravebot/Gravebot?branch=master)
 <a href="https://zenhub.io"><img src="https://img.shields.io/badge/KanBan%20Board-Zenhub.io-blue.svg"></a>
-[![](https://badge.imagelayers.io/gravebot/gravebot:latest.svg)](https://imagelayers.io/?images=gravebot/gravebot:latest 'Get your own badge on imagelayers.io')
 [![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/gravebot/gravebot/)
-
 [![Discord](https://discordapp.com/api/servers/128598463947472897/widget.png?style=banner3)](https://discord.gg/0iXEgtjdHgkpdsVr)
 ## About
 
@@ -18,7 +16,7 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Grave
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=170664340968570880&scope=bot&permissions=63175686) and choose a server. You need to have **Manage Server** permission on that server.
+In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=170664340968570880&scope=bot&permissions=125982) and choose a server. You need to have **Manage Server** permission on that server. You may remove some of the permissions if you wish, but be warned it may break current and upcoming features.
 
 If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
 
@@ -33,6 +31,7 @@ For self hosting, click [here](#localconfig).
 - `!help info` - List of information commands
 - `!help games` - List of game commands
 - `!help other` - List of other commands
+- `!help all` - List all available commands in private chat
 - `!memelist` - List of meme names for the `!meme` command
 - `!setlanguage` - Set all help text to respond in a specified language
 
@@ -40,7 +39,6 @@ For self hosting, click [here](#localconfig).
 - `!8ball` *question* - Answers the question
 - `!animals` - Get various animal pictures
 - `!cat` bomb *count* - Bombs chat with adorable cats
-- `!dog` bomb *count* - Bombs chat with adorable dogs
 - `!pug` bomb *count* - Bombs chat with adorable pugs
 - `!snake` bomb *count* - Bombs chat with adorable snakes
 - `!chat` *text* - Chats with you
@@ -59,7 +57,8 @@ For self hosting, click [here](#localconfig).
 
 #### Useful:
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
-- `!join` *invitation link* - Joins the server the bot is invited to
+- `!join` - Shows a link that can be used to invite Gravebot to your server
+- `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
 - `!wiki` *search terms* - Returns the summary of the first matching search result from Wikipedia
@@ -68,13 +67,12 @@ For self hosting, click [here](#localconfig).
 
 #### Information:
 - `!avatar` *username* - Responds with your avatar, unless a username is specified
-- `!channelinfo` *channel name* - Gives information about this channel, unless a name is specified
+- `!channelinfo` *channelname* - Gives information about this channel, unless a channelname is specified
 - `!ping` - Pong! Check Gravebot's pulse
-- `!serverinfo` *server name* - Gives information about this server, unless a name is specified
-- `!serverlist` - Lists all the servers the bot is connected to
+- `!serverinfo` *servername* - Gives information about this server
 - `!servers` - Lists how many servers, channels and users the bot is connected to
 - `!uptime` - Shows how long the bot has been online
-- `!userinfo` *username* - Gives information about this user, unless a name is specified
+- `!userinfo` *username* - Gives information about this user, unless a username is specified
 - `!version` - Get information on the latest version of Gravebot
 
 #### Games:

@@ -8,7 +8,7 @@ import R from 'ramda';
 
 
 // Initialize PhantomJS
-let options = {
+const options = {
   phantomPath: phantom_path,
   injectJquery: false
 };

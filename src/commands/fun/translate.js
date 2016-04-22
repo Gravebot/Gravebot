@@ -1,42 +1,26 @@
 import Promise from 'bluebird';
 import cheerio from 'cheerio';
-import gizoogle from 'gizoogle';
 import leetify from 'leet';
-import _request from 'request';
 import R from 'ramda';
 
 import { subCommands as helpText } from '../help';
-import sentry from '../../sentry';
 import T from '../../translate';
 
+const request = Promise.promisify(require('request'));
+const gizoogle = Promise.promisifyAll(require('gizoogle'));
 
-const request = Promise.promisify(_request);
-
-function leet(bot, msg, suffix) {
-  if (!suffix) {
-    bot.sendMessage(msg.channel, T('leet_usage', msg.author.lang));
-    return;
-  }
-  let translation = leetify.convert(suffix);
-  bot.sendMessage(msg.channel, translation);
+function leet(client, evt, suffix, lang) {
+  if (!suffix) return Promise.resolve(T('leet_usage', lang));
+  return Promise.resolve(leetify.convert(suffix));
 }
 
-function snoop(bot, msg, suffix) {
-  if (!suffix) {
-    bot.sendMessage(msg.channel, T('snoop_usage', msg.author.lang));
-    return;
-  }
-  gizoogle.string(suffix, (err, translation) => {
-    if (err) sentry(err, 'translate', 'snoop');
-    bot.sendMessage(msg.channel, translation);
-  });
+function snoop(client, evt, suffix, lang) {
+  if (!suffix) return Promise.resolve(T('snoop_usage', lang));
+  return gizoogle.stringAsync(suffix);
 }
 
-function yoda(bot, msg, phrase) {
-  if (!phrase) {
-    bot.sendMessage(msg.channel, T('yoda_usage', msg.author.lang));
-    return;
-  }
+function yoda(client, evt, phrase, lang) {
+  if (!phrase) return Promise.resolve(T('yoda_usage', lang));
 
   const options = {
     url: 'http://www.yodaspeak.co.uk/index.php',
@@ -47,19 +31,14 @@ function yoda(bot, msg, phrase) {
     }
   };
 
-  request(options)
+  return request(options)
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('textarea[name="YodaSpeak"]').first().text())
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'translate', 'yoda');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => $('textarea[name="YodaSpeak"]').first().text());
 }
 
-function translate(bot, msg) {
-  bot.sendMessage(msg.channel, helpText(bot, msg, 'translate'));
+function translate(client, evt, suffix, lang) {
+  return helpText(client, evt, 'translate', lang);
 }
 
 export default {

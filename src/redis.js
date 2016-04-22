@@ -16,7 +16,7 @@ export function getUserLang(user_id) {
     .then(lang => lang || 'en');
 }
 
-// Sets a users langauge based on ID
+// Sets a users language based on ID
 export function setUserLang(user_id, lang) {
   return client.hsetAsync(`user_${user_id}`, 'lang', lang);
 }

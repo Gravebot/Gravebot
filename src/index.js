@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import { Client as Discord, PMChannel } from 'discord.js';
+import Discordie from 'discordie';
 import chalk from 'chalk';
 import moment from 'moment';
 import nconf from 'nconf';
@@ -7,137 +7,140 @@ import R from 'ramda';
 
 import './init-config';
 import './express';
-import './sentry';
 import './phantom';
+
 import commands from './commands';
+import sentry from './sentry';
 
 import { getUserLang } from './redis';
 
+const request = Promise.promisify(require('request'));
 
-// Verify both username and password are set before launching the bot.
-if (!nconf.get('EMAIL') || !nconf.get('PASSWORD')) {
-  console.error('Please make sure both EMAIL and PASSWORD are set in env or config.js before starting Gravebot');
-  process.exit(1);
-}
 
 // Init
-const bot = new Discord();
+const client = new Discordie();
 
-// Checks for PMs older than 2 hours and deletes them..
-function clearOldMessages() {
-  console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Cleaning old messages`));
-  let count = 0;
 
-  const getLastMessage = R.curry(Promise.promisify(bot.getChannelLogs).bind(bot))(R.__, 1, {});
-  Promise.resolve(bot.privateChannels)
-    .map(channel => {
-      return getLastMessage(channel)
-        .then(R.head)
-        .then(R.prop('timestamp'))
-        .then(timestamp => {
-          // Remove cache from RAM
-          R.forEach(message => {
-            channel.messages.remove(message);
-          }, channel.messages);
-
-          const message_time = moment.unix(timestamp / 1000);
-          if (message_time.isBefore(moment().subtract(2, 'hours'))) {
-            count++;
-            return channel.delete();
-          }
-        })
-        .catch(() => {
-          // This sometimes get thrown by channel.delete even though the channel does get deleted.
-          // It can be ignored
-        });
-    }, {concurrency: 5})
-    .then(() => {
-      console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Removed ${count} private channels`));
-    })
-    .catch(err => {
-      console.log(chalk.red(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Error removing private channels`));
-      console.log(chalk.red(err));
-    });
-}
-
-// Clear PMs once a day.
-if (nconf.get('CLEAN_MESSAGES') === 'true') setInterval(() => clearOldMessages(), 86400000);
-
-// Listen for events on Discord
-bot.on('ready', () => {
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Serving in ${bot.servers.length} servers`));
-  if (nconf.get('CLEAN_MESSAGES') === 'true' && nconf.get('CLEAN_ON_BOOT') !== 'false') setTimeout(() => clearOldMessages(), 5000);
-});
-
-bot.on('disconnected', () => {
-  console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
-  setTimeout(() => {
-    bot.login(nconf.get('EMAIL'), nconf.get('PASSWORD'));
-  }, 5000);
-});
-
-export function callCmd(cmd, name, bot, msg, suffix) {
+function callCmd(cmd, name, client, evt, suffix) {
   console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
-  getUserLang(msg.author.id).then(lang => {
-    msg.author.lang = lang;
-    cmd(bot, msg, suffix);
+
+  function processEntry(entry) {
+    // If string or number, send as a message
+    if (R.is(String, entry)) evt.message.channel.sendMessage(entry);
+    if (R.is(Number, entry)) evt.message.channel.sendMessage(entry);
+    // If buffer, send as a file, with a default name
+    if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png');
+    // If it's an object that contains key 'upload', send file with an optional file name
+    // This works for both uploading local files and buffers
+    if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename);
+  }
+
+  getUserLang(evt.message.author.id).then(lang => {
+    const cmd_return = cmd(client, evt, suffix, lang);
+
+    // All command returns must be a bluebird promise.
+    if (cmd_return instanceof Promise) {
+      cmd_return.then(res => {
+        // If null, don't do anything.
+        if (!res) return;
+        // If it's an array, process each entry.
+        if (R.is(Array, res)) return R.forEach(processEntry, res);
+        // Process single entry
+        processEntry(res);
+      })
+      .catch(err => {
+        sentry(err, name);
+        evt.message.channel.sendMessage(`Error: ${err.message}`);
+      });
+    }
   });
 }
 
-function onMessage(msg, new_msg) {
-  msg = new_msg || msg;
-  if (bot.user.username === msg.author.username) return;
+function onMessage(evt) {
+  if (!evt.message) return;
+  if (client.User.id === evt.message.author.id) return;
 
   // Checks for PREFIX
-  if (msg.content[0] === nconf.get('PREFIX')) {
-    let command, suffix;
-    if (msg.content[1] === nconf.get('PREFIX')) {
-      command = 'append';
-      suffix = msg.content.substring(2);
-    } else {
-      command = msg.content.toLowerCase().split(' ')[0].substring(1);
-      suffix = msg.content.substring(command.length + 2);
-    }
-    let cmd = commands[command];
+  if (evt.message.content[0] === nconf.get('PREFIX')) {
+    const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
+    const suffix = evt.message.content.substring(command.length + 2);
+    const cmd = commands[command];
 
-    if (cmd) callCmd(cmd, command, bot, msg, suffix);
+    if (cmd) callCmd(cmd, command, client, evt, suffix);
     return;
   }
 
   // Checks if bot was mentioned
-  if (msg.isMentioned(bot.user)) {
-    let msg_split = msg.content.split(' ');
+  if (client.User.isMentioned(evt.message)) {
+    const msg_split = evt.message.content.split(' ');
 
     // If bot was mentioned without a command, then skip.
     if (!msg_split[1]) return;
 
-    let suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
+    const suffix = R.join(' ', R.slice(2, msg_split.length, msg_split));
     let cmd_name = msg_split[1].toLowerCase();
     if (cmd_name[0] === nconf.get('PREFIX')) cmd_name = cmd_name.slice(1);
-    let cmd = commands[cmd_name];
+    const cmd = commands[cmd_name];
 
-    if (cmd) callCmd(cmd, cmd_name, bot, msg, suffix);
+    if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
     return;
   }
 
   // Check personal messages
-  if (msg.channel instanceof PMChannel) {
-    // Accept invite links directly through PMs
-    if (msg.content.indexOf('https://discord.gg/') > -1 || msg.content.indexOf('https://discordapp.com/invite/') > -1) {
-      return commands.join(bot, msg, msg.content);
+  if (evt.message.channel.is_private) {
+    // Handle invite links
+    if (evt.message.content.indexOf('https://discord.gg/') > -1 || evt.message.content.indexOf('https://discordapp.com/invite/') > -1) {
+      return commands.join(client, evt, evt.message.content);
     }
 
-    let msg_split = msg.content.split(' ');
-    let suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
-    let cmd_name = msg_split[0].toLowerCase();
-    let cmd = commands[cmd_name];
+    const msg_split = evt.message.content.split(' ');
+    const suffix = R.join(' ', R.slice(1, msg_split.length, msg_split));
+    const cmd_name = msg_split[0].toLowerCase();
+    const cmd = commands[cmd_name];
 
-    if (cmd) callCmd(cmd, cmd_name, bot, msg, suffix);
+    if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
     return;
   }
 }
 
-bot.on('message', onMessage);
-bot.on('messageUpdated', onMessage);
+function carbon() {
+  if (nconf.get('CARBON_KEY')) {
+    request({
+      url: 'https://www.carbonitex.net/discord/data/botdata.php',
+      headers: {'content-type': 'application/json'},
+      json: {
+        key: nconf.get('CARBON_KEY'),
+        servercount: client.Guilds.length
+      }
+    }).catch(console.log);
+  }
+}
+setInterval(() => carbon(), 3600000);
 
-bot.login(nconf.get('EMAIL'), nconf.get('PASSWORD'));
+function connect() {
+  if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
+    console.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
+    process.exit(1);
+  }
+
+  client.connect({token: nconf.get('TOKEN')});
+}
+
+// Listen for events on Discord
+client.Dispatcher.on('GATEWAY_READY', () => {
+  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
+  setTimeout(() => carbon(), 20000);
+});
+
+
+client.Dispatcher.on('DISCONNECTED', () => {
+  console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
+  setTimeout(() => {
+    connect();
+  }, 2000);
+});
+
+client.Dispatcher.on('MESSAGE_CREATE', onMessage);
+client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+
+connect();

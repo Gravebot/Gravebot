@@ -1,18 +1,26 @@
+import nconf from 'nconf';
+import R from 'ramda';
 import T from '../../translate';
 
 
-function joinServer(bot, msg, suffix) {
-  if (!suffix) {
-    bot.sendMessage(msg.channel, T('join_usage', msg.author.lang));
-    return;
-  }
-  bot.joinServer(suffix, (err, server) => {
-    if (err) {
-      bot.sendMessage(msg.channel, `Failed to join: ${err}`);
-    } else {
-      bot.sendMessage(msg.channel, `Successfully joined ${server}`);
-    }
-  });
+const permissions = [
+  '0x0000002', // Kick Members
+  '0x0000004', // Ban Members
+  '0x0000008', // Manage Roles
+  '0x0000010', // Manage Channels
+  '0x0000400', // Read Messages
+  '0x0000800', // Send Messages
+  '0x0002000', // Manage messages
+  '0x0004000', // Embed Links,
+  '0x0008000', // Attach files
+  '0x0010000' // Read message history
+];
+
+const permission_value = R.sum(R.map(parseInt, permissions));
+const join_link = `https://discordapp.com/oauth2/authorize?&client_id=${nconf.get('CLIENT_ID')}&scope=bot&permissions=${permission_value}`;
+
+function joinServer(client, evt, suffix, lang) {
+  evt.message.reply(`${T('join_link', lang)}\n${join_link}`);
 }
 
 export default {
@@ -23,5 +31,5 @@ export default {
 };
 
 export const help = {
-  join: {parameters: 'invitation link'}
+  join: {}
 };

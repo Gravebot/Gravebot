@@ -4,58 +4,42 @@ import _request from 'request';
 import R from 'ramda';
 
 import { subCommands as helpText } from '../help';
-import sentry from '../../sentry';
 
 
 const request = Promise.promisify(_request);
 
 // Cyanide and Happiness
-function cah(bot, msg) {
-  request('http://explosm.net/comics/random/')
+function cah() {
+  return request('http://explosm.net/comics/random/')
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('#main-comic').attr('src'))
-    .then(url => bot.sendMessage(msg.channel, `http:${url}`))
-    .catch(err => {
-      sentry(err, 'comics', 'cah');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => `http:${$('#main-comic').attr('src')}`);
 }
 
 // Saturday Morning Breakfast Cereal
-function smbc(bot, msg) {
-  request('http://www.smbc-comics.com/')
+function smbc() {
+  return request('http://www.smbc-comics.com/')
     .then(R.prop('body'))
     .then(cheerio.load)
     .then($ => $('.random').first().attr('href'))
     .then(url => request(`http://www.smbc-comics.com/${url}`))
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('#comic').attr('src'))
-    .then(url => bot.sendMessage(msg.channel, `http://www.smbc-comics.com/${url}`))
-    .catch(err => {
-      sentry(err, 'comics', 'smbc');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => `http://www.smbc-comics.com/${$('#comic').attr('src')}`);
 }
 
 // Amazing Super Powers
-function amazingSuperPowers(bot, msg) {
-  request('http://www.amazingsuperpowers.com/?randomcomic&nocache=1')
+function amazingSuperPowers() {
+  return request('http://www.amazingsuperpowers.com/?randomcomic&nocache=1')
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('#comic-1').find('img').first().attr('src'))
-    .then(url => bot.sendMessage(msg.channel, url))
-    .catch(err => {
-      sentry(err, 'comics', 'amazingSuperPowers');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => $('#comic-1').find('img').first().attr('src'));
 }
 
 // Awkward Zombie
-function awkwardZombie(bot, msg) {
+function awkwardZombie() {
   function _makeRequest(url) {
-    let options = {
+    const options = {
       url: `http://www.awkwardzombie.com/${url}`,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36'
@@ -67,37 +51,27 @@ function awkwardZombie(bot, msg) {
       .then(cheerio.load);
   }
 
-  _makeRequest('index.php?page=1')
+  return _makeRequest('index.php?page=1')
     .then($ => {
-      let table = $('#archive_table').find('tr');
-      let rand = Math.floor(Math.random() * table.length);
-      let url = table.eq(rand).find('a').first().attr('href');
+      const table = $('#archive_table').find('tr');
+      const rand = Math.floor(Math.random() * table.length);
+      const url = table.eq(rand).find('a').first().attr('href');
       return _makeRequest(url);
     })
-    .then($ => $('#comic').find('img').first().attr('src'))
-    .then(url => bot.sendMessage(msg.channel, url))
-    .catch(err => {
-      sentry(err, 'comics', 'awkwardZombie');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => $('#comic').find('img').first().attr('src'));
 }
 
 // Chain Saw Suit
-function chainsawsuit(bot, msg) {
-  request('http://chainsawsuit.com/random/?random&nocache=1')
+function chainsawsuit() {
+  return request('http://chainsawsuit.com/random/?random&nocache=1')
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('#comic').find('img').first().attr('src'))
-    .then(url => bot.sendMessage(msg.channel, url))
-    .catch(err => {
-      sentry(err, 'comics', 'chainsawsuit');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => $('#comic').find('img').first().attr('src'));
 }
 
 // Dog House Diaries
-function dogHouseDiaries(bot, msg) {
-  request('http://thedoghousediaries.com/')
+function dogHouseDiaries() {
+  return request('http://thedoghousediaries.com/')
     .then(R.prop('body'))
     .then(cheerio.load)
     .then($ => $('#randomlink').attr('href'))
@@ -105,29 +79,20 @@ function dogHouseDiaries(bot, msg) {
     .then(R.prop('body'))
     .then(cheerio.load)
     .then($ => $('#imgdiv').find('img').first().attr('src').replace('\n', ''))
-    .then(url => bot.sendMessage(msg.channel, `http://thedoghousediaries.com/${url}`))
-    .catch(err => {
-      sentry(err, 'comics', 'dogHouseDiaries');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(url => `http://thedoghousediaries.com/${url}`);
 }
 
 // The Oatmeal
-function theOatmeal(bot, msg) {
-  request('http://theoatmeal.com/feed/random')
+function theOatmeal() {
+  return request('http://theoatmeal.com/feed/random')
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('#comic').find('img').first().attr('src'))
-    .then(url => bot.sendMessage(msg.channel, url))
-    .catch(err => {
-      sentry(err, 'comics', 'theOatmeal');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => $('#comic').find('img').first().attr('src'));
 }
 
 // xkcd
-function xkcd(bot, msg) {
-  let options = {
+function xkcd() {
+  const options = {
     url: 'https://c.xkcd.com/random/comic/',
     rejectUnauthorized: false,
     headers: {
@@ -135,72 +100,67 @@ function xkcd(bot, msg) {
     }
   };
 
-  request(options)
+  return request(options)
     .then(R.prop('body'))
     .then(cheerio.load)
-    .then($ => $('#comic').find('img').first().attr('src'))
-    .then(url => bot.sendMessage(msg.channel, `https:${url}`))
-    .catch(err => {
-      sentry(err, 'comics', 'xkcd');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then($ => `https:${$('#comic').find('img').first().attr('src')}`);
 }
 
-function randomComic(bot, msg) {
+function randomComic() {
   // Add all commands here so a random one can be selected
   const commands = [
     cah,
     smbc,
     amazingSuperPowers,
-    // awkwardZombie,
+    awkwardZombie,
     chainsawsuit,
-    // dogHouseDiaries,
+    dogHouseDiaries,
     theOatmeal,
     xkcd
   ];
   const rand = Math.floor(Math.random() * commands.length);
-  commands[rand](bot, msg);
+  return commands[rand]();
 }
 
-function comics(bot, msg, suffix) {
+function comics(client, evt, suffix, lang) {
   suffix = suffix.toLowerCase();
-  if (suffix === 'random') return randomComic(bot, msg);
+  if (suffix === 'random') return randomComic();
 
   // Cyanide and Happiness
-  if (suffix === 'cah') return cah(bot, msg);
-  if (suffix === 'cyanide') return cah(bot, msg);
-  if (suffix === 'cyanide and happiness') return cah(bot, msg);
+  if (suffix === 'cah') return cah();
+  if (suffix === 'cyanide') return cah();
+  if (suffix === 'cyanide and happiness') return cah();
 
   // Saturday Morning Breakfast Cereal
-  if (suffix === 'smbc') return smbc(bot, msg);
-  if (suffix === 'saturday morning breakfast cereal') return smbc(bot, msg);
+  if (suffix === 'smbc') return smbc();
+  if (suffix === 'saturday morning breakfast cereal') return smbc();
 
   // Amazing Super Powers
-  if (suffix === 'asp') return amazingSuperPowers(bot, msg);
-  if (suffix === 'amazing super powers') return amazingSuperPowers(bot, msg);
+  if (suffix === 'asp') return amazingSuperPowers();
+  if (suffix === 'amazing super powers') return amazingSuperPowers();
 
   // Awkward Zombie
-  if (suffix === 'az') return awkwardZombie(bot, msg);
-  if (suffix === 'awkward zombie') return awkwardZombie(bot, msg);
+  if (suffix === 'az') return awkwardZombie();
+  if (suffix === 'awkward zombie') return awkwardZombie();
 
   // chainsawsuit
-  if (suffix === 'css') return chainsawsuit(bot, msg);
-  if (suffix === 'chainsawsuit') return chainsawsuit(bot, msg);
-  if (suffix === 'chain saw suit') return chainsawsuit(bot, msg);
+  if (suffix === 'css') return chainsawsuit();
+  if (suffix === 'chainsawsuit') return chainsawsuit();
+  if (suffix === 'chain saw suit') return chainsawsuit();
 
   // Dog House Diaries
-  if (suffix === 'dhd') return dogHouseDiaries(bot, msg);
-  if (suffix === 'doghousdiaries') return dogHouseDiaries(bot, msg);
-  if (suffix === 'dog house diaries') return dogHouseDiaries(bot, msg);
+  if (suffix === 'dhd') return dogHouseDiaries();
+  if (suffix === 'doghousdiaries') return dogHouseDiaries();
+  if (suffix === 'dog house diaries') return dogHouseDiaries();
 
   // The Oatmeal
-  if (suffix === 'to') return theOatmeal(bot, msg);
-  if (suffix.indexOf('oatmeal') > -1) return theOatmeal(bot, msg);
+  if (suffix === 'to') return theOatmeal();
+  if (suffix.indexOf('oatmeal') > -1) return theOatmeal();
 
   // xkcd
-  if (suffix === 'xkcd') return xkcd(bot, msg);
+  if (suffix === 'xkcd') return xkcd();
 
-  return bot.sendMessage(msg.channel, helpText(bot, msg, 'comics'));
+  return helpText(client, evt, 'comics', lang);
 }
 
 export default {

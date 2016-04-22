@@ -1,31 +1,24 @@
+import Promise from 'bluebird';
+
 import { drama as _drama, emoji as _emoji, quotes } from '../../data';
 
 
-function drama(bot, msg, suffix) {
+function drama(client, evt, suffix) {
   const rand = Math.floor(Math.random() * _drama.length);
-  if (suffix && suffix >= 0 && suffix <= (_drama.length - 1)) {
-    bot.sendMessage(msg.channel, _drama[suffix]);
-  } else {
-    bot.sendMessage(msg.channel, _drama[rand]);
-  }
+  if (suffix && suffix >= 0 && suffix <= (_drama.length - 1)) return Promise.resolve(_drama[suffix]);
+  return Promise.resolve(_drama[rand]);
 }
 
-function emoji(bot, msg, suffix) {
+function emoji(client, evt, suffix) {
   const rand = Math.floor(Math.random() * _emoji.length);
-  if (suffix && suffix >= 0 && suffix <= (_emoji.length - 1)) {
-    bot.sendMessage(msg.channel, _emoji[suffix]);
-  } else {
-    bot.sendMessage(msg.channel, _emoji[rand]);
-  }
+  if (suffix && suffix >= 0 && suffix <= (_emoji.length - 1)) return Promise.resolve(_emoji[suffix]);
+  return Promise.resolve(_emoji[rand]);
 }
 
-function quote(bot, msg, suffix) {
+function quote(client, evt, suffix) {
   const rand = Math.floor(Math.random() * quotes.length);
-  if (suffix && suffix >= 0 && suffix <= (quotes.length - 1)) {
-    bot.sendMessage(msg.channel, quotes[suffix]);
-  } else {
-    bot.sendMessage(msg.channel, quotes[rand]);
-  }
+  if (suffix && suffix >= 0 && suffix <= (quotes.length - 1)) return Promise.resolve(quotes[suffix]);
+  return Promise.resolve(quotes[rand]);
 }
 
 export default {

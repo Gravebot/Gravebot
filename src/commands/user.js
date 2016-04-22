@@ -1,14 +1,12 @@
-import { PMChannel } from 'discord.js';
 import R from 'ramda';
 
-import sentry from '../sentry';
 import { setUserLang } from '../redis';
 import T, { langs } from '../translate';
 
 const lang_defs = require('../data/lang_defs.json');
 
 
-function setLang(bot, msg, suffix) {
+function setLang(client, evt, suffix) {
   let lang = suffix.toLowerCase().trim();
 
   if (lang_defs[lang]) lang = lang_defs[lang];
@@ -21,20 +19,11 @@ function setLang(bot, msg, suffix) {
     }, R.keys(lang_defs));
 
     const langs = R.join('\n', R.map(R.join(', '), R.values(lang_options)));
-    return bot.sendMessage(msg.channel, `${T('accepted_languages', 'en')}:\n\n**${langs}**`);
+    return evt.message.channel.sendMessage(`${T('accepted_languages', 'en')}:\n\n**${langs}**`);
   }
 
-  setUserLang(msg.author.id, lang).then(() => {
-    if (msg.channel instanceof PMChannel) {
-      bot.sendMessage(msg.channel, `${T('hello', lang)}, ${msg.author.name}!`);
-    } else {
-      bot.sendMessage(msg.channel, `${T('hello', lang)}, ${msg.author}!`);
-    }
-  })
-  .catch(err => {
-    sentry(err, 'user', 'setlang');
-    bot.sendMessage(msg.channel, `Error: ${err.message}`);
-  });
+  return setUserLang(evt.message.author.id, lang)
+    .then(() => `${T('hello', lang)}!`);
 }
 
 export default {

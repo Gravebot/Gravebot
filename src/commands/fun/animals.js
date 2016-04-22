@@ -3,12 +3,10 @@ import _request from 'request';
 import R from 'ramda';
 
 import { subCommands as helpText } from '../help';
-import sentry from '../../sentry';
-
 
 const request = Promise.promisify(_request);
 
-function cat(bot, msg, suffix) {
+function cat(client, evt, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -21,31 +19,16 @@ function cat(bot, msg, suffix) {
     json: true
   };
 
-  Promise.resolve(R.repeat('cat', count))
+  return Promise.resolve(R.repeat('cat', count))
     .map(() => {
       return request(options)
         .then(R.path(['body', 'file']))
         .then(encodeURI);
     })
-    .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'images', 'cat');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
-function dog(bot, msg, suffix) {
-  let count = 1;
-  if (suffix && suffix.split(' ')[0] === 'bomb') {
-    count = Number(suffix.split(' ')[1]) || 5;
-    if (count > 15) count = 15;
-    if (count < 0) count = 5;
-  }
-  for (let i = 0; i < count; i++) bot.sendFile(msg.channel, 'http://randomdoggiegenerator.com/randomdoggie.php', 'dog.png');
-}
-
-function pug(bot, msg, suffix) {
+function pug(client, evt, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -54,24 +37,20 @@ function pug(bot, msg, suffix) {
   }
 
   const options = {
-    url: `https://pugme.herokuapp.com/bomb?count=${count}`,
+    url: `http://pugme.herokuapp.com/bomb?count=${count}`,
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
+      'User-Agent': 'Gravebot'
     },
     json: true
   };
 
-  request(options)
+  return request(options)
     .then(R.path(['body', 'pugs']))
-    .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'images', 'pug');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
-function snake(bot, msg, suffix) {
+function snake(client, evt, suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -84,22 +63,17 @@ function snake(bot, msg, suffix) {
     json: true
   };
 
-  Promise.resolve(R.repeat('snake', count))
+  return Promise.resolve(R.repeat('snake', count))
     .map(() => {
       return request(options)
         .then(R.path(['body', 'file']))
         .then(encodeURI);
     })
-    .then(R.join('\n'))
-    .then(text => bot.sendMessage(msg.channel, text))
-    .catch(err => {
-      sentry(err, 'images', 'snake');
-      bot.sendMessage(msg.channel, `Error: ${err.message}`);
-    });
+    .then(R.join('\n'));
 }
 
-function animals(bot, msg) {
-  bot.sendMessage(msg.channel, helpText(bot, msg, 'animals'));
+function animals(client, evt, suffix, lang) {
+  return helpText(client, evt, 'animals', lang);
 }
 
 export default {
@@ -108,9 +82,6 @@ export default {
   cat,
   cats: cat,
   '\ud83d\udc31': cat,
-  dog,
-  dogs: dog,
-  '\ud83d\udc36': dog,
   pug,
   pugs: pug,
   snake,
@@ -126,7 +97,6 @@ export const help = {
     header_text: 'animals_header_text',
     subcommands: [
       {name: 'cat'},
-      {name: 'dog'},
       {name: 'pug'},
       {name: 'snake'}
     ]

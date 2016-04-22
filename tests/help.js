@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 import chai from 'chai';
 
 import help from '../src/commands/help';
@@ -7,61 +6,130 @@ import meme from '../src/commands/help/meme';
 
 chai.should();
 
-function isString(func, chnl, response, count, cmd) {
-  let current_calls = 0;
-
-  return new Promise((resolve, reject) => {
-    function sendMessage(channel, res) {
-      channel.should.equal(chnl);
-      res.should.be.a('string');
-
-      current_calls++;
-      if (current_calls === count) return resolve();
-    }
-
-    const msg = {channel: 'test', author: 'author'};
-    help[func]({sendMessage}, msg, cmd);
-  });
-}
-
 describe('help', () => {
   describe('memelist', () => {
     describe('1', () => {
       it('should return the correct help text', done => {
-        isString('memelist', 'author', meme.list1, 1, '1').asCallback(done);
+        function sendMessage(res) {
+          res.should.equal(meme.list1);
+          done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
+        const evt = {
+          message: {
+            author: {
+              id: 1234
+            }
+          }
+        };
+
+        return help.memelist(client, evt, '1');
       });
     });
 
     describe('2', () => {
       it('should return the correct help text', done => {
-        isString('memelist', 'author', meme.list2, 1, '2').asCallback(done);
+        function sendMessage(res) {
+          res.should.equal(meme.list2);
+          done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
+        const evt = {
+          message: {
+            author: {
+              id: 1234
+            }
+          }
+        };
+
+        return help.memelist(client, evt, '2');
       });
     });
 
     describe('3', () => {
       it('should return the correct help text', done => {
-        isString('memelist', 'author', meme.list3, 1, '3').asCallback(done);
+        function sendMessage(res) {
+          res.should.equal(meme.list3);
+          done();
+        }
+
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
+        const evt = {
+          message: {
+            author: {
+              id: 1234
+            }
+          }
+        };
+
+        return help.memelist(client, evt, '3');
       });
     });
 
     describe('full', () => {
-      it('should return the correct help text in three different messages', done => {
-        let count = 0;
+      it('should return the correct help text', done => {
+        let testcount = 0;
 
-        function sendMessage(channel, res) {
-          count++;
-          channel.should.equal('author');
-          res.should.equal(meme[`list${count}`]);
-          if (count === 3) return done();
+        function sendMessage(res) {
+          testcount++;
+          if (testcount === 0) res.should.equal(meme.list1);
+          if (testcount === 1) res.should.equal(meme.list2);
+          if (testcount === 2) res.should.equal(meme.list3);
+          if (testcount === 3) done();
         }
 
-        help.memelist({sendMessage}, {author: 'author'}, 'full');
+        const client = {
+          Users: {
+            get: () => ({
+              openDM: () => Promise.resolve({sendMessage})
+            })
+          }
+        };
+
+        const evt = {
+          message: {
+            author: {
+              id: 1234
+            }
+          }
+        };
+
+        return help.memelist(client, evt, 'full');
       });
     });
 
     describe('none', () => {
-      it('should return the correct help text', done => {
-        isString('memelist', 'test', meme.all, 1, '').asCallback(done);
+      it('should return the correct help text', () => {
+        const evt = {
+          message: {
+            channel: {}
+          }
+        };
+        return help.memelist({}, evt, '')
+        .then(res => res.should.equal(meme.all));
       });
     });
   });
