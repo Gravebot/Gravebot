@@ -126,11 +126,16 @@ function connect() {
   client.connect({token: nconf.get('TOKEN')});
 }
 
+function forceFetchUsers() {
+  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Force fetching users.`));
+  client.Users.fetchMembers();
+}
+
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', () => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
   setTimeout(() => carbon(), 20000);
-});
+  setTimeout(() => forceFetchUsers(), 45000);
 
 
 client.Dispatcher.on('DISCONNECTED', () => {
