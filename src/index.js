@@ -57,6 +57,7 @@ function callCmd(cmd, name, client, evt, suffix) {
 }
 
 function onMessage(evt) {
+  if (!evt.message) return;
   if (client.User.id === evt.message.author.id) return;
 
   // Checks for PREFIX
