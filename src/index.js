@@ -127,13 +127,13 @@ function connect() {
 }
 
 // Listen for events on Discord
-client.Dispatcher.on('GATEWAY_READY', e => {
+client.Dispatcher.on('GATEWAY_READY', () => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
   setTimeout(() => carbon(), 20000);
 });
 
 
-client.Dispatcher.on('DISCONNECTED', e => {
+client.Dispatcher.on('DISCONNECTED', () => {
   console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
   setTimeout(() => {
     connect();
