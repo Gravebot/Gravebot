@@ -68,10 +68,17 @@ trans_keys
       }, {concurrency: 10})
       .then(() => {
         R.forEach(key => {
+          if (!_source[key]) {
+            delete new_translations[lang][key];
+            delete to_review[lang][key];
+          }
+        }, R.keys(to_review[lang]));
+
+        R.forEach(key => {
           console.log(`-----------------------------------
 Lang        | ${chalk.white.bold(lang)}
 Key         | ${chalk.bold.red(key)}
-English     | ${chalk.bold.blue(_source[key] ? _source[key].text : '!!!MISSING!!!')}
+English     | ${chalk.bold.blue(_source[key].text)}
 Reserve     | ${chalk.bold.green(to_review[lang][key].reserve)}
 Old Trans   | ${chalk.bold.yellow(to_review[lang][key].original)}
 New Trans   | ${chalk.bold.magenta(to_review[lang][key].translation)}`);
