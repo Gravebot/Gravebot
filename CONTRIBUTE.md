@@ -6,13 +6,13 @@ Contributing to Gravebot is super easy, we just have a few rules.
 
 #### Rules
 
-Gravebot is written in ES6/Babel javascript, we try to avoid ES5 specific syntax as much as possible.
+Gravebot is written in ES6/Babel javascript, we try to keep to that then the ES5 alternatives.
 
 - No using `var`, instead properly using `let` and `const`
 - Using `import` and `export` for modules, and avoiding using `require` unless it's for JSON
 - All variables are `snaked_case`
 - All functions are `camelCased`
-- Everything must pass lint, run `npm run lint`.
+- Everything must pass lint (`npm run lint`).
 - Tests are required for all functions
 - Avoid adding new modules if there is already one that does something similar. For example, don't add `lodash` as we're already using `ramda`, or don't add `Q` as we're already using `bluebird`.
 - Avoid adding images to the repo if possible, but instead upload them to [imgur](https://imgur.com/) to improve performance.
