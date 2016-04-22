@@ -1,5 +1,5 @@
 <a name="3.0.0" />
-## 3.0.0 (April 22th, 2016)
+## 3.0.0 (April 22nd, 2016)
 
 #### Breaking Changes
 - Gravebot no longer works with regular accounts (email and password). Instead a bot account is required (token and client_id). See https://discordapp.com/developers/applications/me
