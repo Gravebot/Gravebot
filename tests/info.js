@@ -70,28 +70,31 @@ Topic: abc
     });
 
     it('should return a string containing mentioned channel information', () => {
+      const channel = {
+        name: 'test',
+        id: '9876543210',
+        type: 'text',
+        position: '2',
+        messages: ['msg'],
+        createdAt: 'Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)',
+        topic: 'abc',
+        guild: {name: 'server'}
+      };
+
       const evt = {
         message: {
           content: '<#9876543210>',
           guild: {
-            channels: ['<#9876543210>'],
+            channels: [channel],
             name: 'server'
           },
-          channel: {
-            name: 'test',
-            id: '1234',
-            type: 'text',
-            position: '2',
-            messages: ['msg'],
-            createdAt: 'Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)',
-            topic: 'abc'
-          }
+          channel
         }
       };
       return info.channelinfo({}, evt, '<#9876543210>')
       .then(res => res[0].should.equal(`\`\`\`Server: server
 Name: test
-ID: 1234
+ID: 9876543210
 Type: text
 Position: 2
 New Messages: 1 (since the bot was restarted)
