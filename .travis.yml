@@ -9,12 +9,12 @@ cache:
   directories:
     - node_modules
 before_install:
-  - npm install -g npm@3.7.3
+  - npm install -g npm@3.8.7
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - ./scripts/docker/trigger.sh
 node_js:
-  - "4.3"
+  - "4.4"
 env:
   global:
     - CXX=g++-4.8
