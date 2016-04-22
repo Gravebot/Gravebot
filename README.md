@@ -5,7 +5,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/Gravebot/Gravebot/master.svg)](https://coveralls.io/github/Gravebot/Gravebot?branch=master)
 <a href="https://zenhub.io"><img src="https://img.shields.io/badge/KanBan%20Board-Zenhub.io-blue.svg"></a>
 [![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/gravebot/gravebot/)
-
+[![Discord](https://discordapp.com/api/servers/128598463947472897/widget.png?style=banner3)](https://discord.gg/0iXEgtjdHgkpdsVr)
 ## About
 
 A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
