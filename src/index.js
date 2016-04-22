@@ -138,14 +138,15 @@ client.Dispatcher.on('GATEWAY_READY', () => {
   setTimeout(() => forceFetchUsers(), 45000);
 
 
+  client.Dispatcher.on('MESSAGE_CREATE', onMessage);
+  client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+});
+
 client.Dispatcher.on('DISCONNECTED', () => {
   console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
   setTimeout(() => {
     connect();
   }, 2000);
 });
-
-client.Dispatcher.on('MESSAGE_CREATE', onMessage);
-client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
 
 connect();
