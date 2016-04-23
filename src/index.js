@@ -19,6 +19,7 @@ const request = Promise.promisify(require('request'));
 
 // Init
 const client = new Discordie();
+let initialized = false;
 
 
 function callCmd(cmd, name, client, evt, suffix) {
@@ -134,12 +135,15 @@ function forceFetchUsers() {
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', () => {
   console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
-  setTimeout(() => carbon(), 20000);
   setTimeout(() => forceFetchUsers(), 45000);
 
+  if (!initialized) {
+    initialized = true;
+    setTimeout(() => carbon(), 20000);
 
-  client.Dispatcher.on('MESSAGE_CREATE', onMessage);
-  client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+    client.Dispatcher.on('MESSAGE_CREATE', onMessage);
+    client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
+  }
 });
 
 client.Dispatcher.on('DISCONNECTED', () => {
