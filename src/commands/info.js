@@ -110,12 +110,12 @@ Region: ${evt.message.guild.region}
 Owner: ${evt.message.guild.owner.username}
 Channels: ${evt.message.guild.channels.length} (${evt.message.guild.textChannels.length} text & ${evt.message.guild.voiceChannels.length} voice)
 Default Channel: ${evt.message.guild.generalChannel.name}
-AFK Channel: ${evt.message.guild.afk_channel.name}
+AFK Channel: ${evt.message.guild.afk_channel ? evt.message.guild.afk_channel.name : 'None'}
 AFK Timeout: ${evt.message.guild.afk_timeout / 60} minutes
 Members: ${evt.message.guild.members.length}
 Created At: ${evt.message.guild.createdAt}
 Roles: ${roles}
-Icon: ${evt.message.guild.iconURL}
+Icon: ${evt.message.guild.iconURL ? evt.message.guild.iconURL : 'None'}
 \`\`\``);
   } else {
     const guild = R.find(R.propEq('name', suffix))(client.Guilds);
@@ -127,12 +127,12 @@ Region: ${guild.region}
 Owner: ${guild.owner.username}
 Channels: ${guild.channels.length} (${guild.textChannels.length} text & ${guild.voiceChannels.length} voice)
 Default Channel: ${guild.generalChannel.name}
-AFK Channel: ${guild.afk_channel.name}
+AFK Channel: ${guild.afk_channel.name ? guild.afk_channel.name : 'None'}
 AFK Timeout: ${guild.afk_timeout / 60} minutes
 Members: ${guild.members.length}
 Created At: ${guild.createdAt}
 Roles: ${roles}
-Icon: ${guild.iconURL}
+Icon: ${guild.iconURL ? guild.iconURL : 'None'}
 \`\`\``);
   }
 
@@ -151,7 +151,7 @@ ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
 Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
 Registered At: ${evt.message.author.registeredAt}
-Avatar: ${evt.message.author.avatarURL}
+Avatar: ${evt.message.author.avatarURL ? evt.message.author.avatarURL : 'None'}
 \`\`\``);
   } else if (!suffix && !evt.message.mentions.length) {
     userinfo.push(`\`\`\`Name: ${evt.message.author.username}
@@ -159,7 +159,7 @@ ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
 Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
 Registered At: ${evt.message.author.registeredAt}
-Avatar: ${evt.message.author.avatarURL}
+Avatar: ${evt.message.author.avatarURL ? evt.message.author.avatarURL : 'None'}
 \`\`\``);
   } else if (evt.message.mentions.length) {
     R.forEach(user => {
@@ -168,7 +168,7 @@ ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
 Registered At: ${user.registeredAt}
-Avatar: ${user.avatarURL}
+Avatar: ${user.avatarURL ? user.avatarURL : 'None'}
 \`\`\``);
     }, evt.message.mentions);
   } else {
@@ -179,7 +179,7 @@ ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
 Registered At: ${user.registeredAt}
-Avatar: ${user.avatarURL}
+Avatar: ${user.avatarURL ? user.avatarURL : 'None'}
 \`\`\``);
   }
 
@@ -229,8 +229,8 @@ export const help = {
   avatar: {parameters: ['username'], category: 'info'},
   channelinfo: {parameters: ['channelname'], category: 'info'},
   ping: {category: 'info'},
-  serverinfo: {category: 'info'},
-  servers: {parameters: ['servername'], category: 'info'},
+  serverinfo: {parameters: ['servername'], category: 'info'},
+  servers: {category: 'info'},
   userinfo: {parameters: ['username'], category: 'info'},
   uptime: {category: 'info'},
   version: {category: 'info'}
