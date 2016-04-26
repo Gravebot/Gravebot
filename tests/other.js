@@ -19,9 +19,9 @@ describe('other', () => {
     });
   });
 
-  describe('chillenmyb', () => {
+  describe('chillinmyb', () => {
     it('should return the correct imgur url', () => {
-      return other.chillenmyb()
+      return other.chillinmyb()
         .then(res => res.should.equal('http://i.imgur.com/Qh75Dsi.jpg'));
     });
   });
@@ -30,6 +30,13 @@ describe('other', () => {
     it('should return the correct imgur url', () => {
       return other.endall()
         .then(res => res.should.equal('http://i.imgur.com/SNmMCQV.png'));
+    });
+  });
+
+  describe('feelsbadman', () => {
+    it('should return the correct local file', () => {
+      return other.feelsbadman()
+        .then(res => res.upload.should.equal(path.join(__dirname, '../images/Feelsbadman.png')));
     });
   });
 

@@ -69,7 +69,7 @@ For self hosting, click [here](#localconfig).
 - `!avatar` *username* - Responds with your avatar, unless a username is specified
 - `!channelinfo` *channelname* - Gives information about this channel, unless a channelname is specified
 - `!ping` - Pong! Check Gravebot's pulse
-- `!serverinfo` *servername* - Gives information about this server
+- `!serverinfo` *servername* - Gives information about this server, unless a servername is specified
 - `!servers` - Lists how many servers, channels and users the bot is connected to
 - `!uptime` - Shows how long the bot has been online
 - `!userinfo` *username* - Gives information about this user, unless a username is specified
@@ -98,8 +98,9 @@ For self hosting, click [here](#localconfig).
 
 #### Other:
 - `!ayylmao`
-- `!chillenmyb`
+- `!chillinmyb`
 - `!endall`
+- `!feelsbadman`
 - `!feelsgoodman`
 - `!jpeg`
 - `!kappa`
