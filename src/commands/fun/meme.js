@@ -11,7 +11,7 @@ const generateMeme = Promise.promisify(imgflipper.generateMeme);
 
 function meme(client, evt, suffix, lang) {
   if (!nconf.get('IMGFLIP_USERNAME') || !nconf.get('IMGFLIP_PASSWORD')) return Promise.resolve(T('meme_setup', lang));
-  if (!suffix) return Promise.resolve(T('meme_setup', lang));
+  if (!suffix) return Promise.resolve(T('meme_usage', lang));
 
   const tags = suffix.split('"');
   const memetype = tags[0].trim();
