@@ -1,18 +1,11 @@
 import Promise from 'bluebird';
 import Cleverbot from 'cleverbot-node';
 import ent from 'entities';
-import nconf from 'nconf';
-
-import T from '../../translate';
 
 
-const clever = new Cleverbot(nconf.get('CLEVERBOT_API_NAME'), nconf.get('CLEVERBOT_API_KEY'));
+const clever = new Cleverbot();
 
 function chat(client, evt, suffix, lang) {
-  if (!nconf.get('CLEVERBOT_API_NAME') || !nconf.get('CLEVERBOT_API_KEY')) {
-    return Promise.resolve(T('chat_setup', lang));
-  }
-
   if (!suffix) suffix = 'Hello.';
 
   return new Promise((resolve, reject) => {
