@@ -7,7 +7,7 @@ export default [
   '`Time to kill myself`  -  *Lost, 2014*',
   '`Why do I always end up getting raped by steam people`  -  *Lost, 2014*',
   '`Just take your dick rigbt off`  -  *Lost, 2014*',
-  '`I habe been shoveing bread into my vagina for the last three days..\n That\'s, one hell of a yeast infection`  -  *Lost, 2014*',
+  '`I habe been shoveing bread into my vagina for the last three days..\nThat\'s, one hell of a yeast infection`  -  *Lost, 2014*',
   '`why can\'t i just watch boys make out`  -  *Lost, 2014*',
   '`why can\'t i just watch boys make out`  -  *Lost, 2014*',
   '`why can\'t i just watch boys make out`  -  *Lost, 2014*',

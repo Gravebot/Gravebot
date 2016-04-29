@@ -1,6 +1,6 @@
 import Promise from 'bluebird';
 
-import { drama as _drama, emoji as _emoji, quotes } from '../../data';
+import { drama as _drama, emoji as _emoji, quotes, lost as _lost } from '../../data';
 
 
 function drama(client, evt, suffix) {
@@ -22,9 +22,9 @@ function quote(client, evt, suffix) {
 }
 
 function lost(client, evt, suffix) {
-  const rand = Math.floor(Math.random() * lost.length);
-  if (suffix && suffix >= 0 && suffix <= (lost.length - 1)) return Promise.resolve(lost[suffix]);
-  return Promise.resolve(lost[rand]);
+  const rand = Math.floor(Math.random() * _lost.length);
+  if (suffix && suffix >= 0 && suffix <= (_lost.length - 1)) return Promise.resolve(_lost[suffix]);
+  return Promise.resolve(_lost[rand]);
 }
 
 export default {
