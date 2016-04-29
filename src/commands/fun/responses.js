@@ -21,15 +21,23 @@ function quote(client, evt, suffix) {
   return Promise.resolve(quotes[rand]);
 }
 
+function lost(client, evt, suffix) {
+  const rand = Math.floor(Math.random() * lost.length);
+  if (suffix && suffix >= 0 && suffix <= (lost.length - 1)) return Promise.resolve(lost[suffix]);
+  return Promise.resolve(lost[rand]);
+}
+
 export default {
   drama,
   emoji,
   emojis: emoji,
-  quote
+  quote,
+  lost
 };
 
 export const help = {
   drama: {parameters: 'number'},
   emoji: {parameters: 'number'},
-  quote: {parameters: 'number'}
+  quote: {parameters: 'number'},
+  lost: {parameters: 'number'}
 };
