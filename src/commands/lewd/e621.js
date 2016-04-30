@@ -5,7 +5,6 @@ import R from 'ramda';
 import _request from 'request';
 import SuperError from 'super-error';
 
-
 const request = Promise.promisify(_request);
 
 // Setup and makes request to e621 API
@@ -59,21 +58,18 @@ function latest(suffix) {
 function tags(suffix) {
   const query = suffix.toLowerCase().replace('tags ', '');
   if (query == '') return Promise.resolve(`No tags were supplied :warning:`);
-
   const options = {
     url: `https://e621.net/post/index.json?tags=${query}`,
     qs: {
-      limit: 50
+      limit: 100
     }
   };
-
   return _makeRequest(options)
     .then(body => {
       if (body.length == 0) return Promise.resolve(`No results for: \`${query}\` :warning:`);
       // Do some math
-      // let idlist = R.pluck('id')(body);
       let randomid = Math.floor(Math.random() * body.length);
-      // Grab the details
+      // Grab the data
       let id = body[randomid].id;
       let file = body[randomid].file_url;
       let artist = body[randomid].artist;
@@ -81,7 +77,7 @@ function tags(suffix) {
       let width = body[randomid].width;
       let score = body[randomid].score;
       let faves = body[randomid].fav_count;
-      // Put it all together
+      // Put it all together for output
       let title = `This is the latest image on e621 for: **${query}**\n`;
       let reply = R.join('', R.prepend(title, file));
       let data = (`\n\`ID: ${id}\` \`Artist: ${artist}\` \`Resolution: ${width} x ${height}\` \`Score: ${score}\` \`Favorites: ${faves}\``);
@@ -96,6 +92,6 @@ export default {
 
     if (command === 'latest') return latest(suffix);
     if (command === 'tags') return tags(suffix);
-    if (command !== 'tags' || command !== 'random') return tags(suffix);
+    if (command !== 'tags' || command !== 'latest') return tags(suffix);
   }
 };
