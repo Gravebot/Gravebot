@@ -8,7 +8,8 @@ import SuperError from 'super-error';
 
 const request = Promise.promisify(_request);
 
-//Setup and makes request to e621 API
+// Setup and makes request to e621 API
+// Requires you to set a User-Agent.
 function _makeRequest(options) {
   let default_options = {
     json: true,
@@ -29,7 +30,7 @@ function _makeRequest(options) {
 }
 
 function latest(suffix) {
-  const query = suffix.toLowerCase().replace('tags ', '');
+  const query = suffix.toLowerCase().replace('latest ', '');
   if (query == '') return Promise.resolve(`No tags were supplied :warning:`);
   const options = {
     url: `https://e621.net/post/index.json?tags=${query}`,
@@ -40,8 +41,8 @@ function latest(suffix) {
 
   return _makeRequest(options)
     .then(body => {
-      let file = R.pluck('file_url')(body);
       let id = R.pluck('id')(body);
+      let file = R.pluck('file_url')(body);
       let artist = R.pluck('artist')(body);
       let height = R.pluck('height')(body);
       let width = R.pluck('width')(body);
@@ -55,28 +56,34 @@ function latest(suffix) {
     })
 }
 
-
 function tags(suffix) {
   const query = suffix.toLowerCase().replace('tags ', '');
   if (query == '') return Promise.resolve(`No tags were supplied :warning:`);
+
   const options = {
     url: `https://e621.net/post/index.json?tags=${query}`,
     qs: {
-      limit: 1
+      limit: 50
     }
   };
 
   return _makeRequest(options)
     .then(body => {
-      let file = R.pluck('file_url')(body);
-      let id = R.pluck('id')(body);
-      let artist = R.pluck('artist')(body);
-      let height = R.pluck('height')(body);
-      let width = R.pluck('width')(body);
-      let score = R.pluck('score')(body);
-      let faves = R.pluck('fav_count')(body);
-      let title = `This is the latest image on e621 for: **${query}**`;
-      let reply = R.join('\n', R.prepend(title, file));
+      if (body.length == 0) return Promise.resolve(`No results for: \`${query}\` :warning:`);
+      // Do some math
+      // let idlist = R.pluck('id')(body);
+      let randomid = Math.floor(Math.random() * body.length);
+      // Grab the details
+      let id = body[randomid].id;
+      let file = body[randomid].file_url;
+      let artist = body[randomid].artist;
+      let height = body[randomid].height;
+      let width = body[randomid].width;
+      let score = body[randomid].score;
+      let faves = body[randomid].fav_count;
+      // Put it all together
+      let title = `This is the latest image on e621 for: **${query}**\n`;
+      let reply = R.join('', R.prepend(title, file));
       let data = (`\n\`ID: ${id}\` \`Artist: ${artist}\` \`Resolution: ${width} x ${height}\` \`Score: ${score}\` \`Favorites: ${faves}\``);
       let output = R.join('', R.prepend(reply, data));
       return output
