@@ -78,7 +78,7 @@ function tags(suffix) {
       let score = body[randomid].score;
       let faves = body[randomid].fav_count;
       // Put it all together for output
-      let title = `This is the latest image on e621 for: **${query}**\n`;
+      let title = `Here\'s an image from e621 for: **${query}**\n`;
       let reply = R.join('', R.prepend(title, file));
       let data = (`\n\`ID: ${id}\` \`Artist: ${artist}\` \`Resolution: ${width} x ${height}\` \`Score: ${score}\` \`Favorites: ${faves}\``);
       let output = R.join('', R.prepend(reply, data));
