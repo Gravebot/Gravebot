@@ -1,6 +1,7 @@
 import Promise from 'bluebird';
 import chalk from 'chalk';
 import Horseman from 'node-horseman';
+import moment from 'moment';
 import nconf from 'nconf';
 import { path as phantom_path } from 'phantomjs-prebuilt';
 import Queue from 'promise-queue';
@@ -8,6 +9,7 @@ import R from 'ramda';
 
 
 // Initialize PhantomJS
+let horseman;
 const options = {
   phantomPath: phantom_path,
   injectJquery: false
@@ -18,9 +20,19 @@ if (process.env.DEBUG && R.contains(process.env.DEBUG.indexOf('horseman') > -1))
   options.debugPort = 9000;
 }
 
-const horseman = new Horseman(options)
-  .userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
-  .headers({'Content-Type': 'application/json'});
+function createHorseman() {
+  console.log(`${chalk.blue('[' + moment().format('YYYY-MM-DD HH:mm:ss' + ']'))} Starting horseman/phantomjs`);
+
+  if (horseman) horseman.close();
+  horseman = new Horseman(options)
+    .userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
+    .headers({'Content-Type': 'application/json'});
+}
+
+// PhantomJS seems to have a problem in production where it stops rendering images after a certain period of time.
+// This reboots the PhantomJS process every 3 hours.
+setInterval(createHorseman, 180000);
+createHorseman();
 
 // Initialize Queue
 Queue.configure(Promise);
