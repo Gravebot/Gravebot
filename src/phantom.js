@@ -31,7 +31,7 @@ function createHorseman() {
 
 // PhantomJS seems to have a problem in production where it stops rendering images after a certain period of time.
 // This reboots the PhantomJS process every 3 hours.
-setInterval(createHorseman, 180000);
+setInterval(createHorseman, 10800000);
 createHorseman();
 
 // Initialize Queue
