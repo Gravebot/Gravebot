@@ -12,7 +12,7 @@
     "body-parser": "^1.14.2",
     "chalk": "^1.1.1",
     "cheerio": "^0.20.0",
-    "cleverbot-node": "^0.2.1",
+    "cleverbot-node": "^0.2.2",
     "didyoumean": "^1.2.1",
     "discordie": "^0.5.6",
     "entities": "^1.1.1",
