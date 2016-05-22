@@ -29,10 +29,26 @@ function createHorseman() {
     .headers({'Content-Type': 'application/json'});
 }
 
+// Horseman at the moment doesn't verifying if the Phantom process is still running and doesn't recover when it does.
+// This does a simple check every two seconds, and if it timeouts the process is recreated.
+// TODO: Make PR to horseman and fix it there rather then here.
+function verifyPhantomProcess() {
+  if (horseman) {
+    horseman
+      .url()
+      .timeout(1000)
+      .catch(Promise.TimeoutError, () => {
+        console.log(`${chalk.red('[' + moment().format('YYYY-MM-DD HH:mm:ss' + ']'))} Phantomjs is not responding. Restarting process.`);
+        createHorseman();
+      });
+  }
+}
+
 // PhantomJS seems to have a problem in production where it stops rendering images after a certain period of time.
 // This reboots the PhantomJS process every 3 hours.
 setInterval(createHorseman, 10800000);
 createHorseman();
+setInterval(verifyPhantomProcess, 2000);
 
 // Initialize Queue
 Queue.configure(Promise);
