@@ -1,5 +1,8 @@
 import Promise from 'bluebird';
+import nconf from 'nconf';
 import R from 'ramda';
+
+import T from '../translate';
 
 const request = Promise.promisify(require('request'));
 
@@ -91,9 +94,15 @@ Bitrate: ${channel.bitrate}
   return Promise.resolve(channelinfo);
 }
 
+function feedback(client, evt, suffix, lang) {
+  if (!nconf.get('FEEDBACK_CHANNEL')) return Promise.resolve(T('feedback_setup', lang));
+  if (!suffix) return Promise.resolve(T('feedback_usage', lang));
+  client.Channels.find(channel => channel.id === nconf.get('FEEDBACK_CHANNEL')).sendMessage(`**(${evt.message.author.username}) [${evt.message.author.id}]\n(${evt.message.guild.name}) [${evt.message.guild.id}]**\n${suffix.replace(/([@#*_~`])/g, '\\$1')}`);
+}
+
 function ping() {
   const start = process.hrtime();
-  return Promise.delay(1).then(() => {
+  return Promise.resolve('Pong!').then(() => {
     const diff = process.hrtime(start);
     return `Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`;
   });
@@ -212,6 +221,7 @@ export default {
   channelinfo,
   changelog: version,
   'change-log': version,
+  feedback,
   newfeatures: version,
   'new-features': version,
   ping,
@@ -228,6 +238,7 @@ export default {
 export const help = {
   avatar: {parameters: ['username'], category: 'info'},
   channelinfo: {parameters: ['channelname'], category: 'info'},
+  feedback: {parameters: ['text'], category: 'info'},
   ping: {category: 'info'},
   serverinfo: {parameters: ['servername'], category: 'info'},
   servers: {category: 'info'},

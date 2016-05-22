@@ -103,10 +103,6 @@
     "text": "Decides between given words",
     "done": true
   },
-  "decide_split": {
-    "text": "or",
-    "done": true
-  },
   "decide_usage": {
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
     "done": true
@@ -146,6 +142,18 @@
   "emoji": {
     "text": "Responds with an emoji copypasta, if no number is written, a random one",
     "done": true
+  },
+  "feedback": {
+    "text": "Give feedback and report bugs about the bot",
+    "done": false
+  },
+  "feedback_setup": {
+    "text": "Please setup Feedback Channel in config.js to use the **`!feedback`** command.",
+    "done": false
+  },
+  "feedback_usage": {
+    "text": "Usage: **`!feedback`** `text`",
+    "done": false
   },
   "gif": {
     "text": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",

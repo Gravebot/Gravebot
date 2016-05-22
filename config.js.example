@@ -47,5 +47,8 @@ module.exports = {
 
   // Carbon key, used for displaying server count.
   // More information here. https://www.carbonitex.net/discord/bots
-  CARBON_KEY: ''
+  CARBON_KEY: '',
+
+  // Feedback Channel, used for storing feedback with `!feedback`.
+  FEEDBACK_CHANNEL: ''
 };
