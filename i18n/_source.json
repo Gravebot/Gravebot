@@ -145,15 +145,15 @@
   },
   "feedback": {
     "text": "Give feedback and report bugs about the bot",
-    "done": false
+    "done": true
   },
   "feedback_setup": {
     "text": "Please setup Feedback Channel in config.js to use the **`!feedback`** command.",
-    "done": false
+    "done": true
   },
   "feedback_usage": {
     "text": "Usage: **`!feedback`** `text`",
-    "done": false
+    "done": true
   },
   "gif": {
     "text": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",
