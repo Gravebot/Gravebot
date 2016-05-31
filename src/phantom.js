@@ -48,7 +48,9 @@ function verifyPhantomProcess() {
 // This reboots the PhantomJS process every 3 hours.
 setInterval(createHorseman, 10800000);
 createHorseman();
-setInterval(verifyPhantomProcess, 2000);
+setTimeout(() => {
+  setInterval(verifyPhantomProcess, 2000);
+}, 30000);
 
 // Initialize Queue
 Queue.configure(Promise);
