@@ -63,6 +63,7 @@ Type: ${channel.type}
 Position: ${channel.position}
 Created At: ${channel.createdAt}
 Bitrate: ${channel.bitrate}
+User Limit: ${channel.user_limit}
 \`\`\``);
       }
     }, suffix.split(' '));
@@ -87,6 +88,7 @@ Type: ${channel.type}
 Position: ${channel.position}
 Created At: ${channel.createdAt}
 Bitrate: ${channel.bitrate}
+User Limit: ${channel.user_limit}
 \`\`\``);
     }
   }
@@ -112,7 +114,7 @@ function serverinfo(client, evt, suffix) {
   const serverinfo = [];
   if (evt.message.channel.is_private) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
   if (!suffix) {
-    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', evt.message.guild.roles)));
+    const roles = R.join(', ', R.reject(name => name === '@everyone', R.pluck('name', evt.message.guild.roles)));
     serverinfo.push(`\`\`\`Name: ${evt.message.guild.name}
 ID: ${evt.message.guild.id}
 Region: ${evt.message.guild.region}
