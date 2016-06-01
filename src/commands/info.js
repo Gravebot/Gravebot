@@ -1,5 +1,8 @@
 import Promise from 'bluebird';
+import nconf from 'nconf';
 import R from 'ramda';
+
+import T from '../translate';
 
 const request = Promise.promisify(require('request'));
 
@@ -60,6 +63,7 @@ Type: ${channel.type}
 Position: ${channel.position}
 Created At: ${channel.createdAt}
 Bitrate: ${channel.bitrate}
+User Limit: ${channel.user_limit}
 \`\`\``);
       }
     }, suffix.split(' '));
@@ -84,6 +88,7 @@ Type: ${channel.type}
 Position: ${channel.position}
 Created At: ${channel.createdAt}
 Bitrate: ${channel.bitrate}
+User Limit: ${channel.user_limit}
 \`\`\``);
     }
   }
@@ -91,9 +96,15 @@ Bitrate: ${channel.bitrate}
   return Promise.resolve(channelinfo);
 }
 
+function feedback(client, evt, suffix, lang) {
+  if (!nconf.get('FEEDBACK_CHANNEL_ID')) return Promise.resolve(T('feedback_setup', lang));
+  if (!suffix) return Promise.resolve(T('feedback_usage', lang));
+  client.Channels.find(channel => channel.id === nconf.get('FEEDBACK_CHANNEL_ID')).sendMessage(`**(${evt.message.author.username}) [${evt.message.author.id}]\n(${evt.message.guild.name}) [${evt.message.guild.id}]**\n${suffix.replace(/([@#*_~`])/g, '\\$1')}`);
+}
+
 function ping() {
   const start = process.hrtime();
-  return Promise.delay(1).then(() => {
+  return Promise.resolve('Pong!').then(() => {
     const diff = process.hrtime(start);
     return `Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`;
   });
@@ -103,7 +114,7 @@ function serverinfo(client, evt, suffix) {
   const serverinfo = [];
   if (evt.message.channel.is_private) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
   if (!suffix) {
-    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', evt.message.guild.roles)));
+    const roles = R.join(', ', R.reject(name => name === '@everyone', R.pluck('name', evt.message.guild.roles)));
     serverinfo.push(`\`\`\`Name: ${evt.message.guild.name}
 ID: ${evt.message.guild.id}
 Region: ${evt.message.guild.region}
@@ -212,6 +223,7 @@ export default {
   channelinfo,
   changelog: version,
   'change-log': version,
+  feedback,
   newfeatures: version,
   'new-features': version,
   ping,
@@ -228,6 +240,7 @@ export default {
 export const help = {
   avatar: {parameters: ['username'], category: 'info'},
   channelinfo: {parameters: ['channelname'], category: 'info'},
+  feedback: {parameters: ['text'], category: 'info'},
   ping: {category: 'info'},
   serverinfo: {parameters: ['servername'], category: 'info'},
   servers: {category: 'info'},

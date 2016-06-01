@@ -7,7 +7,7 @@ const clever = new Cleverbot();
 
 function chat(client, evt, suffix, lang) {
   if (!suffix) suffix = 'Hello.';
-
+  evt.message.channel.sendTyping();
   return new Promise((resolve, reject) => {
     Cleverbot.prepare(() => {
       try {
