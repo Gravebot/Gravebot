@@ -7,8 +7,9 @@ const uu = Promise.promisifyAll(require('url-unshort')({nesting: 3}));
 function unshorten(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('unshorten_usage', lang));
   return uu.expandAsync(suffix)
-    .tap(url => {
+    .then(url => {
       if (!url) return 'This url can\'t be expanded.';
+      return `<${url}>`;
     });
 }
 
