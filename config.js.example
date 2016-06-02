@@ -15,6 +15,9 @@ module.exports = {
   // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',
 
+  // Time to wait between commands per user in seconds. Default is 1.
+  MESSAGE_TTL: '',
+
   // Youtube API key, used for searching videos with `!youtube`.
   // Learn more here. https://developers.google.com/youtube/v3/getting-started
   YOUTUBE_API_KEY: '',

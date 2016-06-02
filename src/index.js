@@ -12,7 +12,7 @@ import './phantom';
 import commands from './commands';
 import sentry from './sentry';
 
-import { getUserLang } from './redis';
+import { getMessageTTL, setMessageTTL, getUserLang } from './redis';
 
 const request = Promise.promisify(require('request'));
 
@@ -36,24 +36,31 @@ function callCmd(cmd, name, client, evt, suffix) {
     if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename);
   }
 
-  getUserLang(evt.message.author.id).then(lang => {
-    const cmd_return = cmd(client, evt, suffix, lang);
+  const user_id = evt.message.author.id;
+  getMessageTTL(user_id).then(exists => {
+    // If a user is trying to spam messages above the set TTL time, then skip.
+    if (exists) return;
+    setMessageTTL(user_id);
 
-    // All command returns must be a bluebird promise.
-    if (cmd_return instanceof Promise) {
-      cmd_return.then(res => {
-        // If null, don't do anything.
-        if (!res) return;
-        // If it's an array, process each entry.
-        if (R.is(Array, res)) return R.forEach(processEntry, res);
-        // Process single entry
-        processEntry(res);
-      })
-      .catch(err => {
-        sentry(err, name);
-        evt.message.channel.sendMessage(`Error: ${err.message}`);
-      });
-    }
+    return getUserLang().then(lang => {
+      const cmd_return = cmd(client, evt, suffix, lang);
+
+      // All command returns must be a bluebird promise.
+      if (cmd_return instanceof Promise) {
+        return cmd_return.then(res => {
+          // If null, don't do anything.
+          if (!res) return;
+          // If it's an array, process each entry.
+          if (R.is(Array, res)) return R.forEach(processEntry, res);
+          // Process single entry
+          processEntry(res);
+        })
+        .catch(err => {
+          sentry(err, name);
+          evt.message.channel.sendMessage(`Error: ${err.message}`);
+        });
+      }
+    });
   });
 }
 

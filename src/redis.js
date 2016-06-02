@@ -20,3 +20,15 @@ export function getUserLang(user_id) {
 export function setUserLang(user_id, lang) {
   return client.hsetAsync(`user_${user_id}`, 'lang', lang);
 }
+
+export function getMessageTTL(user_id) {
+  return client.getAsync(`ttl_${user_id}`);
+}
+
+export function setMessageTTL(user_id) {
+  const key = `ttl_${user_id}`;
+  return client.multi()
+    .set(key, 1)
+    .expire(key, nconf.get('MESSAGE_TTL') || 1)
+    .execAsync();
+}
