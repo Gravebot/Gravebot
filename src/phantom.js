@@ -36,7 +36,7 @@ function verifyPhantomProcess() {
   if (horseman) {
     horseman
       .url()
-      .timeout(1000)
+      .timeout(2000)
       .catch(Promise.TimeoutError, () => {
         console.log(`${chalk.red('[' + moment().format('YYYY-MM-DD HH:mm:ss' + ']'))} Phantomjs is not responding. Restarting process.`);
         createHorseman();
@@ -50,7 +50,7 @@ setInterval(createHorseman, 10800000);
 createHorseman();
 setTimeout(() => {
   setInterval(verifyPhantomProcess, 2000);
-}, 30000);
+}, 60000);
 
 // Initialize Queue
 Queue.configure(Promise);
