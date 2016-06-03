@@ -204,7 +204,7 @@ function items(suffix) {
     .then(R.join('\n'));
 }
 
-function commands(client, e, suffix, lang) {
+function commands(suffix, lang) {
   const command = suffix.toLowerCase().split(' ')[0];
 
   if (command === 'build') return build(suffix);
@@ -219,7 +219,7 @@ function commands(client, e, suffix, lang) {
   if (command === 'matchups') return counters(suffix);
   if (command === 'skill') return build(suffix);
   if (command === 'skills') return build(suffix);
-  return helpText(client, e, 'dota2', lang);
+  return helpText('dota2', lang);
 }
 
 export default {

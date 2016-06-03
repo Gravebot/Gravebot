@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import R from 'ramda';
 
 
-function roll(client, evt, suffix) {
+function roll(evt, suffix) {
   let times = suffix.split(' ')[0];
   let sides = suffix.split(' ')[1];
 

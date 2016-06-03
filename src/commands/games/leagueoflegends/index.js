@@ -5,7 +5,7 @@ import { serverStatus, matchDetails } from './riot';
 
 
 export default {
-  lol: (client, evt, suffix, lang) => {
+  lol: (evt, suffix, lang) => {
     const command = suffix.toLowerCase().split(' ')[0];
 
     if (command === 'ban') return bans();
@@ -17,7 +17,7 @@ export default {
     if (command === 'counters') return counters(suffix, lang);
     if (command === 'item') return items(suffix, lang);
     if (command === 'items') return items(suffix, lang);
-    if (command === 'match') return matchDetails(client, evt, suffix, lang);
+    if (command === 'match') return matchDetails(evt, suffix, lang);
     if (command === 'skill') return skills(suffix, lang);
     if (command === 'skills') return skills(suffix, lang);
     if (command === 'server') return serverStatus(suffix, lang);
@@ -25,7 +25,7 @@ export default {
     if (command === 'servers') return serverStatus(suffix, lang);
     if (command === 'serverstatus') return serverStatus(suffix, lang);
     if (command === 'status') return serverStatus(suffix, lang);
-    return helpText(client, evt, 'lol', lang);
+    return helpText('lol', lang);
   }
 };
 

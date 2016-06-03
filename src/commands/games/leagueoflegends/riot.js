@@ -152,7 +152,7 @@ function _formatPlayerStats(summoners) {
   }, summoners);
 }
 
-export function matchDetails(client, evt, suffix, lang) {
+export function matchDetails(evt, suffix, lang) {
   if (!nconf.get('RIOT_KEY')) return Promise.resolve(T('riot_setup', lang));
 
   const suffix_split = suffix.split(' ');
@@ -168,7 +168,7 @@ export function matchDetails(client, evt, suffix, lang) {
   if (!name) name = evt.message.author.username;
 
   if (!R.contains(region, regions)) return Promise.resolve(`I don't understand region **${region}**. Accepted regions are **${R.join(', ', regions)}**.`);
-  if (!name) return Promise.join([T('specify_summoner', lang), helpText(client, evt, 'lol', lang)]);
+  if (!name) return Promise.join([T('specify_summoner', lang), helpText(evt, 'lol', lang)]);
 
   return _makeRequest(`https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}`)
     .catch(NotFoundError, err => {

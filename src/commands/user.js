@@ -6,7 +6,7 @@ import T, { langs } from '../translate';
 const lang_defs = require('../data/lang_defs.json');
 
 
-function setLang(client, evt, suffix) {
+function setLang(evt, suffix) {
   let lang = suffix.toLowerCase().trim();
 
   if (lang_defs[lang]) lang = lang_defs[lang];

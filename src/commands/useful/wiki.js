@@ -4,7 +4,7 @@ import Wiki from 'wikijs';
 import T from '../../translate';
 
 
-function wiki(client, evt, suffix, lang) {
+function wiki(suffix, lang) {
   if (!suffix) return Promise.resolve(T('wiki_usage', lang));
 
   return new Promise(resolve => {

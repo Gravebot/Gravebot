@@ -4,7 +4,7 @@ import T from '../../translate';
 const uu = Promise.promisifyAll(require('url-unshort')({nesting: 3}));
 
 
-function unshorten(client, evt, suffix, lang) {
+function unshorten(suffix, lang) {
   if (!suffix) return Promise.resolve(T('unshorten_usage', lang));
   return uu.expandAsync(suffix)
     .then(url => {

@@ -9,17 +9,17 @@ import T from '../../translate';
 const request = Promise.promisify(require('request'));
 const gizoogle = Promise.promisifyAll(require('gizoogle'));
 
-function leet(client, evt, suffix, lang) {
+function leet(suffix, lang) {
   if (!suffix) return Promise.resolve(T('leet_usage', lang));
   return Promise.resolve(leetify.convert(suffix));
 }
 
-function snoop(client, evt, suffix, lang) {
+function snoop(suffix, lang) {
   if (!suffix) return Promise.resolve(T('snoop_usage', lang));
   return gizoogle.stringAsync(suffix);
 }
 
-function yoda(client, evt, phrase, lang) {
+function yoda(phrase, lang) {
   if (!phrase) return Promise.resolve(T('yoda_usage', lang));
 
   const options = {
@@ -37,8 +37,8 @@ function yoda(client, evt, phrase, lang) {
     .then($ => $('textarea[name="YodaSpeak"]').first().text());
 }
 
-function translate(client, evt, suffix, lang) {
-  return helpText(client, evt, 'translate', lang);
+function translate(suffix, lang) {
+  return helpText('translate', lang);
 }
 
 export default {

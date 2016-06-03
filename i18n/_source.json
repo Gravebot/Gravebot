@@ -107,6 +107,18 @@
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
     "done": true
   },
+  "define": {
+    "text": "Gives a definition for the word",
+    "done": false
+  },
+  "define_error": {
+    "text": "I couldn't find a definition for",
+    "done": false
+  },
+  "define_usage": {
+    "text": "Usage: **`!define`** `word`",
+    "done": false
+  },
   "dota2": {
     "text": "DOTA 2",
     "done": true
@@ -346,6 +358,14 @@
   "specify_summoner": {
     "text": "You need to specify a summoner name.",
     "done": true
+  },
+  "synonyms": {
+    "text": "Shows synonyms for the word",
+    "done": false
+  },
+  "synonyms_usage": {
+    "text": "Usage: **`!synonyms`** `word`",
+    "done": false
   },
   "translate": {
     "text": "Translate text in funny ways",

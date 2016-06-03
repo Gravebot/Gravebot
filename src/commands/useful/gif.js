@@ -7,7 +7,7 @@ import T from '../../translate';
 const request = Promise.promisify(require('request'));
 
 
-function giphy(client, evt, suffix, lang) {
+function giphy(suffix, lang) {
   if (!suffix) return Promise.resolve(T('giphy_usage', lang));
 
   // limit=1 will only return 1 gif
@@ -30,7 +30,7 @@ function giphy(client, evt, suffix, lang) {
     });
 }
 
-function popkey(client, evt, suffix, lang) {
+function popkey(suffix, lang) {
   if (!nconf.get('POPKEY_KEY')) return Promise.resolve(T('popkey_setup', lang));
   if (!suffix) return Promise.resolve(T('popkey_usage', lang));
 
@@ -55,12 +55,12 @@ function popkey(client, evt, suffix, lang) {
     });
 }
 
-function gif(client, evt, suffix, lang) {
+function gif(suffix, lang) {
   if (!suffix) return Promise.resolve(T('gif_usage', lang));
 
   const number = Math.floor(Math.random() * 2) + 1;
-  if (number === 1) return popkey(client, evt, suffix, lang);
-  return giphy(client, evt, suffix, lang);
+  if (number === 1) return popkey(suffix, lang);
+  return giphy(suffix, lang);
 }
 
 export default {

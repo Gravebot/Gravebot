@@ -4,7 +4,7 @@ import { choices } from '../../data';
 import T from '../../translate';
 
 
-function decide(client, evt, suffix, lang) {
+function decide(suffix, lang) {
   function multipleDecide(options) {
     const selected = options[Math.floor(Math.random() * options.length)];
     if (!selected) return multipleDecide(options);
