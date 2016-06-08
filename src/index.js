@@ -42,7 +42,7 @@ function callCmd(cmd, name, client, evt, suffix) {
     if (exists) return;
     setMessageTTL(user_id);
 
-    return getUserLang().then(lang => {
+    return getUserLang(user_id).then(lang => {
       const cmd_return = cmd(client, evt, suffix, lang);
 
       // All command returns must be a bluebird promise.
