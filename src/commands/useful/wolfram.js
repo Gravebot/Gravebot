@@ -15,7 +15,7 @@ function queryWolf(wolf, query) {
   });
 }
 
-function wolfram(client, evt, query, lang) {
+function wolfram(query, lang) {
   if (!nconf.get('WOLFRAM_KEY')) return Promise.resolve(T('wolfram_setup', lang));
   if (!query) return Promise.resolve(T('wolfram_usage', lang));
 

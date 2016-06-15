@@ -16,7 +16,6 @@ import { getMessageTTL, setMessageTTL, getUserLang } from './redis';
 
 const request = Promise.promisify(require('request'));
 
-
 // Init
 const client = new Discordie();
 let initialized = false;
@@ -98,7 +97,7 @@ function onMessage(evt) {
   if (evt.message.channel.is_private) {
     // Handle invite links
     if (evt.message.content.indexOf('https://discord.gg/') > -1 || evt.message.content.indexOf('https://discordapp.com/invite/') > -1) {
-      return commands.join(client, evt, evt.message.content);
+      return commands.join(evt);
     }
 
     const msg_split = evt.message.content.split(' ');

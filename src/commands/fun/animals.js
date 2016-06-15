@@ -6,7 +6,7 @@ import { subCommands as helpText } from '../help';
 
 const request = Promise.promisify(_request);
 
-function cat(client, evt, suffix) {
+function cat(suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -28,7 +28,7 @@ function cat(client, evt, suffix) {
     .then(R.join('\n'));
 }
 
-function pug(client, evt, suffix) {
+function pug(suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -50,7 +50,7 @@ function pug(client, evt, suffix) {
     .then(R.join('\n'));
 }
 
-function snake(client, evt, suffix) {
+function snake(suffix) {
   let count = 1;
   if (suffix && suffix.split(' ')[0] === 'bomb') {
     count = Number(suffix.split(' ')[1]) || 5;
@@ -72,8 +72,8 @@ function snake(client, evt, suffix) {
     .then(R.join('\n'));
 }
 
-function animals(client, evt, suffix, lang) {
-  return helpText(client, evt, 'animals', lang);
+function animals(suffix, lang) {
+  return helpText('animals', lang);
 }
 
 export default {

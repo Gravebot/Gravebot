@@ -9,7 +9,7 @@ import { memes } from '../../data';
 const imgflipper = new Imgflipper(nconf.get('IMGFLIP_USERNAME'), nconf.get('IMGFLIP_PASSWORD'));
 const generateMeme = Promise.promisify(imgflipper.generateMeme);
 
-function meme(client, evt, suffix, lang) {
+function meme(suffix, lang) {
   if (!nconf.get('IMGFLIP_USERNAME') || !nconf.get('IMGFLIP_PASSWORD')) return Promise.resolve(T('meme_setup', lang));
   if (!suffix) return Promise.resolve(T('meme_usage', lang));
 

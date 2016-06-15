@@ -4,7 +4,7 @@ import urbanQuery from 'urban';
 import T from '../../translate';
 
 
-function urban(client, evt, suffix, lang) {
+function urban(suffix, lang) {
   if (!suffix) return Promise.resolve(T('urban_usage', lang));
 
   return new Promise(resolve => {

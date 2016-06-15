@@ -56,8 +56,10 @@ For self hosting, click [here](#localconfig).
 - `!yoda` *sentence* - Yodaifies the sentence
 
 #### Useful:
+- `!define` *word* - Gives a definition for the word
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
 - `!join` - Shows a link that can be used to invite Gravebot to your server
+- `!synonyms` *word* - Shows synonyms for the word
 - `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
@@ -68,6 +70,7 @@ For self hosting, click [here](#localconfig).
 #### Information:
 - `!avatar` *username* - Responds with your avatar, unless a username is specified
 - `!channelinfo` *channelname* - Gives information about this channel, unless a channelname is specified
+- `!feedback` *text* - Give feedback and report bugs about the bot
 - `!ping` - Pong! Check Gravebot's pulse
 - `!serverinfo` *servername* - Gives information about this server, unless a servername is specified
 - `!servers` - Lists how many servers, channels and users the bot is connected to

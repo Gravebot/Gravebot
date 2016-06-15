@@ -8,7 +8,7 @@ import T from '../../translate';
 
 const request = Promise.promisify(_request);
 
-function makePaste(client, evt, paste, lang) {
+function makePaste(paste, lang) {
   if (!nconf.get('PASTEBIN_KEY')) return Promise.resolve(T('pastebin_setup', lang));
   if (!paste) return Promise.resolve(T('pastebin_usage', lang));
 
@@ -21,7 +21,6 @@ function makePaste(client, evt, paste, lang) {
       api_dev_key: nconf.get('PASTEBIN_KEY')
     }
   };
-
   return request(options).then(R.prop('body'));
 }
 
