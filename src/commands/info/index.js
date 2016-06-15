@@ -2,7 +2,7 @@ import Promise from 'bluebird';
 import nconf from 'nconf';
 import R from 'ramda';
 
-import T from '../translate';
+import T from '../../translate';
 
 const request = Promise.promisify(require('request'));
 
@@ -218,6 +218,18 @@ function version() {
     .then(R.trim);
 }
 
+export const help = {
+  avatar: {parameters: ['username'], category: 'info'},
+  channelinfo: {parameters: ['channelname'], category: 'info'},
+  feedback: {parameters: ['text'], category: 'info'},
+  ping: {category: 'info'},
+  serverinfo: {parameters: ['servername'], category: 'info'},
+  servers: {category: 'info'},
+  userinfo: {parameters: ['username'], category: 'info'},
+  uptime: {category: 'info'},
+  version: {category: 'info'}
+};
+
 export default {
   avatar,
   channelinfo,
@@ -235,16 +247,4 @@ export default {
   uptime,
   version,
   whois: userinfo
-};
-
-export const help = {
-  avatar: {parameters: ['username'], category: 'info'},
-  channelinfo: {parameters: ['channelname'], category: 'info'},
-  feedback: {parameters: ['text'], category: 'info'},
-  ping: {category: 'info'},
-  serverinfo: {parameters: ['servername'], category: 'info'},
-  servers: {category: 'info'},
-  userinfo: {parameters: ['username'], category: 'info'},
-  uptime: {category: 'info'},
-  version: {category: 'info'}
 };

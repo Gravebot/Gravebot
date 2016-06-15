@@ -7,12 +7,12 @@ const glob_options = {
   nodir: true
 };
 
-export const command_files = R.flatten([
+export const command_files = R.uniq(R.flatten([
   glob.sync(`${__dirname}/*(!(index.js))`, glob_options),
   glob.sync(`${__dirname}/*/index.js`, glob_options),
   glob.sync(`${__dirname}/*/*/index.js`, glob_options),
   glob.sync(`${__dirname}/*(!(help))/*.js`, glob_options)
-]);
+]));
 
 // Merge all the commands objecs together and export.
 const commands = R.mergeAll(R.map(js_path => {
