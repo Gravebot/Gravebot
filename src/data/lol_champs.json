@@ -47,6 +47,12 @@
     "nid": "ashe",
     "image": "ashe.png"
   },
+  "aurelionsol": {
+    "id": "136",
+    "name": "Aurelion Sol",
+    "nid": "aurelionsol",
+    "image": "aurelionsol.png"
+  },
   "azir": {
     "id": "268",
     "name": "Azir",
@@ -395,6 +401,12 @@
     "nid": "missfortune",
     "image": "missfortune.png"
   },
+  "wukong": {
+    "id": "62",
+    "name": "Wukong",
+    "nid": "wukong",
+    "image": "monkeyking.png"
+  },
   "mordekaiser": {
     "id": "82",
     "name": "Mordekaiser",
@@ -593,6 +605,12 @@
     "nid": "tahmkench",
     "image": "tahmkench.png"
   },
+  "taliyah": {
+    "id": "163",
+    "name": "Taliyah",
+    "nid": "taliyah",
+    "image": "taliyah.png"
+  },
   "talon": {
     "id": "91",
     "name": "Talon",
@@ -712,12 +730,6 @@
     "name": "Warwick",
     "nid": "warwick",
     "image": "warwick.png"
-  },
-  "wukong": {
-    "id": "62",
-    "name": "Wukong",
-    "nid": "wukong",
-    "image": "wukong.png"
   },
   "xerath": {
     "id": "101",
