@@ -10,7 +10,6 @@ import sentry from './sentry';
 
 
 // Initialize PhantomJS
-let horseman;
 const options = {
   phantomPath: phantom_path,
   injectJquery: false
