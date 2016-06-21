@@ -1,7 +1,6 @@
 import Promise from 'bluebird';
 import chalk from 'chalk';
 import Horseman from 'node-horseman';
-import moment from 'moment';
 import nconf from 'nconf';
 import { path as phantom_path } from 'phantomjs-prebuilt';
 import Queue from 'promise-queue';
