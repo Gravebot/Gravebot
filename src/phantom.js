@@ -26,12 +26,12 @@ const queue = new Queue(1, Infinity);
 export default function addQueue(view, data) {
   return queue.add(function() {
     const start = new Date().getTime();
-    const horseman = new Horseman(options);
-
-    return horseman
+    const horseman = new Horseman(options)
       .userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
       .headers({'Content-Type': 'application/json'})
-      .viewport(1920, 1080)
+      .viewport(1920, 1080);
+
+    return horseman
       .post(`http://127.0.0.1:${nconf.get('PORT')}/view`, JSON.stringify({view, data}))
       .then(() => Promise.join(horseman.width('.main'), horseman.height('.main')))
       .spread((width, height) => {
@@ -46,10 +46,11 @@ export default function addQueue(view, data) {
             return buf;
           });
       })
+      .timeout(8000)
       .catch(err => {
         sentry(err, 'phantom');
         horseman.close();
-        return 'There was an error attempting to generate the image. Please try again.';
+        throw new Error('There was an error attempting to generate the image. Please try again.');
       });
   });
 }
