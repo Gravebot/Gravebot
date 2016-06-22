@@ -109,16 +109,16 @@
   },
   "define": {
     "text": "Gives a definition for the word",
-    "done": false
+    "done": true
   },
   "define_error": {
     "text": "I couldn't find a definition for",
-    "done": false
+    "done": true
   },
   "define_usage": {
     "text": "Usage: **`!define`** `word`",
-    "done": false
-},
+    "done": true
+  },
   "dota2": {
     "text": "DOTA 2",
     "done": true
@@ -333,23 +333,23 @@
   },
   "robohash": {
     "text": "Get robot and monster images",
-    "done": false
+    "done": true
   },
   "robohash_header_text": {
     "text": "Responds with an image according to your ID.\nYou can specify a suffix after a command to get a different picture. (e.g. `!robot Testie`)",
-    "done": false
+    "done": true
   },
   "robohash_monster": {
     "text": "Get your personal monster",
-    "done": false
+    "done": true
   },
   "robohash_robot": {
     "text": "Get your personal robot",
-    "done": false
+    "done": true
   },
   "robohash_robothead": {
     "text": "Get your personal robot head",
-    "done": false
+    "done": true
   },
   "roll": {
     "text": "Rolls the dice a number of times with a number of sides",
@@ -380,13 +380,13 @@
     "done": true
   },
   "synonyms": {
-  "text": "Shows synonyms for the word",
-  "done": false
-},
-"synonyms_usage": {
-  "text": "Usage: **`!synonyms`** `word`",
-  "done": false
-},
+    "text": "Shows synonyms for the word",
+    "done": true
+  },
+  "synonyms_usage": {
+    "text": "Usage: **`!synonyms`** `word`",
+    "done": true
+  },
   "translate": {
     "text": "Translate text in funny ways",
     "done": true
