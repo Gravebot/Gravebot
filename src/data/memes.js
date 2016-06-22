@@ -120,6 +120,7 @@ export default {
   spongebob: 101511,
   spongebob2: 163573,
   spongebob3: 326093,
+  spongebob4: 68749123,
   squidward: 285870,
   success: 101287,
   sucks: 201950,

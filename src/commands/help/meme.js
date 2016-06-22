@@ -121,6 +121,7 @@ export default {
 **\`spongebob\`** - Didn't you ...
 **\`spongebob2\`** - Imagination :rainbow:
 **\`spongebob3\`** - I'll have you know
+**\`spongebob4\`** - Caveman spongebob
 **\`squidward\`** - Beautiful :vs: Ugly
 **\`success\`** - Success kid
 **\`sucks\`** - Life sucks
