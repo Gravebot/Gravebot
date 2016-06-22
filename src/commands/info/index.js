@@ -1,10 +1,5 @@
 import Promise from 'bluebird';
-import nconf from 'nconf';
 import R from 'ramda';
-
-import T from '../../translate';
-
-const request = Promise.promisify(require('request'));
 
 
 function avatar(client, evt, suffix) {
@@ -94,20 +89,6 @@ User Limit: ${channel.user_limit}
   }
 
   return Promise.resolve(channelinfo);
-}
-
-function feedback(client, evt, suffix, lang) {
-  if (!nconf.get('FEEDBACK_CHANNEL_ID')) return Promise.resolve(T('feedback_setup', lang));
-  if (!suffix) return Promise.resolve(T('feedback_usage', lang));
-  client.Channels.find(channel => channel.id === nconf.get('FEEDBACK_CHANNEL_ID')).sendMessage(`**(${evt.message.author.username}) [${evt.message.author.id}]\n(${evt.message.guild.name}) [${evt.message.guild.id}]**\n${suffix.replace(/([@#*_~`])/g, '\\$1')}`);
-}
-
-function ping() {
-  const start = process.hrtime();
-  return Promise.resolve('Pong!').then(() => {
-    const diff = process.hrtime(start);
-    return `Pong!\n${(diff[0] * 1000) + (diff[1] / 1000000)}ms`;
-  });
 }
 
 function serverinfo(client, evt, suffix) {
@@ -207,44 +188,23 @@ ${uptimem} Minutes
 ${uptimes} Seconds`);
 }
 
-function version() {
-  return request('https://raw.githubusercontent.com/Gravebot/Gravebot/master/CHANGELOG.md')
-    .then(R.prop('body'))
-    .then(R.split(/<a name="*.*.*" \/>/g))
-    .then(R.nth(1))
-    .then(R.replace(/#### /g, ''))
-    .then(R.replace(/#/g, ''))
-    .then(R.slice(1, -1))
-    .then(R.trim);
-}
-
 export const help = {
-  avatar: {parameters: ['username'], category: 'info'},
-  channelinfo: {parameters: ['channelname'], category: 'info'},
-  feedback: {parameters: ['text'], category: 'info'},
-  ping: {category: 'info'},
-  serverinfo: {parameters: ['servername'], category: 'info'},
-  servers: {category: 'info'},
-  userinfo: {parameters: ['username'], category: 'info'},
-  uptime: {category: 'info'},
-  version: {category: 'info'}
+  avatar: {parameters: ['username']},
+  channelinfo: {parameters: ['channelname']},
+  serverinfo: {parameters: ['servername']},
+  servers: {},
+  userinfo: {parameters: ['username']},
+  uptime: {}
 };
 
 export default {
   avatar,
   channelinfo,
-  changelog: version,
-  'change-log': version,
-  feedback,
-  newfeatures: version,
-  'new-features': version,
-  ping,
   serverinfo,
   servers,
   statistics: servers,
   stats: servers,
   userinfo,
   uptime,
-  version,
   whois: userinfo
 };

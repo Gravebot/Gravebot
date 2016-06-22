@@ -32,6 +32,7 @@ const positions = {
   mid: 'Middle',
   middle: 'Middle',
   jungle: 'Jungle',
+  jungler: 'Jungle',
   jg: 'Jungle',
   bot: 'ADC',
   adc: 'ADC',

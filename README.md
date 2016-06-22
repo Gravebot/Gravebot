@@ -49,6 +49,10 @@ For self hosting, click [here](#localconfig).
 - `!emoji` *number* - Responds with an emoji copypasta, if no number is written, a random one
 - `!meme` *meme name "top text" "bottom text"* -  Creates a meme with the given meme name and text
 - `!quote` *number* - Responds with a quote, if no number is written, a random one
+- `!robohash` - Get robot and monster images
+- `!monster` - Get your personal monster
+- `!robot` - Get your personal robot
+- `!robothead` - Get your personal robot head
 - `!roll` *times sides* - Rolls the dice a number of times with a number of sides
 - `!translate` - Translate text in funny ways
 - `!leet` *sentence* - 1337ifies the sentence
@@ -56,8 +60,10 @@ For self hosting, click [here](#localconfig).
 - `!yoda` *sentence* - Yodaifies the sentence
 
 #### Useful:
+- `!define` *word* - Gives a definition for the word
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
 - `!join` - Shows a link that can be used to invite Gravebot to your server
+- `!synonyms` *word* - Shows synonyms for the word
 - `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.

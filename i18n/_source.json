@@ -107,6 +107,18 @@
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
     "done": true
   },
+  "define": {
+    "text": "Gives a definition for the word",
+    "done": false
+  },
+  "define_error": {
+    "text": "I couldn't find a definition for",
+    "done": false
+  },
+  "define_usage": {
+    "text": "Usage: **`!define`** `word`",
+    "done": false
+},
   "dota2": {
     "text": "DOTA 2",
     "done": true
@@ -319,6 +331,26 @@
     "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
     "done": true
   },
+  "robohash": {
+    "text": "Get robot and monster images",
+    "done": false
+  },
+  "robohash_header_text": {
+    "text": "Responds with an image according to your ID.\nYou can specify a suffix after a command to get a different picture. (e.g. `!robot Testie`)",
+    "done": false
+  },
+  "robohash_monster": {
+    "text": "Get your personal monster",
+    "done": false
+  },
+  "robohash_robot": {
+    "text": "Get your personal robot",
+    "done": false
+  },
+  "robohash_robothead": {
+    "text": "Get your personal robot head",
+    "done": false
+  },
   "roll": {
     "text": "Rolls the dice a number of times with a number of sides",
     "done": true
@@ -347,6 +379,14 @@
     "text": "You need to specify a summoner name.",
     "done": true
   },
+  "synonyms": {
+  "text": "Shows synonyms for the word",
+  "done": false
+},
+"synonyms_usage": {
+  "text": "Usage: **`!synonyms`** `word`",
+  "done": false
+},
   "translate": {
     "text": "Translate text in funny ways",
     "done": true
