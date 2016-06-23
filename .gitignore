@@ -36,3 +36,5 @@ docker-compose.yml
 
 # Dist
 dist/
+
+*.marko.js

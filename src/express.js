@@ -1,11 +1,20 @@
 import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import express from 'express';
+import glob from 'glob';
 import fs from 'fs';
+import { load as markoLoad } from 'marko';
 import nconf from 'nconf';
 import nib from 'nib';
+import R from 'ramda';
 import path from 'path';
 import stylus from 'stylus';
+
+
+// Marko template renders
+const marko = R.fromPairs(R.map(file_path => {
+  return [path.basename(file_path, '.marko'), markoLoad(file_path)];
+}, glob.sync(path.join(__dirname, '../web/views/*.marko'))));
 
 
 function checkIP(req, res, next) {
@@ -14,12 +23,9 @@ function checkIP(req, res, next) {
   res.status(401).send({error: '401'});
 }
 
+
 const app = express();
 app.use(bodyParser.json());
-
-// Setup views endpoints
-app.set('views', './web/views');
-app.set('view engine', 'jade');
 app.use(express.static('web'));
 
 app.get('/style/:file', checkIP, (req, res) => {
@@ -39,8 +45,8 @@ app.get('/style/:file', checkIP, (req, res) => {
 });
 
 // Render view for images
-app.post('/view', checkIP, (req, res) => {
-  res.render(req.body.view, req.body.data);
+app.post('/view/:view', checkIP, (req, res) => {
+  marko[req.params.view].render(req.body, res);
 });
 
 // Health check endpoint
