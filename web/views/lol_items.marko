@@ -1,0 +1,43 @@
+<script marko-init>
+  const R = require('ramda');
+  const positions = R.addIndex(R.map)((title, idx) => (
+    {idx, title}
+  ), ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth']);
+</script>
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/style/lol_items.css"/>
+</head>
+<body>
+  <div class="main">
+    <div class="banner">
+      <div class="champ">
+        <img src="/images/leagueoflegends/champs/${data.image}" />
+        <ul>
+          <li class="name">${data.champ_name}</li>
+          <li>${data.role}</li>
+        </ul>
+      </div>
+
+      <div class="logo">
+        <img src="/images/leagueoflegends/logo_small.png"/>
+      </div>
+    </div>
+
+    <div class="title">
+      <h2>ITEMS</h2>
+    </div>
+
+    <div class="items">
+      <div class="item" for(position in positions)>
+        <img src="/images/leagueoflegends/items/${data.items[position.idx]}.png">
+        <ul>
+          <li class="position">${position.title}</li>
+          <li class="name">${data.names[position.idx]}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

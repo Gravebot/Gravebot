@@ -1,0 +1,40 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/style/lol_counters.css"/>
+</head>
+<body>
+  <div class="main">
+    <div class="banner">
+      <div class="champ">
+        <img src="/images/leagueoflegends/champs/${data.image}" />
+        <ul>
+          <li class="name">${data.name}</li>
+          <li>${data.position}</li>
+        </ul>
+      </div>
+
+      <div class="logo">
+        <img src="/images/leagueoflegends/logo_small.png"/>
+      </div>
+    </div>
+
+    <div class="title">
+      <h2>COUNTERS</h2>
+    </div>
+
+    <div class="counters">
+      <div class="counter" for(counter in data.counters)>
+        <img src="/images/leagueoflegends/champs/${counter.image}.png" />
+        <div class="position">
+          <span>${counter.position}</span>
+        </div>
+        <ul>
+          <li class="name">${counter.name}</li>
+          <li>Winrate: ${counter.winRate}</li>
+          <li>Games: ${counter.games}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
