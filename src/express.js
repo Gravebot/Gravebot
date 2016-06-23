@@ -23,7 +23,7 @@ app.set('view engine', 'jade');
 app.use(express.static('web'));
 
 app.get('/style/:file', checkIP, (req, res) => {
-  let file_name = `./web/styl/${req.params.file}`;
+  const file_name = `./web/styl/${req.params.file}`;
   if (fs.existsSync(file_name)) {
     stylus(fs.readFileSync(file_name, 'utf8'))
       .set('filename', path.basename(file_name))

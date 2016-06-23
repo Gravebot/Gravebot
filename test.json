@@ -1,0 +1,1501 @@
+{
+  "name": "Zalik",
+  "games_won": "32",
+  "level": "20",
+  "averages": {
+    "eliminations": "10.89",
+    "damage": "4,025",
+    "deaths": "7.43",
+    "final_blows": "6.18",
+    "healing": "236",
+    "objective_kills": "4.09",
+    "objective_time": "00:23",
+    "solo_kills": "2.34"
+  },
+  "heroes": {
+    "time_played": [
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "4 hours",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "2 hours",
+        "meta": {
+          "progress_bar_percent": "0.5",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "1 hour",
+        "meta": {
+          "progress_bar_percent": "0.25",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "42 minutes",
+        "meta": {
+          "progress_bar_percent": "0.175",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "38 minutes",
+        "meta": {
+          "progress_bar_percent": "0.15833333333333333",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "35 minutes",
+        "meta": {
+          "progress_bar_percent": "0.14583333333333334",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "25 minutes",
+        "meta": {
+          "progress_bar_percent": "0.10416666666666667",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "16 minutes",
+        "meta": {
+          "progress_bar_percent": "0.06666666666666667",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "11 minutes",
+        "meta": {
+          "progress_bar_percent": "0.04583333333333333",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "1 minute",
+        "meta": {
+          "progress_bar_percent": "0.004166666666666667",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "1 minute",
+        "meta": {
+          "progress_bar_percent": "0.004166666666666667",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "11 seconds",
+        "meta": {
+          "progress_bar_percent": "0.0007638888888888889",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "--",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ],
+    "games_won": [
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "17",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "5",
+        "meta": {
+          "progress_bar_percent": "0.29411764705882354",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "3",
+        "meta": {
+          "progress_bar_percent": "0.17647058823529413",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "3",
+        "meta": {
+          "progress_bar_percent": "0.17647058823529413",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "2",
+        "meta": {
+          "progress_bar_percent": "0.11764705882352941",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "1",
+        "meta": {
+          "progress_bar_percent": "0.058823529411764705",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "1",
+        "meta": {
+          "progress_bar_percent": "0.058823529411764705",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ],
+    "win_precent": [
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "78%",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "48%",
+        "meta": {
+          "progress_bar_percent": "0.6153846153846153",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "46%",
+        "meta": {
+          "progress_bar_percent": "0.5897435897435898",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "38%",
+        "meta": {
+          "progress_bar_percent": "0.48717948717948717",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "32%",
+        "meta": {
+          "progress_bar_percent": "0.41025641025641024",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "30%",
+        "meta": {
+          "progress_bar_percent": "0.3846153846153846",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "30%",
+        "meta": {
+          "progress_bar_percent": "0.3846153846153846",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "11%",
+        "meta": {
+          "progress_bar_percent": "0.14102564102564102",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "0%",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ],
+    "eliminations_per_life": [
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "5.2",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "1.84",
+        "meta": {
+          "progress_bar_percent": "0.35384615384615387",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "1.67",
+        "meta": {
+          "progress_bar_percent": "0.3211538461538461",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "1.58",
+        "meta": {
+          "progress_bar_percent": "0.3038461538461539",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "1.55",
+        "meta": {
+          "progress_bar_percent": "0.2980769230769231",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "1.36",
+        "meta": {
+          "progress_bar_percent": "0.26153846153846155",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "1.1",
+        "meta": {
+          "progress_bar_percent": "0.21153846153846154",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "1.08",
+        "meta": {
+          "progress_bar_percent": "0.2076923076923077",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "0.5",
+        "meta": {
+          "progress_bar_percent": "0.09615384615384615",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "0.15",
+        "meta": {
+          "progress_bar_percent": "0.028846153846153844",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ],
+    "kill_streak": [
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "19",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "14",
+        "meta": {
+          "progress_bar_percent": "0.7368421052631579",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "12",
+        "meta": {
+          "progress_bar_percent": "0.631578947368421",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "10",
+        "meta": {
+          "progress_bar_percent": "0.5263157894736842",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "8",
+        "meta": {
+          "progress_bar_percent": "0.42105263157894735",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "7",
+        "meta": {
+          "progress_bar_percent": "0.3684210526315789",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "7",
+        "meta": {
+          "progress_bar_percent": "0.3684210526315789",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "4",
+        "meta": {
+          "progress_bar_percent": "0.21052631578947367",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "1",
+        "meta": {
+          "progress_bar_percent": "0.05263157894736842",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "1",
+        "meta": {
+          "progress_bar_percent": "0.05263157894736842",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ],
+    "multikill": [
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "3",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "3",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "3",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ],
+    "objective_kills": [
+      {
+        "name": "Genji",
+        "image_name": "genji",
+        "value": "9.68",
+        "meta": {
+          "progress_bar_percent": "1",
+          "background-color": "hsl(89, 99%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 99%, 58%)"
+        }
+      },
+      {
+        "name": "Torbjörn",
+        "image_name": "torbjrn",
+        "value": "6.87",
+        "meta": {
+          "progress_bar_percent": "0.7097107438016529",
+          "background-color": "hsl(23, 100%, 50%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(23, 100%, 58%)"
+        }
+      },
+      {
+        "name": "Tracer",
+        "image_name": "tracer",
+        "value": "5.65",
+        "meta": {
+          "progress_bar_percent": "0.5836776859504132",
+          "background-color": "hsl(32, 94%, 54%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(32, 94%, 62%)"
+        }
+      },
+      {
+        "name": "Pharah",
+        "image_name": "pharah",
+        "value": "4.71",
+        "meta": {
+          "progress_bar_percent": "0.4865702479338843",
+          "background-color": "hsl(214, 76%, 44%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(214, 76%, 52%)"
+        }
+      },
+      {
+        "name": "Soldier: 76",
+        "image_name": "soldier76",
+        "value": "4.45",
+        "meta": {
+          "progress_bar_percent": "0.45971074380165294",
+          "background-color": "hsl(225, 39%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 39%, 61%)"
+        }
+      },
+      {
+        "name": "Junkrat",
+        "image_name": "junkrat",
+        "value": "4.09",
+        "meta": {
+          "progress_bar_percent": "0.4225206611570248",
+          "background-color": "hsl(41, 92%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(41, 92%, 51%)"
+        }
+      },
+      {
+        "name": "D.Va",
+        "image_name": "dva",
+        "value": "2.53",
+        "meta": {
+          "progress_bar_percent": "0.26136363636363635",
+          "background-color": "hsl(322, 100%, 75%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(322, 100%, 83%)"
+        }
+      },
+      {
+        "name": "Reaper",
+        "image_name": "reaper",
+        "value": "2.15",
+        "meta": {
+          "progress_bar_percent": "0.22210743801652894",
+          "background-color": "hsl(60, 3%, 15%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(60, 3%, 23%)"
+        }
+      },
+      {
+        "name": "Widowmaker",
+        "image_name": "widowmaker",
+        "value": "1.27",
+        "meta": {
+          "progress_bar_percent": "0.13119834710743802",
+          "background-color": "hsl(240, 28%, 56%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(240, 28%, 64%)"
+        }
+      },
+      {
+        "name": "Mercy",
+        "image_name": "mercy",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(48, 99%, 71%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(48, 99%, 79%)"
+        }
+      },
+      {
+        "name": "Hanzo",
+        "image_name": "hanzo",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(51, 34%, 43%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(51, 34%, 51%)"
+        }
+      },
+      {
+        "name": "Reinhardt",
+        "image_name": "reinhardt",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(16, 14%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(16, 14%, 69%)"
+        }
+      },
+      {
+        "name": "Winston",
+        "image_name": "winston",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(225, 9%, 33%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(225, 9%, 41%)"
+        }
+      },
+      {
+        "name": "Bastion",
+        "image_name": "bastion",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(94, 33%, 45%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(94, 33%, 53%)"
+        }
+      },
+      {
+        "name": "Symmetra",
+        "image_name": "symmetra",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(187, 100%, 68%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(187, 100%, 76%)"
+        }
+      },
+      {
+        "name": "Zenyatta",
+        "image_name": "zenyatta",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(47, 100%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(47, 100%, 47%)"
+        }
+      },
+      {
+        "name": "Roadhog",
+        "image_name": "roadhog",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(24, 37%, 61%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(24, 37%, 69%)"
+        }
+      },
+      {
+        "name": "McCree",
+        "image_name": "mccree",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(0, 42%, 39%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(0, 42%, 47%)"
+        }
+      },
+      {
+        "name": "Zarya",
+        "image_name": "zarya",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(335, 86%, 70%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(335, 86%, 78%)"
+        }
+      },
+      {
+        "name": "Lúcio",
+        "image_name": "lcio",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(89, 84%, 53%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(89, 84%, 61%)"
+        }
+      },
+      {
+        "name": "Mei",
+        "image_name": "mei",
+        "value": "0",
+        "meta": {
+          "progress_bar_percent": "0",
+          "background-color": "hsl(197, 80%, 78%)",
+          "box-shadow": "inset 0 0.2rem 0 0 hsl(197, 80%, 86%)"
+        }
+      }
+    ]
+  }
+}
