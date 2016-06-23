@@ -37,7 +37,7 @@ app.get('/style/:file', (req, res) => {
   const css_path = path.join(__dirname, `../web/css/${req.params.file}`);
   if (nconf.get('NODE_ENV') !== 'development') {
     if (!fs.existsSync(css_path)) return res.redirect('/404');
-    res.sendFile(css_path);
+    return res.sendFile(css_path);
   }
 
   const styl_path = css_path.replace(/css/g, 'styl');
