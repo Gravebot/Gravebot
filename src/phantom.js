@@ -32,7 +32,7 @@ export default function addQueue(view, data) {
       .viewport(1920, 1080);
 
     return horseman
-      .post(`http://127.0.0.1:${nconf.get('PORT')}/view`, JSON.stringify({view, data}))
+      .post(`http://127.0.0.1:${nconf.get('PORT')}/view/${view}`, JSON.stringify(data))
       .then(() => Promise.join(horseman.width('.main'), horseman.height('.main')))
       .spread((width, height) => {
         const area = {top: 0, left: 0, width, height};
