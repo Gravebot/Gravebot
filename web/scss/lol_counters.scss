@@ -1,0 +1,166 @@
+// Fonts
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/oxygen.woff') format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  font-style: bold;
+  font-weight: 700;
+  src: url('/fonts/oxygen-bold.woff') format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+// Defaults
+body {
+  background-color: #008000;
+  font-family: 'Oxygen', sans-serif;
+}
+
+$text-color: #fff;
+$max-width: 750px;
+
+.main {
+  background-color: #36393e;
+  left: 0;
+  max-height: 400px;
+  max-width: $max-width;
+  position: absolute;
+  top: 0;
+}
+
+.banner {
+  align-items: center;
+  color: $text-color;
+  display: flex;
+  justify-content: space-between;
+}
+
+.champ {
+  align-items: center;
+  color: $text-color;
+  display: flex;
+  padding-left: 90px;
+  padding-top: 2px;
+
+  .name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    font-size: 14px;
+    line-height: 18px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  img {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.logo {
+  padding-right: 60px;
+  padding-top: 2px;
+}
+
+.title {
+  color: $text-color;
+  font-weight: bold;
+  line-height: .5;
+  text-align: center;
+
+  h2 {
+    display: inline-block;
+    position: relative;
+  }
+
+  @mixin lines {
+    border-top: 1px solid #fff;
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 200px;
+  }
+
+  h2:before {
+    @include lines
+    margin-right: 15px;
+    right: 100%;
+  }
+
+  h2:after {
+    @include lines
+    left: 100%;
+    margin-left: 15px;
+  }
+}
+
+.counters {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column wrap;
+  flex-wrap: wrap;
+  padding-left: 25px;
+  position: relative;
+}
+
+.counter {
+  align-items: center;
+  background-color: #53575e;
+  border: 1px solid #71757d;
+  color: $text-color;
+  display: flex;
+
+  margin: 3px;
+  position: relative;
+  width: ($max-width / 4.5);
+
+  .position {
+    font-size: 10px;
+    left: 2px;
+    position: absolute;
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    top: -4px; // This is different depednding on if it's OSX or Linux.
+  }
+
+  .name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    font-size: 12px;
+    line-height: 18px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  img {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 60px;
+    width: 60px;
+  }
+}
