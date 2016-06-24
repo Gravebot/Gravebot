@@ -37,6 +37,7 @@ export default {
   elf: 401687,
   everywhere: 347390,
   explosion: 313162,
+  fluttershy: 31591378,
   frustrated: 320771,
   fry: 61520,
   fry2: 176908,
