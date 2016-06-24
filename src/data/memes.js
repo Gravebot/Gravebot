@@ -146,4 +146,5 @@ export default {
   yodawg: 101716,
   yuno: 61527,
   zoidberg: 35747
+  fluttershy: 31591378
 };
