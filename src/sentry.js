@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import nconf from 'nconf';
 import raven from 'raven';
 
@@ -10,7 +11,7 @@ let client = {
 };
 
 if (nconf.get('NODE_ENV') === 'production' && nconf.get('SENTRY_DSN')) {
-  console.log('Sentry Enabled');
+  console.log(chalk.green('Sentry Enabled'));
   client = new raven.Client(nconf.get('SENTRY_DSN'));
 
   client.on('error', err => console.log(`Error: ${err.message}`));
