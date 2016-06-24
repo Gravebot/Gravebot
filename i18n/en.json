@@ -80,6 +80,7 @@
   "no_item_sets": "I don't have item sets for",
   "no_skills": "I don't have skill orders for",
   "ow": "Overwatch",
+  "ow_averages": "Player average stats",
   "ow_eliminations": "Heroes with the most eliminations per life",
   "ow_games_won": "Heroes with the most wins",
   "ow_header_text": "Information and player stats for Overwatch",

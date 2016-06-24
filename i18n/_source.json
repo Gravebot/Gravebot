@@ -291,6 +291,10 @@
     "text": "Overwatch",
     "done": true
   },
+  "ow_averages": {
+    "text": "Player average stats",
+    "done": true
+  },
   "ow_eliminations": {
     "text": "Heroes with the most eliminations per life",
     "done": true

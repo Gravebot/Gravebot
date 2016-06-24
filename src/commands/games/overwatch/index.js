@@ -29,6 +29,10 @@ export const help = {
     header_text: 'ow_header_text',
     subcommands: [
       {
+        name: 'averages',
+        parameters: ['battletag']
+      },
+      {
         name: 'time played',
         parameters: ['battletag']
       },
