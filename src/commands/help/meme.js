@@ -144,7 +144,7 @@ export default {
 **\`wth\`** - Kevin Hart WTH :question:
 **\`yeah\`** - That would be great
 **\`yoda\`** - Yoda is I
-**\`yo dawg\`** - Yo Dawg
+**\`yodawg\`** - Yo Dawg
 **\`yuno\`** - Y U No
 **\`zoidberg\`** - You should feel bad
 **\`404\`** - :warning: Not Found :warning:
