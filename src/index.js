@@ -10,6 +10,7 @@ import './express';
 import './phantom';
 
 import commands from './commands';
+import datadog from './datadog';
 import sentry from './sentry';
 
 import { getMessageTTL, setMessageTTL, getUserLang } from './redis';
@@ -24,6 +25,7 @@ let initialized = false;
 
 function callCmd(cmd, name, client, evt, suffix) {
   console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
+  datadog(`cmd.${name}`, 1);
 
   function processEntry(entry) {
     // If string or number, send as a message
@@ -37,6 +39,7 @@ function callCmd(cmd, name, client, evt, suffix) {
   }
 
   const user_id = evt.message.author.id;
+  const start_time = new Date().getTime();
   getMessageTTL(user_id).then(exists => {
     // If a user is trying to spam messages above the set TTL time, then skip.
     if (exists) return;
@@ -48,6 +51,8 @@ function callCmd(cmd, name, client, evt, suffix) {
       // All command returns must be a bluebird promise.
       if (cmd_return instanceof Promise) {
         return cmd_return.then(res => {
+          const execution_time = new Date().getTime() - start_time;
+          datadog(`cmd_execution_time.${name}`, execution_time);
           // If null, don't do anything.
           if (!res) return;
           // If it's an array, process each entry.

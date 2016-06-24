@@ -6,6 +6,8 @@ import nconf from 'nconf';
 import { path as phantom_path } from 'phantomjs-prebuilt';
 import Queue from 'promise-queue';
 import R from 'ramda';
+
+import datadog from './datadog';
 import sentry from './sentry';
 
 
@@ -72,8 +74,9 @@ export default function addQueue(view, data) {
           .cropBase64(area, 'PNG')
           .then(b64 => {
             const buf = new Buffer(b64, 'base64');
-            const end = new Date().getTime();
-            console.log(`${chalk.yellow('Phantom')} execution time: ${end - start}ms`);
+            const execution_time = new Date().getTime() - start;
+            datadog(`phantomjs.${view}.execution_time`, execution_time);
+            console.log(`${chalk.yellow('Phantom')} execution time: ${execution_time}ms`);
             return buf;
           });
       })
