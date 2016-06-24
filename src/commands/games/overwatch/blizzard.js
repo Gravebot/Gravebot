@@ -33,9 +33,10 @@ function _makeRequest(player_name, region) {
 
   let region_promise = Promise.resolve(region);
   if (!region) region_promise = _getRegion(battletag);
+  const notfounderror = new Error(`Couldn't find battletag ${player_name}. Remember that battletags are case sensitive.`);
 
   return region_promise.then(region => {
-    if (!region) throw new Error(`Couldn't find battletag ${player_name}. Remember that battletags are case sensitive.`);
+    if (!region) throw notfounderror;
     return request({
       url: `https://playoverwatch.com/en-gb/career/pc/${region}/${battletag}`,
       method: 'GET',
@@ -44,13 +45,15 @@ function _makeRequest(player_name, region) {
       }
     });
   })
-  .then(R.prop('body'))
-  .then(cheerio.load)
-  .then($ => [$, {
-    name: $('.header-masthead').text(),
-    games_won: $('.masthead-detail > span').text().replace(/[^0-9]/g, ''),
-    level: $('.player-level > div').text()
-  }]);
+  .then(res => {
+    if (res.statusCode >= 400) throw notfounderror;
+    const $ = cheerio.load(res.body);
+    return [$, {
+      name: $('.header-masthead').text(),
+      games_won: $('.masthead-detail > span').text().replace(/[^0-9]/g, ''),
+      level: $('.player-level > div').text()
+    }];
+  });
 }
 
 function _processHeroStats($, heros_el) {
