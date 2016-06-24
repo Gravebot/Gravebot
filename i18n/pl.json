@@ -83,7 +83,7 @@
   "ow_averages": "Gracz średnie statystyki",
   "ow_eliminations": "Bohaterowie z największą eliminacje na życie",
   "ow_games_won": "Bohaterowie z największą ilością zwycięstw",
-  "ow_header_text": "Informacyjne i odtwarzacz statystyk Overwatch",
+  "ow_header_text": "Informacyjne i odtwarzacz statystyk Overwatch\nAkceptowane są regiony #{ow_regions} ,\nOkreślanie obszaru jest opcjonalna, ale wniosek zajmie sekundę lub dwie dłużej.",
   "ow_kill_streak": "Bohaterowie z najwyższym zabójstw",
   "ow_multikill": "Bohaterowie z największą multikills",
   "ow_objective_kills": "Bohaterowie z najbardziej obiektywnych zabija",

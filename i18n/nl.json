@@ -83,7 +83,7 @@
   "ow_averages": "Player gemiddelde stats",
   "ow_eliminations": "Helden met de meeste eliminaties per leven",
   "ow_games_won": "Helden met de meeste overwinningen",
-  "ow_header_text": "Informatie en de speler statistieken voor Overwatch",
+  "ow_header_text": "Informatie en de speler statistieken voor Overwatch\nGeaccepteerd regio's #{ow_regions} .\nSpecificeren van de regio is optioneel, maar het verzoek zal een seconde of twee langer duren.",
   "ow_kill_streak": "Heroes met de hoogste kill streak",
   "ow_multikill": "Helden met de meeste multikills",
   "ow_objective_kills": "Helden met de meest objectieve kills",

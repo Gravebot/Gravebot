@@ -83,7 +83,7 @@
   "ow_averages": "Statistiche media Player",
   "ow_eliminations": "Eroi con il maggior numero eliminazioni per la vita",
   "ow_games_won": "Eroi con il maggior numero vittorie",
-  "ow_header_text": "Informazioni e statistiche per Overwatch",
+  "ow_header_text": "Informazioni e statistiche per Overwatch\nle regioni sono accettate #{ow_regions} .\nSpecificando regione è facoltativo, ma la richiesta avrà un secondo o due più.",
   "ow_kill_streak": "Eroi con il più alto uccisioni consecutive",
   "ow_multikill": "Eroi con il maggior numero multikills",
   "ow_objective_kills": "Eroi con le uccisioni più oggettivi",

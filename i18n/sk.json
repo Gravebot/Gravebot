@@ -83,7 +83,7 @@
   "ow_averages": "Hráč priemerné štatistiky",
   "ow_eliminations": "Hrdinovia s najväčším počtom vyradených za život",
   "ow_games_won": "Hrdinovia s najväčším počtom víťazstiev",
-  "ow_header_text": "Informačné a štatistiky pre Overwatch",
+  "ow_header_text": "Informačné a štatistiky pre Overwatch\nprijímané regióny #{ow_regions} ,\nUrčenie oblastí je nepovinné, ale táto žiadosť bude trvať jednu alebo dve sekundy dlhšie.",
   "ow_kill_streak": "Hrdinovia s najvyšším zabitie",
   "ow_multikill": "Hrdinovia s najviac multikills",
   "ow_objective_kills": "Hrdinovia sa najviac objektívnych zostrelov",

@@ -83,7 +83,7 @@
   "ow_averages": "Igrača prosječne statistike",
   "ow_eliminations": "Heroji s najviše eliminacije po život",
   "ow_games_won": "Heroji s najviše pobjeda",
-  "ow_header_text": "statistika Informacije i igrač za Overwatch",
+  "ow_header_text": "statistika Informacije i igrač za Overwatch\nPrihvaćeni su regije #{ow_regions} ,\nNavođenje regiju nije obavezno, ali zahtjev će uzeti ili dva više sekundi.",
   "ow_kill_streak": "Heroji s najvišim ubiti žičica",
   "ow_multikill": "Heroji s najviše multikills",
   "ow_objective_kills": "Heroji s najviše objektivnih ubija",

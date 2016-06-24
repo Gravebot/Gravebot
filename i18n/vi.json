@@ -83,7 +83,7 @@
   "ow_averages": "số liệu thống kê trung bình người chơi",
   "ow_eliminations": "Heroes với hầu hết các eliminations mỗi cuộc sống",
   "ow_games_won": "Heroes với hầu hết các chiến thắng",
-  "ow_header_text": "Thông tin và số cầu thủ cho Overwatch",
+  "ow_header_text": "Thông tin và số cầu thủ cho Overwatch\nkhu vực được chấp nhận là #{ow_regions} .\nXác định khu vực là tùy chọn nhưng yêu cầu sẽ mất một hoặc hai còn thứ hai.",
   "ow_kill_streak": "Heroes với các vệt kill cao nhất",
   "ow_multikill": "Heroes với hầu hết các multikills",
   "ow_objective_kills": "Heroes với kills quan nhất",

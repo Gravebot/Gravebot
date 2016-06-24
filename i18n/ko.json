@@ -83,7 +83,7 @@
   "ow_averages": "선수 평균 통계",
   "ow_eliminations": "인생 당 대부분의 검진과 영웅",
   "ow_games_won": "가장 승리에 영웅",
-  "ow_header_text": "오버 워치에 대한 정보 및 플레이어 통계",
+  "ow_header_text": "오버 워치에 대한 정보 및 플레이어 통계\n허용 된 지역은 #{ow_regions} .\n영역을 지정하는 것은 선택 사항이지만 요청이 2 초 이상 소요됩니다.",
   "ow_kill_streak": "가장 높은 명을 연속으로 영웅",
   "ow_multikill": "가장 multikills와 영웅",
   "ow_objective_kills": "가장 객관적인 명으로 영웅",

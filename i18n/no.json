@@ -83,7 +83,7 @@
   "ow_averages": "Spiller gjennomsnittlig statistikk",
   "ow_eliminations": "Heroes med flest elimineringer pr livet",
   "ow_games_won": "Heroes med flest seire",
-  "ow_header_text": "Informasjon og spillerstatistikk for Watch",
+  "ow_header_text": "Informasjon og spillerstatistikk for Watch\nGodkjente regionene er #{ow_regions} .\nAngi region er valgfritt, men forespørselen vil ta et sekund eller to lenger.",
   "ow_kill_streak": "Heroes med høyest drap",
   "ow_multikill": "Heroes med flest multikills",
   "ow_objective_kills": "Heroes med de mest objektive dreper",

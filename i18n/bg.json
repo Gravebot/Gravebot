@@ -83,7 +83,7 @@
   "ow_averages": "Player средните статистики",
   "ow_eliminations": "Heroes с най-много елиминации на живот",
   "ow_games_won": "Heroes с най-много победи",
-  "ow_header_text": "Информационни и играч статистика за Overwatch",
+  "ow_header_text": "Информационни и играч статистика за Overwatch\nПриемани региони са #{ow_regions} ,\nУточняване област е задължително, но искането ще отнеме една-две секунди по-дълго.",
   "ow_kill_streak": "Heroes с най-висок убие серия",
   "ow_multikill": "Heroes с най-много multikills",
   "ow_objective_kills": "Heroes с най-обективните убива",

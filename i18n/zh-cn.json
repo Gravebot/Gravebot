@@ -83,7 +83,7 @@
   "ow_averages": "球员平均统计",
   "ow_eliminations": "每个人生最冲销英雄",
   "ow_games_won": "最胜的英雄",
-  "ow_header_text": "信息和播放器统计信息监工",
+  "ow_header_text": "信息和播放器统计信息监工\n接受区域是#{ow_regions} 。 \n指定区域是可选的，但该请求将采取两个较长的第二。",
   "ow_kill_streak": "最高连续杀敌英雄",
   "ow_multikill": "用最multikills英雄",
   "ow_objective_kills": "用最客观的杀敌英雄",

@@ -83,7 +83,7 @@
   "ow_averages": "Spieler Durchschnitt Statistik",
   "ow_eliminations": "Helden mit den meisten Eliminierungen pro Leben",
   "ow_games_won": "Helden mit den meisten Siegen",
-  "ow_header_text": "Information und Spielerstatistik für Wacht",
+  "ow_header_text": "Information und Spielerstatistik für Wacht\nAkzeptiert Regionen #{ow_regions} .\nRegion ist optional, aber die Anforderung ein oder zwei Sekunden länger dauern.",
   "ow_kill_streak": "Helden mit der höchsten Kill-Serie",
   "ow_multikill": "Helden mit den multikills",
   "ow_objective_kills": "Helden mit den meisten Ziel kills",

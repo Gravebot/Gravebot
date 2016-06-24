@@ -304,7 +304,7 @@
     "done": true
   },
   "ow_header_text": {
-    "text": "Information and player stats for Overwatch",
+    "text": "Information and player stats for Overwatch\nAccepted regions are #{ow_regions}.\nSpecifying region is optional but the request will take a second or two longer.",
     "done": true
   },
   "ow_kill_streak": {

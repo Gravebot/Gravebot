@@ -83,7 +83,7 @@
   "ow_averages": "Joueur stats moyenne",
   "ow_eliminations": "Heroes avec la plupart des éliminations par la vie",
   "ow_games_won": "Heroes avec le plus de victoires",
-  "ow_header_text": "Information et joueur de stats pour Overwatch",
+  "ow_header_text": "Information et joueur de stats pour Overwatch\nrégions sont acceptées #{ow_regions} .\nrégion Spécification est facultative, mais la demande aura une ou deux secondes plus.",
   "ow_kill_streak": "Heroes avec le plus haut kill streak",
   "ow_multikill": "Heroes avec le plus multikills",
   "ow_objective_kills": "Heroes avec les tue plus objectifs",

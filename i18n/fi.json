@@ -83,7 +83,7 @@
   "ow_averages": "Player keskimäärin tilastot",
   "ow_eliminations": "Heroes kaikkein eliminoinnit kohti elämää",
   "ow_games_won": "Heroes kanssa eniten voittoja",
-  "ow_header_text": "Tiedotus ja pelaaja tilastot Overwatch",
+  "ow_header_text": "Tiedotus ja pelaaja tilastot Overwatch\nHyväksytyt alueet ovat #{ow_regions} .\nMäärittäminen alue on vapaaehtoista, mutta pyyntö kestää pari sekuntia kauemmin.",
   "ow_kill_streak": "Heroes korkein tapon putkesta",
   "ow_multikill": "Sankarit kaikkein multikills",
   "ow_objective_kills": "Sankarit objektiivisimpia tappaa",

@@ -8,12 +8,7 @@ import phantom from '../../../phantom';
 const request = Promise.promisify(require('request'));
 
 
-function _makeRequest(player_name) {
-  const battletag = player_name.replace(/#/g, '-');
-  if (R.last(battletag.split('-')).replace(/[0-9]/g, '').length !== 0) {
-    return Promise.reject(new Error(`**${player_name}** isn't a valid Battletag. It requires your username and number that can be found in your blizzard client. E.g. **PlayerName#1234**`));
-  }
-
+function _getRegion(battletag) {
   return Promise.filter(['eu', 'us', 'cn', 'kr'], region => {
     return request({
       url: `https://playoverwatch.com/en-gb/career/pc/${region}/${battletag}`,
@@ -27,8 +22,19 @@ function _makeRequest(player_name) {
       return true;
     });
   })
-  .then(R.head)
-  .then(region => {
+  .then(R.head);
+}
+
+function _makeRequest(player_name, region) {
+  const battletag = player_name.replace(/#/g, '-');
+  if (R.last(battletag.split('-')).replace(/[0-9]/g, '').length !== 0) {
+    return Promise.reject(new Error(`**${player_name}** isn't a valid Battletag. It requires your username and number that can be found in your blizzard client. E.g. **PlayerName#1234**`));
+  }
+
+  let region_promise = Promise.resolve(region);
+  if (!region) region_promise = _getRegion(battletag);
+
+  return region_promise.then(region => {
     if (!region) throw new Error(`Couldn't find battletag ${player_name}. Remember that battletags are case sensitive.`);
     return request({
       url: `https://playoverwatch.com/en-gb/career/pc/${region}/${battletag}`,
@@ -62,8 +68,8 @@ function _processHeroStats($, heros_el) {
   }).get();
 }
 
-export function averages(player_name) {
-  return _makeRequest(player_name)
+export function averages(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_playerstats', R.merge(data, {
       averages: {
         eliminations: {
@@ -103,8 +109,8 @@ export function averages(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_averages.png'}));
 }
 
-export function timePlayed(player_name) {
-  return _makeRequest(player_name)
+export function timePlayed(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Time Played',
       heroes: _processHeroStats($, $('.progress-category').eq(0).children())
@@ -112,8 +118,8 @@ export function timePlayed(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_timeplayed.png'}));
 }
 
-export function gamesWon(player_name) {
-  return _makeRequest(player_name)
+export function gamesWon(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Games Won',
       heroes: _processHeroStats($, $('.progress-category').eq(1).children())
@@ -121,8 +127,8 @@ export function gamesWon(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_gameswon.png'}));
 }
 
-export function winPercent(player_name) {
-  return _makeRequest(player_name)
+export function winPercent(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Win Percent',
       heroes: _processHeroStats($, $('.progress-category').eq(2).children())
@@ -130,8 +136,8 @@ export function winPercent(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_winpercent.png'}));
 }
 
-export function eliminations(player_name) {
-  return _makeRequest(player_name)
+export function eliminations(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Eliminations Per Life',
       heroes: _processHeroStats($, $('.progress-category').eq(3).children())
@@ -139,8 +145,8 @@ export function eliminations(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_eliminations.png'}));
 }
 
-export function killStreak(player_name) {
-  return _makeRequest(player_name)
+export function killStreak(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Kill Streak',
       heroes: _processHeroStats($, $('.progress-category').eq(4).children())
@@ -148,8 +154,8 @@ export function killStreak(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_killstreak.png'}));
 }
 
-export function multikill(player_name) {
-  return _makeRequest(player_name)
+export function multikill(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Multikill',
       heroes: _processHeroStats($, $('.progress-category').eq(5).children())
@@ -157,8 +163,8 @@ export function multikill(player_name) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_multikill.png'}));
 }
 
-export function objectiveKills(player_name) {
-  return _makeRequest(player_name)
+export function objectiveKills(player_name, region) {
+  return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Objective Kills',
       heroes: _processHeroStats($, $('.progress-category').eq(5).children())

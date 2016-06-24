@@ -83,7 +83,7 @@
   "ow_averages": "Rata-rata pemain statistik",
   "ow_eliminations": "Pahlawan dengan paling eliminasi per hidup",
   "ow_games_won": "Pahlawan dengan menang paling",
-  "ow_header_text": "Informasi dan statistik pemain untuk Overwatch",
+  "ow_header_text": "Informasi dan statistik pemain untuk Overwatch\ndaerah yang diterima adalah #{ow_regions} .\nMenentukan wilayah adalah opsional, tetapi permintaan akan mengambil satu atau dua lagi kedua.",
   "ow_kill_streak": "Pahlawan dengan membunuh beruntun tertinggi",
   "ow_multikill": "Pahlawan dengan paling multikills",
   "ow_objective_kills": "Pahlawan dengan membunuh paling obyektif",

@@ -83,7 +83,7 @@
   "ow_averages": "Hráč průměrné statistiky",
   "ow_eliminations": "Hrdinové s největším počtem vyřazených za život",
   "ow_games_won": "Hrdinové s největším počtem vítězství",
-  "ow_header_text": "Informační a statistiky pro Overwatch",
+  "ow_header_text": "Informační a statistiky pro Overwatch\nPřijímané regiony #{ow_regions} ,\nUrčení oblastí je nepovinné, ale tato žádost bude trvat jednu nebo dvě vteřiny déle.",
   "ow_kill_streak": "Hrdinové s nejvyšším zabití",
   "ow_multikill": "Hrdinové s nejvíce multikills",
   "ow_objective_kills": "Hrdinové se nejvíce objektivních sestřelů",

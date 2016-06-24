@@ -83,7 +83,7 @@
   "ow_averages": "Statistici ale jucătorilor medii",
   "ow_eliminations": "Eroii cu cele mai multe eliminări pe viață",
   "ow_games_won": "Eroii cu cele mai multe victorii",
-  "ow_header_text": "Statistici de informare și de jucător pentru Overwatch",
+  "ow_header_text": "Statistici de informare și de jucător pentru Overwatch\nregiuni acceptate sunt #{ow_regions} .\nSpecificarea regiunii este opțională, dar cererea va dura o secundă sau două mai mult.",
   "ow_kill_streak": "Eroi cu cel mai mare dungă ucide",
   "ow_multikill": "Eroii cu cele mai multe multikills",
   "ow_objective_kills": "Eroii cu cel care ucide cele mai obiective",

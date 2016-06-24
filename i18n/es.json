@@ -83,7 +83,7 @@
   "ow_averages": "Estadísticas de jugadores promedio",
   "ow_eliminations": "Héroes con el mayor número de eliminaciones por la vida",
   "ow_games_won": "Héroes con más victorias",
-  "ow_header_text": "Estadísticas de la información y jugador para Overwatch",
+  "ow_header_text": "Estadísticas de la información y jugador para Overwatch\nregiones son aceptadas #{ow_regions} .\nEspecificación de región es opcional, pero la solicitud tomará un segundo o dos más.",
   "ow_kill_streak": "Héroes con mayor racha de matar",
   "ow_multikill": "Héroes con la mayor cantidad multikills",
   "ow_objective_kills": "Héroes con los enemigos más objetivos",

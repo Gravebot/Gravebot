@@ -83,7 +83,7 @@
   "ow_averages": "プレイヤーの平均統計",
   "ow_eliminations": "人生あたり最も消去とヒーロー",
   "ow_games_won": "最も勝ヒーロー",
-  "ow_header_text": "見張るための情報や選手の統計",
+  "ow_header_text": "見張るための情報や選手の統計\n受け入れられた領域であります#{ow_regions} 。 \n地域の指定はオプションですが、要求は、1秒か2秒より長くかかります。",
   "ow_kill_streak": "最高キルストリークを持つ英雄",
   "ow_multikill": "最もmultikillsとヒーロー",
   "ow_objective_kills": "最も客観キルと英雄",

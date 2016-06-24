@@ -83,7 +83,7 @@
   "ow_averages": "Oyuncu ortalama istatistikleri",
   "ow_eliminations": "yaşam için en elemeler ile kahramanları",
   "ow_games_won": "en çok kazanan kahramanları",
-  "ow_header_text": "Overwatch Bilgi ve oyuncu istatistikleri",
+  "ow_header_text": "Overwatch Bilgi ve oyuncu istatistikleri\nKabul bölgeleridir #{ow_regions} .\nBölgeyi belirtilmesi isteğe bağlıdır, ancak isteği ikinci bir ya da iki uzun sürer.",
   "ow_kill_streak": "En yüksek öldürmek çizgi ile Kahramanlar",
   "ow_multikill": "En multikills ile kahramanları",
   "ow_objective_kills": "en objektif öldüren Kahramanlar",

@@ -83,7 +83,7 @@
   "ow_averages": "Spelar genomsnittliga Statistik",
   "ow_eliminations": "Heroes med flest elimineringar per liv",
   "ow_games_won": "Heroes med flest segrar",
-  "ow_header_text": "Informations- och spelarstatistik för Overwatch",
+  "ow_header_text": "Informations- och spelarstatistik för Overwatch\nGodkända regioner är #{ow_regions} .\nSpecificera region är valfri men begäran kommer att ta en sekund eller två längre.",
   "ow_kill_streak": "Hjältar med den högsta dödade i rad",
   "ow_multikill": "Heroes med flest multikills",
   "ow_objective_kills": "Hjältar med de objektiva dödar",
