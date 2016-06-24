@@ -121,6 +121,7 @@ export default {
   spongebob2: 163573,
   spongebob3: 326093,
   spongebob4: 68749123,
+  spoilers: 68142041,
   squidward: 285870,
   success: 101287,
   sucks: 201950,
