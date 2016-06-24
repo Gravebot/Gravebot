@@ -16,15 +16,14 @@ export default {
     }
     const command = suffix_split.join('').toLowerCase();
 
-    if (R.contains(command, ['average', 'averages'])) return blizzard.averages(player_name, region);
-    if (R.contains(command, ['timeplayed', 'mostplayed'])) return blizzard.timePlayed(player_name, region);
-    if (command === 'gameswon') return blizzard.gamesWon(player_name, region);
-    if (command === 'winpercent') return blizzard.winPercent(player_name, region);
-    if (command === 'eliminations') return blizzard.eliminations(player_name, region);
-    if (R.contains(command, ['eliminations', 'eliminationsperlife'])) return blizzard.eliminations(player_name, region);
+    if (command.indexOf('average') > -1) return blizzard.averages(player_name, region);
+    if (R.contains(command, ['time', 'timeplayed', 'mostplayed'])) return blizzard.timePlayed(player_name, region);
+    if (command.indexOf('game') > -1) return blizzard.gamesWon(player_name, region);
+    if (command.indexOf('win') > -1) return blizzard.winPercent(player_name, region);
+    if (command.indexOf('elimination') > -1) return blizzard.eliminations(player_name, region);
     if (command === 'killstreak') return blizzard.killStreak(player_name, region);
     if (command === 'multikill') return blizzard.multikill(player_name, region);
-    if (command === 'objectivekills') return blizzard.objectiveKills(player_name, region);
+    if (command.indexOf('objective') > -1) return blizzard.objectiveKills(player_name, region);
     return helpText(client, evt, 'ow', lang);
   }
 };
