@@ -14,7 +14,7 @@ if (nconf.get('NODE_ENV') === 'production' && nconf.get('SENTRY_DSN')) {
   logger.info('Sentry Enabled');
   client = new raven.Client(nconf.get('SENTRY_DSN'));
 
-  client.on('error', err => logger.error(`Error: ${err.message}`));
+  client.on('error', err => logger.error(err.message || err));
   process.on('uncaughtException', err => {
     const exit = function() { process.exit(1); };
     const options = {
