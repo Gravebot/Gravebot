@@ -1,0 +1,93 @@
+vendor-prefixes ?= webkit official // @stylint ignore
+
+@import 'nib'
+
+// Fonts
+@font-face
+  font-family 'Big-Noodle-Titling'
+  font-style normal
+  font-weight 400
+  src url(/fonts/big_noodle_titling.woff) format('woff')
+  unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+// Defaults
+$text_color = white
+body
+  background-color green
+  font-family 'Big-Noodle-Titling', sans-serif
+
+.main
+  background-color #36393e
+  left 0
+  position absolute
+  top 0
+  width 700px
+  color $text_color
+  font-style italic
+
+.logo
+  text-align center
+  img
+    width 200px
+
+.banner
+  align-items center
+  display flex
+  font-size 30px
+  justify-content space-around
+  margin-top 4px
+
+.list-text
+  align-items center
+  color $text_color
+  display flex
+  padding-left 10px
+  padding-right 10px
+
+  .big
+    font-size 50px
+
+  .small
+    font-size 20px
+
+  ul
+    list-style-type none
+    margin 0
+    padding 0
+    text-align center
+  li
+    line-height 30px
+    display block
+
+.list-text-reverse
+  margin-top -20px
+
+  .small
+    margin-left 10px
+
+.title
+  font-size 18px
+  line-height .5
+  text-align center
+  margin-top -20px
+
+  h2
+    display inline-block
+    position relative
+
+  lines()
+    border-top 1px solid white
+    content ''
+    position absolute
+    top 5px
+    width 200px
+
+  h2:before
+    lines()
+    margin-right 15px
+    right 100%
+
+  h2:after
+    lines()
+    left 100%
+    margin-left 15px

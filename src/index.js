@@ -27,8 +27,7 @@ function callCmd(cmd, name, client, evt, suffix) {
 
   function processEntry(entry) {
     // If string or number, send as a message
-    if (R.is(String, entry)) evt.message.channel.sendMessage(entry);
-    if (R.is(Number, entry)) evt.message.channel.sendMessage(entry);
+    if (R.is(String, entry) || R.is(Number, entry)) evt.message.channel.sendMessage(entry);
     // If buffer, send as a file, with a default name
     if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png');
     // If it's an object that contains key 'upload', send file with an optional file name

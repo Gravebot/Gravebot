@@ -5,15 +5,10 @@ import glob from 'glob';
 import fs from 'fs';
 import { load as markoLoad } from 'marko';
 import nconf from 'nconf';
+import nib from 'nib';
 import R from 'ramda';
 import path from 'path';
-
-
-let nib, stylus;
-if (nconf.get('NODE_ENV') === 'development') {
-  nib = require('nib');
-  stylus = require('stylus');
-}
+import stylus from 'stylus';
 
 
 // Marko template renders
@@ -43,11 +38,15 @@ app.get('/style/:file', (req, res) => {
   const styl_path = css_path.replace(/css/g, 'styl');
   if (!fs.existsSync(styl_path)) return res.redirect('/404');
   stylus(fs.readFileSync(styl_path, 'utf8'))
+    .set('src', path.join(__dirname, '../web/styl'))
     .set('filename', path.basename(styl_path))
     .set('compress', true)
     .use(nib())
     .render((err, css) => {
-      if (err) return res.status(500).send(err);
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
       res.status(200).send(css);
     });
 });

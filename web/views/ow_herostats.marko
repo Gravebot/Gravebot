@@ -1,0 +1,43 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/style/ow_herostats.css"/>
+</head>
+<body>
+  <div class="main">
+    <div class="logo">
+      <img src="/images/overwatch/logo.png"/>
+    </div>
+    <div class="banner">
+      <div class="list-text">
+        <ul>
+          <li class="big">${data.name}</li>
+          <li class="small">${data.games_won} games won</li>
+        </ul>
+      </div>
+      <div class="list-text list-text-reverse">
+        <ul>
+          <li class="small">Level</li>
+          <li class="big">${data.level}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="title">
+      <h2>${data.stat_name}</h2>
+    </div>
+
+    <div class="stats">
+      <div class="hero-block" for(stat in data.heroes)>
+        <img src="/images/overwatch/heroes/${stat.image_name}.png">
+        <div class="hero-progress-container">
+          <div class="progress ${stat.image_name}" style="right: ${100 - stat.meta.progress_bar_percent}%;" />
+          <div class="text-block">
+            <div class="text">${stat.name}</div>
+            <div class="text value">${stat.value}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

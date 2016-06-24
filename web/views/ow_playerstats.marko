@@ -1,0 +1,43 @@
+<script marko-init>
+  const R = require('ramda');
+</script>
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/style/ow_playerstats.css"/>
+</head>
+<body>
+  <div class="main">
+    <div class="logo">
+      <img src="/images/overwatch/logo.png"/>
+    </div>
+    <div class="banner">
+      <div class="list-text">
+        <ul>
+          <li class="big">${data.name}</li>
+          <li class="small">${data.games_won} games won</li>
+        </ul>
+      </div>
+      <div class="list-text list-text-reverse">
+        <ul>
+          <li class="small">Level</li>
+          <li class="big">${data.level}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="title">
+      <h2>Player Stat Averages</h2>
+    </div>
+
+    <div class="stats">
+      <div class="card" for(key in R.keys(data.averages))>
+        <div class="content">
+          <h1>${data.averages[key].value}</h1>
+          <span>${data.averages[key].name}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

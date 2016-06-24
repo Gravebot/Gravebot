@@ -95,13 +95,8 @@
     "expect": "single",
     "error": true
   },
-  "reporter": "stylint-stylish",
   "semicolons": {
     "expect": "never",
-    "error": true
-  },
-  "sortOrder": {
-    "expect": "alphabetical",
     "error": true
   },
   "stackedProperties": {
