@@ -1,9 +1,9 @@
 import Promise from 'bluebird';
-import chalk from 'chalk';
 import nconf from 'nconf';
 import path from 'path';
 import R from 'ramda';
 
+import logger from '../../logger';
 import meme from './meme';
 import T from '../../translate';
 
@@ -29,7 +29,7 @@ if (!process.env.TEST) {
       const dir_name = path.basename(path.dirname(js_path));
       R.forEach(command => {
         const category = help_data[command].category || dir_name;
-        if (!categories[category]) return console.log(chalk.yellow(`[WARN] ${command} does not have a category. It will not be added to the help information.`));
+        if (!categories[category]) return logger.warn(`${command} does not have a category. It will not be added to the help information.`);
 
         categories[category].push(command);
         help_parameters[command] = help_data[command];

@@ -1,7 +1,5 @@
 import Promise from 'bluebird';
 import Discordie from 'discordie';
-import chalk from 'chalk';
-import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
 
@@ -10,6 +8,7 @@ import './express';
 import './phantom';
 
 import commands from './commands';
+import logger from './logger';
 import sentry from './sentry';
 
 import { getMessageTTL, setMessageTTL, getUserLang } from './redis';
@@ -23,7 +22,7 @@ let initialized = false;
 
 
 function callCmd(cmd, name, client, evt, suffix) {
-  console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
+  logger.cmd(name, suffix);
 
   function processEntry(entry) {
     // If string or number, send as a message
@@ -127,7 +126,7 @@ setInterval(() => carbon(), 3600000);
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
-    console.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
+    logger.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
     process.exit(1);
   }
 
@@ -135,13 +134,13 @@ function connect() {
 }
 
 function forceFetchUsers() {
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Force fetching users.`));
+  logger.info('Force fetching users');
   client.Users.fetchMembers();
 }
 
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', () => {
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
+  logger.info(`Started successfully. Connected to ${client.Guilds.length} servers.`);
   setTimeout(() => forceFetchUsers(), 45000);
 
   if (!initialized) {
@@ -154,7 +153,7 @@ client.Dispatcher.on('GATEWAY_READY', () => {
 });
 
 client.Dispatcher.on('DISCONNECTED', () => {
-  console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
+  logger.warn('Disconnected. Attempting to reconnect...');
   setTimeout(() => {
     connect();
   }, 2000);

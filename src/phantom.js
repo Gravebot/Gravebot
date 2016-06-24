@@ -1,11 +1,11 @@
 import Promise from 'bluebird';
-import chalk from 'chalk';
 import Horseman from 'node-horseman';
-import moment from 'moment';
 import nconf from 'nconf';
 import { path as phantom_path } from 'phantomjs-prebuilt';
 import Queue from 'promise-queue';
 import R from 'ramda';
+
+import logger from './logger';
 import sentry from './sentry';
 
 
@@ -17,12 +17,12 @@ const options = {
 };
 
 if (process.env.DEBUG && R.contains(process.env.DEBUG.indexOf('horseman') > -1)) {
-  console.log(chalk.cyan('Phantom web inspector running on 9000'));
+  logger.info('Phantom web inspector running on 9000');
   options.debugPort = 9000;
 }
 
 function createHorseman() {
-  console.log(`${chalk.blue('[' + moment().format('YYYY-MM-DD HH:mm:ss' + ']'))} Starting horseman/phantomjs`);
+  logger.info('Starting horseman/phantomjs');
 
   if (horseman) horseman.close();
   horseman = new Horseman(options)
@@ -40,7 +40,7 @@ function verifyPhantomProcess() {
     .url()
     .timeout(10000)
     .catch(Promise.TimeoutError, () => {
-      console.log(`${chalk.red('[' + moment().format('YYYY-MM-DD HH:mm:ss' + ']'))} Phantomjs is not responding. Restarting process.`);
+      logger.info('Phantomjs is not responding. Restarting process.');
       return createHorseman();
     })
     .delay(5000)
@@ -73,7 +73,7 @@ export default function addQueue(view, data) {
           .then(b64 => {
             const buf = new Buffer(b64, 'base64');
             const end = new Date().getTime();
-            console.log(`${chalk.yellow('Phantom')} execution time: ${end - start}ms`);
+            logger.info(`Phantom execution time: ${end - start}ms`);
             return buf;
           });
       })
