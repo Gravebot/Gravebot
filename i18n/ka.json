@@ -88,7 +88,7 @@
   "ow_multikill": "Heroes ყველაზე multikills",
   "ow_objective_kills": "გმირები ყველაზე ობიექტური კლავს",
   "ow_time_played": "Heroes ყველაზე ითამაშა",
-  "ow_win_percent": "Hereos უმაღლესი მოგება PRECENTAGE",
+  "ow_win_percent": "Heroess უმაღლესი win პროცენტული",
   "paste": "ქმნის პასტა Pastebin.com და დააბრუნებს url",
   "pastebin_setup": "გთხოვთ setup Pastebin in config.js გამოვიყენოთ**`!paste`**ბრძანება.",
   "pastebin_usage": "გამოყენება:**`!paste`**`text`",

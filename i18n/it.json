@@ -88,7 +88,7 @@
   "ow_multikill": "Eroi con il maggior numero multikills",
   "ow_objective_kills": "Eroi con le uccisioni più oggettivi",
   "ow_time_played": "Eroi più giocato",
-  "ow_win_percent": "Hereos con la più alta vincita precentage",
+  "ow_win_percent": "Heroess con la percentuale di vincita più alta",
   "paste": "Crea una pasta su Pastebin.com e restituisce l'URL",
   "pastebin_setup": "Si prega di configurazione Pastebin in config.js di utilizzare il**`!paste`**comando.",
   "pastebin_usage": "Utilizzo:**`!paste`**`Text`",

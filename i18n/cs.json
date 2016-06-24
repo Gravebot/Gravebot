@@ -88,7 +88,7 @@
   "ow_multikill": "Hrdinové s nejvíce multikills",
   "ow_objective_kills": "Hrdinové se nejvíce objektivních sestřelů",
   "ow_time_played": "Heroes nejhranější",
-  "ow_win_percent": "Hereos s nejvyšší výhra PRECENTAGE",
+  "ow_win_percent": "Heroess s nejvyšším procentem win",
   "paste": "Vytvoří pastu na Pastebin.com a vrátí url",
   "pastebin_setup": "Prosím setup Pastebin v config.js použít**`!paste`**příkaz.",
   "pastebin_usage": "Použití:**`!paste`**`text`",

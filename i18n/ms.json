@@ -88,7 +88,7 @@
   "ow_multikill": "Heroes dengan yang paling multikills",
   "ow_objective_kills": "Heroes dengan membunuh paling objektif",
   "ow_time_played": "Heroes paling dimainkan",
-  "ow_win_percent": "HERO dengan PRECENTAGE kemenangan tertinggi",
+  "ow_win_percent": "Heroess dengan peratusan kemenangan tertinggi",
   "paste": "Mencipta paste pada Pastebin.com dan mengembalikan url",
   "pastebin_setup": "Sila setup Pastebin dalam config.js untuk menggunakan**`!paste`**arahan.",
   "pastebin_usage": "Penggunaan:**`!paste`**`teks`",

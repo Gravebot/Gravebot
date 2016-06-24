@@ -88,7 +88,7 @@
   "ow_multikill": "最もmultikillsとヒーロー",
   "ow_objective_kills": "最も客観キルと英雄",
   "ow_time_played": "英雄は、ほとんどの演奏します",
-  "ow_win_percent": "最高の勝利のPRECENTAGEとHereos",
+  "ow_win_percent": "最高勝率とHeroess",
   "paste": "Pastebin.com上のペーストを作成し、URLを返します。",
   "pastebin_setup": "セットアップペーストビンがconfig.jsのに使用するためにしてください** `!paste` **コマンドを実行します。",
   "pastebin_usage": "使用方法：** `!paste`**`text`",

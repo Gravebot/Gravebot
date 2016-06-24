@@ -88,7 +88,7 @@
   "ow_multikill": "用最multikills英雄",
   "ow_objective_kills": "用最客觀的殺敵英雄",
   "ow_time_played": "英雄播放次數最多",
-  "ow_win_percent": "最高贏百分數的國家歌劇院",
+  "ow_win_percent": "Heroess最高勝率",
   "paste": "在創建一個Pastebin.com粘貼和返回網址",
   "pastebin_setup": "請安裝在引擎收錄到config.js使用**`!paste` **命令。",
   "pastebin_usage": "用法：**`!paste` **`text`",

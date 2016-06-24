@@ -88,7 +88,7 @@
   "ow_multikill": "Heroes with the most multikills",
   "ow_objective_kills": "Heroes with the most objective kills",
   "ow_time_played": "Heroes most played",
-  "ow_win_percent": "Hereos with the highest win precentage",
+  "ow_win_percent": "Heroess with the highest win percentage",
   "paste": "Creates a paste on Pastebin.com and returns the url",
   "pastebin_setup": "Please setup Pastebin in config.js to use the **`!paste`** command.",
   "pastebin_usage": "Usage: **`!paste`** `text`",

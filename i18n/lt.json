@@ -88,7 +88,7 @@
   "ow_multikill": "Herojai apie kuriuos daugiasiai pareikšta multikills",
   "ow_objective_kills": "Herojai su labiausiai objektyvių nužudytų",
   "ow_time_played": "Herojai dauguma grojo",
-  "ow_win_percent": "Hereos su aukščiausiu win masės procentais",
+  "ow_win_percent": "Heroess su aukščiausios laimėti procentais",
   "paste": "Sukuria failą Pastebin.com su įvestu tekstu ir gražina nuorodą",
   "pastebin_setup": "Prašome nustatyti Pastebin raktą config.js faile kad galėtumėte naudotis **`!paste`** komanda.",
   "pastebin_usage": "Naudojimas: **`!paste`** `tekstas`",

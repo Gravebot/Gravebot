@@ -95,6 +95,16 @@ For self hosting, click [here](#localconfig).
 - `!lol skills` *champ-name position* - Get the highest win skills for a Champion and Position
 - `!lol status` - Get the LoL Game and Client server status for all regions
 
+**Overwatch**
+- `!ow` - Help
+- `!ow averages region battletag` - Player average stats
+- `!ow time played region battletag` - Heroes most played
+- `!ow games won region battletag` - Heroes with the most wins
+- `!ow win percent region battletag` - Heroes with the highest win percentage
+- `!ow eliminations region battletag` - Heroes with the most eliminations per life
+- `!ow kill streak region battletag` - Heroes with the highest kill streak
+- `!ow multikill region battletag` - Heroes with the most multikills
+- `!ow objective kills region battletag` - Heroes with the most objective kills
 
 #### Other:
 - `!ayylmao`

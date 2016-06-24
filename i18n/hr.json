@@ -88,7 +88,7 @@
   "ow_multikill": "Heroji s najviše multikills",
   "ow_objective_kills": "Heroji s najviše objektivnih ubija",
   "ow_time_played": "Heroji najviše igrao",
-  "ow_win_percent": "Hereos s najvišim win PRECENTAGE",
+  "ow_win_percent": "Heroess s najvišim postotkom pobjeda",
   "paste": "Stvara zalijepiti na Pastebin.com i vraća URL",
   "pastebin_setup": "Molimo postava Pastebin u config.js koristiti**'!paste`**Naredbe.",
   "pastebin_usage": "Upotreba:**'!paste`**'text`",

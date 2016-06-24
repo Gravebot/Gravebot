@@ -88,7 +88,7 @@
   "ow_multikill": "Heroes med flest multikills",
   "ow_objective_kills": "Heroes med de mest objektive dreper",
   "ow_time_played": "Heroes mest spilte",
-  "ow_win_percent": "Hereos med høyeste gevinsten PRECENTAGE",
+  "ow_win_percent": "Heroess med høyest seier prosentpoeng",
   "paste": "Oppretter en lime på Pastebin.com og returnerer url",
   "pastebin_setup": "Vennligst oppsett Pastebin i config.js å ​​bruke**`!paste`**kommandoen.",
   "pastebin_usage": "Bruk:**`!paste`**`text`",

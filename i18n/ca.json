@@ -88,7 +88,7 @@
   "ow_multikill": "Herois amb la major quantitat multikills",
   "ow_objective_kills": "Herois amb els enemics més objectius",
   "ow_time_played": "Herois més jugats",
-  "ow_win_percent": "Hereos amb la més alta PRECENTAGE victòria",
+  "ow_win_percent": "Heroess amb el percentatge més alt de victòries",
   "paste": "Crea una pasta a Pastebin.com i torna la url",
   "pastebin_setup": "Si us plau configuració Pastebin en config.js per utilitzar el**`!paste`**comando.",
   "pastebin_usage": "Ús:**`!paste`**`Text`",
