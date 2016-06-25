@@ -8,7 +8,7 @@ const logger = bunyan.createLogger({name: 'gravebot'});
 
 
 function cmd(cmd, suffix) {
-  if (production) return logger.info({cmd, suffix});
+  if (production) return logger.info({cmd, suffix}, 'cmd');
   console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}]`), chalk.bold.green('[COMMAND]'), chalk.bold.green(cmd), suffix);
 }
 
