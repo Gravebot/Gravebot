@@ -13,7 +13,6 @@
     "chalk": "^1.1.3",
     "cheerio": "^0.20.0",
     "cleverbot-node": "^0.2.2",
-    "define-word": "^1.0.5",
     "didyoumean": "^1.2.1",
     "discordie": "^0.7.1",
     "entities": "^1.1.1",

@@ -159,6 +159,10 @@
     "text": "Give feedback and report bugs about the bot",
     "done": true
   },
+  "feedback_reply": {
+    "text": "Thanks! Your feedback has been received.",
+    "done": false
+  },
   "feedback_setup": {
     "text": "Please setup Feedback Channel in config.js to use the **`!feedback`** command.",
     "done": true
@@ -382,6 +386,10 @@
   "synonyms": {
     "text": "Shows synonyms for the word",
     "done": true
+  },
+  "synonyms_error": {
+    "text": "I couldn't find a synonym for",
+    "done": false
   },
   "synonyms_usage": {
     "text": "Usage: **`!synonyms`** `word`",
