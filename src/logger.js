@@ -19,7 +19,7 @@ function info(msg) {
 
 function warn(msg) {
   if (production) return logger.error(msg);
-  console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}]`), chalk.warn(`[WARN] ${msg}`));
+  console.log(chalk.cyan(`[${moment().format('YYYY-MM-DD HH:mm:ss')}]`), chalk.yellow(`[WARN] ${msg}`));
 }
 
 function error(msg) {
