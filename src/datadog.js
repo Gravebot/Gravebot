@@ -1,10 +1,11 @@
-import chalk from 'chalk';
 import dogapi from 'dogapi';
 import nconf from 'nconf';
 
+import logger from './logger';
+
 
 if (nconf.get('DATADOG_APIKEY') && nconf.get('DATADOG_APPKEY')) {
-  console.log(chalk.green('Datadog enabled'));
+  logger.info('Datadog enabled');
   dogapi.initialize({
     api_key: nconf.get('DATADOG_APIKEY'),
     app_key: nconf.get('DATADOG_APPKEY')

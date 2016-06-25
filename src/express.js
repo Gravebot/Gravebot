@@ -1,5 +1,4 @@
 import bodyParser from 'body-parser';
-import chalk from 'chalk';
 import express from 'express';
 import glob from 'glob';
 import fs from 'fs';
@@ -9,6 +8,8 @@ import nib from 'nib';
 import R from 'ramda';
 import path from 'path';
 import stylus from 'stylus';
+
+import logger from './logger';
 
 
 // Marko template renders
@@ -66,5 +67,5 @@ app.get('*', (req, res) => {
 });
 
 if (!nconf.get('PORT')) nconf.set('PORT', 5000);
-console.log(chalk.cyan(`Express listening on port ${nconf.get('PORT')}`));
+logger.info(`Express listening on port ${nconf.get('PORT')}`);
 app.listen(nconf.get('PORT'));
