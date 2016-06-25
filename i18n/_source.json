@@ -287,6 +287,46 @@
     "text": "I don't have skill orders for",
     "done": true
   },
+  "ow": {
+    "text": "Overwatch",
+    "done": true
+  },
+  "ow_averages": {
+    "text": "Player average stats",
+    "done": true
+  },
+  "ow_eliminations": {
+    "text": "Heroes with the most eliminations per life",
+    "done": true
+  },
+  "ow_games_won": {
+    "text": "Heroes with the most wins",
+    "done": true
+  },
+  "ow_header_text": {
+    "text": "Information and player stats for Overwatch\nAccepted regions are #{ow_regions}.\nSpecifying region is optional but the request will take a second or two longer.",
+    "done": true
+  },
+  "ow_kill_streak": {
+    "text": "Heroes with the highest kill streak",
+    "done": true
+  },
+  "ow_multikill": {
+    "text": "Heroes with the most multikills",
+    "done": true
+  },
+  "ow_objective_kills": {
+    "text": "Heroes with the most objective kills",
+    "done": true
+  },
+  "ow_time_played": {
+    "text": "Heroes most played",
+    "done": true
+  },
+  "ow_win_percent": {
+    "text": "Heroess with the highest win percentage",
+    "done": true
+  },
   "paste": {
     "text": "Creates a paste on Pastebin.com and returns the url",
     "done": true

@@ -14,6 +14,7 @@
     "cheerio": "^0.20.0",
     "cleverbot-node": "^0.2.2",
     "concurrently": "^2.1.0",
+    "diacritics": "^1.2.3",
     "didyoumean": "^1.2.1",
     "discordie": "^0.6.5",
     "dogapi": "^2.3.0",

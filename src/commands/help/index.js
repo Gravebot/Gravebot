@@ -42,7 +42,7 @@ export function subCommands(client, evt, method, lang) {
   const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
   let text = R.map(subcommand => {
-    const trans_key = `${method}_${subcommand.name}`;
+    const trans_key = `${method}_${subcommand.name.replace(/ /g, '_')}`;
     const translation = T(trans_key, lang);
     if (!translation) return;
 
