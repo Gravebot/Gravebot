@@ -47,12 +47,16 @@ export function subCommands(client, evt, method, lang) {
     if (!translation) return;
 
     const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
-    const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
+    if (subcommand.parameters) {
+      const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters) : subcommand.parameters;
+      return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name} \`__\`${parameters}\`__
+      ${translation}`;
+    }
     if (help_parameters[method].prefix === false) {
       return `**\`${nconf.get('PREFIX')}${subcommand.name}\`**
       ${translation}`;
     }
-    return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
+    return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name}\`
     ${translation}`;
   }, subcommands);
 
