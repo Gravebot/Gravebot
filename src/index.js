@@ -52,7 +52,7 @@ function callCmd(cmd, name, client, evt, suffix) {
           const execution_time = new Date().getTime() - start_time;
           datadog(`cmd_execution_time.${name}`, execution_time);
           // If null, don't do anything.
-          if (!res) return;
+          if (!res) return logger.warn(`Command ${name} didn't return anything. Suffix: ${suffix}`);
           // If it's an array, process each entry.
           if (R.is(Array, res)) return R.forEach(processEntry, res);
           // Process single entry
@@ -126,7 +126,7 @@ function carbon() {
     }).catch(console.log);
   }
 }
-setInterval(() => carbon(), 3600000);
+setInterval(carbon, 3600000);
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
@@ -145,11 +145,11 @@ function forceFetchUsers() {
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', () => {
   logger.info(`Started successfully. Connected to ${client.Guilds.length} servers.`);
-  setTimeout(() => forceFetchUsers(), 45000);
+  setTimeout(forceFetchUsers, 45000);
 
   if (!initialized) {
     initialized = true;
-    setTimeout(() => carbon(), 20000);
+    setTimeout(carbon, 20000);
 
     client.Dispatcher.on('MESSAGE_CREATE', onMessage);
     client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
@@ -158,9 +158,7 @@ client.Dispatcher.on('GATEWAY_READY', () => {
 
 client.Dispatcher.on('DISCONNECTED', () => {
   logger.warn('Disconnected. Attempting to reconnect...');
-  setTimeout(() => {
-    connect();
-  }, 2000);
+  setTimeout(connect, 2000);
 });
 
 connect();
