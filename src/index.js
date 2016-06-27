@@ -28,12 +28,15 @@ function callCmd(cmd, name, client, evt, suffix) {
 
   function processEntry(entry) {
     // If string or number, send as a message
-    if (R.is(String, entry) || R.is(Number, entry)) evt.message.channel.sendMessage(entry);
+    if (R.is(String, entry) || R.is(Number, entry)) evt.message.channel.sendMessage(entry)
+      .catch(err => sentry(err, 'discordie.sendMessage'));
     // If buffer, send as a file, with a default name
-    if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png');
+    if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png')
+      .catch(err => sentry(err, 'discordie.uploadFile'));
     // If it's an object that contains key 'upload', send file with an optional file name
     // This works for both uploading local files and buffers
-    if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename);
+    if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename)
+      .catch(err => sentry(err, 'discordie.uploadFile'));
   }
 
   const user_id = evt.message.author.id;
