@@ -176,7 +176,7 @@ export function objectiveKills(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Objective Kills',
-      heroes: _processHeroStats($, $('.progress-category').eq(5).children())
+      heroes: _processHeroStats($, $('.progress-category').eq(6).children())
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_objectivekills.png'}));
 }
