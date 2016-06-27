@@ -323,8 +323,12 @@
     "text": "Heroes most played",
     "done": true
   },
+  "ow_weapon_accuracy": {
+    "text": "Hereos weapon accuracy percentage",
+    "done": true
+  },
   "ow_win_percent": {
-    "text": "Heroess with the highest win percentage",
+    "text": "Heroes with the highest win percentage",
     "done": true
   },
   "paste": {

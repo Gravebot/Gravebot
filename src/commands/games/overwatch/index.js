@@ -20,6 +20,7 @@ export default {
     if (R.contains(command, ['time', 'timeplayed', 'mostplayed'])) return blizzard.timePlayed(player_name, region);
     if (command.indexOf('game') > -1) return blizzard.gamesWon(player_name, region);
     if (command.indexOf('win') > -1) return blizzard.winPercent(player_name, region);
+    if (command.indexOf('weapon') > -1 || command.indexOf('accuracy') > -1) return blizzard.weaponAccuracy(player_name, region);
     if (command.indexOf('elimination') > -1) return blizzard.eliminations(player_name, region);
     if (command === 'killstreak') return blizzard.killStreak(player_name, region);
     if (command === 'multikill') return blizzard.multikill(player_name, region);
@@ -50,6 +51,10 @@ export const help = {
       },
       {
         name: 'win percent',
+        parameters: ['region', 'battletag']
+      },
+      {
+        name: 'weapon accuracy',
         parameters: ['region', 'battletag']
       },
       {
