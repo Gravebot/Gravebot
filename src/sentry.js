@@ -6,7 +6,7 @@ import raven from 'raven';
 let client = {
   captureError: (err, options) => {
     if (options.tags && options.tags.source && !err.source) err.source = options.tags.source;
-    console.error(err.stack || err);
+    logger.error(err.stack || err);
   }
 };
 
