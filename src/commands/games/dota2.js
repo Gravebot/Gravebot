@@ -2,9 +2,17 @@ import Promise from 'bluebird';
 import cheerio from 'cheerio';
 import R from 'ramda';
 import _request from 'request';
+import SuperError from 'super-error';
 
 import { subCommands as helpText } from '../help';
 import { getOrdinal, numberWithCommas, secondDec, toTitleCase } from '../../helpers';
+
+
+const Warning = SuperError.subclass('Warning', function(msg) {
+  this.message = msg || 'Not Found';
+  this.code = 404;
+  this.level = 'warning';
+});
 
 
 const request = Promise.promisify(_request);
@@ -100,7 +108,7 @@ function counters(suffix) {
 
   return request(options)
     .tap(res => {
-      if (res.statusCode === 404) throw new Error(`Hero **${hero}** not found`);
+      if (res.statusCode === 404) throw new Warning(`Hero **${hero}** not found`);
       if (res.statusCode >= 500) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
     })
     .then(R.prop('body'))

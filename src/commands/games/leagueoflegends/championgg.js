@@ -54,7 +54,10 @@ function _makeRequest(options) {
     })
     .then(R.prop('body'))
     .tap(body => {
-      if (body.error) throw new Error(body.error);
+      if (body.error) {
+        if (body.error === 'ChampionNotFound') throw new Warning(body.error);
+        throw new Error(body.error);
+      }
     });
 }
 
