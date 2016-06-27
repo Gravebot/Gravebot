@@ -26,6 +26,12 @@ const NotYetAvailable = SuperError.subclass('NotYetAvailable', function(msg) {
   this.level = 'warning';
 });
 
+const Warning = SuperError.subclass('Warning', function(msg) {
+  this.message = msg || 'Not Found';
+  this.code = 404;
+  this.level = 'warning';
+});
+
 // List of regions
 const regions = ['br', 'eune', 'euw', 'kr', 'lan', 'las', 'na', 'oce', 'ru', 'tr'];
 
@@ -90,7 +96,7 @@ function _getMatchSummoners(region, name, summoner_id) {
     })
     .catch(NotFoundError, err => {
       console.error(err);
-      throw new Error(`**${name}** isn't in a game.`);
+      throw new Warning(`**${name}** isn't in a game.`);
     });
 }
 
@@ -173,7 +179,7 @@ export function matchDetails(client, evt, suffix, lang) {
   return _makeRequest(`https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}`)
     .catch(NotFoundError, err => {
       console.error(err);
-      throw new Error(`I can't find **${name}** in the **${region}** region.`);
+      throw new Warning(`I can't find **${name}** in the **${region}** region.`);
     })
     .then(R.values)
     .then(R.nth(0))

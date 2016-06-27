@@ -14,7 +14,7 @@ import T from '../../../translate';
 const request = Promise.promisify(_request);
 
 // Error instances
-const Warning = SuperError.subclass('NoPosition', function(msg) {
+const Warning = SuperError.subclass('Warning', function(msg) {
   this.message = msg || 'Not Found';
   this.code = 404;
   this.level = 'warning';

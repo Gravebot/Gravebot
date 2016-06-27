@@ -2,11 +2,17 @@ import Promise from 'bluebird';
 import cheerio from 'cheerio';
 import { remove as removeDiacritics } from 'diacritics';
 import R from 'ramda';
+import SuperError from 'super-error';
 
 import phantom from '../../../phantom';
 
 const request = Promise.promisify(require('request'));
 
+const Warning = SuperError.subclass('Warning', function(msg) {
+  this.message = msg || 'Not Found';
+  this.code = 404;
+  this.level = 'warning';
+});
 
 function _getRegion(battletag) {
   return Promise.filter(['eu', 'us', 'cn', 'kr'], region => {
@@ -28,12 +34,12 @@ function _getRegion(battletag) {
 function _makeRequest(player_name, region) {
   const battletag = player_name.replace(/#/g, '-');
   if (R.last(battletag.split('-')).replace(/[0-9]/g, '').length !== 0) {
-    return Promise.reject(new Error(`**${player_name}** isn't a valid Battletag. It requires your username and number that can be found in your blizzard client. E.g. **PlayerName#1234**`));
+    return Promise.reject(new Warning(`**${player_name}** isn't a valid Battletag. It requires your username and number that can be found in your blizzard client. E.g. **PlayerName#1234**`));
   }
 
   let region_promise = Promise.resolve(region);
   if (!region) region_promise = _getRegion(battletag);
-  const notfounderror = new Error(`Couldn't find battletag ${player_name}. Remember that battletags are case sensitive.`);
+  const notfounderror = new Warning(`Couldn't find battletag ${player_name}. Remember that battletags are case sensitive.`);
 
   return region_promise.then(region => {
     if (!region) throw notfounderror;
