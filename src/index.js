@@ -67,6 +67,9 @@ function callCmd(cmd, name, client, evt, suffix) {
         });
       }
     });
+  })
+  .catch(err => {
+    sentry(err, name);
   });
 }
 
