@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import nconf from 'nconf';
 import redis from 'redis';
 
+import logger from './logger';
 import sentry from './sentry';
 
 Promise.promisifyAll(redis.RedisClient.prototype);
@@ -12,13 +13,19 @@ const client = redis.createClient({url: client_url});
 export default client;
 
 
+client.on('connect', () => logger.info('Redis connected'));
+client.on('reconnecting', () => logger.warn('Redis reconnecting'));
+client.on('ready', () => logger.info('Redis ready'));
+client.on('error', err => sentry(err, 'redis'));
+
+
 // Gets a users language based on ID
 export function getUserLang(user_id) {
   return client.hgetAsync(`user_${user_id}`, 'lang')
     .then(lang => lang || 'en')
     .timeout(2000)
     .catch(err => {
-      sentry('getUserLang', err);
+      sentry(err, 'getUserLang');
       return 'en';
     });
 }
@@ -28,7 +35,7 @@ export function setUserLang(user_id, lang) {
   return client.hsetAsync(`user_${user_id}`, 'lang', lang)
     .timeout(2000)
     .catch(err => {
-      sentry('setUserLang', err);
+      sentry(err, 'setUserLang');
     });
 }
 
@@ -36,7 +43,7 @@ export function getMessageTTL(user_id) {
   return client.getAsync(`ttl_${user_id}`)
     .timeout(2000)
     .catch(err => {
-      sentry('getMessageTTL', err);
+      sentry(err, 'getMessageTTL');
       return false;
     });
 }
@@ -49,6 +56,6 @@ export function setMessageTTL(user_id) {
     .execAsync()
     .timeout(2000)
     .catch(err => {
-      sentry('setMessageTTL', err);
+      sentry(err, 'setMessageTTL');
     });
 }
