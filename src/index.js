@@ -162,8 +162,9 @@ client.Dispatcher.on('GATEWAY_READY', () => {
   }
 });
 
-client.Dispatcher.on('DISCONNECTED', () => {
+client.Dispatcher.on('DISCONNECTED', err => {
   logger.warn('Disconnected. Attempting to reconnect...');
+  sentry(err, 'discord');
   setTimeout(connect, 2000);
 });
 
