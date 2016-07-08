@@ -1,10 +1,11 @@
 import Promise from 'bluebird';
-import _request from 'request';
 import R from 'ramda';
 
 import { subCommands as helpText } from '../help';
+import pug_urls from '../../data/pugs.json';
 
-const request = Promise.promisify(_request);
+const request = Promise.promisify(require('request'));
+
 
 function cat(client, evt, suffix) {
   let count = 1;
@@ -36,17 +37,7 @@ function pug(client, evt, suffix) {
     if (count < 0) count = 5;
   }
 
-  const options = {
-    url: `http://pugme.herokuapp.com/bomb?count=${count}`,
-    headers: {
-      Accept: 'application/json',
-      'User-Agent': 'Gravebot'
-    },
-    json: true
-  };
-
-  return request(options)
-    .then(R.path(['body', 'pugs']))
+  return Promise.map(R.range(0, count), () => pug_urls[Math.floor(Math.random() * pug_urls.length)])
     .then(R.join('\n'));
 }
 

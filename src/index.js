@@ -1,7 +1,5 @@
 import Promise from 'bluebird';
 import Discordie from 'discordie';
-import chalk from 'chalk';
-import moment from 'moment';
 import nconf from 'nconf';
 import R from 'ramda';
 
@@ -10,6 +8,8 @@ import './express';
 import './phantom';
 
 import commands from './commands';
+import datadog from './datadog';
+import logger from './logger';
 import sentry from './sentry';
 
 import { getMessageTTL, setMessageTTL, getUserLang } from './redis';
@@ -23,20 +23,24 @@ let initialized = false;
 
 
 function callCmd(cmd, name, client, evt, suffix) {
-  console.log(`${chalk.blue('[' + moment().format('HH:mm:ss' + ']'))} ${chalk.bold.green(name)}: ${suffix}`);
+  logger.cmd(name, suffix);
+  datadog(`cmd.${name}`, 1);
 
   function processEntry(entry) {
     // If string or number, send as a message
-    if (R.is(String, entry)) evt.message.channel.sendMessage(entry);
-    if (R.is(Number, entry)) evt.message.channel.sendMessage(entry);
+    if (R.is(String, entry) || R.is(Number, entry)) evt.message.channel.sendMessage(entry)
+      .catch(err => sentry(err, 'discordie.sendMessage'));
     // If buffer, send as a file, with a default name
-    if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png');
+    if (Buffer.isBuffer(entry)) evt.message.channel.uploadFile(entry, 'file.png')
+      .catch(err => sentry(err, 'discordie.uploadFile'));
     // If it's an object that contains key 'upload', send file with an optional file name
     // This works for both uploading local files and buffers
-    if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename);
+    if (R.is(Object, entry) && entry.upload) evt.message.channel.uploadFile(entry.upload, entry.filename)
+      .catch(err => sentry(err, 'discordie.uploadFile'));
   }
 
   const user_id = evt.message.author.id;
+  const start_time = new Date().getTime();
   getMessageTTL(user_id).then(exists => {
     // If a user is trying to spam messages above the set TTL time, then skip.
     if (exists) return;
@@ -48,8 +52,10 @@ function callCmd(cmd, name, client, evt, suffix) {
       // All command returns must be a bluebird promise.
       if (cmd_return instanceof Promise) {
         return cmd_return.then(res => {
+          const execution_time = new Date().getTime() - start_time;
+          datadog(`cmd_execution_time.${name}`, execution_time);
           // If null, don't do anything.
-          if (!res) return;
+          if (!res) return logger.warn(`Command ${name} didn't return anything. Suffix: ${suffix}`);
           // If it's an array, process each entry.
           if (R.is(Array, res)) return R.forEach(processEntry, res);
           // Process single entry
@@ -61,6 +67,9 @@ function callCmd(cmd, name, client, evt, suffix) {
         });
       }
     });
+  })
+  .catch(err => {
+    sentry(err, name);
   });
 }
 
@@ -123,11 +132,11 @@ function carbon() {
     }).catch(console.log);
   }
 }
-setInterval(() => carbon(), 3600000);
+setInterval(carbon, 3600000);
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
-    console.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
+    logger.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
     process.exit(1);
   }
 
@@ -135,29 +144,28 @@ function connect() {
 }
 
 function forceFetchUsers() {
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Force fetching users.`));
+  logger.info('Force fetching users');
   client.Users.fetchMembers();
 }
 
 // Listen for events on Discord
 client.Dispatcher.on('GATEWAY_READY', () => {
-  console.log(chalk.green(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Started successfully. Connected to ${client.Guilds.length} servers.`));
-  setTimeout(() => forceFetchUsers(), 45000);
+  logger.info(`Started successfully. Connected to ${client.Guilds.length} servers.`);
+  setTimeout(forceFetchUsers, 45000);
 
   if (!initialized) {
     initialized = true;
-    setTimeout(() => carbon(), 20000);
+    setTimeout(carbon, 20000);
 
     client.Dispatcher.on('MESSAGE_CREATE', onMessage);
     client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
   }
 });
 
-client.Dispatcher.on('DISCONNECTED', () => {
-  console.log(chalk.yellow(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] Disconnected. Attempting to reconnect...`));
-  setTimeout(() => {
-    connect();
-  }, 2000);
+client.Dispatcher.on('DISCONNECTED', err => {
+  logger.warn('Disconnected. Attempting to reconnect...');
+  sentry(err, 'discord');
+  setTimeout(connect, 2000);
 });
 
 connect();

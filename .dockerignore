@@ -11,3 +11,5 @@ test.*
 
 dist/
 tests/
+web/css/
+web/views/*.marko.js

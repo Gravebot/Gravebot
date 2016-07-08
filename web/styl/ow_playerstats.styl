@@ -1,0 +1,35 @@
+vendor-prefixes ?= webkit official // @stylint ignore
+
+@import 'nib'
+@import 'web/styl/ow_defaults'
+
+.stats
+  display flex
+  align-items center
+  justify-content center
+  flex-direction row
+  flex-wrap wrap
+  flex-flow row wrap
+  align-content flex-end
+
+.card
+  background-color #3c4860
+  padding 14px
+  height 40px
+  width 120px
+  margin-right 4px
+  margin-bottom 4px
+
+  .content
+    display inline-block
+
+  h1
+    line-height .8
+    margin 0
+
+  span
+    color rgba(240, 237, 242, .8)
+    font-size 20px
+    font-style normal
+    line-height 1.1
+    padding-bottom 10px

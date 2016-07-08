@@ -1,9 +1,9 @@
 import Promise from 'bluebird';
-import chalk from 'chalk';
 import nconf from 'nconf';
 import path from 'path';
 import R from 'ramda';
 
+import logger from '../../logger';
 import meme from './meme';
 import T from '../../translate';
 
@@ -29,7 +29,7 @@ if (!process.env.TEST) {
       const dir_name = path.basename(path.dirname(js_path));
       R.forEach(command => {
         const category = help_data[command].category || dir_name;
-        if (!categories[category]) return console.log(chalk.yellow(`[WARN] ${command} does not have a category. It will not be added to the help information.`));
+        if (!categories[category]) return logger.warn(`${command} does not have a category. It will not be added to the help information.`);
 
         categories[category].push(command);
         help_parameters[command] = help_data[command];
@@ -42,17 +42,21 @@ export function subCommands(client, evt, method, lang) {
   const subcommands = R.sort(R.prop('name'))(help_parameters[method].subcommands);
 
   let text = R.map(subcommand => {
-    const trans_key = `${method}_${subcommand.name}`;
+    const trans_key = `${method}_${subcommand.name.replace(/ /g, '_')}`;
     const translation = T(trans_key, lang);
     if (!translation) return;
 
     const secondary_name = subcommand.secondary_name ? `\` or \`${subcommand.secondary_name}` : '';
-    const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters || []) : subcommand.parameters;
+    if (subcommand.parameters) {
+      const parameters = !R.is(String, subcommand.parameters) ? R.join(' ', subcommand.parameters) : subcommand.parameters;
+      return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name} \`__\`${parameters}\`__
+      ${translation}`;
+    }
     if (help_parameters[method].prefix === false) {
       return `**\`${nconf.get('PREFIX')}${subcommand.name}\`**
       ${translation}`;
     }
-    return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name} ${parameters}\`
+    return `**\`${nconf.get('PREFIX')}${method}\`** \`${subcommand.name}${secondary_name}\`
     ${translation}`;
   }, subcommands);
 
