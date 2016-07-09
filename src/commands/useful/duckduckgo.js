@@ -30,14 +30,60 @@ function ddg(client, evt, suffix, lang) {
   };
   return request(options)
   .then(response => {
-    console.log(response.body);
-    if (!response.body.length) return Promise.resolve(`${T('ddg_error', lang)}: ${suffix}`);
     const res = JSON.parse(response.body);
-    if (res.Redirect) return res.Redirect;
-    return `${res.RelatedTopics[0].Text ? res.RelatedTopics[0].Text : ''}\n${res.RelatedTopics[1].Text ? res.RelatedTopics[1].Text : ''}\n${res.RelatedTopics[2].Text ? res.RelatedTopics[2].Text : ''}\n${res.AbstractURL}`;
+    let text = '';
+    console.log(res);
+    if (res.Redirect) {
+      text += res.Redirect;
+    } else if (res.Heading || res.Answer) {
+      if (res.Answer) text += `${res.Answer}\n\n`;
+      if (res.Definition) text += `${res.Definition}\n<${res.DefinitionURL}>\n\n`;
+      if (res.AbstractText) text += `${res.AbstractText}\n\n`;
+      if (res.Results[0]) text += `${res.Results[0].Text} - <${res.Results[0].FirstURL}>\n\n`;
+      if (res.RelatedTopics[0]) {
+        if (res.RelatedTopics[0].Text) {
+          text += res.RelatedTopics[0].Text;
+        } else {
+          text += res.RelatedTopics[0].Topics[0].Text;
+        }
+      }
+      if (res.RelatedTopics[1]) {
+        if (res.RelatedTopics[1].Text) {
+          text += `\n${res.RelatedTopics[1].Text}`;
+        } else {
+          text += `\n${res.RelatedTopics[1].Topics[0].Text}`;
+        }
+      }
+      if (res.RelatedTopics[2]) {
+        if (res.RelatedTopics[2].Text) {
+          text += `\n${res.RelatedTopics[2].Text}`;
+        } else {
+          text += `\n${res.RelatedTopics[2].Topics[0].Text}`;
+        }
+      }
+      if (res.RelatedTopics[3]) {
+        if (res.RelatedTopics[3].Text) {
+          text += `\n${res.RelatedTopics[3].Text}`;
+        } else {
+          text += `\n${res.RelatedTopics[3].Topics[0].Text}`;
+        }
+      }
+      if (res.RelatedTopics[4]) {
+        if (res.RelatedTopics[4].Text) {
+          text += `\n${res.RelatedTopics[4].Text}`;
+        } else {
+          text += `\n${res.RelatedTopics[4].Topics[0].Text}`;
+        }
+      }
+      if (res.AbstractURL) text += `\n<${res.AbstractURL}>`;
+      if (res.Image) text += `\n${res.Image}`;
+    } else {
+      text += `${T('ddg_error', lang)}: ${suffix}`;
+    }
+    return text;
   });
 }
-// evt.message.guild.afk_channel ? evt.message.guild.afk_channel.name : 'None'
+
 export default {
   bang: ddg,
   d: ddg,
