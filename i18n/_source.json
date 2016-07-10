@@ -107,17 +107,17 @@
     "text": "Usage: **`!decide`** `something` **`or`** `something...`",
     "done": true
   },
-  "define": {
-    "text": "Gives a definition for the word",
-    "done": true
+  "ddg": {
+    "text": "Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list.",
+    "done": false
   },
-  "define_error": {
-    "text": "I couldn't find a definition for",
-    "done": true
+  "ddg_error": {
+    "text": "I couldn't find anything for",
+    "done": false
   },
-  "define_usage": {
-    "text": "Usage: **`!define`** `word`",
-    "done": true
+  "ddg_usage": {
+    "text": "Usage: **`!ddg`** `search terms`",
+    "done": false
   },
   "dota2": {
     "text": "DOTA 2",

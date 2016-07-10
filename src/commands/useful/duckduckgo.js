@@ -8,18 +8,11 @@ const request = Promise.promisify(require('request'));
 function ddg(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('ddg_usage', lang));
 
-  let bang = suffix.split()[0];
-  let query = suffix.split()[1];
-  if (bang[0] !== '!') {
-    bang = '';
-    query = suffix.split();
-  }
-
   const options = {
     method: 'GET',
     url: 'http://api.duckduckgo.com/',
     qs: {
-      q: `${bang} ${query}`,
+      q: `${suffix}`,
       format: 'json',
       pretty: '0',
       no_redirect: '1',
@@ -28,11 +21,12 @@ function ddg(client, evt, suffix, lang) {
       t: 'Gravebot-Discord'
     }
   };
+
   return request(options)
   .then(response => {
     const res = JSON.parse(response.body);
     let text = '';
-    console.log(res);
+
     if (res.Redirect) {
       text += res.Redirect;
     } else if (res.Heading || res.Answer) {
@@ -95,5 +89,5 @@ export default {
 };
 
 export const help = {
-  ddg: {parameters: ['bang (optional)', 'query']}
+  ddg: {parameters: ['search terms']}
 };
