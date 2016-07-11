@@ -44,7 +44,7 @@ const positions = {
 // Setup and makes request to Champion.GG API
 function _makeRequest(options) {
   let default_options = {
-    qs: {api_key: nconf.get('CHAMPIONGG_API')},
+    qs: {api_key: nconf.get('CHAMPIONGG_KEY')},
     json: true
   };
 
@@ -74,7 +74,7 @@ function _verifyName(champ) {
 }
 
 export function counters(suffix, lang) {
-  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
+  if (!nconf.get('CHAMPIONGG_KEY')) return Promise.resolve(T('champgg_setup', lang));
 
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
@@ -122,7 +122,7 @@ export function counters(suffix, lang) {
 }
 
 export function items(suffix, lang) {
-  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
+  if (!nconf.get('CHAMPIONGG_KEY')) return Promise.resolve(T('champgg_setup', lang));
 
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
@@ -157,7 +157,7 @@ export function items(suffix, lang) {
 }
 
 export function skills(suffix, lang) {
-  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
+  if (!nconf.get('CHAMPIONGG_KEY')) return Promise.resolve(T('champgg_setup', lang));
 
   const suffix_split = suffix.split(' ');
   const position = R.last(suffix_split).toLowerCase();
@@ -199,7 +199,7 @@ export function skills(suffix, lang) {
 }
 
 export function bans(lang) {
-  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
+  if (!nconf.get('CHAMPIONGG_KEY')) return Promise.resolve(T('champgg_setup', lang));
 
   const options = {
     url: `http://api.champion.gg/stats/champs/mostBanned`,
@@ -222,7 +222,7 @@ export function bans(lang) {
 }
 
 export function best(suffix, lang) {
-  if (!nconf.get('CHAMPIONGG_API')) return Promise.resolve(T('champgg_setup', lang));
+  if (!nconf.get('CHAMPIONGG_KEY')) return Promise.resolve(T('champgg_setup', lang));
 
   const position = R.last(suffix.split(' ')).toLowerCase();
 

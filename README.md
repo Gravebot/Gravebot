@@ -53,7 +53,7 @@ For self hosting, click [here](#localconfig).
 - `!monster` - Get your personal monster
 - `!robot` - Get your personal robot
 - `!robothead` - Get your personal robot head
-- `!roll` *times sides* - Rolls the dice a number of times with a number of sides
+- `!roll` *times sides* - Rolls the dice a number of times with a number of sides, see `!random` for advanced generators
 - `!translate` - Translate text in funny ways
 - `!leet` *sentence* - 1337ifies the sentence
 - `!snoop` *sentence* - Snoopifies tha sentence
@@ -63,6 +63,11 @@ For self hosting, click [here](#localconfig).
 - `!ddg` *search terms* - Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list.
 - `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
 - `!join` - Shows a link that can be used to invite Gravebot to your server
+- `!random` - Generate truly random numbers and strings
+- `!fraction` *amount* *decimal places* *replace(optional)* - Generate a number of random real numbers between 0 and 1 with set decimal places, write **replace** at the end to disable duplicates (e.g. `!fraction 1 5 replace`)
+- `!gaussian` *amount* *mean* *deviation* *significant digits* - Generate a number of random numbers from a Gaussian distribution (e.g. `!gaussian 1 50 10 5`)
+- `!integer` *amount* *min* *max* *replace(optional)* - Generate a number of random integers between min and max, write **replace** at the end to disable duplicates (e.g. `!integer 2 1 50 replace`)
+- `!string` *amount* *length* *charset(optional)* *replace(optional)* - Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. `!string 1 10 abc123 replace`)
 - `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
 - `!videocall` *__Optional__ @username* - Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.
