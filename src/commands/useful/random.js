@@ -7,76 +7,77 @@ import T from '../../translate';
 import { subCommands as helpText } from '../help';
 
 
-const rand = new Randomorg({apiKey: nconf.get('RANDOM_KEY')});
+const rand = nconf.get('RANDOM_KEY') && new Randomorg({apiKey: nconf.get('RANDOM_KEY')});
 
 function fraction(client, evt, suffix, lang) {
   if (!nconf.get('RANDOM_KEY')) return Promise.resolve(T('random_setup', lang));
   if (!suffix) return Promise.resolve(T('fraction_usage', lang));
-  let n = suffix.split(' ')[0];
-  if (!n) n = 1;
-  let decimalPlaces = suffix.split(' ')[1];
-  if (!decimalPlaces) decimalPlaces = 5;
-  let replacement = true;
-  if (suffix.indexOf('replace') !== -1) replacement = false;
-  return rand.generateDecimalFractions({n: n, decimalPlaces: decimalPlaces, replacement: replacement})
-  .then(result => {
-    return R.join(', ', result.random.data);
-  });
+
+  const split_suffix = suffix.split(' ');
+  const n = split_suffix[0] || 1;
+  const decimal_places = suffix.split(' ')[1] || 5;
+  const replacement = suffix.indexOf('replace') === -1;
+
+  return rand.generateDecimalFractions({n, replacement, decimalPlaces: decimal_places})
+    .then(R.path(['random', 'data']))
+    .then(R.join(', '));
 }
 
 function gaussian(client, evt, suffix, lang) {
   if (!nconf.get('RANDOM_KEY')) return Promise.resolve(T('random_setup', lang));
   if (!suffix) return Promise.resolve(T('gaussian_usage', lang));
-  let n = suffix.split(' ')[0];
-  if (!n) n = 1;
-  let mean = suffix.split(' ')[1];
-  if (!mean) mean = 50;
-  let standardDeviation = suffix.split(' ')[2];
-  if (!standardDeviation) standardDeviation = 10;
-  let significantDigits = suffix.split(' ')[3];
-  if (!significantDigits) significantDigits = 5;
-  return rand.generateGaussians({n: n, mean: mean, standardDeviation: standardDeviation, significantDigits: significantDigits})
-  .then(result => {
-    return R.join(', ', result.random.data);
-  });
+
+  const split_suffix = suffix.split(' ');
+  const n = split_suffix[0] || 1;
+  const mean = split_suffix[1] || 50;
+  const standard_deviation = split_suffix[2] || 10;
+  const significant_digits = split_suffix[3] || 5;
+
+  return rand.generateGaussians({n, mean, standardDeviation: standard_deviation, significantDigits: significant_digits})
+    .then(R.path(['random', 'data']))
+    .then(R.join(', '));
 }
 
 function integer(client, evt, suffix, lang) {
   if (!nconf.get('RANDOM_KEY')) return Promise.resolve(T('random_setup', lang));
   if (!suffix) return Promise.resolve(T('integer_usage', lang));
-  let n = suffix.split(' ')[0];
-  if (!n) n = 2;
-  let min = suffix.split(' ')[1];
-  if (!min) min = 1;
-  let max = suffix.split(' ')[2];
-  if (!max) max = 50;
-  let replacement = true;
-  if (suffix.indexOf('replace') !== -1) replacement = false;
-  return rand.generateIntegers({n: n, min: min, max: max, replacement: replacement})
-  .then(result => {
-    return R.join(', ', result.random.data);
-  });
+
+  const split_suffix = suffix.split(' ');
+  const n = split_suffix[0] || 2;
+  const min = split_suffix[1] || 1;
+  const max = split_suffix[2] || 50;
+  const replacement = suffix.indexOf('replace') === -1;
+
+  return rand.generateIntegers({n, min, max, replacement})
+    .then(R.path(['random', 'data']))
+    .then(R.join(', '));
 }
 
 function string(client, evt, suffix, lang) {
   if (!nconf.get('RANDOM_KEY')) return Promise.resolve(T('random_setup', lang));
   if (!suffix) return Promise.resolve(T('string_usage', lang));
-  let n = suffix.split(' ')[0];
-  if (!n) n = 1;
-  let length = suffix.split(' ')[1];
-  if (!length) length = 10;
-  let characters = suffix.split(' ')[2];
-  if (!characters) characters = 'abcdefghijklmnopqrstuvwxyz';
-  let replacement = true;
-  if (suffix.indexOf('replace') !== -1) replacement = false;
-  return rand.generateStrings({n: n, length: length, characters: characters, replacement: replacement})
-  .then(result => {
-    return R.join(', ', result.random.data);
-  });
+
+  const split_suffix = suffix.split(' ');
+  const n = split_suffix[0] || 1;
+  const length = split_suffix[1] || 10;
+  const characters = split_suffix[2] || 'abcdefghijklmnopqrstuvwxyz';
+  const replacement = suffix.indexOf('replace') === -1;
+
+  return rand.generateStrings({n, length, characters, replacement})
+    .then(R.path(['random', 'data']))
+    .then(R.join(', '));
 }
 
-
 function random(client, evt, suffix, lang) {
+  const split_suffix = suffix.split(' ');
+  const cmd = split_suffix[0];
+  split_suffix.shift();
+  suffix = split_suffix.join(' ');
+
+  if (cmd === 'fraction') return fraction(client, evt, suffix, lang);
+  if (cmd === 'gaussian') return gaussian(client, evt, suffix, lang);
+  if (cmd === 'integer') return integer(client, evt, suffix, lang);
+  if (cmd === 'string') return string(client, evt, suffix, lang);
   return helpText(client, evt, 'random', lang);
 }
 
