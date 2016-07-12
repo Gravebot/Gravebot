@@ -9,7 +9,7 @@ cache:
   directories:
     - node_modules
 before_install:
-  - npm install -g npm@3.8.7
+  - npm install -g npm@3.10.3
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - ./scripts/docker/trigger.sh
