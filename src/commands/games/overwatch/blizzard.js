@@ -6,6 +6,7 @@ import SuperError from 'super-error';
 
 import phantom from '../../../phantom';
 
+
 const request = Promise.promisify(require('request'));
 
 const Warning = SuperError.subclass('Warning', function(msg) {

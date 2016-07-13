@@ -99,6 +99,18 @@
     "text": "Returns a xkcd comic",
     "done": true
   },
+  "ddg": {
+    "text": "Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list.",
+    "done": true
+  },
+  "ddg_error": {
+    "text": "I couldn't find anything for",
+    "done": true
+  },
+  "ddg_usage": {
+    "text": "Usage: **`!ddg`** `search terms`",
+    "done": true
+  },
   "decide": {
     "text": "Decides between given words",
     "done": true
@@ -147,12 +159,24 @@
     "text": "Give feedback and report bugs about the bot",
     "done": true
   },
+  "feedback_reply": {
+    "text": "Thanks! Your feedback has been received.",
+    "done": true
+  },
   "feedback_setup": {
     "text": "Please setup Feedback Channel in config.js to use the **`!feedback`** command.",
     "done": true
   },
   "feedback_usage": {
     "text": "Usage: **`!feedback`** `text`",
+    "done": true
+  },
+  "fraction_usage": {
+    "text": "Usage: **`!fraction`** `amount` `decimal places` `replace(optional)`",
+    "done": true
+  },
+  "gaussian_usage": {
+    "text": "Usage: **`!gaussian`** `amount` `mean` `deviation` `significant digits`",
     "done": true
   },
   "gif": {
@@ -197,6 +221,10 @@
   },
   "help_useful": {
     "text": "List of useful commands",
+    "done": true
+  },
+  "integer_usage": {
+    "text": "Usage: **`!integer`** `amount` `min` `max` `replace(optional)`",
     "done": true
   },
   "join": {
@@ -359,12 +387,56 @@
     "text": "Responds with a quote, if no number is written, a random one",
     "done": true
   },
+  "random": {
+    "text": "Generate truly random numbers and strings",
+    "done": true
+  },
+  "random_fraction": {
+    "text": "Generate a number of random real numbers between 0 and 1 with set decimal places, write **replace** at the end to disable duplicates (e.g. __!fraction 1 5 replace__)",
+    "done": true
+  },
+  "random_gaussian": {
+    "text": "Generate a number of random numbers from a Gaussian distribution (e.g. __!gaussian 1 50 10 5__)",
+    "done": true
+  },
+  "random_integer": {
+    "text": "Generate a number of random integers between min and max, write **replace** at the end to disable duplicates (e.g. __!integer 2 1 50 replace__)",
+    "done": true
+  },
+  "random_setup": {
+    "text": "Please setup Random in config.js to use the **`!random`** commands.",
+    "done": true
+  },
+  "random_string": {
+    "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. __!string 1 10 abc123 replace__)",
+    "done": true
+  },
   "riot_setup": {
     "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
     "done": true
   },
+  "robohash": {
+    "text": "Get robot and monster images",
+    "done": true
+  },
+  "robohash_header_text": {
+    "text": "Responds with an image according to your ID.\nYou can specify a suffix after a command to get a different picture. (e.g. `!robot Testie`)",
+    "done": true
+  },
+  "robohash_monster": {
+    "text": "Get your personal monster",
+    "done": true
+  },
+  "robohash_robot": {
+    "text": "Get your personal robot",
+    "done": true
+  },
+  "robohash_robothead": {
+    "text": "Get your personal robot head",
+    "done": true
+  },
   "roll": {
-    "text": "Rolls the dice a number of times with a number of sides",
+    "text": "Rolls the dice a number of times with a number of sides, see **`!random`** for advanced generators",
     "done": true
   },
   "serverinfo": {
@@ -389,6 +461,10 @@
   },
   "specify_summoner": {
     "text": "You need to specify a summoner name.",
+    "done": true
+  },
+  "string_usage": {
+    "text": "Usage: **`!string`** `amount` `length` `charset(optional)` `replace(optional)`",
     "done": true
   },
   "translate": {

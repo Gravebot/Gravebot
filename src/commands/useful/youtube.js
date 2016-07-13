@@ -6,12 +6,12 @@ import T from '../../translate';
 
 
 const youtube = new YoutubeNode();
-youtube.setKey(nconf.get('YOUTUBE_API_KEY'));
+youtube.setKey(nconf.get('YOUTUBE_KEY'));
 youtube.addParam('type', 'video,playlist');
 const searchYoutube = Promise.promisify(youtube.search);
 
 function search(client, evt, suffix, lang) {
-  if (!nconf.get('YOUTUBE_API_KEY')) return Promise.resolve(T('youtube_setup', lang));
+  if (!nconf.get('YOUTUBE_KEY')) return Promise.resolve(T('youtube_setup', lang));
   if (!suffix) return Promise.resolve(T('youtube_usage', lang));
 
   return searchYoutube(suffix, 1)

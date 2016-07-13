@@ -14,7 +14,7 @@ function meme(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('meme_usage', lang));
 
   const tags = suffix.split('"');
-  const memetype = tags[0].trim();
+  const memetype = tags[0].trim().toLowerCase();
 
   return generateMeme(memes[memetype], tags[1] ? tags[1] : ' ', tags[3] ? tags[3] : ' ')
     .then(image => {

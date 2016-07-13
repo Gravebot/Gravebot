@@ -38,6 +38,14 @@ function yoda(client, evt, phrase, lang) {
 }
 
 function translate(client, evt, suffix, lang) {
+  const split_suffix = suffix.split(' ');
+  const cmd = split_suffix[0];
+  split_suffix.shift();
+  suffix = split_suffix.join(' ');
+
+  if (cmd === 'leet') return leet(client, evt, suffix, lang);
+  if (cmd === 'snoop') return snoop(client, evt, suffix, lang);
+  if (cmd === 'yoda') return yoda(client, evt, suffix, lang);
   return helpText(client, evt, 'translate', lang);
 }
 

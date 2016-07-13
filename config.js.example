@@ -20,7 +20,7 @@ module.exports = {
 
   // Youtube API key, used for searching videos with `!youtube`.
   // Learn more here. https://developers.google.com/youtube/v3/getting-started
-  YOUTUBE_API_KEY: '',
+  YOUTUBE_KEY: '',
 
   // Imgflip username and password, used for creating memes with `!meme`.
   // Create an account here. https://imgflip.com
@@ -29,7 +29,7 @@ module.exports = {
 
   // Champion.gg API key, used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg/
-  CHAMPIONGG_API: '',
+  CHAMPIONGG_KEY: '',
 
   // Riot's API key, used for player and match search commands.
   // BE WARNED, a development key will be very limited and most of the time will not work,
@@ -47,6 +47,10 @@ module.exports = {
   // Popkey API key, used for searching GIFs with `!popkey`.
   // Apply for a key here. http://popkey.co/api/submit
   POPKEY_KEY: '',
+
+  // Random.org API key, used for getting random numbers and strings with `!random`.
+  // Get a key here. https://api.random.org/api-keys
+  RANDOM_KEY: '',
 
   // Carbon key, used for displaying server count.
   // More information here. https://www.carbonitex.net/discord/bots

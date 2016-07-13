@@ -1,13 +1,9 @@
 import chai from 'chai';
-import fs from 'fs';
-import nock from 'nock';
-import path from 'path';
 
-import info from '../src/commands/info';
+import info from '../../src/commands/info/index';
 
 
 chai.should();
-const res_fixture = fs.readFileSync(path.join(__dirname, './fixtures/version.md'));
 
 describe('info', () => {
   describe('avatar', () => {
@@ -214,28 +210,6 @@ Status: online (Playing game)
 Registered At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
 Avatar: http://website.com/img.png
 \`\`\``));
-    });
-  });
-
-  describe('version', () => {
-    it('should return the change log for the latest verion', () => {
-      nock('https://raw.githubusercontent.com/')
-        .get('/Gravebot/Gravebot/master/CHANGELOG.md')
-        .reply(200, res_fixture);
-
-      return info.version()
-        .then(res => {
-          res.should.equal(`1.2.3 (Janurary 8th, 2016)
-
-Features
-- Test One
-
-Bug Fixes
-- Test Two
-
-Technical Features
-- Test Three`);
-        });
     });
   });
 });

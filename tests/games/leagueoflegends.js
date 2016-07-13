@@ -12,7 +12,7 @@ const FIXTURES = loadFixtures(path.join(__dirname, '../fixtures/leagueoflegends/
 
 describe('league of legends', () => {
   before(() => {
-    nconf.set('CHAMPIONGG_API', 'api_key');
+    nconf.set('CHAMPIONGG_KEY', 'api_key');
     nconf.set('RIOT_KEY', 'api_key');
   });
 
