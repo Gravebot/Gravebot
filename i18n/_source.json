@@ -393,23 +393,23 @@
   },
   "random_fraction": {
     "text": "Generate a number of random real numbers between 0 and 1 with set decimal places, write **replace** at the end to disable duplicates (e.g. __!fraction 1 5 replace__)",
-    "done": false
+    "done": true
   },
   "random_gaussian": {
     "text": "Generate a number of random numbers from a Gaussian distribution (e.g. __!gaussian 1 50 10 5__)",
-    "done": false
+    "done": true
   },
   "random_integer": {
     "text": "Generate a number of random integers between min and max, write **replace** at the end to disable duplicates (e.g. __!integer 2 1 50 replace__)",
-    "done": false
+    "done": true
   },
   "random_setup": {
     "text": "Please setup Random in config.js to use the **`!random`** commands.",
-    "done": false
+    "done": true
   },
   "random_string": {
     "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. __!string 1 10 abc123 replace__)",
-    "done": false
+    "done": true
   },
   "riot_setup": {
     "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
