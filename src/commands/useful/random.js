@@ -92,15 +92,15 @@ export default {
 
 export const help = {
   random: {
-    prefix: true,
+    prefix: false,
     subcommands: [
       {
         name: 'fraction',
-        parameters: ['amount']
+        parameters: ['amount', 'decimal places']
       },
       {
         name: 'gaussian',
-        parameters: ['amount']
+        parameters: ['amount', 'mean', 'deviation', 'significant digits']
       },
       {
         name: 'integer',

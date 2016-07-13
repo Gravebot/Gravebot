@@ -19,6 +19,14 @@ function robothead(client, evt, suffix) {
 }
 
 function robohash(client, evt, suffix, lang) {
+  const split_suffix = suffix.split(' ');
+  const cmd = split_suffix[0];
+  split_suffix.shift();
+  suffix = split_suffix.join(' ');
+
+  if (cmd === 'monster') return monster(client, evt, suffix);
+  if (cmd === 'robot') return robot(client, evt, suffix);
+  if (cmd === 'robothead') return robothead(client, evt, suffix);
   return helpText(client, evt, 'robohash', lang);
 }
 

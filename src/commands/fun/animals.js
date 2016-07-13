@@ -64,6 +64,14 @@ function snake(client, evt, suffix) {
 }
 
 function animals(client, evt, suffix, lang) {
+  const split_suffix = suffix.split(' ');
+  const cmd = split_suffix[0];
+  split_suffix.shift();
+  suffix = split_suffix.join(' ');
+
+  if (cmd === 'cat') return cat(client, evt, suffix);
+  if (cmd === 'pug') return pug(client, evt, suffix);
+  if (cmd === 'snake') return snake(client, evt, suffix);
   return helpText(client, evt, 'animals', lang);
 }
 

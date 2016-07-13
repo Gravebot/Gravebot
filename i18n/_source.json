@@ -392,20 +392,24 @@
     "done": true
   },
   "random_fraction": {
-    "text": "Generate a number of random real numbers between 0 and 1 with set decimal places, write **replace** at the end to disable duplicates (e.g. `!fraction 1 5 replace`)",
-    "done": true
+    "text": "Generate a number of random real numbers between 0 and 1 with set decimal places, write **replace** at the end to disable duplicates (e.g. __!fraction 1 5 replace__)",
+    "done": false
   },
   "random_gaussian": {
-    "text": "Generate a number of random numbers from a Gaussian distribution (e.g. `!gaussian 1 50 10 5`)",
-    "done": true
+    "text": "Generate a number of random numbers from a Gaussian distribution (e.g. __!gaussian 1 50 10 5__)",
+    "done": false
   },
   "random_integer": {
-    "text": "Generate a number of random integers between min and max, write **replace** at the end to disable duplicates (e.g. `!integer 2 1 50 replace`)",
-    "done": true
+    "text": "Generate a number of random integers between min and max, write **replace** at the end to disable duplicates (e.g. __!integer 2 1 50 replace__)",
+    "done": false
+  },
+  "random_setup": {
+    "text": "Please setup Random in config.js to use the **`!random`** commands.",
+    "done": false
   },
   "random_string": {
-    "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. `!string 1 10 abc123 replace`)",
-    "done": true
+    "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. __!string 1 10 abc123 replace__)",
+    "done": false
   },
   "riot_setup": {
     "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
@@ -461,18 +465,6 @@
   },
   "string_usage": {
     "text": "Usage: **`!string`** `amount` `length` `charset(optional)` `replace(optional)`",
-    "done": true
-  },
-  "synonyms": {
-    "text": "Shows synonyms for the word",
-    "done": true
-  },
-  "synonyms_error": {
-    "text": "I couldn't find a synonym for",
-    "done": true
-  },
-  "synonyms_usage": {
-    "text": "Usage: **`!synonyms`** `word`",
     "done": true
   },
   "translate": {

@@ -79,7 +79,6 @@ function ddg(client, evt, suffix, lang) {
 }
 
 export default {
-  bang: ddg,
   d: ddg,
   ddg,
   duck: ddg,
