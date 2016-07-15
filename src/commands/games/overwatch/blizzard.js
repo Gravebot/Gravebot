@@ -164,20 +164,20 @@ export function eliminations(player_name, region) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_eliminations.png'}));
 }
 
-export function killStreak(player_name, region) {
-  return _makeRequest(player_name, region)
-    .spread(($, data) => phantom('ow_herostats', R.merge(data, {
-      stat_name: 'Kill Streak',
-      heroes: _processHeroStats($, $('.progress-category').eq(5).children())
-    })))
-    .then(buf => ({upload: buf, filename: 'gravebot_overwatch_killstreak.png'}));
-}
+// export function killStreak(player_name, region) {
+//   return _makeRequest(player_name, region)
+//     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
+//       stat_name: 'Kill Streak',
+//       heroes: _processHeroStats($, $('.progress-category').eq(5).children())
+//     })))
+//     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_killstreak.png'}));
+// }
 
 export function multikill(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Multikill',
-      heroes: _processHeroStats($, $('.progress-category').eq(6).children())
+      heroes: _processHeroStats($, $('.progress-category').eq(5).children())
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_multikill.png'}));
 }
@@ -186,7 +186,7 @@ export function objectiveKills(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Objective Kills',
-      heroes: _processHeroStats($, $('.progress-category').eq(7).children())
+      heroes: _processHeroStats($, $('.progress-category').eq(6).children())
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_objectivekills.png'}));
 }

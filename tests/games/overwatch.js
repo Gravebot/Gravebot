@@ -83,13 +83,13 @@ describe('overwatch', () => {
   });
 
 
-  it('killStreak should return a buffer and filename', () => {
-    return ow.ow({}, {}, `kill streak ${battletag}`, 'en')
-      .then(res => {
-        res.upload.length.should.be.at.least(70000);
-        res.filename.should.equal('gravebot_overwatch_killstreak.png');
-      });
-  });
+  // it('killStreak should return a buffer and filename', () => {
+  //   return ow.ow({}, {}, `kill streak ${battletag}`, 'en')
+  //     .then(res => {
+  //       res.upload.length.should.be.at.least(70000);
+  //       res.filename.should.equal('gravebot_overwatch_killstreak.png');
+  //     });
+  // });
 
   it('multikill should return a buffer and filename', () => {
     return ow.ow({}, {}, `multikill ${battletag}`, 'en')

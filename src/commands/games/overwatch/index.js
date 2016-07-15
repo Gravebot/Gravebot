@@ -61,10 +61,10 @@ export const help = {
         name: 'eliminations',
         parameters: ['region', 'battletag']
       },
-      {
-        name: 'kill streak',
-        parameters: ['region', 'battletag']
-      },
+      // {
+      //   name: 'kill streak',
+      //   parameters: ['region', 'battletag']
+      // },
       {
         name: 'multikill',
         parameters: ['region', 'battletag']
