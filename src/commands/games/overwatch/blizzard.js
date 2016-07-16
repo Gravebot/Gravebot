@@ -63,8 +63,8 @@ function _makeRequest(player_name, region) {
   });
 }
 
-function _processHeroStats($, heros_el) {
-  return heros_el.map((idx, el) => {
+function _getHeroStats($, position) {
+  const entries = $('.progress-category').eq(position).children().map((idx, el) => {
     el = $(el);
     const name = removeDiacritics(el.find('.title').text());
     return {
@@ -76,6 +76,21 @@ function _processHeroStats($, heros_el) {
       }
     };
   }).get();
+
+  return R.zipObj(R.pluck('name', entries), entries);
+}
+
+function _processHeroStats($, position) {
+  const normals = _getHeroStats($, position);
+  const competitive = _getHeroStats($, position + 7);
+  R.forEach(key => {
+    normals[key].value += ` / ${competitive[key].value}`;
+    normals[key].meta.progress_bar_percent = Math.ceil((normals[key].meta.progress_bar_percent + competitive[key].meta.progress_bar_percent) / 2);
+  }, R.keys(normals));
+
+  return R.sort((a, b) => {
+    return b.meta.progress_bar_percent - a.meta.progress_bar_percent;
+  }, R.values(normals));
 }
 
 export function averages(player_name, region) {
@@ -123,7 +138,7 @@ export function timePlayed(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Time Played',
-      heroes: _processHeroStats($, $('.progress-category').eq(0).children())
+      heroes: _processHeroStats($, 0)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_timeplayed.png'}));
 }
@@ -132,7 +147,7 @@ export function gamesWon(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Games Won',
-      heroes: _processHeroStats($, $('.progress-category').eq(1).children())
+      heroes: _processHeroStats($, 1)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_gameswon.png'}));
 }
@@ -141,7 +156,7 @@ export function winPercent(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Win Percent',
-      heroes: _processHeroStats($, $('.progress-category').eq(2).children())
+      heroes: _processHeroStats($, 2)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_winpercent.png'}));
 }
@@ -150,7 +165,7 @@ export function weaponAccuracy(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Weapon Accuracy',
-      heroes: _processHeroStats($, $('.progress-category').eq(3).children())
+      heroes: _processHeroStats($, 3)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_accuracy.png'}));
 }
@@ -159,7 +174,7 @@ export function eliminations(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Eliminations Per Life',
-      heroes: _processHeroStats($, $('.progress-category').eq(4).children())
+      heroes: _processHeroStats($, 4)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_eliminations.png'}));
 }
@@ -177,7 +192,7 @@ export function multikill(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Multikill',
-      heroes: _processHeroStats($, $('.progress-category').eq(5).children())
+      heroes: _processHeroStats($, 5)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_multikill.png'}));
 }
@@ -186,7 +201,7 @@ export function objectiveKills(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Objective Kills',
-      heroes: _processHeroStats($, $('.progress-category').eq(6).children())
+      heroes: _processHeroStats($, 6)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_objectivekills.png'}));
 }
