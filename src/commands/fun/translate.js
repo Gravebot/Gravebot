@@ -11,12 +11,12 @@ const gizoogle = Promise.promisifyAll(require('gizoogle'));
 
 function leet(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('leet_usage', lang));
-  return Promise.resolve(leetify.convert(suffix));
+  return Promise.resolve(leetify.convert(suffix.toLowerCase()));
 }
 
 function snoop(client, evt, suffix, lang) {
   if (!suffix) return Promise.resolve(T('snoop_usage', lang));
-  return gizoogle.stringAsync(suffix);
+  return gizoogle.stringAsync(suffix.toLowerCase());
 }
 
 function yoda(client, evt, phrase, lang) {
