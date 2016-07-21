@@ -33,7 +33,7 @@ const Warning = SuperError.subclass('Warning', function(msg) {
 });
 
 // List of regions
-const regions = ['br', 'eune', 'euw', 'kr', 'lan', 'las', 'na', 'oce', 'ru', 'tr'];
+const regions = ['br', 'eune', 'euw', 'jp', 'kr', 'lan', 'las', 'na', 'oce', 'ru', 'tr'];
 
 // Setup and makes request to Riot API
 function _makeRequest(url) {
