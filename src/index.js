@@ -132,7 +132,25 @@ function carbon() {
     }).catch(console.log);
   }
 }
+
+function dbots() {
+  if (nconf.get('DBOTS_KEY')) {
+    request({
+      method: 'POST',
+      url: `https://bots.discord.pw/api/bots/${client.User.id}/stats`,
+      headers: {
+        Authorization: nconf.get('DBOTS_KEY'),
+        'Content-Type': 'application/json'
+      },
+      json: {
+        server_count: client.Guilds.length
+      }
+    }).catch(console.log);
+  }
+}
+
 setInterval(carbon, 3600000);
+setInterval(dbots, 3600000);
 
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
@@ -156,6 +174,7 @@ client.Dispatcher.on('GATEWAY_READY', () => {
   if (!initialized) {
     initialized = true;
     setTimeout(carbon, 20000);
+    setTimeout(dbots, 20000);
 
     client.Dispatcher.on('MESSAGE_CREATE', onMessage);
     client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
