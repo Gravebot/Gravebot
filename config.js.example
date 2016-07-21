@@ -52,9 +52,10 @@ module.exports = {
   // Get a key here. https://api.random.org/api-keys
   RANDOM_KEY: '',
 
-  // Carbon key, used for displaying server count.
-  // More information here. https://www.carbonitex.net/discord/bots
+  // Carbon and Discord Bots key, used for displaying server count on specific websites.
+  // More information here. https://www.carbonitex.net/discord/bots & https://bots.discord.pw/api
   CARBON_KEY: '',
+  DBOTS_KEY: '',
 
   // Feedback Channel ID, used for storing feedback with `!feedback`.
   FEEDBACK_CHANNEL_ID: ''
