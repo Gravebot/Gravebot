@@ -12,13 +12,19 @@ import datadog from './datadog';
 import logger from './logger';
 import sentry from './sentry';
 
-import { getMessageTTL, setMessageTTL, getUserLang } from './redis';
+import { createDuplicateClient, getMessageTTL, setMessageTTL, getUserLang } from './redis';
 
 const request = Promise.promisify(require('request'));
 
 
 // Init
-const client = new Discordie();
+const discordie_options = {};
+if (nconf.get('SHARDING')) {
+  discordie_options.shardCount = Number(nconf.get('SHARD_COUNT'));
+  discordie_options.shardId = Number(nconf.get('SHARD_NUMBER'));
+}
+
+const client = new Discordie(discordie_options);
 let initialized = false;
 
 
@@ -118,6 +124,21 @@ function onMessage(evt) {
     if (cmd) callCmd(cmd, cmd_name, client, evt, suffix);
     return;
   }
+}
+
+if (nconf.get('SHARDING')) {
+  const pubClient = createDuplicateClient('cmd processor pub');
+  const subClient = createDuplicateClient('cmd processor sub');
+  subClient.on('message', (channel, message) => {
+    const { channel_name, instance, request: { cmd, suffix, lang } } = JSON.parse(message);
+    if (instance === nconf.get('SHARD_NUMBER')) return;
+
+    commands[cmd]({}, {}, suffix, lang, true)
+      .then(results => {
+        pubClient.publish(channel_name, JSON.stringify({instance: nconf.get('SHARD_NUMBER'), results}));
+      });
+  });
+  subClient.subscribe('cmd');
 }
 
 function carbon() {

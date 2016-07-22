@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import { EventEmitter } from 'events';
 import nconf from 'nconf';
 import redis from 'redis';
 
@@ -13,11 +14,33 @@ const client = redis.createClient({url: client_url});
 export default client;
 
 
-client.on('connect', () => logger.info('Redis connected'));
-client.on('reconnecting', () => logger.warn('Redis reconnecting'));
-client.on('ready', () => logger.info('Redis ready'));
-client.on('error', err => sentry(err, 'redis'));
+function createLoggers(redisClient, type) {
+  redisClient.on('connect', () => logger.info(`Redis ${type} connected`));
+  redisClient.on('reconnecting', () => logger.warn(`Redis ${type} reconnecting`));
+  redisClient.on('ready', () => logger.info(`Redis ${type} ready`));
+  redisClient.on('error', err => sentry(err, 'redis'));
+}
 
+createLoggers(client, 'default');
+
+
+export function createDuplicateClient(name) {
+  const pubsubClient = client.duplicate();
+  createLoggers(pubsubClient, name);
+  return pubsubClient;
+}
+
+// Sharding
+let pubClient, subClient, shardEmitter;
+if (nconf.get('SHARDING')) {
+  pubClient = createDuplicateClient('cmd emitter pub');
+  subClient = createDuplicateClient('cmd emitter sub');
+  shardEmitter = new EventEmitter();
+
+  subClient.on('message', (channel, message) => {
+    shardEmitter.emit(channel, JSON.parse(message));
+  });
+}
 
 // Gets a users language based on ID
 export function getUserLang(user_id) {
@@ -58,4 +81,26 @@ export function setMessageTTL(user_id) {
     .catch(err => {
       sentry(err, 'setMessageTTL');
     });
+}
+
+export function getShardsCmdResults(cmd, suffix = '', lang = '') {
+  return new Promise((resolve, reject) => {
+    const channel_name = `${cmd}_${new Date().getTime()}`;
+    const results = [];
+
+    shardEmitter.on(channel_name, result => {
+      results.push(result);
+      if (results.length === (nconf.get('SHARD_COUNT') - 1)) {
+        subClient.unsubscribe(channel_name);
+        resolve(results);
+      }
+    });
+
+    subClient.subscribe(channel_name);
+    pubClient.publish('cmd', JSON.stringify({
+      channel_name,
+      instance: nconf.get('SHARD_NUMBER'),
+      request: {cmd, suffix, lang}
+    }));
+  }).timeout(15000);
 }

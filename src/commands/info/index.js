@@ -178,16 +178,6 @@ Avatar: ${user.avatarURL ? user.avatarURL : 'None'}
   return Promise.resolve(userinfo);
 }
 
-function uptime() {
-  const uptimeh = Math.floor(process.uptime() / (60 * 60));
-  const uptimem = Math.floor(process.uptime() % (60 * 60) / 60);
-  const uptimes = Math.floor(process.uptime() % 60);
-  return Promise.resolve(`I have been alive for:
-${uptimeh} Hours
-${uptimem} Minutes
-${uptimes} Seconds`);
-}
-
 export const help = {
   avatar: {parameters: ['username']},
   channelinfo: {parameters: ['channelname']},
@@ -205,6 +195,5 @@ export default {
   statistics: servers,
   stats: servers,
   userinfo,
-  uptime,
   whois: userinfo
 };
