@@ -133,7 +133,7 @@ if (nconf.get('SHARDING')) {
     const { channel_name, instance, request: { cmd, suffix, lang } } = JSON.parse(message);
     if (instance === nconf.get('SHARD_NUMBER')) return;
 
-    commands[cmd]({}, {}, suffix, lang, true)
+    commands[cmd](client, {}, suffix, lang, true)
       .then(results => {
         pubClient.publish(channel_name, JSON.stringify({instance: nconf.get('SHARD_NUMBER'), results}));
       });

@@ -131,10 +131,6 @@ Icon: ${guild.iconURL ? guild.iconURL : 'None'}
   return Promise.resolve(serverinfo);
 }
 
-function servers(client) {
-  return Promise.resolve(`Connected to ${client.Guilds.length} servers, ${client.Channels.length} channels and ${client.Users.length} users.`);
-}
-
 function userinfo(client, evt, suffix) {
   const userinfo = [];
   if (evt.message.channel.is_private) {
@@ -182,18 +178,13 @@ export const help = {
   avatar: {parameters: ['username']},
   channelinfo: {parameters: ['channelname']},
   serverinfo: {parameters: ['servername']},
-  servers: {},
-  userinfo: {parameters: ['username']},
-  uptime: {}
+  userinfo: {parameters: ['username']}
 };
 
 export default {
   avatar,
   channelinfo,
   serverinfo,
-  servers,
-  statistics: servers,
-  stats: servers,
   userinfo,
   whois: userinfo
 };
