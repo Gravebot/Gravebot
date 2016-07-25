@@ -14,6 +14,8 @@ function avatar(client, evt, suffix) {
         return `${user.username}'s avatar:\n${user.avatarURL}`;
       });
   }
+
+  if (evt.message.channel.is_private) return Promise.resolve(`Sorry, we can\'t get ${suffix} avatar from a direct message. Try in a channel instead!`);
   const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
   if (!user) return;
   if (!user.avatarURL) return Promise.resolve(`${user.username} is naked.`);
