@@ -17,7 +17,7 @@
     "concurrently": "^2.1.0",
     "diacritics": "^1.2.3",
     "didyoumean": "^1.2.1",
-    "discordie": "^0.7.2",
+    "discordie": "git+https://github.com/qeled/discordie#571cde8c975e1374ab9fcc95ceb805bcc9b27d40",
     "dogapi": "^2.3.0",
     "entities": "^1.1.1",
     "express": "^4.13.4",
