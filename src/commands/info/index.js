@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import nconf from 'nconf';
 import R from 'ramda';
 
 
@@ -111,7 +112,7 @@ Icon: ${evt.message.guild.iconURL ? evt.message.guild.iconURL : 'None'}
 \`\`\``);
   } else {
     const guild = R.find(R.propEq('name', suffix))(client.Guilds);
-    if (!guild) return;
+    if (!guild || nconf.get('SHARDING')) return;
     const roles = R.join(', ', R.remove(0, 1, R.pluck('name', guild.roles)));
     serverinfo.push(`\`\`\`Name: ${guild.name}
 ID: ${guild.id}
