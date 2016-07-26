@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import nconf from 'nconf';
 import R from 'ramda';
 
 
@@ -13,6 +14,8 @@ function avatar(client, evt, suffix) {
         return `${user.username}'s avatar:\n${user.avatarURL}`;
       });
   }
+
+  if (evt.message.channel.is_private) return Promise.resolve(`Sorry, we can\'t get ${suffix} avatar from a direct message. Try in a channel instead!`);
   const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
   if (!user) return;
   if (!user.avatarURL) return Promise.resolve(`${user.username} is naked.`);
@@ -111,7 +114,7 @@ Icon: ${evt.message.guild.iconURL ? evt.message.guild.iconURL : 'None'}
 \`\`\``);
   } else {
     const guild = R.find(R.propEq('name', suffix))(client.Guilds);
-    if (!guild) return;
+    if (!guild || nconf.get('SHARDING')) return;
     const roles = R.join(', ', R.remove(0, 1, R.pluck('name', guild.roles)));
     serverinfo.push(`\`\`\`Name: ${guild.name}
 ID: ${guild.id}
@@ -129,10 +132,6 @@ Icon: ${guild.iconURL ? guild.iconURL : 'None'}
   }
 
   return Promise.resolve(serverinfo);
-}
-
-function servers(client) {
-  return Promise.resolve(`Connected to ${client.Guilds.length} servers, ${client.Channels.length} channels and ${client.Users.length} users.`);
 }
 
 function userinfo(client, evt, suffix) {
@@ -178,33 +177,17 @@ Avatar: ${user.avatarURL ? user.avatarURL : 'None'}
   return Promise.resolve(userinfo);
 }
 
-function uptime() {
-  const uptimeh = Math.floor(process.uptime() / (60 * 60));
-  const uptimem = Math.floor(process.uptime() % (60 * 60) / 60);
-  const uptimes = Math.floor(process.uptime() % 60);
-  return Promise.resolve(`I have been alive for:
-${uptimeh} Hours
-${uptimem} Minutes
-${uptimes} Seconds`);
-}
-
 export const help = {
   avatar: {parameters: ['username']},
   channelinfo: {parameters: ['channelname']},
   serverinfo: {parameters: ['servername']},
-  servers: {},
-  userinfo: {parameters: ['username']},
-  uptime: {}
+  userinfo: {parameters: ['username']}
 };
 
 export default {
   avatar,
   channelinfo,
   serverinfo,
-  servers,
-  statistics: servers,
-  stats: servers,
   userinfo,
-  uptime,
   whois: userinfo
 };

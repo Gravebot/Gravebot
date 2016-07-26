@@ -76,6 +76,8 @@
     "build-styl": "mkdir -p ./web/css/ && stylus -u nib -c -o ./web/css/ ./web/styl/*.styl",
     "debug": "npm run build && DEBUG=horseman node-debug --no-preload ./index.js",
     "dev": "NODE_ENV=development DEBUG=express:*,horseman nodemon -i **/*.marko.js -e js,marko ./index.js",
+    "dev-nodebug": "NODE_ENV=development nodemon -i **/*.marko.js -e js,marko ./index.js",
+    "dev-sharding": "babel-node ./scripts/sharding/dev.js",
     "docker": "npm run test && docker build --rm -t gravebot/gravebot:latest . && docker push gravebot/gravebot:latest",
     "forever": "forever --minUptime 5000 index.js",
     "image": "docker build --rm -t gravebot/gravebot:latest .",

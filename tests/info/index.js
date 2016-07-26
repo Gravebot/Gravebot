@@ -148,13 +148,6 @@ Icon: http://website.com/img.png
     });
   });
 
-  describe('servers', () => {
-    it('should return a string containing statistics information', () => {
-      const client = {Guilds: ['test'], Channels: ['channel'], Users: ['user']};
-      return info.servers(client, {})
-      .then(res => res.should.equal('Connected to 1 servers, 1 channels and 1 users.'));
-    });
-  });
 
   describe('userinfo', () => {
     it('should return user info for requesting user', () => {

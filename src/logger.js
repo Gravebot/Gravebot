@@ -5,7 +5,9 @@ import nconf from 'nconf';
 import R from 'ramda';
 
 const production = (nconf.get('NODE_ENV') === 'production');
-const logger = bunyan.createLogger({name: 'gravebot'});
+const config = {name: 'gravebot'};
+if (nconf.get('SHARDING') && nconf.get('SHARD_NUMBER')) config.shard_number = nconf.get('SHARD_NUMBER');
+const logger = bunyan.createLogger(config);
 
 
 function _submitToLogger(type, msg) {

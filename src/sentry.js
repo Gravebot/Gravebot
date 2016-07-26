@@ -32,6 +32,7 @@ export default function captureError(err, source) {
     tags: {source}
   };
 
+  if (nconf.get('SHARDING') && nconf.get('SHARD_NUMBER')) options.tags.shard_number = nconf.get('SHARD_NUMBER');
   if (err.level) options.level = err.level;
   if (err.level && err.level === 'warning') return;
 
