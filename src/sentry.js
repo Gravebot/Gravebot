@@ -28,6 +28,8 @@ if (nconf.get('NODE_ENV') === 'production' && nconf.get('SENTRY_DSN')) {
 }
 
 export default function captureError(err, source) {
+  if (!(err instanceof Error)) err = new Error(err);
+
   const options = {
     tags: {source}
   };
