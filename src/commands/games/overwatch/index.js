@@ -22,7 +22,7 @@ export default {
     if (command.indexOf('win') > -1) return blizzard.winPercent(player_name, region);
     if (command.indexOf('weapon') > -1 || command.indexOf('accuracy') > -1) return blizzard.weaponAccuracy(player_name, region);
     if (command.indexOf('elimination') > -1) return blizzard.eliminations(player_name, region);
-    if (command === 'killstreak') return blizzard.killStreak(player_name, region);
+    // if (command === 'killstreak') return blizzard.killStreak(player_name, region);
     if (command === 'multikill') return blizzard.multikill(player_name, region);
     if (command.indexOf('objective') > -1) return blizzard.objectiveKills(player_name, region);
     return helpText(client, evt, 'ow', lang);
