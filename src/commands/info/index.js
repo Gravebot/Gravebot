@@ -110,8 +110,8 @@ AFK Timeout: ${evt.message.guild.afk_timeout / 60} minutes
 Members: ${evt.message.guild.members.length}
 Created At: ${evt.message.guild.createdAt}
 Roles: ${roles}
-Icon: ${evt.message.guild.iconURL ? evt.message.guild.iconURL : 'None'}
-\`\`\``);
+Icon: ${evt.message.guild.iconURL ? `\`\`\`${evt.message.guild.iconURL}` : `None
+\`\`\``}`);
   } else {
     const guild = R.find(R.propEq('name', suffix))(client.Guilds);
     if (!guild || nconf.get('SHARDING')) return;
@@ -127,8 +127,8 @@ AFK Timeout: ${guild.afk_timeout / 60} minutes
 Members: ${guild.members.length}
 Created At: ${guild.createdAt}
 Roles: ${roles}
-Icon: ${guild.iconURL ? guild.iconURL : 'None'}
-\`\`\``);
+Icon: ${guild.iconURL ? `\`\`\`${guild.iconURL}` : `None
+\`\`\``}`);
   }
 
   return Promise.resolve(serverinfo);
@@ -142,16 +142,16 @@ ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
 Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
 Registered At: ${evt.message.author.registeredAt}
-Avatar: ${evt.message.author.avatarURL ? evt.message.author.avatarURL : 'None'}
-\`\`\``);
+Avatar: ${evt.message.author.avatarURL ? `\`\`\`${evt.message.author.avatarURL}` : `None
+\`\`\``}`);
   } else if (!suffix && !evt.message.mentions.length) {
     userinfo.push(`\`\`\`Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
 Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
 Registered At: ${evt.message.author.registeredAt}
-Avatar: ${evt.message.author.avatarURL ? evt.message.author.avatarURL : 'None'}
-\`\`\``);
+Avatar: ${evt.message.author.avatarURL ? `\`\`\`${evt.message.author.avatarURL}` : `None
+\`\`\``}`);
   } else if (evt.message.mentions.length) {
     R.forEach(user => {
       userinfo.push(`\`\`\`Name: ${user.username}
@@ -159,8 +159,8 @@ ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
 Registered At: ${user.registeredAt}
-Avatar: ${user.avatarURL ? user.avatarURL : 'None'}
-\`\`\``);
+Avatar: ${user.avatarURL ? `\`\`\`${user.avatarURL}` : `None
+\`\`\``}`);
     }, evt.message.mentions);
   } else {
     const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
@@ -170,8 +170,8 @@ ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
 Registered At: ${user.registeredAt}
-Avatar: ${user.avatarURL ? user.avatarURL : 'None'}
-\`\`\``);
+Avatar: ${user.avatarURL ? `\`\`\`${user.avatarURL}` : `None
+\`\`\``}`);
   }
 
   return Promise.resolve(userinfo);
