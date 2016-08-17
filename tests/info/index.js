@@ -43,6 +43,7 @@ describe('info', () => {
             name: 'server'
           },
           channel: {
+            isPrivate: () => false,
             name: 'test',
             id: '1234',
             type: 'text',
@@ -67,6 +68,7 @@ Topic: abc
 
     it('should return a string containing mentioned channel information', () => {
       const channel = {
+        isPrivate: () => false,
         name: 'test',
         id: '9876543210',
         type: 'text',
@@ -105,7 +107,7 @@ Topic: abc
       const evt = {
         message: {
           channel: {
-            is_private: false
+            isPrivate: () => false
           },
           guild: {
             name: 'test',
@@ -154,7 +156,7 @@ Icon: http://website.com/img.png
       const evt = {
         message: {
           channel: {
-            is_private: false
+            isPrivate: () => false
           },
           mentions: {},
           author: {
@@ -182,7 +184,7 @@ Avatar: http://website.com/img.png
       const evt = {
         message: {
           channel: {
-            is_private: false
+            isPrivate: () => false
           },
           mentions: [{
             username: 'user',
