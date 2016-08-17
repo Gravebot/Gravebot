@@ -15,7 +15,7 @@ function avatar(client, evt, suffix) {
       });
   }
 
-  if (evt.message.channel.is_private) return Promise.resolve(`Sorry, we can\'t get ${suffix} avatar from a direct message. Try in a channel instead!`);
+  if (evt.message.channel.isPrivate()) return Promise.resolve(`Sorry, we can\'t get ${suffix} avatar from a direct message. Try in a channel instead!`);
   const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
   if (!user) return;
   if (!user.avatarURL) return Promise.resolve(`${user.username} is naked.`);
@@ -24,7 +24,7 @@ function avatar(client, evt, suffix) {
 
 function channelinfo(client, evt, suffix) {
   const channelinfo = [];
-  if (evt.message.channel.is_private) {
+  if (evt.message.channel.isPrivate()) {
     channelinfo.push(`\`\`\`ID: ${evt.message.channel.id}
 Type: Direct Message
 New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
@@ -96,7 +96,7 @@ User Limit: ${channel.user_limit}
 
 function serverinfo(client, evt, suffix) {
   const serverinfo = [];
-  if (evt.message.channel.is_private) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
+  if (evt.message.channel.isPrivate()) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
   if (!suffix) {
     const roles = R.join(', ', R.reject(name => name === '@everyone', R.pluck('name', evt.message.guild.roles)));
     serverinfo.push(`\`\`\`Name: ${evt.message.guild.name}
@@ -136,7 +136,7 @@ Icon: ${guild.iconURL ? guild.iconURL : 'None'}
 
 function userinfo(client, evt, suffix) {
   const userinfo = [];
-  if (evt.message.channel.is_private) {
+  if (evt.message.channel.isPrivate()) {
     userinfo.push(`\`\`\`Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
