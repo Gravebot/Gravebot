@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import nconf from 'nconf';
 
 import commands from './commands';
+import logger from './logger';
 
 const request = Promise.promisify(require('request'));
 
@@ -14,6 +15,7 @@ function getGuildCount(client) {
 
 function carbon(client) {
   if (nconf.get('CARBON_KEY')) {
+    logger.info('Submitting to carbon');
     return getGuildCount(client)
       .then(count => request({
         url: 'https://www.carbonitex.net/discord/data/botdata.php',
@@ -29,6 +31,7 @@ function carbon(client) {
 
 function dbots(client) {
   if (nconf.get('DBOTS_KEY')) {
+    logger.info('Submitting to dboys');
     return getGuildCount(client)
       .then(count => request({
         method: 'POST',
