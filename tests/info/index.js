@@ -105,7 +105,7 @@ Topic: abc
       const evt = {
         message: {
           channel: {
-            is_private: false
+            isPrivate: () => false
           },
           guild: {
             name: 'test',
@@ -154,7 +154,7 @@ Icon: http://website.com/img.png
       const evt = {
         message: {
           channel: {
-            is_private: false
+            isPrivate: () => false
           },
           mentions: {},
           author: {
@@ -182,7 +182,7 @@ Avatar: http://website.com/img.png
       const evt = {
         message: {
           channel: {
-            is_private: false
+            isPrivate: () => false
           },
           mentions: [{
             username: 'user',
