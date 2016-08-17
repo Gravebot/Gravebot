@@ -6,7 +6,7 @@ import commands from './commands';
 const request = Promise.promisify(require('request'));
 
 function getGuildCount(client) {
-  if (nconf.get('SHARDING')) return commands.servers(client, {}, '', '', true)
+  if (nconf.get('SHARDING')) return commands.servers(client, {}, '', '')
     .then(res => Number(res.match(/\d+/g)[0]));
 
   return Promise.resolve(client.Guilds.length);
@@ -46,11 +46,11 @@ function dbots(client) {
 }
 
 export function startPortalIntervals(client) {
-  setInterval(carbon.bind(client), 3600000);
-  setInterval(dbots.bind(client), 3600000);
+  setInterval(() => carbon(client), 3600000);
+  setInterval(() => dbots(client), 3600000);
 }
 
 export function startPortalTimeouts(client, time = 20000) {
-  setTimeout(carbon.bind(client), time);
-  setTimeout(dbots.bind(client), time);
+  setTimeout(() => carbon(client), time);
+  setTimeout(() => dbots(client), time);
 }
