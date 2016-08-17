@@ -12,9 +12,8 @@ import datadog from './datadog';
 import logger from './logger';
 import sentry from './sentry';
 
+import { startPortalIntervals, startPortalTimeouts } from './portals';
 import { createDuplicateClient, getMessageTTL, setMessageTTL, getUserLang } from './redis';
-
-const request = Promise.promisify(require('request'));
 
 
 // Init
@@ -150,38 +149,6 @@ if (nconf.get('SHARDING')) {
   subClient.subscribe('cmd');
 }
 
-function carbon() {
-  if (nconf.get('CARBON_KEY')) {
-    request({
-      url: 'https://www.carbonitex.net/discord/data/botdata.php',
-      headers: {'content-type': 'application/json'},
-      json: {
-        key: nconf.get('CARBON_KEY'),
-        servercount: client.Guilds.length
-      }
-    }).catch(console.log);
-  }
-}
-
-function dbots() {
-  if (nconf.get('DBOTS_KEY')) {
-    request({
-      method: 'POST',
-      url: `https://bots.discord.pw/api/bots/${client.User.id}/stats`,
-      headers: {
-        Authorization: nconf.get('DBOTS_KEY'),
-        'Content-Type': 'application/json'
-      },
-      json: {
-        server_count: client.Guilds.length
-      }
-    }).catch(console.log);
-  }
-}
-
-setInterval(carbon, 3600000);
-setInterval(dbots, 3600000);
-
 function connect() {
   if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
     logger.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
@@ -203,8 +170,7 @@ client.Dispatcher.on('GATEWAY_READY', () => {
 
   if (!initialized) {
     initialized = true;
-    setTimeout(carbon, 20000);
-    setTimeout(dbots, 20000);
+    startPortalTimeouts(client);
 
     client.Dispatcher.on('MESSAGE_CREATE', onMessage);
     client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
@@ -217,4 +183,5 @@ client.Dispatcher.on('DISCONNECTED', err => {
   setTimeout(connect, 2000);
 });
 
+startPortalIntervals(client);
 connect();
