@@ -1,3 +1,5 @@
+import R from 'ramda';
+
 export function getOrdinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;
@@ -16,4 +18,9 @@ export function numberWithCommas(x) {
 
 export function secondDec(n) {
   return Math.round(n * 100) / 100;
+}
+
+export function evtMsgPrivate(evt) {
+  const isPrivate = evt.message.channel.isPrivate;
+  return isPrivate && isPrivate === true || (R.is(Function, isPrivate) && isPrivate());
 }
