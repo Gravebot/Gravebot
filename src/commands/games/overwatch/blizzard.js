@@ -58,7 +58,7 @@ function _makeRequest(player_name, region) {
     return [$, {
       name: $('.header-masthead').text(),
       games_won: $('.masthead-detail > span').text().replace(/[^0-9]/g, ''),
-      level: $('.player-level > div').text()
+      level: $('.player-level > div').html()
     }];
   });
 }
