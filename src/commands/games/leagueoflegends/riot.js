@@ -85,6 +85,8 @@ function _getMatchSummoners(region, name, summoner_id) {
   observer_region = !R.contains(observer_region, ['KR', 'RU']) ? observer_region + '1' : observer_region;
   if (observer_region === 'OCE1') observer_region = 'OC1';
   if (observer_region === 'EUNE1') observer_region = 'EUN1';
+  if (observer_region === 'LAN1') observer_region = 'LA1';
+  if (observer_region === 'LAS1') observer_region = 'LA2';
 
   return _makeRequest(`https://${region}.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/${observer_region}/${summoner_id}`)
     .tap(data => {
