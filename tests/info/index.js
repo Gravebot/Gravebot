@@ -145,8 +145,7 @@ AFK Timeout: 60 minutes
 Members: 1
 Created At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
 Roles: role1, role2
-Icon: http://website.com/img.png
-\`\`\``));
+Icon: \`\`\`http://website.com/img.png`));
     });
   });
 
@@ -176,8 +175,7 @@ ID: 1
 Discriminator: 1234
 Status: online (Playing game)
 Registered At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
-Avatar: http://website.com/img.png
-\`\`\``));
+Avatar: \`\`\`http://website.com/img.png`));
     });
 
     it('should return user info for a mentioned user', () => {
@@ -203,8 +201,7 @@ ID: 1
 Discriminator: 1234
 Status: online (Playing game)
 Registered At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
-Avatar: http://website.com/img.png
-\`\`\``));
+Avatar: \`\`\`http://website.com/img.png`));
     });
   });
 });
