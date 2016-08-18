@@ -323,6 +323,12 @@
     "nid": "kindred",
     "image": "kindred.png"
   },
+  "kled": {
+    "id": "240",
+    "name": "Kled",
+    "nid": "kled",
+    "image": "kled.png"
+  },
   "kogmaw": {
     "id": "96",
     "name": "Kog'Maw",
