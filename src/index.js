@@ -14,7 +14,6 @@ import sentry from './sentry';
 
 import { startPortalIntervals, startPortalTimeouts } from './portals';
 import { createDuplicateClient, getMessageTTL, setMessageTTL, getUserLang } from './redis';
-import { evtMsgPrivate } from './helpers';
 
 
 // Init
@@ -119,7 +118,7 @@ function onMessage(evt) {
   }
 
   // Check personal messages
-  if (evtMsgPrivate(evt)) {
+  if (evt.message.channel.isPrivate) {
     // Handle invite links
     if (evt.message.content.indexOf('https://discord.gg/') > -1 || evt.message.content.indexOf('https://discordapp.com/invite/') > -1) {
       return commands.join(client, evt, evt.message.content);
