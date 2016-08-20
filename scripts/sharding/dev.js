@@ -3,10 +3,9 @@ import R from 'ramda';
 import path from 'path';
 
 const root_dir = path.join(__dirname, '../../');
-const total_shards = 4;
+const total_shards = 6;
 
 R.forEach(num => {
-  num -= 1;
   const instance = spawn('npm', ['run', 'dev-nodebug'], {
     cwd: root_dir,
     env: R.merge(process.env, {
@@ -28,4 +27,4 @@ R.forEach(num => {
   instance.on('close', (code) => {
     console.log(`Instance number ${code} process exited with code ${code}`);
   });
-}, R.range(1, total_shards + 1));
+}, R.range(0, total_shards));
