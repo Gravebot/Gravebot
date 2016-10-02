@@ -18,6 +18,7 @@ function createLoggers(redisClient, type) {
   redisClient.on('connect', () => logger.info(`Redis ${type} connected`));
   redisClient.on('reconnecting', () => logger.warn(`Redis ${type} reconnecting`));
   redisClient.on('ready', () => logger.info(`Redis ${type} ready`));
+  redisClient.on('end', () => logger.info(`Redis ${type} has closed`));
   redisClient.on('error', err => sentry(err, 'redis'));
 }
 
@@ -31,14 +32,16 @@ export function createDuplicateClient(name) {
 }
 
 // Sharding
-let pubClient, subClient, shardEmitter;
-if (nconf.get('SHARDING')) {
-  pubClient = createDuplicateClient('cmd emitter pub');
-  subClient = createDuplicateClient('cmd emitter sub');
-  shardEmitter = new EventEmitter();
+export const publisher = createDuplicateClient('publisher');
+export const subscriber = createDuplicateClient('subscriber');
+export const ee = new EventEmitter();
+subscriber.on('message', (channel, message) => ee.emit(channel, message));
 
-  subClient.on('message', (channel, message) => {
-    shardEmitter.emit(channel, JSON.parse(message));
+// Verifies all redis clients are connected then returns.
+export function waitForConnections() {
+  return Promise.map([client, publisher, subscriber], instance => {
+    if (instance.connected) return;
+    return new Promise(resolve => instance.on('ready', resolve));
   });
 }
 
@@ -88,16 +91,16 @@ export function getShardsCmdResults(cmd, suffix = '', lang = '') {
     const channel_name = `${cmd}_${new Date().getTime()}`;
     const results = [];
 
-    shardEmitter.on(channel_name, result => {
-      results.push(result);
+    ee.on(channel_name, result => {
+      results.push(JSON.parse(result));
       if (results.length === (nconf.get('SHARD_COUNT') - 1)) {
-        subClient.unsubscribe(channel_name);
+        subscriber.unsubscribe(channel_name);
         resolve(results);
       }
     });
 
-    subClient.subscribe(channel_name);
-    pubClient.publish('cmd', JSON.stringify({
+    subscriber.subscribe(channel_name);
+    publisher.publish('cmd', JSON.stringify({
       channel_name,
       instance: nconf.get('SHARD_NUMBER'),
       request: {cmd, suffix, lang}

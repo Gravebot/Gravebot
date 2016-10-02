@@ -13,3 +13,6 @@ dist/
 tests/
 web/css/
 web/views/*.marko.js
+
+.env
+sharding.yml

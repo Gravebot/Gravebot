@@ -39,3 +39,7 @@ dist/
 
 web/css
 *.marko.js
+
+# Sharding testing
+.env
+sharding.yml
