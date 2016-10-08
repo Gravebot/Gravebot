@@ -26,7 +26,7 @@ COPY . /app/
 # Post install
 RUN npm run postinstall
 
-ENV PREFIX !
+ENV PREFIX g!
 ENV PORT 5000
 EXPOSE $PORT
 
