@@ -3,12 +3,14 @@ import nconf from 'nconf';
 import R from 'ramda';
 
 import '../src/init-config';
-import '../src/express';
 import '../src/redis';
-import '../src/phantom';
+import startExpress from '../src/express';
+import { init as initPhantom } from '../src/phantom';
 
 
 // Defaults
+startExpress();
+initPhantom();
 nconf.set('CLIENT_ID', '123');
 
 const glob_options = {
