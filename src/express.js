@@ -24,48 +24,49 @@ function checkIP(req, res, next) {
   res.status(401).send({error: '401'});
 }
 
+export default function startExpress() {
+  const app = express();
+  app.use(bodyParser.json());
+  app.use(express.static('web'));
 
-const app = express();
-app.use(bodyParser.json());
-app.use(express.static('web'));
+  app.get('/style/:file', (req, res) => {
+    const css_path = path.join(__dirname, `../web/css/${req.params.file}`);
+    if (nconf.get('NODE_ENV') !== 'development') {
+      if (!fs.existsSync(css_path)) return res.redirect('/404');
+      return res.sendFile(css_path);
+    }
 
-app.get('/style/:file', (req, res) => {
-  const css_path = path.join(__dirname, `../web/css/${req.params.file}`);
-  if (nconf.get('NODE_ENV') !== 'development') {
-    if (!fs.existsSync(css_path)) return res.redirect('/404');
-    return res.sendFile(css_path);
-  }
+    const styl_path = css_path.replace(/css/g, 'styl');
+    if (!fs.existsSync(styl_path)) return res.redirect('/404');
+    stylus(fs.readFileSync(styl_path, 'utf8'))
+      .set('src', path.join(__dirname, '../web/styl'))
+      .set('filename', path.basename(styl_path))
+      .set('compress', true)
+      .use(nib())
+      .render((err, css) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send(err);
+        }
+        res.status(200).send(css);
+      });
+  });
 
-  const styl_path = css_path.replace(/css/g, 'styl');
-  if (!fs.existsSync(styl_path)) return res.redirect('/404');
-  stylus(fs.readFileSync(styl_path, 'utf8'))
-    .set('src', path.join(__dirname, '../web/styl'))
-    .set('filename', path.basename(styl_path))
-    .set('compress', true)
-    .use(nib())
-    .render((err, css) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send(err);
-      }
-      res.status(200).send(css);
-    });
-});
+  // Render view for images
+  app.post('/view/:view', checkIP, (req, res) => {
+    marko[req.params.view].render(req.body, res);
+  });
 
-// Render view for images
-app.post('/view/:view', checkIP, (req, res) => {
-  marko[req.params.view].render(req.body, res);
-});
+  // Health check endpoint
+  app.use('/', (req, res) => {
+    res.json({status: 'okay'});
+  });
 
-// Health check endpoint
-app.use('/', (req, res) => {
-  res.json({status: 'okay'});
-});
+  app.get('*', (req, res) => {
+    res.status(404).json({status: 404});
+  });
 
-app.get('*', (req, res) => {
-  res.status(404).json({status: 404});
-});
-
-if (!nconf.get('PORT')) nconf.set('PORT', 5000);
-logger.info(`Express listening on port ${nconf.get('PORT')}`);
-app.listen(nconf.get('PORT'));
+  if (!nconf.get('PORT')) nconf.set('PORT', 5000);
+  logger.info(`Express listening on port ${nconf.get('PORT')}`);
+  app.listen(nconf.get('PORT'));
+}

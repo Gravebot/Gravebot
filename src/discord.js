@@ -7,6 +7,8 @@ import commands from './commands';
 import datadog from './datadog';
 import logger from './logger';
 import sentry from './sentry';
+import startExpress from './express';
+import { init as initPhantom } from './phantom';
 
 import { startPortalTimeouts, startPortalIntervals } from './portals';
 import {
@@ -176,6 +178,8 @@ export function start() {
 
     if (!initialized) {
       initialized = true;
+      startExpress();
+      initPhantom();
       startPortalTimeouts(client);
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);

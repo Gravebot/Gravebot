@@ -2,8 +2,6 @@ import { cpus } from 'os';
 import nconf from 'nconf';
 import R from 'ramda';
 import './init-config';
-import './express';
-import './phantom';
 
 import { start } from './discord';
 import { subscriber, publisher, ee, waitForConnections } from './redis';
