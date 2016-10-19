@@ -35,6 +35,14 @@
     "text": "Responds with your avatar, unless a username is specified",
     "done": true
   },
+  "bing_setup": {
+    "text": "Please setup `BING_IMAGEKEY` in config.js to use the **`!image`** command.",
+    "done": true
+  },
+  "bing_usage": {
+    "text": "Usage: !image you_search terms_here",
+    "done": true
+  },
   "champgg_setup": {
     "text": "Please setup Champion.gg in config.js to use the **`!lol`** command.",
     "done": true
