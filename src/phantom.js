@@ -50,10 +50,12 @@ function verifyPhantomProcess() {
     });
 }
 
-// PhantomJS seems to have a problem in production where it stops rendering images after a certain period of time.
-// This reboots the PhantomJS process every 3 hours.
-setInterval(createHorseman, 10800000);
-createHorseman().then(verifyPhantomProcess);
+export function init() {
+  // PhantomJS seems to have a problem in production where it stops rendering images after a certain period of time.
+  // This reboots the PhantomJS process every 3 hours.
+  setInterval(createHorseman, 10800000);
+  createHorseman().then(verifyPhantomProcess);
+}
 
 // Initialize Queue
 Queue.configure(Promise);
