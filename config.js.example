@@ -11,7 +11,7 @@ module.exports = {
   // https://discordapp.com/developers/applications/me
   CLIENT_ID: '',
 
-  // *Required* Redis URL
+  // *Required* Redis URL. Can be left blank if Redis is opened locally.
   // Learn more here. http://redis.io/topics/quickstart
   REDIS_URL: '',
 

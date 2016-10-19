@@ -35,6 +35,6 @@ export default {
 
 export const help = {
   meme: {
-    parameters: ['meme', '"top text"', '"bottom text"']
+    parameters: ['meme name', '"top text"', '"bottom text"']
   }
 };

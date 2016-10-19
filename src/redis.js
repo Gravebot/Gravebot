@@ -65,6 +65,26 @@ export function setUserLang(user_id, lang) {
     });
 }
 
+// Fetches the song queue of a Guild
+export function getSong(guild_id) {
+  return client.hgetAsync(`guild_${guild_id}`, 'song')
+    .then(song => song || 'None')
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'getSong');
+      return 'None';
+    });
+}
+
+// Adds a song to the song queue of a Guild
+export function addSong(guild_id, song) {
+  return client.hsetAsync(`guild_${guild_id}`, 'song', song)
+    .timeout(2000)
+    .catch(err => {
+      sentry(err, 'addSong');
+    });
+}
+
 export function getMessageTTL(user_id) {
   return client.getAsync(`ttl_${user_id}`)
     .timeout(2000)

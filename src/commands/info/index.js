@@ -25,13 +25,15 @@ function avatar(client, evt, suffix) {
 function channelinfo(client, evt, suffix) {
   const channelinfo = [];
   if (evt.message.channel.isPrivate) {
-    channelinfo.push(`\`\`\`ID: ${evt.message.channel.id}
+    channelinfo.push(`\`\`\`autohotkey
+ID: ${evt.message.channel.id}
 Type: Direct Message
 New Messages: ${evt.message.channel.messages.length} (since the bot was restarted)
 Created At: ${evt.message.channel.createdAt}
 \`\`\``);
   } else if (!suffix && evt.message.content.indexOf('<#') === -1) {
-    channelinfo.push(`\`\`\`Server: ${evt.message.guild.name}
+    channelinfo.push(`\`\`\`autohotkey
+Server: ${evt.message.guild.name}
 Name: ${evt.message.channel.name}
 ID: ${evt.message.channel.id}
 Type: ${evt.message.channel.type}
@@ -44,7 +46,8 @@ Topic: ${evt.message.channel.topic}
     R.forEach(suffix => {
       const channel = R.find(R.propEq('id', suffix.substring(2, suffix.length - 1)))(evt.message.guild.channels);
       if (channel.type === 'text') {
-        channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+        channelinfo.push(`\`\`\`autohotkey
+Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
@@ -54,7 +57,8 @@ Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
       } else {
-        channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+        channelinfo.push(`\`\`\`autohotkey
+Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
@@ -69,7 +73,8 @@ User Limit: ${channel.user_limit}
     const channel = R.find(R.propEq('name', suffix))(evt.message.guild.channels);
     if (!channel) return;
     if (channel.type === 'text') {
-      channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+      channelinfo.push(`\`\`\`autohotkey
+Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
@@ -79,7 +84,8 @@ Created At: ${channel.createdAt}
 Topic: ${channel.topic}
 \`\`\``);
     } else {
-      channelinfo.push(`\`\`\`Server: ${channel.guild.name}
+      channelinfo.push(`\`\`\`autohotkey
+Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
 Type: ${channel.type}
@@ -99,7 +105,8 @@ function serverinfo(client, evt, suffix) {
   if (evt.message.channel.isPrivate) return Promise.resolve('Use this in an actual server.\nhttp://fat.gfycat.com/GranularWeeCorydorascatfish.gif');
   if (!suffix) {
     const roles = R.join(', ', R.reject(name => name === '@everyone', R.pluck('name', evt.message.guild.roles)));
-    serverinfo.push(`\`\`\`Name: ${evt.message.guild.name}
+    serverinfo.push(`\`\`\`autohotkey
+Name: ${evt.message.guild.name}
 ID: ${evt.message.guild.id}
 Region: ${evt.message.guild.region}
 Owner: ${evt.message.guild.owner.username}
@@ -109,14 +116,16 @@ AFK Channel: ${evt.message.guild.afk_channel ? evt.message.guild.afk_channel.nam
 AFK Timeout: ${evt.message.guild.afk_timeout / 60} minutes
 Members: ${evt.message.guild.members.length}
 Created At: ${evt.message.guild.createdAt}
+Emotes: ${evt.message.guild.emojis.length ? R.join(', ', R.pluck('name', evt.message.guild.emojis)) : 'None'}
 Roles: ${roles}
 Icon: ${evt.message.guild.iconURL ? `\`\`\`${evt.message.guild.iconURL}` : `None
 \`\`\``}`);
   } else {
     const guild = R.find(R.propEq('name', suffix))(client.Guilds);
     if (!guild || nconf.get('SHARDING')) return;
-    const roles = R.join(', ', R.remove(0, 1, R.pluck('name', guild.roles)));
-    serverinfo.push(`\`\`\`Name: ${guild.name}
+    const roles = R.join(', ', R.reject(name => name === '@everyone', R.pluck('name', guild.roles)));
+    serverinfo.push(`\`\`\`autohotkey
+Name: ${guild.name}
 ID: ${guild.id}
 Region: ${guild.region}
 Owner: ${guild.owner.username}
@@ -126,6 +135,7 @@ AFK Channel: ${guild.afk_channel.name ? guild.afk_channel.name : 'None'}
 AFK Timeout: ${guild.afk_timeout / 60} minutes
 Members: ${guild.members.length}
 Created At: ${guild.createdAt}
+Emotes: ${guild.emojis.length ? R.join(', ', R.pluck('name', guild.emojis)) : 'None'}
 Roles: ${roles}
 Icon: ${guild.iconURL ? `\`\`\`${guild.iconURL}` : `None
 \`\`\``}`);
@@ -137,7 +147,8 @@ Icon: ${guild.iconURL ? `\`\`\`${guild.iconURL}` : `None
 function userinfo(client, evt, suffix) {
   const userinfo = [];
   if (evt.message.channel.isPrivate) {
-    userinfo.push(`\`\`\`Name: ${evt.message.author.username}
+    userinfo.push(`\`\`\`autohotkey
+Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
 Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
@@ -145,7 +156,8 @@ Registered At: ${evt.message.author.registeredAt}
 Avatar: ${evt.message.author.avatarURL ? `\`\`\`${evt.message.author.avatarURL}` : `None
 \`\`\``}`);
   } else if (!suffix && !evt.message.mentions.length) {
-    userinfo.push(`\`\`\`Name: ${evt.message.author.username}
+    userinfo.push(`\`\`\`autohotkey
+Name: ${evt.message.author.username}
 ID: ${evt.message.author.id}
 Discriminator: ${evt.message.author.discriminator}
 Status: ${evt.message.author.status} ${evt.message.author.gameName ? '(Playing ' + evt.message.author.gameName + ')' : ''}
@@ -154,7 +166,8 @@ Avatar: ${evt.message.author.avatarURL ? `\`\`\`${evt.message.author.avatarURL}`
 \`\`\``}`);
   } else if (evt.message.mentions.length) {
     R.forEach(user => {
-      userinfo.push(`\`\`\`Name: ${user.username}
+      userinfo.push(`\`\`\`autohotkey
+Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}
@@ -165,7 +178,8 @@ Avatar: ${user.avatarURL ? `\`\`\`${user.avatarURL}` : `None
   } else {
     const user = R.find(R.propEq('username', suffix))(evt.message.guild.members);
     if (!user) return;
-    userinfo.push(`\`\`\`Name: ${user.username}
+    userinfo.push(`\`\`\`autohotkey
+Name: ${user.username}
 ID: ${user.id}
 Discriminator: ${user.discriminator}
 Status: ${user.status} ${user.gameName ? '(Playing ' + user.gameName + ')' : ''}

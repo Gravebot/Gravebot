@@ -17,7 +17,7 @@
     "concurrently": "^2.1.0",
     "diacritics": "^1.2.3",
     "didyoumean": "^1.2.1",
-    "discordie": "^0.8.0",
+    "discordie": "^0.8.1",
     "dogapi": "^2.3.0",
     "entities": "^1.1.1",
     "express": "^4.13.4",
@@ -45,6 +45,7 @@
     "url-unshort": "^2.1.0",
     "wikijs": "^1.1.0",
     "wolfram-alpha": "^0.5.0",
+    "youtube-dl": "^1.11.1",
     "youtube-node": "^1.3.0"
   },
   "devDependencies": {
@@ -95,8 +96,8 @@
     "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
-    "node": "4.4.5",
-    "npm": "3.10.3"
+    "node": "4.6.0",
+    "npm": "3.10.8"
   },
   "babel": {
     "presets": [
