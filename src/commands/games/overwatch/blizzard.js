@@ -15,6 +15,13 @@ const Warning = SuperError.subclass('Warning', function(msg) {
   this.level = 'warning';
 });
 
+const EMPTY_HERO = {
+  value: '0',
+  meta: {
+    progress_bar_percent: 0
+  }
+};
+
 function _getRegion(battletag) {
   return Promise.filter(['eu', 'us', 'cn', 'kr'], region => {
     return request({
@@ -82,15 +89,19 @@ function _getHeroStats($, position) {
 
 function _processHeroStats($, position) {
   const normals = _getHeroStats($, position);
-  const competitive = _getHeroStats($, position + 7);
-  R.forEach(key => {
-    normals[key].value += ` / ${competitive[key].value}`;
-    normals[key].meta.progress_bar_percent = Math.ceil((normals[key].meta.progress_bar_percent + competitive[key].meta.progress_bar_percent) / 2);
-  }, R.keys(normals));
+  const competitive = _getHeroStats($, position + 6);
+  const heroes = R.map(hero => {
+    const source = R.clone(normals[hero] || competitive[hero]);
+    normals[hero] = normals[hero] || EMPTY_HERO;
+    competitive[hero] = competitive[hero] || EMPTY_HERO;
+    source.value = `${normals[hero].value} / ${competitive[hero].value}`;
+    source.meta.progress_bar_percent = Math.ceil((normals[hero].meta.progress_bar_percent + competitive[hero].meta.progress_bar_percent) / 2);
+    return source;
+  }, R.uniq(R.concat(R.keys(normals), R.keys(competitive))));
 
   return R.sort((a, b) => {
     return b.meta.progress_bar_percent - a.meta.progress_bar_percent;
-  }, R.values(normals));
+  }, R.values(heroes));
 }
 
 export function averages(player_name, region) {
@@ -152,20 +163,20 @@ export function gamesWon(player_name, region) {
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_gameswon.png'}));
 }
 
-export function winPercent(player_name, region) {
-  return _makeRequest(player_name, region)
-    .spread(($, data) => phantom('ow_herostats', R.merge(data, {
-      stat_name: 'Win Percent',
-      heroes: _processHeroStats($, 2)
-    })))
-    .then(buf => ({upload: buf, filename: 'gravebot_overwatch_winpercent.png'}));
-}
+// export function winPercent(player_name, region) {
+  // return _makeRequest(player_name, region)
+    // .spread(($, data) => phantom('ow_herostats', R.merge(data, {
+      // stat_name: 'Win Percent',
+      // heroes: _processHeroStats($, 2)
+    // })))
+    // .then(buf => ({upload: buf, filename: 'gravebot_overwatch_winpercent.png'}));
+// }
 
 export function weaponAccuracy(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Weapon Accuracy',
-      heroes: _processHeroStats($, 3)
+      heroes: _processHeroStats($, 2)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_accuracy.png'}));
 }
@@ -174,7 +185,7 @@ export function eliminations(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Eliminations Per Life',
-      heroes: _processHeroStats($, 4)
+      heroes: _processHeroStats($, 3)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_eliminations.png'}));
 }
@@ -192,7 +203,7 @@ export function multikill(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Multikill',
-      heroes: _processHeroStats($, 5)
+      heroes: _processHeroStats($, 4)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_multikill.png'}));
 }
@@ -201,7 +212,7 @@ export function objectiveKills(player_name, region) {
   return _makeRequest(player_name, region)
     .spread(($, data) => phantom('ow_herostats', R.merge(data, {
       stat_name: 'Objective Kills',
-      heroes: _processHeroStats($, 6)
+      heroes: _processHeroStats($, 5)
     })))
     .then(buf => ({upload: buf, filename: 'gravebot_overwatch_objectivekills.png'}));
 }
