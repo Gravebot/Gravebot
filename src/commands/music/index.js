@@ -1,18 +1,9 @@
 import youtubedl from 'youtube-dl';
 
 import { addSong, getSong } from '../../redis';
-import T from '../../translate';
+// import T from '../../translate';
 
-
-function add() {
-  addSong();
-}
-
-function retrieve() {
-  getSong();
-}
-
-function join(client, evt, suffix) {
+function joinchannel(client, evt, suffix) {
   if (!suffix) {
     let channel = evt.message.guild.voiceChannels.filter(vc => vc.members.map(m => m.id).indexOf(evt.message.author.id) > -1);
     if (channel.length > 0) {
@@ -44,10 +35,14 @@ function play(client, evt, music) {
     outputArgs: ['-compression_level', 7]
   });
   encoder.play();
-  encoder.once('end', () => console.log('end'));
+  encoder.once('end', () => {
+    getSong(evt.message.guild.id).then(music => {
+      if (music) play(client, evt, JSON.parse(music));
+    });
+  });
 }
 
-function playing() {
+function playing(client, evt) {
 
 }
 
@@ -60,14 +55,16 @@ function request(client, evt, suffix) {
   youtubedl.getInfo(suffix, ['-f', 'bestaudio'], (err, media) => {
     if (!media) return evt.message.reply('Invalid or not supported URL. Please make sure the URL starts with `http` or `https`.');
     let music = {
-      guild: evt.message.guild.id,
       user: evt.message.author.username,
       title: media.title,
       duration: media.duration,
       url: media.url
     };
     if (err) return console.log(err);
-    play(client, evt, music);
+    addSong(evt.message.guild.id, music);
+    getSong(evt.message.guild.id).then(music => {
+      play(client, evt, JSON.parse(music));
+    });
   });
 }
 
@@ -85,7 +82,7 @@ function stop(client, evt) {
 }
 
 export const help = {
-  join: {},
+  joinchannel: {},
   next: {},
   queue: {},
   playing: {},
@@ -96,7 +93,7 @@ export const help = {
 
 export default {
   currentlyplaying: playing,
-  join,
+  joinchannel,
   next,
   nextsong: next,
   play: request,

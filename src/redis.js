@@ -67,8 +67,8 @@ export function setUserLang(user_id, lang) {
 
 // Fetches the song queue of a Guild
 export function getSong(guild_id) {
-  return client.hgetAsync(`guild_${guild_id}`, 'song')
-    .then(song => song || 'None')
+  return client.hmgetAsync(`guild_${guild_id}`, 'music')
+    .then(music => music || 'None')
     .timeout(2000)
     .catch(err => {
       sentry(err, 'getSong');
@@ -77,8 +77,8 @@ export function getSong(guild_id) {
 }
 
 // Adds a song to the song queue of a Guild
-export function addSong(guild_id, song) {
-  return client.hsetAsync(`guild_${guild_id}`, 'song', song)
+export function addSong(guild_id, music) {
+  return client.hmsetAsync(`guild_${guild_id}`, 'music', JSON.stringify(music))
     .timeout(2000)
     .catch(err => {
       sentry(err, 'addSong');
