@@ -49,10 +49,10 @@ export const help = {
         name: 'games won',
         parameters: ['region', 'battletag']
       },
-      {
-        name: 'win percent',
-        parameters: ['region', 'battletag']
-      },
+      // {
+        // name: 'win percent',
+        // parameters: ['region', 'battletag']
+      // },
       {
         name: 'weapon accuracy',
         parameters: ['region', 'battletag']

@@ -57,13 +57,13 @@ describe('overwatch', () => {
       });
   });
 
-  it('winPercent should return a buffer and filename', () => {
-    return ow.ow({}, {}, `win percent ${battletag}`, 'en')
-      .then(res => {
-        res.upload.length.should.be.at.least(70000);
-        res.filename.should.equal('gravebot_overwatch_winpercent.png');
-      });
-  });
+  // it('winPercent should return a buffer and filename', () => {
+    // return ow.ow({}, {}, `win percent ${battletag}`, 'en')
+      // .then(res => {
+        // res.upload.length.should.be.at.least(70000);
+        // res.filename.should.equal('gravebot_overwatch_winpercent.png');
+      // });
+  // });
 
   it('eliminations should return a buffer and filename', () => {
     return ow.ow({}, {}, `eliminations ${battletag}`, 'en')

@@ -233,6 +233,12 @@
     "nid": "irelia",
     "image": "irelia.png"
   },
+  "ivern": {
+    "id": "427",
+    "name": "Ivern",
+    "nid": "ivern",
+    "image": "ivern.png"
+  },
   "janna": {
     "id": "40",
     "name": "Janna",
