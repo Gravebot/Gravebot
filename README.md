@@ -8,7 +8,7 @@
 [![Discord](https://discordapp.com/api/guilds/128598463947472897/widget.png)](https://discord.gg/0iXEgtjdHgkpdsVr)
 ## About
 
-A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
+A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat and music bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
 
 ## [Changelog](CHANGELOG.md)
 
@@ -20,7 +20,7 @@ In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&
 
 If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
 
-If you have any questions, feedback or want to request features, you may also do that by leaving a message in [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), private messaging Gravestorm or Zalik, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
+If you have any questions, feedback or want to request features, you may also do that by leaving a message in [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr), using the `!feedback` command, private messaging Gravestorm or Zalik, as well as opening an [issue on Github](https://github.com/Gravebot/Gravebot/issues/new).
 
 For self hosting, click [here](#localconfig).
 
@@ -30,6 +30,7 @@ For self hosting, click [here](#localconfig).
 - `!help useful` - List of useful commands
 - `!help info` - List of information commands
 - `!help games` - List of game commands
+- `!help music` - List of music commands
 - `!help other` - List of other commands
 - `!help all` - List all available commands in private chat
 - `!memelist` - List of meme names for the `!meme` command
@@ -116,6 +117,11 @@ For self hosting, click [here](#localconfig).
 - `!ow multikill region battletag` - Heroes with the most multikills
 - `!ow objective kills region battletag` - Heroes with the most objective kills
 
+### Music:
+- `!request` -
+- `!vjoin` -
+- ``
+
 #### Other:
 - `!ayylmao`
 - `!chillinmyb`
@@ -134,13 +140,13 @@ For self hosting, click [here](#localconfig).
 <a name="localconfig" />
 ## Local Configuration
 
-Rename `config.js.example` to `config.js` and fill in the required information. Note only variables with the `*Required*` comment are needed, everything else is optional.
+Rename `config.js.example` to `config.js` and fill in the required information. Note that only variables with the `*Required*` comment are needed, everything else is optional.
 
 ## Local Installation
 #### Windows:
-**Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependencies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty, and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
+**Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependencies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
 
-- Install [node.js](https://nodejs.org/en/) v4.6.0
+- Install [node.js](https://nodejs.org/en/) v4.6.2
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
@@ -151,8 +157,8 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Run `launch.bat` to start the bot
 
 #### Linux:
-- Install [node.js](https://nodejs.org/en/) v4.6.0
-- Install [gcc](https://gcc.gnu.org) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install build-essential libxml2-dev libfontconfig1`)
+- Install [node.js](https://nodejs.org/en/) v4.6.2
+- Install [gcc](https://gcc.gnu.org), [git](https://git-scm.com) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install build-essential git libxml2-dev`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
 - Install and run [redis](http://redis.io/download#installation)
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the root directory and run `npm install`
@@ -163,8 +169,8 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 
 Gravebot comes setup and ready for Heroku.
 
-1. Setup your configuration in Heroku's environment variables.
-2. Activate multi buildpack. `heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git`
+1. Setup your configuration in Heroku's app settings, environment variables.
+2. Setup the buildpacks in Heroku's app settings, by clicking Add buildpack and selecting NodeJS, as well as adding this buildpack for music commands `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
 3. Push the source code.
 
 #### Docker

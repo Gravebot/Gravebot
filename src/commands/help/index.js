@@ -11,9 +11,10 @@ import T from '../../translate';
 const help_parameters = {};
 const categories = {
   help: ['memelist', 'set-language'],
-  info: [],
   fun: [],
   games: [],
+  info: [],
+  music: [],
   useful: [],
   other: []
 };
