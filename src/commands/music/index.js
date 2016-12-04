@@ -1,20 +1,20 @@
 import Promise from 'bluebird';
 import youtubedl from 'youtube-dl';
 
-import { addSong, getSong } from '../../redis';
+import { addSong, delSong, getSong } from '../../redis';
 // import T from '../../translate';
 
 
 function vjoin(client, evt, suffix) {
   if (!suffix) {
-    let channel = evt.message.guild.voiceChannels.filter(vc => vc.members.map(m => m.id).indexOf(evt.message.author.id) > -1);
+    const channel = evt.message.guild.voiceChannels.filter(vc => vc.members.map(m => m.id).indexOf(evt.message.author.id) > -1);
     if (channel.length > 0) {
       channel[0].join();
     } else {
       return Promise.resolve('Channel not found. Please write the exact name of the channel or join it.');
     }
   } else {
-    let channel = evt.message.guild.voiceChannels.find(c => c.name.toLowerCase() === suffix.toLowerCase());
+    const channel = evt.message.guild.voiceChannels.find(c => c.name.toLowerCase() === suffix.toLowerCase());
     if (channel) {
       channel.join();
     } else {
@@ -28,9 +28,9 @@ function next(client, evt) {
 }
 
 function play(client, evt, music) {
-  let info = client.VoiceConnections.getForGuild(evt.message.guild);
+  const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (!info) return Promise.resolve('Not connected to a voice channel. Use `!vjoin`');
-  let encoder = info.voiceConnection.createExternalEncoder({
+  const encoder = info.voiceConnection.createExternalEncoder({
     type: 'ffmpeg',
     realtime: true,
     source: music.url,
@@ -38,8 +38,14 @@ function play(client, evt, music) {
   });
   encoder.play();
   encoder.once('end', () => {
-    getSong(evt.message.guild.id).then(music => {
-      if (music) play(client, evt, JSON.parse(music));
+    delSong(evt.message.guild.id);
+    getSong(evt.message.guild.id, (err, musicc) => {
+      if (err) throw err;
+      if (musicc) {
+        play(client, evt, JSON.parse(musicc));
+      } else {
+        console.log('No more songs');
+      }
     });
   });
 }
@@ -58,15 +64,20 @@ function request(client, evt, suffix) {
     if (!media) return 'Invalid or not supported URL. Please make sure the URL starts with `http` or `https`.';
     if (media.duration.replace(/:/g, '') > 13000) return 'Maximum length is 90 minutes.';
     if (err) throw err;
-    let music = {
+    const music = {
       user: evt.message.author.username,
       title: media.title,
       duration: media.duration,
       url: media.url
     };
-    addSong(evt.message.guild.id, music);
-    getSong(evt.message.guild.id).then(music => {
-      if (music) play(client, evt, JSON.parse(music));
+    getSong(evt.message.guild.id, (err, musicc) => {
+      if (err) throw err;
+      if (!musicc) {
+        addSong(evt.message.guild.id, music);
+        play(client, evt, music);
+      } else {
+        addSong(evt.message.guild.id, music);
+      }
     });
     return `\`${media.title}\` has been added to the Queue.`;
   });
@@ -77,7 +88,7 @@ function skip(client, evt) {
 }
 
 function stop(client, evt) {
-  let info = client.VoiceConnections.getForGuild(evt.message.guild);
+  const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (info) {
     info.voiceConnection.getEncoderStream().unpipeAll();
   } else {

@@ -65,24 +65,20 @@ export function setUserLang(user_id, lang) {
     });
 }
 
-// Fetches the song queue of a Guild
-export function getSong(guild_id) {
-  return client.hgetAsync(`guild_${guild_id}`, 'music')
-    .then(music => music || 'None')
-    .timeout(2000)
-    .catch(err => {
-      sentry(err, 'getSong');
-      return 'None';
-    });
+export function getSong(guild_id, callback) {
+  return client.lindex(`guild_${guild_id}`, 0, (err, musicc) => {
+    if (err) throw err;
+    return callback(err, musicc);
+  });
 }
 
-// Adds a song to the song queue of a Guild
+export function delSong(guild_id) {
+  client.lset(`guild_${guild_id}`, 0, '*deleted*');
+  return client.lrem(`guild_${guild_id}`, 1, '*deleted*');
+}
+
 export function addSong(guild_id, music) {
-  return client.hsetAsync(`guild_${guild_id}`, 'music', JSON.stringify(music))
-    .timeout(2000)
-    .catch(err => {
-      sentry(err, 'addSong');
-    });
+  return client.rpush(`guild_${guild_id}`, JSON.stringify(music));
 }
 
 export function getMessageTTL(user_id) {
