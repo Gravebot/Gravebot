@@ -8,7 +8,7 @@
 [![Discord](https://discordapp.com/api/guilds/128598463947472897/widget.png)](https://discord.gg/0iXEgtjdHgkpdsVr)
 ## About
 
-A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat and music bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
+A fantastic, helpful, and fun [Discord](https://discordapp.com) chat and music bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
 
 ## [Changelog](CHANGELOG.md)
 
@@ -16,7 +16,7 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com/) chat and music 
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=170664340968570880&scope=bot&permissions=268561430) and choose a server. You need to have **Manage Server** permission on that server. You may remove some of the permissions if you wish, but be warned it may break current and upcoming features.
+In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=230760832500236289&scope=bot&permissions=305261590) and choose a server. You need to have **Manage Server** permission on that server. You may remove some of the permissions if you wish, but be warned it may break current and upcoming features.
 
 If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
 
@@ -146,7 +146,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 #### Windows:
 **Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependencies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
 
-- Install [node.js](https://nodejs.org/en/) v4.6.2
+- Install [node.js](https://nodejs.org/en) v4.6.2
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
@@ -157,9 +157,9 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Run `launch.bat` to start the bot
 
 #### Linux:
-- Install [node.js](https://nodejs.org/en/) v4.6.2
-- Install [gcc](https://gcc.gnu.org), [git](https://git-scm.com) and [libxml2](http://www.xmlsoft.org/) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo apt-get install build-essential git libxml2-dev`)
-- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal/) and write `sudo npm install -g node-gyp`)
+- Install [node.js](https://nodejs.org/en) v4.6.2
+- Install [gcc](https://gcc.gnu.org), [git](https://git-scm.com), [libxml2](http://www.xmlsoft.org) and [ffmpeg](https://ffmpeg.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo apt-get install build-essential git libxml2-dev ffmpeg libfontconfig1`)
+- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo npm install -g node-gyp`)
 - Install and run [redis](http://redis.io/download#installation)
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the root directory and run `npm install`
 - Run `npm start`
@@ -170,12 +170,12 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 Gravebot comes setup and ready for Heroku.
 
 1. Setup your configuration in Heroku's app settings, environment variables.
-2. Setup the buildpacks in Heroku's app settings, by clicking Add buildpack and selecting NodeJS, as well as adding this buildpack for music commands `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
+2. Setup the buildpacks in Heroku's app settings by clicking Add buildpack and selecting NodeJS, as well as adding this buildpack for music commands `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
 3. Push the source code.
 
 #### Docker
 
-Master branch is built and pushed to our Docker image. You can pull the latest from [here](https://hub.docker.com/r/gravebot/gravebot/).
+Master branch is built and pushed to our Docker image. You can pull the latest from [here](https://hub.docker.com/r/gravebot/gravebot).
 
 
 ## Updating

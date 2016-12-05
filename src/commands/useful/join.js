@@ -9,11 +9,15 @@ const permissions = [
   '0x0000010', // Manage Channels
   '0x0000400', // Read Messages
   '0x0000800', // Send Messages
-  '0x0002000', // Manage messages
-  '0x0004000', // Embed Links,
-  '0x0008000', // Attach files
-  '0x0010000', // Read message history
+  '0x0002000', // Manage Messages
+  '0x0004000', // Embed Links
+  '0x0008000', // Attach Files
+  '0x0010000', // Read Message History
+  '0x0100000', // Connect
+  '0x0200000', // Speak
+  '0x2000000', // Use Voice Activity
   '0x10000000' // Manage Roles
+
 ];
 
 const permission_value = R.sum(R.map(parseInt, permissions));

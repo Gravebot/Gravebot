@@ -66,15 +66,33 @@ export function setUserLang(user_id, lang) {
 }
 
 export function getSong(guild_id, callback) {
-  return client.lindex(`guild_${guild_id}`, 0, (err, musicc) => {
+  return client.lindex(`guild_${guild_id}`, 0, (err, song) => {
     if (err) throw err;
-    return callback(err, musicc);
+    return callback(err, song);
+  });
+}
+
+export function getNextSong(guild_id, callback) {
+  return client.lindex(`guild_${guild_id}`, 1, (err, song) => {
+    if (err) throw err;
+    return callback(err, song);
+  });
+}
+
+export function getSongs(guild_id, callback) {
+  return client.lrange(`guild_${guild_id}`, 1, 10, (err, songs) => {
+    if (err) throw err;
+    return callback(err, songs);
   });
 }
 
 export function delSong(guild_id) {
   client.lset(`guild_${guild_id}`, 0, '*deleted*');
   return client.lrem(`guild_${guild_id}`, 1, '*deleted*');
+}
+
+export function delSongs(guild_id) {
+  return client.ltrim(`guild_${guild_id}`, 0, 0);
 }
 
 export function addSong(guild_id, music) {
