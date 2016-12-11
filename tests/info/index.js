@@ -46,7 +46,7 @@ describe('info', () => {
             isPrivate: false,
             name: 'test',
             id: '1234',
-            type: 'text',
+            type: 0,
             position: '2',
             messages: ['msg'],
             createdAt: 'Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)',
@@ -58,7 +58,7 @@ describe('info', () => {
       .then(res => res[0].should.equal(`\`\`\`Server: server
 Name: test
 ID: 1234
-Type: text
+Type: 0
 Position: 2
 New Messages: 1 (since the bot was restarted)
 Created At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
@@ -71,7 +71,7 @@ Topic: abc
         isPrivate: false,
         name: 'test',
         id: '9876543210',
-        type: 'text',
+        type: 0,
         position: '2',
         messages: ['msg'],
         createdAt: 'Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)',
@@ -93,7 +93,7 @@ Topic: abc
       .then(res => res[0].should.equal(`\`\`\`Server: server
 Name: test
 ID: 9876543210
-Type: text
+Type: 0
 Position: 2
 New Messages: 1 (since the bot was restarted)
 Created At: Wed Aug 12 2015 17:11:00 GMT+0300 (EEST)
@@ -117,8 +117,8 @@ Topic: abc
               username: 'user'
             },
             channels: ['channel'],
-            textChannels: ['text'],
-            voiceChannels: ['voice'],
+            textChannels: [0],
+            voiceChannels: [2],
             generalChannel: {
               name: 'general'
             },
