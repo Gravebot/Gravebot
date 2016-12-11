@@ -43,7 +43,7 @@ Topic: ${evt.message.channel.topic}
   } else if (evt.message.content.indexOf('<#') !== -1) {
     R.forEach(suffix => {
       const channel = R.find(R.propEq('id', suffix.substring(2, suffix.length - 1)))(evt.message.guild.channels);
-      if (channel.type === 'text') {
+      if (channel.type === 0) {
         channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
@@ -68,7 +68,7 @@ User Limit: ${channel.user_limit}
   } else {
     const channel = R.find(R.propEq('name', suffix))(evt.message.guild.channels);
     if (!channel) return;
-    if (channel.type === 'text') {
+    if (channel.type === 0) {
       channelinfo.push(`\`\`\`Server: ${channel.guild.name}
 Name: ${channel.name}
 ID: ${channel.id}
