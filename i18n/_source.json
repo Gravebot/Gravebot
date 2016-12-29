@@ -491,6 +491,10 @@
     "text": "Unshortens a shortened link",
     "done": true
   },
+  "unshorten_response": {
+    "text": "This url can't be expanded.",
+    "done": false
+  },
   "unshorten_usage": {
     "text": "Usage: **`!unshorten`** `url`",
     "done": true

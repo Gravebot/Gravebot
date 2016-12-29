@@ -1,7 +1,9 @@
 import Promise from 'bluebird';
-import youtubedl from 'youtube-dl';
+import R from 'ramda';
+import ytdl from 'ytdl-core';
 
 import { addSong, delSong, delSongs, getSong, getSongs, getNextSong } from '../../redis';
+import { time } from '../../helpers';
 // import T from '../../translate';
 
 let timer;
@@ -23,7 +25,7 @@ function vjoin(client, evt, suffix) {
     const channel = evt.message.guild.voiceChannels.filter(vc => vc.members.map(m => m.id).indexOf(evt.message.author.id) > -1);
     if (channel.length > 0) {
       channel[0].join();
-      timer = setTimeout(vleave, 1200000);
+      timer = setTimeout(vleave, 1200000, client, evt);
     } else {
       return Promise.resolve('Channel not found. Please write the exact name of the channel or join it.');
     }
@@ -31,7 +33,7 @@ function vjoin(client, evt, suffix) {
     const channel = evt.message.guild.voiceChannels.find(c => c.name.toLowerCase() === suffix.toLowerCase());
     if (channel) {
       channel.join();
-      timer = setTimeout(vleave, 1200000);
+      timer = setTimeout(vleave, 1200000, client, evt);
     } else {
       return Promise.resolve('Channel not found. Please write the exact name of the channel or join it.');
     }
@@ -47,16 +49,16 @@ function play(client, evt, music) {
     source: music.url,
     outputArgs: ['-compression_level', 7]
   });
+  clearTimeout(timer);
   encoder.play();
   encoder.once('end', () => {
     delSong(evt.message.guild.id);
     getSong(evt.message.guild.id, (err, song) => {
       if (err) throw err;
       if (song) {
-        clearTimeout(timer);
         play(client, evt, JSON.parse(song));
       } else {
-        timer = setTimeout(vleave, 1200000);
+        timer = setTimeout(vleave, 1200000, client, evt);
         return Promise.resolve('No more songs in Queue.');
       }
     });
@@ -67,34 +69,36 @@ function request(client, evt, suffix) {
   if (!suffix) return Promise.resolve('Usage: **`!request`** `URL`');
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (!info) return Promise.resolve('Not connected to a voice channel.');
-  return youtubedl.getInfo(suffix, ['-f', 'bestaudio'], (err, media) => {
-    if (!media) return 'Invalid or not supported URL. Please make sure the URL starts with `http` or `https`.';
-    if (media.duration.replace(/:/g, '') > 13000) return 'Maximum length is 90 minutes.';
+  return ytdl.getInfo(suffix, ['-f', 'bestaudio'], (err, media) => {
     if (err) throw err;
+    if (!media) return 'Invalid or not supported URL. Please make sure the Youtube URL starts with `http` or `https`.';
+    if (media.length_seconds > 5400) return 'Maximum length is 90 minutes.';
+    const formats = media.formats.filter(f => f.container === 'webm').sort((a, b) => b.audioBitrate - a.audioBitrate);
+    const bestaudio = formats.find(f => f.audioBitrate > 0 && !f.bitrate) || formats.find(f => f.audioBitrate > 0);
+    if (!bestaudio) return 'Video unavailable.';
     const music = {
       user: evt.message.author.username,
       title: media.title,
-      duration: media.duration,
-      url: media.url
+      duration: media.length_seconds,
+      url: bestaudio.url
     };
     getSong(evt.message.guild.id, (err, song) => {
       if (err) throw err;
       if (!song) {
         addSong(evt.message.guild.id, music);
         play(client, evt, music);
-        clearTimeout(timer);
       } else {
         addSong(evt.message.guild.id, music);
       }
     });
-    return `\`${media.title}\` has been added to the Queue.`;
+    return Promise.resolve(`\`${media.title}\` has been added to the Queue.`);
   });
 }
 
 function stop(client, evt) {
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (info) {
-    timer = setTimeout(vleave, 1200000);
+    timer = setTimeout(vleave, 1200000, client, evt);
     info.voiceConnection.getEncoderStream().unpipeAll();
     delSongs(evt.message.guild.id);
     delSong(evt.message.guild.id);
@@ -111,10 +115,9 @@ function skip(client, evt) {
     getSong(evt.message.guild.id, (err, song) => {
       if (err) throw err;
       if (song) {
-        clearTimeout(timer);
         play(client, evt, JSON.parse(song));
       } else {
-        timer = setTimeout(vleave, 1200000);
+        timer = setTimeout(vleave, 1200000, client, evt);
         return Promise.resolve('No more songs in Queue.');
       }
     });
@@ -126,7 +129,7 @@ function skip(client, evt) {
 function pause(client, evt) {
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (info) {
-    timer = setTimeout(vleave, 1200000);
+    timer = setTimeout(vleave, 1200000, client, evt);
     info.voiceConnection.getEncoderStream().unpipeAll();
   } else {
     return Promise.resolve('Not connected to a voice channel.');
@@ -134,22 +137,26 @@ function pause(client, evt) {
 }
 
 function resume(client, evt) {
-  getSong(evt.message.guild.id, (err, song) => {
-    if (err) throw err;
-    if (song) {
-      clearTimeout(timer);
-      play(client, evt, JSON.parse(song));
-    } else {
-      timer = setTimeout(vleave, 1200000);
-      return Promise.resolve('No more songs in Queue.');
-    }
-  });
+  const info = client.VoiceConnections.getForGuild(evt.message.guild);
+  if (info) {
+    getSong(evt.message.guild.id, (err, song) => {
+      if (err) throw err;
+      if (song) {
+        play(client, evt, JSON.parse(song));
+      } else {
+        timer = setTimeout(vleave, 1200000, client, evt);
+        return Promise.resolve('No more songs in Queue.');
+      }
+    });
+  } else {
+    return Promise.resolve('Not connected to a voice channel.');
+  }
 }
 
 function playing(client, evt) {
   getSong(evt.message.guild.id, (err, song) => {
     if (err) throw err;
-    if (song) return Promise.resolve(`${song.title} - Requested by ${song.user}`);
+    if (song) return Promise.resolve(`\`${song.title} ${time(song.duration)}\` - Requested by ${song.user}`);
     if (!song) return Promise.resolve('Nothing is playing.');
   });
 }
@@ -157,7 +164,7 @@ function playing(client, evt) {
 function next(client, evt) {
   getNextSong(evt.message.guild.id, (err, song) => {
     if (err) throw err;
-    if (song) return Promise.resolve(`${song.title} - Requested by ${song.user}`);
+    if (song) return Promise.resolve(`\`${song.title} ${time(song.duration)}\` - Requested by ${song.user}`);
     if (!song) return Promise.resolve('No more songs in Queue.');
   });
 }
@@ -165,7 +172,11 @@ function next(client, evt) {
 function queue(client, evt) {
   getSongs(evt.message.guild.id, (err, songs) => {
     if (err) throw err;
-    console.log(songs);
+    let msg_array = [];
+    R.forEach(song => {
+      msg_array.push(`\`${song.title} ${time(song.duration)}\` - requested by ${song.user}`);
+    }, songs);
+    return Promise.resolve(msg_array.join('\n'));
   });
 }
 
@@ -174,14 +185,12 @@ function music(client, evt) {
   return Promise.resolve(`
 **\`!vjoin\`** \`channelname\`
   Joins the voice channel the user is in, unless a name is specified
-**\`!vleave\`**
-  Leaves the voice channel
 **\`!request\`** \`URL\`
   Request a song to be played
 **\`!skip\`**
   Skips a song
 **\`!stop\`**
-  Stops the playback and deletes all songs from the Queue
+  Stops the playback, leaves the channel and deletes all songs from the Queue
 **\`!pause\`**
   Pauses the playback
 **\`!resume\`**
@@ -211,7 +220,7 @@ export const help = {
 export default {
   currentlyplaying: playing,
   joinvoice: vjoin,
-  leave: vleave,
+  leave: stop,
   next,
   nextsong: next,
   pause,
@@ -226,7 +235,6 @@ export default {
   songname: playing,
   stop,
   vjoin,
-  vleave,
-  vplay: play, // Left for debugging
+  vleave: stop,
   music // Placeholder command
 };
