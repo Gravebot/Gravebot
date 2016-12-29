@@ -89,6 +89,12 @@
     "nid": "caitlyn",
     "image": "caitlyn.png"
   },
+  "camille": {
+    "id": "164",
+    "name": "Camille",
+    "nid": "camille",
+    "image": "camille.png"
+  },
   "cassiopeia": {
     "id": "69",
     "name": "Cassiopeia",
