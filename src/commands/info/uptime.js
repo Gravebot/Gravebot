@@ -12,12 +12,15 @@ function uptime(client, evt, suffix, lang, json) {
 
   if (nconf.get('SHARDING') && !json) {
     return getShardsCmdResults('uptime')
-      .then(R.append({instance: nconf.get('SHARD_NUMBER'), results: {uptimeh, uptimem, uptimes}}))
-      .then(R.sortBy(R.prop('instance')))
-      .map(({instance, results}) => `Instance ${instance} has been alive for:
+      .then(R.append({shard: nconf.get('SHARD_NUMBER'), results: {uptimeh, uptimem, uptimes}}))
+      .then(R.sortBy(R.prop('shard')))
+      .map(({shard, results}) => {
+        if (!results || R.isEmpty(results)) return `Shard ${shard} isn't live yet.`;
+        return `Shard ${shard} has been alive for:
 ${results.uptimeh} Hours
 ${results.uptimem} Minutes
-${results.uptimes} Seconds`)
+${results.uptimes} Seconds`;
+      })
       .then(R.join('\n\n'));
   }
 

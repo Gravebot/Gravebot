@@ -17,7 +17,7 @@
     "concurrently": "^2.1.0",
     "diacritics": "^1.2.3",
     "didyoumean": "^1.2.1",
-    "discordie": "^0.8.0",
+    "discordie": "^0.10.0",
     "dogapi": "^2.3.0",
     "entities": "^1.1.1",
     "express": "^4.13.4",
