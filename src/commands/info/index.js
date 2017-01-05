@@ -116,8 +116,8 @@ AFK_Channel: ${evt.message.guild.afk_channel ? evt.message.guild.afk_channel.nam
 AFK_Timeout: ${evt.message.guild.afk_timeout / 60} minutes
 Members: ${evt.message.guild.members.length}
 Created: ${new Date(evt.message.guild.createdAt).toGMTString()}
-Emotes: ${evt.message.guild.emojis.length ? R.join(', ', R.pluck('name', evt.message.guild.emojis)) : 'None'}
-Roles: ${roles}
+Emojis: ${evt.message.guild.emojis.length ? R.join(', ', R.pluck('name', evt.message.guild.emojis)) : 'None'}
+Roles: ${roles.length ? roles : 'None'}
 Icon: ${evt.message.guild.iconURL ? `\`\`\`${evt.message.guild.iconURL}` : `None
 \`\`\``}`);
   } else {
