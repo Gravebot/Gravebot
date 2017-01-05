@@ -108,19 +108,25 @@ For self hosting, click [here](#localconfig).
 
 **Overwatch**
 - `!ow` - Help
-- `!ow averages region battletag` - Player average stats
-- `!ow time played region battletag` - Heroes most played
-- `!ow games won region battletag` - Heroes with the most wins
-- `!ow win percent region battletag` - Heroes with the highest win percentage
-- `!ow eliminations region battletag` - Heroes with the most eliminations per life
-- `!ow kill streak region battletag` - Heroes with the highest kill streak
-- `!ow multikill region battletag` - Heroes with the most multikills
-- `!ow objective kills region battletag` - Heroes with the most objective kills
+- `!ow averages` *region battletag* - Player average stats
+- `!ow time played` *region battletag* - Heroes most played
+- `!ow games won` *region battletag* - Heroes with the most wins
+- `!ow win percent` *region battletag* - Heroes with the highest win percentage
+- `!ow eliminations` *region battletag* - Heroes with the most eliminations per life
+- `!ow kill streak` *region battletag* - Heroes with the highest kill streak
+- `!ow multikill` *region battletag* - Heroes with the most multikills
+- `!ow objective kills` *region battletag* - Heroes with the most objective kills
 
 ### Music:
-- `!request` -
-- `!vjoin` -
-- ``
+- `next` - Shows the song that will play next
+- `pause` - Pauses the playback
+- `playing` - Shows the currently playing song
+- `queue` - Shows the song queue
+- `request` *Youtube URL* - Request a song to be played
+- `resume` - Resumes the playback
+- `skip` - Skips the currently playing song
+- `stop` - Stops the playback, leaves the channel and deletes all songs from the Queue
+- `vjoin` *channelname* - Joins the voice channel the user is in, unless a name is specified
 
 #### Other:
 - `!ayylmao`
@@ -150,19 +156,21 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
-- Install and run [redis](http://redis.io/download#installation)
 - Install [libxml2](https://www.zlatkovic.com/libxml.en.html) and add it to your PATH (note that this may not work and some extra tinkering may be needed, if you find a better way of installing it, please share it)
-- If you are unable to install it, you may remove the wolfram-alpha dependency from package.json, and remove wolfram.js in the lib folder. That is the only command that uses libxml2.
-- Run `npm-install.bat` to install the Node dependencies
-- Run `launch.bat` to start the bot
+- If you are unable to install it, you may remove the `wolfram-alpha` dependency from `package.json` and delete `wolfram.js` in the `Gravebot/src/commands/useful` folder. That is the only command that uses libxml2.
+- Install and run [redis](http://redis.io/download#installation)
+- Download Gravebot (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
+- Run `npm-install.bat` inside the Gravebot folder to install the Node dependencies
+- Run `launch.bat` inside the Gravebot folder to start the bot
 
 #### Linux:
 - Install [node.js](https://nodejs.org/en) v4.6.2
 - Install [gcc](https://gcc.gnu.org), [git](https://git-scm.com), [libxml2](http://www.xmlsoft.org) and [ffmpeg](https://ffmpeg.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo apt-get install build-essential git libxml2-dev ffmpeg libfontconfig1`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo npm install -g node-gyp`)
 - Install and run [redis](http://redis.io/download#installation)
-- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the root directory and run `npm install`
-- Run `npm start`
+- Download Gravebot (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
+- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the Gravebot directory and run `npm install` to install the Node dependencies
+- Run `npm start` to start the bot
 
 ## Deployment
 #### Heroku
@@ -170,7 +178,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 Gravebot comes setup and ready for Heroku.
 
 1. Setup your configuration in Heroku's app settings, environment variables.
-2. Setup the buildpacks in Heroku's app settings by clicking Add buildpack and selecting NodeJS, as well as adding this buildpack for music commands `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
+2. Setup the buildpacks in Heroku's app settings by clicking Add buildpack and selecting NodeJS, as well as adding the following buildpack for music commands `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
 3. Push the source code.
 
 #### Docker
@@ -180,7 +188,7 @@ Master branch is built and pushed to our Docker image. You can pull the latest f
 
 ## Updating
 
-Updating Gravebot is like any other NodeJS app. Just run `git pull && npm install`.
+Updating Gravebot is like any other NodeJS app. Just run `git pull && npm install` in the Gravebot folder via the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) if you're on Linux or [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) if you're on Windows. You may also download the ZIP, configure it and run npm install again.
 
 ---
 

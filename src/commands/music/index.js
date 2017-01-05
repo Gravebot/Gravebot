@@ -66,12 +66,13 @@ function play(client, evt, music) {
 }
 
 function request(client, evt, suffix) {
-  if (!suffix) return Promise.resolve('Usage: **`!request`** `URL`');
+  if (!suffix) return Promise.resolve('Usage: **`!request`** `Youtube URL`');
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (!info) return Promise.resolve('Not connected to a voice channel.');
+  if (suffix.indexOf('youtube.com/playlist') !== -1) return Promise.resolve('Playlist support coming soon');
   return ytdl.getInfo(suffix, ['-f', 'bestaudio'], (err, media) => {
     if (err) throw err;
-    if (!media) return 'Invalid or not supported URL. Please make sure the Youtube URL starts with `http` or `https`.';
+    if (!media) return 'Invalid or not supported Youtube URL. Please make sure the Youtube URL starts with `http` or `https`.';
     if (media.length_seconds > 5400) return 'Maximum length is 90 minutes.';
     const formats = media.formats.filter(f => f.container === 'webm').sort((a, b) => b.audioBitrate - a.audioBitrate);
     const bestaudio = formats.find(f => f.audioBitrate > 0 && !f.bitrate) || formats.find(f => f.audioBitrate > 0);
@@ -180,43 +181,6 @@ function queue(client, evt) {
   });
 }
 
-// Placeholder command
-function music(client, evt) {
-  return Promise.resolve(`
-**\`!vjoin\`** \`channelname\`
-  Joins the voice channel the user is in, unless a name is specified
-**\`!request\`** \`URL\`
-  Request a song to be played
-**\`!skip\`**
-  Skips a song
-**\`!stop\`**
-  Stops the playback, leaves the channel and deletes all songs from the Queue
-**\`!pause\`**
-  Pauses the playback
-**\`!resume\`**
-  Resumes the playback
-**\`!playing\`**
-  Shows the currently playing song
-**\`!next\`**
-  Shows the song that will play next
-**\`!queue\`**
-  Shows the song queue
-`);
-}
-
-export const help = {
-  next: {},
-  pause: {},
-  playing: {},
-  queue: {},
-  request: {parameters: ['URL']},
-  resume: {},
-  skip: {},
-  stop: {},
-  vjoin: {parameters: ['channelname']},
-  vleave: {}
-};
-
 export default {
   currentlyplaying: playing,
   joinvoice: vjoin,
@@ -235,6 +199,17 @@ export default {
   songname: playing,
   stop,
   vjoin,
-  vleave: stop,
-  music // Placeholder command
+  vleave: stop
+};
+
+export const help = {
+  next: {},
+  pause: {},
+  playing: {},
+  queue: {},
+  request: {parameters: 'Youtube URL'},
+  resume: {},
+  skip: {},
+  stop: {},
+  vjoin: {parameters: 'channelname'}
 };

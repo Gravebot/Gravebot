@@ -191,17 +191,17 @@ Avatar: ${user.avatarURL ? `\`\`\`${user.avatarURL}` : `None
   return Promise.resolve(userinfo);
 }
 
-export const help = {
-  avatar: {parameters: ['username']},
-  channelinfo: {parameters: ['channelname']},
-  serverinfo: {parameters: ['servername']},
-  userinfo: {parameters: ['username']}
-};
-
 export default {
   avatar,
   channelinfo,
   serverinfo,
   userinfo,
   whois: userinfo
+};
+
+export const help = {
+  avatar: {parameters: 'username'},
+  channelinfo: {parameters: 'channelname'},
+  serverinfo: {parameters: 'servername'},
+  userinfo: {parameters: 'username'}
 };

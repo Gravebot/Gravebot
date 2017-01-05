@@ -27,5 +27,5 @@ export default {
 };
 
 export const help = {
-  wiki: {parameters: ['search terms']}
+  wiki: {parameters: 'search terms'}
 };

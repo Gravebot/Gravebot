@@ -27,5 +27,5 @@ export default {
 };
 
 export const help = {
-  urban: {parameters: ['search terms']}
+  urban: {parameters: 'search terms'}
 };

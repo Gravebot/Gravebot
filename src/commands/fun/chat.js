@@ -32,7 +32,5 @@ export default {
 };
 
 export const help = {
-  chat: {
-    parameters: ['text']
-  }
+  chat: {parameters: 'text'}
 };

@@ -29,5 +29,10 @@ ${uptimem} Minutes
 ${uptimes} Seconds`);
 }
 
-export const help = {uptime: {}};
-export default { uptime };
+export default {
+  uptime
+};
+
+export const help = {
+  uptime: {}
+};
