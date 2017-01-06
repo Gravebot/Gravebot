@@ -215,6 +215,10 @@
     "text": "List of information commands",
     "done": true
   },
+  "help_music": {
+    "text": "List of music commands",
+    "done": false
+  },
   "help_other": {
     "text": "List of other commands",
     "done": true
@@ -323,6 +327,10 @@
     "text": "requested by",
     "done": false
   },
+  "next": {
+    "text": "Shows the song that will play next",
+    "done": false
+  },
   "no_counters": {
     "text": "I don't have counters for",
     "done": true
@@ -391,9 +399,17 @@
     "text": "Usage: **`!paste`** `text`",
     "done": true
   },
+  "pause": {
+    "text": "Pauses the playback",
+    "done": false
+  },
   "ping": {
     "text": "Pong! Check Gravebot's pulse",
     "done": true
+  },
+  "playing": {
+    "text": "Shows the currently playing song",
+    "done": false
   },
   "popkey_setup": {
     "text": "Please setup Popkey in config.js to use the **`!popkey`** command.",
@@ -402,6 +418,10 @@
   "popkey_usage": {
     "text": "Usage: **`!popkey`** `gif tags`",
     "done": true
+  },
+  "queue": {
+    "text": "Shows the song queue",
+    "done": false
   },
   "quote": {
     "text": "Responds with a quote, if no number is written, a random one",
@@ -431,6 +451,10 @@
     "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. __!string 1 10 abc123 replace__)",
     "done": true
   },
+  "request": {
+    "text": "Request a song to be played",
+    "done": false
+  },
   "request_error": {
     "text": "Invalid or not supported Youtube URL. Please make sure the Youtube URL starts with `http` or `https`.",
     "done": false
@@ -445,6 +469,10 @@
   },
   "request_usage": {
     "text": "Usage: **`!request`** `Youtube URL`",
+    "done": false
+  },
+  "resume": {
+    "text": "Resumes the playback",
     "done": false
   },
   "riot_setup": {
@@ -491,6 +519,10 @@
     "text": "Set all help text to respond in a specified language",
     "done": true
   },
+  "skip": {
+    "text": "Skips the currently playing song",
+    "done": false
+  },
   "snoop_usage": {
     "text": "Usage: **`!snoop`** `sentence`",
     "done": true
@@ -498,6 +530,10 @@
   "specify_summoner": {
     "text": "You need to specify a summoner name.",
     "done": true
+  },
+  "stop": {
+    "text": "Stops the playback, leaves the channel and deletes all songs from the Queue",
+    "done": false
   },
   "string_usage": {
     "text": "Usage: **`!string`** `amount` `length` `charset(optional)` `replace(optional)`",
@@ -562,6 +598,10 @@
   "videocall": {
     "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.",
     "done": true
+  },
+  "vjoin": {
+    "text": "Joins the voice channel the user is in, unless a name is specified",
+    "done": false
   },
   "wiki": {
     "text": "Returns the summary of the first matching search result from Wikipedia",
