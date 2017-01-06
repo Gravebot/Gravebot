@@ -303,6 +303,26 @@
     "text": "List of meme names for the **`!meme`** command",
     "done": true
   },
+  "music_not_connected": {
+    "text": "Not connected to a voice channel.",
+    "done": false
+  },
+  "music_not_found": {
+    "text": "Channel not found. Please write the exact name of the channel or join it.",
+    "done": false
+  },
+  "music_queue_added": {
+    "text": "has been added to the Queue.",
+    "done": false
+  },
+  "music_queue_empty": {
+    "text": "No more songs in Queue.",
+    "done": false
+  },
+  "music_requested": {
+    "text": "requested by",
+    "done": false
+  },
   "no_counters": {
     "text": "I don't have counters for",
     "done": true
@@ -410,6 +430,22 @@
   "random_string": {
     "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. __!string 1 10 abc123 replace__)",
     "done": true
+  },
+  "request_error": {
+    "text": "Invalid or not supported Youtube URL. Please make sure the Youtube URL starts with `http` or `https`.",
+    "done": false
+  },
+  "request_length": {
+    "text": "Maximum length is 90 minutes.",
+    "done": false
+  },
+  "request_unavailable": {
+    "text": "Video unavailable.",
+    "done": false
+  },
+  "request_usage": {
+    "text": "Usage: **`!request`** `Youtube URL`",
+    "done": false
   },
   "riot_setup": {
     "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
