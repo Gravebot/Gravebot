@@ -58,7 +58,7 @@ function translate(lang, key) {
         .replace(/ <\*\*> /g, '**').replace(/<\*\*>/g, '**')
         .replace(/ <!> /g, '!').replace(/<!>/g, '!')
         .replace(/</g, '#{')
-        .replace(/\>/g, '}'));
+        .replace(/>/g, '}'));
   }
 }
 

@@ -4,10 +4,10 @@
   "description": "A bot for the chat program Discord",
   "main": "index.js",
   "dependencies": {
-    "babel-cli": "^6.5.0",
-    "babel-core": "^6.5.0",
-    "babel-preset-es2015-node4": "^2.0.2",
-    "babel-preset-stage-1": "^6.3.13",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-stage-1": "^6.16.0",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
     "bunyan": "^1.8.1",
@@ -45,20 +45,15 @@
     "url-unshort": "^2.1.0",
     "wikijs": "^1.1.0",
     "wolfram-alpha": "^0.5.0",
-    "youtube-node": "^1.3.0",
-    "snyk": "^1.21.2"
+    "youtube-node": "^1.3.0"
   },
   "devDependencies": {
-    "babel-eslint": "^4.1.6",
-    "babel-istanbul": "^0.6.0",
+    "babel-eslint": "^7.1.1",
     "babel-register": "^6.3.13",
     "chai": "^3.4.1",
     "coveralls": "^2.11.6",
-    "eslint": "^1.10.3",
-    "eslint-config-busbud": "^0.1.2",
-    "eslint-config-semistandard": "^5.0.0",
-    "eslint-config-standard": "^4.4.0",
-    "eslint-plugin-standard": "^1.3.1",
+    "eslint": "2.13.*",
+    "eslint-config-busbud": "^0.2.2",
     "google-translate": "^1.0.6",
     "jsonlint": "^1.6.2",
     "mocha": "^2.3.4",
@@ -93,17 +88,15 @@
     "test-coverage": "npm run lint && TEST=true babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
     "translate": "babel-node ./scripts/translations/translate.js",
     "transifex:review": "babel-node ./scripts/translations/transifex-review.js",
-    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
-    "node": "4.4.5",
-    "npm": "3.10.3"
+    "node": "6.9.4",
+    "npm": "3.10.10"
   },
   "babel": {
     "presets": [
-      "es2015-node4",
+      "es2015-node6",
       "stage-1"
     ]
   },

@@ -11,7 +11,7 @@ function decide(client, evt, suffix, lang) {
     return selected;
   }
 
-  const split = suffix.split(` or `);
+  const split = suffix.split(' or ');
   const rand = Math.floor(Math.random() * choices.length);
   if (split.length > 1) return Promise.resolve(`${choices[rand]} **${multipleDecide(split)}**`);
 

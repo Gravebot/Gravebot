@@ -9,8 +9,6 @@ chai.should();
 describe('meme', () => {
   before(() => {
     class _Imgflipper {
-      constructor() {}
-
       generateMeme(meme_type, top_text, bottom_text, next) {
         next(null, 'http://url.dev/img.png');
       }

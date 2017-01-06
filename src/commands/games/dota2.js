@@ -43,7 +43,7 @@ function best(suffix) {
 
   return request(options)
     .tap(res => {
-      if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
+      if (res.statusCode >= 400) throw new Error('Sorry, I\'m not able to retrieve information at the moment.');
     })
     .then(R.prop('body'))
     .then(cheerio.load)
@@ -84,7 +84,7 @@ function build(suffix) {
 
   return request(options)
     .tap(res => {
-      if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
+      if (res.statusCode >= 400) throw new Error('Sorry, I\'m not able to retrieve information at the moment.');
     })
     .then(R.prop('body'))
     .then(cheerio.load)
@@ -109,7 +109,7 @@ function counters(suffix) {
   return request(options)
     .tap(res => {
       if (res.statusCode === 404) throw new Warning(`Hero **${hero}** not found`);
-      if (res.statusCode >= 500) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
+      if (res.statusCode >= 500) throw new Error('Sorry, I\'m not able to retrieve information at the moment.');
     })
     .then(R.prop('body'))
     .then(cheerio.load)
@@ -138,7 +138,7 @@ function counters(suffix) {
 
 function impact() {
   const options = {
-    url: `http://www.dotabuff.com/heroes/impact`,
+    url: 'http://www.dotabuff.com/heroes/impact',
     headers: {
       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
     }
@@ -146,7 +146,7 @@ function impact() {
 
   return request(options)
     .tap(res => {
-      if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
+      if (res.statusCode >= 400) throw new Error('Sorry, I\'m not able to retrieve information at the moment.');
     })
     .then(R.prop('body'))
     .then(cheerio.load)
@@ -186,7 +186,7 @@ function items(suffix) {
 
   return request(options)
     .tap(res => {
-      if (res.statusCode >= 400) throw new Error(`Sorry, I'm not able to retrieve information at the moment.`);
+      if (res.statusCode >= 400) throw new Error('Sorry, I\'m not able to retrieve information at the moment.');
     })
     .then(R.prop('body'))
     .then(cheerio.load)

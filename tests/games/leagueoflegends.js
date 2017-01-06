@@ -124,7 +124,7 @@ describe('league of legends', () => {
         .reply(200, FIXTURES.match_details_1)
         .get('/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/43260920?api_key=api_key')
         .reply(200, FIXTURES.match_details_2)
-        .get(`/api/lol/na/v2.5/league/by-summoner/43260920,432609201/entry?api_key=api_key`)
+        .get('/api/lol/na/v2.5/league/by-summoner/43260920,432609201/entry?api_key=api_key')
         .reply(200, FIXTURES.match_details_3)
         .get('/api/lol/na/v1.3/stats/by-summoner/43260920/ranked?api_key=api_key')
         .times(9)

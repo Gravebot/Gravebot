@@ -202,7 +202,7 @@ export function bans(lang) {
   if (!nconf.get('CHAMPIONGG_KEY')) return Promise.resolve(T('champgg_setup', lang));
 
   const options = {
-    url: `http://api.champion.gg/stats/champs/mostBanned`,
+    url: 'http://api.champion.gg/stats/champs/mostBanned',
     qs: {
       limit: 25,
       page: 1

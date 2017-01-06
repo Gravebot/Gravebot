@@ -17,6 +17,6 @@ describe('8ball', () => {
 
   it('should return an answer', () => {
     return eightball.eightball({}, {}, 'Should I eat a burger?')
-      .then(res => res.should.equal(`🎱 **In your dreams** 🎱`));
+      .then(res => res.should.equal('🎱 **In your dreams** 🎱'));
   });
 });
