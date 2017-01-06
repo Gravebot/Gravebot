@@ -12,6 +12,7 @@ function servers(client, evt, suffix, lang, json) {
     return getShardsCmdResults('servers')
       .then(R.append({results: server_count}))
       .then(R.pluck('results'))
+      .filter(results => !R.isEmpty(results))
       .reduce((sum, res) => R.zipObj(R.keys(res), R.map(key => sum[key] + res[key], R.keys(res))))
       .then(res => `Connected to ${res.guilds} servers, ${res.channels} channels and ${res.users} users.`);
   }

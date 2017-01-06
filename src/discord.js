@@ -152,9 +152,12 @@ if (nconf.get('SHARDING')) {
     const { channel_name, instance, request: { cmd, suffix, lang } } = JSON.parse(message);
     if (instance === nconf.get('SHARD_NUMBER')) return;
 
+    // If this shard isn't ready yet, return empty object.
+    if (!client || !client.bot) return publisher.publish(channel_name, JSON.stringify({shard: nconf.get('SHARD_NUMBER'), results: {}}));
+
     commands[cmd](client, {}, suffix, lang, true)
       .then(results => {
-        publisher.publish(channel_name, JSON.stringify({instance: nconf.get('SHARD_NUMBER'), results}));
+        publisher.publish(channel_name, JSON.stringify({shard: nconf.get('SHARD_NUMBER'), results}));
       });
   });
   subscriber.subscribe('cmd');
@@ -180,7 +183,13 @@ export function start() {
       initialized = true;
       startExpress();
       initPhantom();
-      startPortalTimeouts(client);
+
+      // Only the last shard does portal submissions on boot
+      if (nconf.get('SHARDING')) {
+        if ((discordie_options.shardId + 1) === discordie_options.shardCount) startPortalTimeouts(client);
+      } else {
+        startPortalTimeouts(client);
+      }
 
       client.Dispatcher.on('MESSAGE_CREATE', onMessage);
       client.Dispatcher.on('MESSAGE_UPDATE', onMessage);
@@ -192,9 +201,9 @@ export function start() {
   });
 
   client.Dispatcher.on('DISCONNECTED', err => {
-    logger.warn('Disconnected. Attempting to reconnect...');
+    logger.warn('Disconnected. Attempting to reconnect in 10 seconds...');
     sentry(err, 'discord');
-    setTimeout(connect, 2000);
+    setTimeout(connect, 10000);
   });
 
   startPortalIntervals(client);

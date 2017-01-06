@@ -39,7 +39,8 @@
     "raven": "^0.10.0",
     "redis": "^2.6.3",
     "request": "^2.79.0",
-    "stylus": "^0.53.0",
+    "snyk": "^1.21.2",
+    "stylus": "^0.54.3",
     "super-error": "^2.0.0",
     "urban": "^0.3.1",
     "url-unshort": "^4.0.0",
@@ -93,7 +94,9 @@
     "test-coverage": "npm run lint && TEST=true babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
     "translate": "babel-node ./scripts/translations/translate.js",
     "transifex:review": "babel-node ./scripts/translations/transifex-review.js",
-    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
+    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": "4.7.2",
@@ -130,5 +133,6 @@
   "bugs": {
     "url": "https://github.com/Gravebot/Gravebot/issues"
   },
-  "homepage": "https://github.com/Gravebot/Gravebot#readme"
+  "homepage": "https://github.com/Gravebot/Gravebot#readme",
+  "snyk": true
 }

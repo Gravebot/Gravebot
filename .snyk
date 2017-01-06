@@ -1,0 +1,9 @@
+version: v1.5.0
+ignore: {}
+patch:
+  'npm:hawk:20160119':
+    - youtube-node > request > hawk:
+        patched: '2016-12-13T03:16:17.682Z'
+  'npm:request:20160119':
+    - youtube-node > request:
+        patched: '2016-12-13T03:16:17.682Z'
