@@ -134,8 +134,8 @@ function onMessage(evt) {
 }
 
 function connect() {
-  if (!nconf.get('TOKEN') || !nconf.get('CLIENT_ID')) {
-    logger.error('Please setup TOKEN and CLIENT_ID in config.js to use Gravebot');
+  if (!nconf.get('TOKEN')) {
+    logger.error('Please setup TOKEN in config.js to use Gravebot');
     process.exit(1);
   }
 

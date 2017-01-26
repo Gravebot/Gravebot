@@ -66,23 +66,26 @@ export function setUserLang(user_id, lang) {
 }
 
 export function getSong(guild_id, callback) {
-  return client.lindex(`guild_${guild_id}`, 0, (err, song) => {
-    if (err) throw err;
-    return callback(err, song);
+  return client.lindexAsync(`guild_${guild_id}`, 0)
+  .then(song => song)
+  .catch(err => {
+    sentry(err, 'getSong');
   });
 }
 
 export function getNextSong(guild_id, callback) {
-  return client.lindex(`guild_${guild_id}`, 1, (err, song) => {
-    if (err) throw err;
-    return callback(err, song);
+  return client.lindexAsync(`guild_${guild_id}`, 1)
+  .then(song => song)
+  .catch(err => {
+    sentry(err, 'getNextSong');
   });
 }
 
 export function getSongs(guild_id, callback) {
-  return client.lrange(`guild_${guild_id}`, 1, 10, (err, songs) => {
-    if (err) throw err;
-    return callback(err, songs);
+  return client.lrangeAsync(`guild_${guild_id}`, 1, 10)
+  .then(songs => songs)
+  .catch(err => {
+    sentry(err, 'getSongs');
   });
 }
 

@@ -16,7 +16,7 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com) chat and music b
 #### Invitation
 The easiest way to set this bot up on your server is to invite it to your Discord server, It is currently hosted 24/7 and will always get the newest features first.
 
-In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=230760832500236289&scope=bot&permissions=305261590) and choose a server. You need to have **Manage Server** permission on that server. You may remove some of the permissions if you wish, but be warned it may break current and upcoming features.
+In order to do that, just [click here](https://discordapp.com/oauth2/authorize?&client_id=170664340968570880&scope=bot&permissions=305261590) and choose a server. You need to have **Manage Server** permission on that server. You may remove some of the permissions if you wish, but be warned it may break current and upcoming features.
 
 If you want to give the bot a first try, you may do that in the [Gravebot's Lair](https://discord.gg/0iXEgtjdHgkpdsVr) Discord server.
 
