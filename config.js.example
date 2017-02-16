@@ -28,7 +28,7 @@ module.exports = {
   IMGFLIP_PASSWORD: '',
 
   // Champion.gg API key, used for the League of Legends `!lol` commands.
-  // Create a key here. http://api.champion.gg/
+  // Create a key here. http://api.champion.gg
   CHAMPIONGG_KEY: '',
 
   // Riot's API key, used for player and match search commands.
@@ -37,11 +37,11 @@ module.exports = {
   RIOT_KEY: '',
 
   // Wolfram Alpha API key, used to query Wolfram Alpha with `!wolfram`.
-  // Apply for a key here. http://products.wolframalpha.com/developers/
+  // Apply for a key here. http://products.wolframalpha.com/developers
   WOLFRAM_KEY: '',
 
   // PasteBin API key, used to create pastes with `!paste`.
-  // Get a key here. http://pastebin.com/api/
+  // Get a key here. http://pastebin.com/api
   PASTEBIN_KEY: '',
 
   // Popkey API key, used for searching GIFs with `!popkey`.
@@ -51,6 +51,10 @@ module.exports = {
   // Random.org API key, used for getting random numbers and strings with `!random`.
   // Get a key here. https://api.random.org/api-keys
   RANDOM_KEY: '',
+
+  // Cleverbot API key, used for talking with `!chat`.
+  // Get a key here. https://www.cleverbot.com/api
+  CLEVERBOT_KEY: '',
 
   // Carbon and Discord Bots key, used for displaying server count on specific websites.
   // More information here. https://www.carbonitex.net/discord/bots & https://bots.discord.pw/api
