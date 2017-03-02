@@ -28,9 +28,3 @@ addons:
     packages:
       - g++-4.8
       - libxml2-dev
-
-deploy:
-  provider: heroku
-  app: gravebot
-  api_key:
-    secure: s6aTez2uch+UTC0e553wUtEh2g71aLlJuuq72OwtgRh5RAplRqBmD+vAcah80uJ8tjFGTe2fSSVZuvGXKFY+D1bGlBDeflNgNnaaxYOIbc8KxqSEYg5OWaR6vVNBgfoAlSVbUgBmMuY2VvC4Csd4e/hr7CN7oecbPzG+64JD5WuipSkLzSZvnt5PTnoJzVm0BVrZengYnK41DyCnKCLo5eXq2E4N52f6V9RbUft9GRnqFu1NNGcquapP/gPja/NDhr2TnIoDv7aQVIzJJ85FMRxDIYYbq+XNR+qk/RVXQA7Q1Kss+aSa7jYnHGC23LJX9dlkd9jOeTxgkNeIuUSRK8jMYDFYIs7ofGHd8BV4eWgKKHimMJ0qW21LgI6m/dgnqhaod6jB2uwF5jgbMX6CxjfkIH0QUXhMadzaTdeGyH2MCT8zz+6kRimqD3h/BVHuXJhP2FuhDxIbrLtgSTwBg2yEFDJZGU0QZXLHTTVyIHViCBi6azCWz2Vo5HdplUKAibky1HxqUOOgjCtAPl/XzG4FFJlKJiceHXE7DoqS22V6tLpTPzBwfxYe1phzJQ4+ia+9IA+pqwOPqEnjJAyhb41+TcrjKSuwR7C4ayLJ6gqBKd0Lywbkjwq6vf1Y66mR8qlebfUmxaV8UhKDZaCIzXUcJ3k+NYWLsYOIF+nvaqc=
