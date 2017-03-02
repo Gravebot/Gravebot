@@ -94,9 +94,7 @@
     "test-coverage": "npm run lint && TEST=true babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
     "translate": "babel-node ./scripts/translations/translate.js",
     "transifex:review": "babel-node ./scripts/translations/transifex-review.js",
-    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
     "node": "4.7.2",
