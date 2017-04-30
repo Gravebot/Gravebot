@@ -4,6 +4,10 @@
   "description": "A bot for the chat program Discord",
   "main": "index.js",
   "dependencies": {
+    "@broid/discord": "^2.0.0",
+    "@broid/kit": "^0.1.0",
+    "@broid/slack": "^2.0.1",
+    "@broid/twitter": "^2.0.0",
     "babel-cli": "^6.5.0",
     "babel-core": "^6.5.0",
     "babel-preset-es2015-node4": "^2.0.2",
@@ -39,6 +43,7 @@
     "raven": "^0.10.0",
     "redis": "^2.6.2",
     "request": "^2.72.0",
+    "rxjs": "^5.3.0",
     "stylus": "^0.54.3",
     "super-error": "^2.0.0",
     "urban": "^0.3.1",
@@ -95,7 +100,7 @@
     "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
   },
   "engines": {
-    "node": "4.4.5",
+    "node": "6.9.1",
     "npm": "3.10.3"
   },
   "babel": {
