@@ -29,5 +29,5 @@ export default {
 };
 
 export const help = {
-  youtube: {parameters: ['search terms']}
+  youtube: {parameters: 'search terms'}
 };

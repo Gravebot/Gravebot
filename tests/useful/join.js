@@ -7,7 +7,7 @@ describe('join/join-server', () => {
       res.should.equal(`To invite me to your server, click the link below and select a server.
 Only users with **Manage Server** permission in that server are able to invite me to it.
 You may remove some of the permissions if you wish, but be warned it may break current and upcoming features.
-https://discordapp.com/oauth2/authorize?&client_id=123&scope=bot&permissions=268561430`);
+<https://discordapp.com/oauth2/authorize?&client_id=123&scope=bot&permissions=305261590>`);
       done();
     }
 

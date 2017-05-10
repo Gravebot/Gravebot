@@ -24,7 +24,5 @@ export default {
 };
 
 export const help = {
-  videocall: {
-    parameters: ['@username']
-  }
+  videocall: {parameters: '@username'}
 };

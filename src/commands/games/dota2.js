@@ -244,20 +244,20 @@ export const help = {
     subcommands: [
       {
         name: 'best',
-        parameters: ['position']
+        parameters: 'position'
       },
       {
         name: 'build',
-        parameters: ['hero-nane']
+        parameters: 'hero-name'
       },
       {
         name: 'counters',
-        parameters: ['hero-name']
+        parameters: 'hero-name'
       },
       {name: 'impact'},
       {
         name: 'items',
-        parameters: ['hero-name']
+        parameters: 'hero-name'
       }
     ]
   }

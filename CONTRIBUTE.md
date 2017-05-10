@@ -6,32 +6,32 @@ Contributing to Gravebot is super easy, we just have a few rules.
 
 #### Rules
 
-Gravebot is written in ES6/Babel javascript, we try to keep to that then the ES5 alternatives.
+Gravebot is written in ES6/Babel javascript, we try to keep to that, then the ES5 alternatives.
 
 - No using `var`, instead properly using `let` and `const`
 - Using `import` and `export` for modules, and avoiding using `require` unless it's for JSON
 - All variables are `snaked_case`
 - All functions are `camelCased`
-- Everything must pass lint (`npm run lint`).
+- Everything must pass lint (`npm run lint`)
 - Tests are required for all functions
-- Avoid adding new modules if there is already one that does something similar. For example, don't add `lodash` as we're already using `ramda`, or don't add `Q` as we're already using `bluebird`.
-- Avoid adding images to the repo if possible, but instead upload them to [imgur](https://imgur.com/) to improve performance.
+- Avoid adding new modules if there is already one that does something similar. For example, don't add `lodash` as we're already using `ramda`, or don't add `Q` as we're already using `bluebird`
+- Avoid adding images to the repo if possible, but instead upload them to [imgur](https://imgur.com/) to improve performance
 
 #### Instructions
 
 __Creating a new module__
 
-To add a new command, create a new javascript file in [`/src/commands`](/src/commands) and name it to something that resembles your to be functions. For example all the Discord server commands can be found in [`/src/commands/info.js`](/src/commands/info.js).
+To add a new command, create a new javascript file in [`/src/commands`](/src/commands) and name it to something that resembles your to be functions. For example all the Discord server commands can be found in [`/src/commands/info/index.js`](/src/commands/info/index.js).
 
-All functions are passed the [Discordie client](https://qeled.github.io/discordie/#/docs/Discordie?_k=7pztxz), [message event](https://qeled.github.io/discordie/#/docs/IMessage?_k=bjv5md), the command suffix, and the users language. All functions are to return a Bluebird promise of either a string, number, or Buffer. An array of any of the three is [also accepted](https://github.com/Gravebot/Gravebot/blob/Rewrite/src/index.js#L27-L56). A good example of this can be found in [`/src/commands/fun/transate.js`](/src/commands/fun/transate.js).
+All functions are passed the [Discordie client](https://qeled.github.io/discordie/#/docs/Discordie?_k=7pztxz), [message event](https://qeled.github.io/discordie/#/docs/IMessage?_k=bjv5md), the command suffix, and the users language. All functions are to return a Bluebird promise of either a string, number, or Buffer. An array of any of the three is [also accepted](https://github.com/Gravebot/Gravebot/blob/Rewrite/src/index.js#L27-L56). A good example of this can be found in [`/src/commands/fun/translate.js`](/src/commands/fun/translate.js).
 
-It's good to default to some help text if someone is improperly using your commands. With a little string interpolation and some markdown, it's pretty easy to describe to a user how your commands work. Check out [`/src/commands/games/leagueoflegends/`](/src/commands/games/leagueoflegends/) or [`/src/commands/help`](/src/commands/help).
+It's good to default to some help text if someone is improperly using your commands. With a little string interpolation and some markdown it's pretty easy to describe to a user how your commands work. Check out [`/src/commands/games/leagueoflegends/`](/src/commands/games/leagueoflegends/) or [`/src/commands/help`](/src/commands/help).
 
-After you've completed writing, export a default object with the key name being the name of the discord command. Again, a good example of this can be found in [`/src/commands/fun/transate.js`](/src/commands/fun/transate.js). You can export multiple commands and everything will be merged on run.
+After you've completed writing, export a default object with the key name being the name of the discord command. Again, a good example of this can be found in [`/src/commands/fun/translate.js`](/src/commands/fun/translate.js). You can export multiple commands and everything will be merged on run.
 
 __Image Responses__
 
-If you'd prefer to develop an image response instead of a text response, take a look at the League of Legends [`items`](https://github.com/Gravestorm/Gravebot/blob/master/src/commands/games/leagueoflegends/championgg.js) commands. The images are HTML/Jade views using Stylus as the css pre-compiler. The images should try to fit in with the look of Discord. Please reframe from loading remote dependencies, but instead save them locally in the repo within the `web` folder.
+If you'd prefer to develop an image response instead of a text response, take a look at the League of Legends [`items`](/src/commands/games/leagueoflegends/championgg.js#L124-L157) commands. The images are HTML/Jade views using Stylus as the css pre-compiler. The images should try to fit in with the look of Discord. Please refrain from loading remote dependencies, but instead save them locally in the repo within the `web` folder.
 
 __Tests__
 
@@ -52,7 +52,7 @@ __Rules__
 - Don't add extra punctuations (such as `...`) to the end of translations if the English version doesn't have it.
 
 __Setup__
-- Create an account with [Transifex](https://www.transifex.com/signin/) (Or login with Github/Google/Facebook/ect)
+- Create an account on [Transifex](https://www.transifex.com/signin/) (Or login with Github/Google/Facebook/ect)
 - Join the Gravebot team with the language you'd like to work on
 - Start!
 
