@@ -35,7 +35,7 @@ describe('responses', () => {
 
     it('should return random emoji text', () => {
       return responses.emoji({}, {}, '1000')
-        .then(res => res.should.equal('😬😳🙊😥😬🙊🙊🙊😬😥 awkward shit awkward sHit😬 thats 🙊some awkward😬😬shit right😬😬th 😬 ere😬😬😬 right💬there 💬💬if i do ƽaү so my selｆ 😳 i say so 😳 thats what im talking about right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ🙊 😬😬😬НO0ОଠＯOOＯOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ😬😬 😬 🙊 😬😥🙊🙊😬😬awkward shit'));
+        .then(res => res.should.equal('🔑🙏🔑🙏🔑🙏🔑🙏🔑🙏🔑success shit success sHit ✔ that some🔑🔑to success shit right🔑🔑there🔑🔑🔑right✔there ✔✔if i do bless up my self 🍏 i do bless up 🍏 thats another one right there right there (chorus: ʳᶦᵍʰᵗ ᵗʰᵉʳᵉ) mMMMMᎷМ🍏🔑🔑🔑НO0ОଠOOOOOОଠଠOoooᵒᵒᵒᵒᵒᵒᵒᵒᵒ🔑🔑🔑🔑🍏🔑🙏🙏🙏🔑🔑success shit'));
     });
   });
 
