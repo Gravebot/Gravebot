@@ -61,12 +61,13 @@ For self hosting, click [here](#localconfig).
 
 #### Useful:
 - `!ddg` *search terms* - Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list.
-- `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
-- `!join` - Shows a link that can be used to invite Gravebot to your server
-- `!random` - Generate truly random numbers and strings
 - `!fraction` *amount* *decimal places* *replace(optional)* - Generate a number of random real numbers between 0 and 1 with set decimal places, write **replace** at the end to disable duplicates (e.g. `!fraction 1 5 replace`)
 - `!gaussian` *amount* *mean* *deviation* *significant digits* - Generate a number of random numbers from a Gaussian distribution (e.g. `!gaussian 1 50 10 5`)
+- `!gif` *gif tags* - Gets a gif from Giphy or Popkey matching the given tags (Use `!giphy` or `!popkey` to search the specific sites)
+- `!image` *search query* - Gets an image from bing matching the search query. (e.g. `!image brad pitt burn after reading`)
 - `!integer` *amount* *min* *max* *replace(optional)* - Generate a number of random integers between min and max, write **replace** at the end to disable duplicates (e.g. `!integer 2 1 50 replace`)
+- `!join` - Shows a link that can be used to invite Gravebot to your server
+- `!random` - Generate truly random numbers and strings
 - `!string` *amount* *length* *charset(optional)* *replace(optional)* - Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. `!string 1 10 abc123 replace`)
 - `!unshorten` *url* - Unshortens a shortened link
 - `!urban` *search terms* - Returns the summary of the first matching search result from Urban Dictionary
