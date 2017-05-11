@@ -37,11 +37,11 @@
   },
   "champgg_setup": {
     "text": "Please setup `CHAMPIONGG_KEY` in config.js to use the **`!lol`** command.",
-    "done": false
+    "done": true
   },
   "channelinfo": {
     "text": "Gives information about this channel, unless a channelname is specified",
-    "done": false
+    "done": true
   },
   "chat": {
     "text": "Chats with you",
@@ -49,7 +49,7 @@
   },
   "chat_setup": {
     "text": "Please setup `CLEVERBOT_KEY` in config.js to use the **`!chat`** command.",
-    "done": false
+    "done": true
   },
   "coin": {
     "text": "Flips a coin",
@@ -81,7 +81,7 @@
   },
   "comics_header_text": {
     "text": "Get random web comic strips.",
-    "done": false
+    "done": true
   },
   "comics_random": {
     "text": "Returns a random comic",
@@ -101,7 +101,7 @@
   },
   "ddg": {
     "text": "Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list",
-    "done": false
+    "done": true
   },
   "ddg_error": {
     "text": "I couldn't find anything for",
@@ -165,7 +165,7 @@
   },
   "feedback_setup": {
     "text": "Please setup `FEEDBACK_CHANNEL_ID` in config.js to use the **`!feedback`** command.",
-    "done": false
+    "done": true
   },
   "feedback_usage": {
     "text": "Usage: **`!feedback`** `text`",
@@ -181,7 +181,7 @@
   },
   "gif": {
     "text": "Gets a gif from Giphy or Popkey matching the given tags. Use `!giphy` or `!popkey` to search the specific site",
-    "done": false
+    "done": true
   },
   "gif_error": {
     "text": "I couldn't find a gif for",
@@ -217,7 +217,7 @@
   },
   "help_music": {
     "text": "List of music commands",
-    "done": false
+    "done": true
   },
   "help_other": {
     "text": "List of other commands",
@@ -233,7 +233,7 @@
   },
   "join": {
     "text": "Shows a link that can be used to invite the bot to your server",
-    "done": false
+    "done": true
   },
   "join_link": {
     "text": "To invite me to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite me to it.\nYou may remove some of the permissions if you wish, but be warned it may break current and upcoming features.",
@@ -241,7 +241,7 @@
   },
   "join_setup": {
     "text": "Please setup `CLIENT_ID` in config.js to use the **`!join`** command.",
-    "done": false
+    "done": true
   },
   "leet_usage": {
     "text": "Usage: **`!leet`** `sentence`",
@@ -257,7 +257,7 @@
   },
   "lol_best": {
     "text": "Get the top 10 best Champions for a Position",
-    "done": false
+    "done": true
   },
   "lol_counters": {
     "text": "Get the top 10 counters for a Champion and Position",
@@ -265,7 +265,7 @@
   },
   "lol_header_text": {
     "text": "League of Legends help commands.\nAccepted Positions are #{lol_positions}.\nAccepted regions are #{lol_regions}.",
-    "done": false
+    "done": true
   },
   "lol_items": {
     "text": "Get the highest win item sets for a Champion and Position",
@@ -273,7 +273,7 @@
   },
   "lol_match": {
     "text": "Get the name, rank, Champion, winrate and total games for all players of a __current__ match",
-    "done": false
+    "done": true
   },
   "lol_positions": {
     "text": "Did you mean #{lol_positions}?",
@@ -301,11 +301,11 @@
   },
   "meme_setup": {
     "text": "Please setup `IMGFLIP_USERNAME` and `IMGFLIP_PASSWORD` in config.js to use the **`!meme`** command.",
-    "done": false
+    "done": true
   },
   "meme_usage": {
     "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names",
-    "done": false
+    "done": true
   },
   "memelist": {
     "text": "List of meme names for the **`!meme`** command",
@@ -313,27 +313,27 @@
   },
   "music_not_connected": {
     "text": "Not connected to a voice channel.",
-    "done": false
+    "done": true
   },
   "music_not_found": {
     "text": "Channel not found. Please write the exact name of the voice channel or join it.",
-    "done": false
+    "done": true
   },
   "music_queue_added": {
     "text": "has been added to the queue.",
-    "done": false
+    "done": true
   },
   "music_queue_empty": {
     "text": "No more songs in the queue.",
-    "done": false
+    "done": true
   },
   "music_requested": {
     "text": "requested by",
-    "done": false
+    "done": true
   },
   "next": {
     "text": "Shows the song that will play next",
-    "done": false
+    "done": true
   },
   "no_counters": {
     "text": "I don't have counters for",
@@ -365,7 +365,7 @@
   },
   "ow_header_text": {
     "text": "Information and player stats for Overwatch.\nAccepted regions are #{ow_regions}.\nSpecifying region is optional but the request will take a second or two longer.",
-    "done": false
+    "done": true
   },
   "ow_kill_streak": {
     "text": "Heroes with the highest kill streak",
@@ -385,7 +385,7 @@
   },
   "ow_weapon_accuracy": {
     "text": "Heroes weapon accuracy percentage",
-    "done": false
+    "done": true
   },
   "ow_win_percent": {
     "text": "Heroes with the highest win percentage",
@@ -393,11 +393,11 @@
   },
   "paste": {
     "text": "Creates a paste on Pastebin and returns the url",
-    "done": false
+    "done": true
   },
   "pastebin_setup": {
     "text": "Please setup `PASTEBIN_KEY` in config.js to use the **`!paste`** command.",
-    "done": false
+    "done": true
   },
   "pastebin_usage": {
     "text": "Usage: **`!paste`** `text`",
@@ -405,7 +405,7 @@
   },
   "pause": {
     "text": "Pauses the playback",
-    "done": false
+    "done": true
   },
   "ping": {
     "text": "Pong! Check Gravebot's pulse",
@@ -413,11 +413,11 @@
   },
   "playing": {
     "text": "Shows the currently playing song",
-    "done": false
+    "done": true
   },
   "popkey_setup": {
     "text": "Please setup `POPKEY_KEY` in config.js to use the **`!popkey`** command.",
-    "done": false
+    "done": true
   },
   "popkey_usage": {
     "text": "Usage: **`!popkey`** `gif tags`",
@@ -425,7 +425,7 @@
   },
   "queue": {
     "text": "Shows the song queue",
-    "done": false
+    "done": true
   },
   "quote": {
     "text": "Responds with a quote, if no number is written, a random one",
@@ -449,39 +449,39 @@
   },
   "random_setup": {
     "text": "Please setup `RANDOM_KEY` in config.js to use the **`!random`** command.",
-    "done": false
+    "done": true
   },
   "random_string": {
     "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates (e.g. __!string 1 10 abc123 replace__)",
-    "done": false
+    "done": true
   },
   "request": {
     "text": "Request a song to be played",
-    "done": false
+    "done": true
   },
   "request_error": {
     "text": "Invalid or not supported Youtube URL. Please make sure the Youtube URL starts with `http` or `https`.",
-    "done": false
+    "done": true
   },
   "request_length": {
     "text": "Maximum video length is 90 minutes.",
-    "done": false
+    "done": true
   },
   "request_unavailable": {
     "text": "Video unavailable.",
-    "done": false
+    "done": true
   },
   "request_usage": {
     "text": "Usage: **`!request`** `Youtube URL`",
-    "done": false
+    "done": true
   },
   "resume": {
     "text": "Resumes the playback",
-    "done": false
+    "done": true
   },
   "riot_setup": {
     "text": "Please setup `RIOT_KEY` in config.js to use the **`!lol`** command.",
-    "done": false
+    "done": true
   },
   "robohash": {
     "text": "Get robot and monster images",
@@ -509,7 +509,7 @@
   },
   "serverinfo": {
     "text": "Gives information about this server, unless a servername is specified",
-    "done": false
+    "done": true
   },
   "servers": {
     "text": "Lists how many servers, channels and users the bot is connected to",
@@ -521,7 +521,7 @@
   },
   "skip": {
     "text": "Skips the currently playing song",
-    "done": false
+    "done": true
   },
   "snoop_usage": {
     "text": "Usage: **`!snoop`** `sentence`",
@@ -533,7 +533,7 @@
   },
   "stop": {
     "text": "Stops the playback, leaves the channel and deletes all songs from the queue",
-    "done": false
+    "done": true
   },
   "string_usage": {
     "text": "Usage: **`!string`** `amount` `length` `charset(optional)` `replace(optional)`",
@@ -545,7 +545,7 @@
   },
   "translate_header_text": {
     "text": "Translation commands.",
-    "done": false
+    "done": true
   },
   "translate_leet": {
     "text": "1337ifies the sentence",
@@ -565,7 +565,7 @@
   },
   "unshorten_response": {
     "text": "This url can't be expanded.",
-    "done": false
+    "done": true
   },
   "unshorten_usage": {
     "text": "Usage: **`!unshorten`** `url`",
@@ -589,7 +589,7 @@
   },
   "userinfo": {
     "text": "Gives information about this user, unless a username is specified",
-    "done": false
+    "done": true
   },
   "version": {
     "text": "Get information on the latest version of Gravebot",
@@ -597,11 +597,11 @@
   },
   "videocall": {
     "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private",
-    "done": false
+    "done": true
   },
   "vjoin": {
     "text": "Joins the voice channel the user is in, unless a channel name is specified",
-    "done": false
+    "done": true
   },
   "wiki": {
     "text": "Returns the summary of the first matching search result from Wikipedia",
@@ -621,7 +621,7 @@
   },
   "wolfram_setup": {
     "text": "Please setup `WOLFRAM_KEY` in config.js to use the **`!wolfram`** command.",
-    "done": false
+    "done": true
   },
   "wolfram_usage": {
     "text": "Usage: **`!wolfram`** `query`",
@@ -641,7 +641,7 @@
   },
   "youtube_setup": {
     "text": "Please setup `YOUTUBE_KEY` in config.js to use the **`!youtube`** command.",
-    "done": false
+    "done": true
   },
   "youtube_usage": {
     "text": "Usage: **`!youtube`** `video tags`",

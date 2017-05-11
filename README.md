@@ -155,7 +155,7 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 #### Windows:
 **Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependencies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
 
-- Install [node.js](https://nodejs.org/en) v4.6.2
+- Install [node.js](https://nodejs.org/en) v4.8.3
 - Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
@@ -167,13 +167,13 @@ Rename `config.js.example` to `config.js` and fill in the required information. 
 - Run `launch.bat` inside the Gravebot folder to start the bot
 
 #### Linux:
-- Install [node.js](https://nodejs.org/en) v4.6.2
+- Install [node.js](https://nodejs.org/en) v4.8.3
 - Install [gcc](https://gcc.gnu.org), [git](https://git-scm.com), [libxml2](http://www.xmlsoft.org) and [ffmpeg](https://ffmpeg.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo apt-get install build-essential git libxml2-dev ffmpeg libfontconfig1`)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo npm install -g node-gyp`)
 - Install and run [redis](http://redis.io/download#installation)
 - Download Gravebot (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the Gravebot directory and run `npm install` to install the Node dependencies
-- Run `npm start` to start the bot
+- Run `npm start` in the Gravebot directory to start the bot
 
 ## Deployment
 #### Heroku
@@ -191,7 +191,7 @@ Master branch is built and pushed to our Docker image. You can pull the latest f
 
 ## Updating
 
-Updating Gravebot is like any other NodeJS app. Just run `git pull && npm install` in the Gravebot folder via the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) if you're on Linux or [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) if you're on Windows. You may also download the ZIP, configure it and run npm install again.
+Updating Gravebot is like any other NodeJS app. Just run `git pull && npm install` in the Gravebot folder via the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) if you're on Linux or the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) if you're on Windows. You may also download the ZIP, configure it and run npm install again.
 
 ---
 
