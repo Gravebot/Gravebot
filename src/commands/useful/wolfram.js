@@ -36,5 +36,5 @@ export default {
 };
 
 export const help = {
-  wolfram: {parameters: ['query']}
+  wolfram: {parameters: 'query'}
 };

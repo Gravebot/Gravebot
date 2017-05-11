@@ -41,7 +41,7 @@ export const help = {
       {name: 'bans'},
       {
         name: 'best',
-        parameters: ['position']
+        parameters: 'position'
       },
       {
         name: 'counters',

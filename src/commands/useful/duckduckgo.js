@@ -88,5 +88,5 @@ export default {
 };
 
 export const help = {
-  ddg: {parameters: ['search terms']}
+  ddg: {parameters: 'search terms'}
 };

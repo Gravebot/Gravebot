@@ -30,5 +30,5 @@ export default {
 };
 
 export const help = {
-  feedback: {parameters: ['text']}
+  feedback: {parameters: 'text'}
 };

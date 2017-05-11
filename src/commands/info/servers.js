@@ -21,9 +21,12 @@ function servers(client, evt, suffix, lang, json) {
   return Promise.resolve(`Connected to ${server_count.guilds} servers, ${server_count.channels} channels and ${server_count.users} users.`);
 }
 
-export const help = {servers: {}};
 export default {
   servers,
   statistics: servers,
   stats: servers
+};
+
+export const help = {
+  servers: {}
 };

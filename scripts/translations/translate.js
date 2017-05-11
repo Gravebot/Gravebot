@@ -68,7 +68,7 @@ Promise.resolve(supported_languages)
     if (!translations[lang]) translations[lang] = {};
 
     return Promise.resolve(R.keys(_source))
-      .map(R.curry(translate)(lang), {concurrency: 10})
+      .map(R.curry(translate)(lang), {concurrency: 2})
       .then(() => {
         const sorted_translations = {};
         R.forEach(key => {

@@ -32,5 +32,5 @@ export default {
 };
 
 export const help = {
-  paste: {parameters: ['text']}
+  paste: {parameters: 'text'}
 };

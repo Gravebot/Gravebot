@@ -36,11 +36,11 @@
     "done": true
   },
   "champgg_setup": {
-    "text": "Please setup Champion.gg in config.js to use the **`!lol`** command.",
+    "text": "Please setup `CHAMPIONGG_KEY` in config.js to use the **`!lol`** command.",
     "done": true
   },
   "channelinfo": {
-    "text": "Gives information about this channel, unless a name is specified",
+    "text": "Gives information about this channel, unless a channelname is specified",
     "done": true
   },
   "chat": {
@@ -48,7 +48,7 @@
     "done": true
   },
   "chat_setup": {
-    "text": "Please setup cleverbot in config.js to use the **`!chat`** command.",
+    "text": "Please setup `CLEVERBOT_KEY` in config.js to use the **`!chat`** command.",
     "done": true
   },
   "coin": {
@@ -80,7 +80,7 @@
     "done": true
   },
   "comics_header_text": {
-    "text": "Get random web comic strips",
+    "text": "Get random web comic strips.",
     "done": true
   },
   "comics_random": {
@@ -100,7 +100,7 @@
     "done": true
   },
   "ddg": {
-    "text": "Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list.",
+    "text": "Search the web, can also calculate and convert. Search other websites by appending its shortening (e.g. `!ddg !yt Hello`) See <https://duckduckgo.com/bang> for a list",
     "done": true
   },
   "ddg_error": {
@@ -164,7 +164,7 @@
     "done": true
   },
   "feedback_setup": {
-    "text": "Please setup Feedback Channel in config.js to use the **`!feedback`** command.",
+    "text": "Please setup `FEEDBACK_CHANNEL_ID` in config.js to use the **`!feedback`** command.",
     "done": true
   },
   "feedback_usage": {
@@ -180,7 +180,7 @@
     "done": true
   },
   "gif": {
-    "text": "Gets a gif from Giphy or Popkey matching the given tags.\nUse `!giphy` or `!popkey` to search the specific sites",
+    "text": "Gets a gif from Giphy or Popkey matching the given tags. Use `!giphy` or `!popkey` to search the specific site",
     "done": true
   },
   "gif_error": {
@@ -215,6 +215,10 @@
     "text": "List of information commands",
     "done": true
   },
+  "help_music": {
+    "text": "List of music commands",
+    "done": true
+  },
   "help_other": {
     "text": "List of other commands",
     "done": true
@@ -228,11 +232,15 @@
     "done": true
   },
   "join": {
-    "text": "Shows a link that can be used to invite me to your server",
+    "text": "Shows a link that can be used to invite the bot to your server",
     "done": true
   },
   "join_link": {
     "text": "To invite me to your server, click the link below and select a server.\nOnly users with **Manage Server** permission in that server are able to invite me to it.\nYou may remove some of the permissions if you wish, but be warned it may break current and upcoming features.",
+    "done": true
+  },
+  "join_setup": {
+    "text": "Please setup `CLIENT_ID` in config.js to use the **`!join`** command.",
     "done": true
   },
   "leet_usage": {
@@ -248,7 +256,7 @@
     "done": true
   },
   "lol_best": {
-    "text": "Get the top 10 best champs for a position",
+    "text": "Get the top 10 best Champions for a Position",
     "done": true
   },
   "lol_counters": {
@@ -256,7 +264,7 @@
     "done": true
   },
   "lol_header_text": {
-    "text": "League of Legends help commands\n\nAccepted positions are #{lol_positions}.\nAccepted regions are #{lol_regions}.",
+    "text": "League of Legends help commands.\nAccepted Positions are #{lol_positions}.\nAccepted regions are #{lol_regions}.",
     "done": true
   },
   "lol_items": {
@@ -264,7 +272,7 @@
     "done": true
   },
   "lol_match": {
-    "text": "Get rank, champ, winrate, and games for all players in a __current__ match.",
+    "text": "Get the name, rank, Champion, winrate and total games for all players of a __current__ match",
     "done": true
   },
   "lol_positions": {
@@ -292,15 +300,39 @@
     "done": true
   },
   "meme_setup": {
-    "text": "Please setup Imgflip in config.js to use the **`!meme`** command.",
+    "text": "Please setup `IMGFLIP_USERNAME` and `IMGFLIP_PASSWORD` in config.js to use the **`!meme`** command.",
     "done": true
   },
   "meme_usage": {
-    "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names.",
+    "text": "Usage: **`!meme`** `meme name` `\"top text\"` `\"bottom text\"`\nWrite **`!memelist`** for a list of meme names",
     "done": true
   },
   "memelist": {
     "text": "List of meme names for the **`!meme`** command",
+    "done": true
+  },
+  "music_not_connected": {
+    "text": "Not connected to a voice channel.",
+    "done": true
+  },
+  "music_not_found": {
+    "text": "Channel not found. Please write the exact name of the voice channel or join it.",
+    "done": true
+  },
+  "music_queue_added": {
+    "text": "has been added to the queue.",
+    "done": true
+  },
+  "music_queue_empty": {
+    "text": "No more songs in the queue.",
+    "done": true
+  },
+  "music_requested": {
+    "text": "requested by",
+    "done": true
+  },
+  "next": {
+    "text": "Shows the song that will play next",
     "done": true
   },
   "no_counters": {
@@ -332,7 +364,7 @@
     "done": true
   },
   "ow_header_text": {
-    "text": "Information and player stats for Overwatch\nAccepted regions are #{ow_regions}.\nSpecifying region is optional but the request will take a second or two longer.",
+    "text": "Information and player stats for Overwatch.\nAccepted regions are #{ow_regions}.\nSpecifying region is optional but the request will take a second or two longer.",
     "done": true
   },
   "ow_kill_streak": {
@@ -352,7 +384,7 @@
     "done": true
   },
   "ow_weapon_accuracy": {
-    "text": "Hereos weapon accuracy percentage",
+    "text": "Heroes weapon accuracy percentage",
     "done": true
   },
   "ow_win_percent": {
@@ -360,27 +392,39 @@
     "done": true
   },
   "paste": {
-    "text": "Creates a paste on Pastebin.com and returns the url",
+    "text": "Creates a paste on Pastebin and returns the url",
     "done": true
   },
   "pastebin_setup": {
-    "text": "Please setup Pastebin in config.js to use the **`!paste`** command.",
+    "text": "Please setup `PASTEBIN_KEY` in config.js to use the **`!paste`** command.",
     "done": true
   },
   "pastebin_usage": {
     "text": "Usage: **`!paste`** `text`",
     "done": true
   },
+  "pause": {
+    "text": "Pauses the playback",
+    "done": true
+  },
   "ping": {
     "text": "Pong! Check Gravebot's pulse",
     "done": true
   },
+  "playing": {
+    "text": "Shows the currently playing song",
+    "done": true
+  },
   "popkey_setup": {
-    "text": "Please setup Popkey in config.js to use the **`!popkey`** command.",
+    "text": "Please setup `POPKEY_KEY` in config.js to use the **`!popkey`** command.",
     "done": true
   },
   "popkey_usage": {
     "text": "Usage: **`!popkey`** `gif tags`",
+    "done": true
+  },
+  "queue": {
+    "text": "Shows the song queue",
     "done": true
   },
   "quote": {
@@ -404,15 +448,39 @@
     "done": true
   },
   "random_setup": {
-    "text": "Please setup Random in config.js to use the **`!random`** commands.",
+    "text": "Please setup `RANDOM_KEY` in config.js to use the **`!random`** command.",
     "done": true
   },
   "random_string": {
-    "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates. (e.g. __!string 1 10 abc123 replace__)",
+    "text": "Generate a number of random strings of a given length, can also input your own charset (default is the alphabet), as well as write **replace** at the end to disable duplicates (e.g. __!string 1 10 abc123 replace__)",
+    "done": true
+  },
+  "request": {
+    "text": "Request a song to be played",
+    "done": true
+  },
+  "request_error": {
+    "text": "Invalid or not supported Youtube URL. Please make sure the Youtube URL starts with `http` or `https`.",
+    "done": true
+  },
+  "request_length": {
+    "text": "Maximum video length is 90 minutes.",
+    "done": true
+  },
+  "request_unavailable": {
+    "text": "Video unavailable.",
+    "done": true
+  },
+  "request_usage": {
+    "text": "Usage: **`!request`** `Youtube URL`",
+    "done": true
+  },
+  "resume": {
+    "text": "Resumes the playback",
     "done": true
   },
   "riot_setup": {
-    "text": "Please setup Riot's API in config.js to use the **`!lol`** command.",
+    "text": "Please setup `RIOT_KEY` in config.js to use the **`!lol`** command.",
     "done": true
   },
   "robohash": {
@@ -440,11 +508,7 @@
     "done": true
   },
   "serverinfo": {
-    "text": "Gives information about this server, unless a name is specified",
-    "done": true
-  },
-  "serverlist": {
-    "text": "Lists all the servers the bot is connected to",
+    "text": "Gives information about this server, unless a servername is specified",
     "done": true
   },
   "servers": {
@@ -455,12 +519,20 @@
     "text": "Set all help text to respond in a specified language",
     "done": true
   },
+  "skip": {
+    "text": "Skips the currently playing song",
+    "done": true
+  },
   "snoop_usage": {
     "text": "Usage: **`!snoop`** `sentence`",
     "done": true
   },
   "specify_summoner": {
     "text": "You need to specify a summoner name.",
+    "done": true
+  },
+  "stop": {
+    "text": "Stops the playback, leaves the channel and deletes all songs from the queue",
     "done": true
   },
   "string_usage": {
@@ -472,7 +544,7 @@
     "done": true
   },
   "translate_header_text": {
-    "text": "Translation commands:",
+    "text": "Translation commands.",
     "done": true
   },
   "translate_leet": {
@@ -489,6 +561,10 @@
   },
   "unshorten": {
     "text": "Unshortens a shortened link",
+    "done": true
+  },
+  "unshorten_response": {
+    "text": "This url can't be expanded.",
     "done": true
   },
   "unshorten_usage": {
@@ -512,7 +588,7 @@
     "done": true
   },
   "userinfo": {
-    "text": "Gives information about this user, unless a name is specified",
+    "text": "Gives information about this user, unless a username is specified",
     "done": true
   },
   "version": {
@@ -520,7 +596,11 @@
     "done": true
   },
   "videocall": {
-    "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private.",
+    "text": "Start a one click video call or screenshare directly on Appear.in. Mention users to make it private",
+    "done": true
+  },
+  "vjoin": {
+    "text": "Joins the voice channel the user is in, unless a channel name is specified",
     "done": true
   },
   "wiki": {
@@ -540,7 +620,7 @@
     "done": true
   },
   "wolfram_setup": {
-    "text": "Please setup Wolfram in config.js to use the **`!wolfram`** command.",
+    "text": "Please setup `WOLFRAM_KEY` in config.js to use the **`!wolfram`** command.",
     "done": true
   },
   "wolfram_usage": {
@@ -560,7 +640,7 @@
     "done": true
   },
   "youtube_setup": {
-    "text": "Please setup Youtube in config.js to use the **`!youtube`** command.",
+    "text": "Please setup `YOUTUBE_KEY` in config.js to use the **`!youtube`** command.",
     "done": true
   },
   "youtube_usage": {
