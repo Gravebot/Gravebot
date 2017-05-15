@@ -7,7 +7,6 @@ import { time } from '../../helpers';
 import T from '../../translate';
 
 
-
 function vleave(client, evt, lang) {
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (info) {
@@ -51,16 +50,16 @@ function play(client, evt, music, lang) {
     type: 'ffmpeg',
     realtime: true,
     source: music.url,
+    inputArgs: ['-reconnect', '1', '-reconnect_streamed', '1', '-reconnect_delay_max', '2'],
     outputArgs: []
   });
   clearTimeout(timer);
   encoder.play();
   encoder.once('end', () => {
     delSong(evt.message.guild.id);
-    getSong(evt.message.guild.id).then(song => {
-      if (song) {
-        play(client, evt, JSON.parse(song));
-      } else {
+    return getSong(evt.message.guild.id).then(song => {
+      if (song) return play(client, evt, JSON.parse(song));
+      if (!song) {
         timer(client, evt, lang);
         return Promise.resolve(T('music_queue_empty', lang));
       }
@@ -75,30 +74,35 @@ function request(client, evt, suffix, lang) {
   if (!info) return Promise.resolve(T('music_not_connected', lang));
   if (suffix.indexOf('youtube.com/playlist') !== -1) return Promise.resolve('Playlist support coming soon');
 
-  return ytdl.getInfo(suffix, ['-f', 'bestaudio'], (err, media) => {
-    if (err) throw err;
-    if (!media) return T('request_error', lang);
-    if (media.length_seconds > 5400) return T('request_length', lang);
+  return ytdl.getInfo(suffix, (err, media) => {
+    if (err) {
+      console.log(err);
+      return Promise.resolve(T('request_error', lang));
+    }
+    if (!media) return Promise.resolve(T('request_error', lang));
+    if (media.length_seconds > 5400) return Promise.resolve(T('request_length', lang));
 
     const formats = media.formats.filter(f => f.container === 'webm').sort((a, b) => b.audioBitrate - a.audioBitrate);
     const bestaudio = formats.find(f => f.audioBitrate > 0 && !f.bitrate) || formats.find(f => f.audioBitrate > 0);
+    if (!bestaudio) return Promise.resolve(T('request_unavailable', lang));
 
-    if (!bestaudio) return T('request_unavailable', lang);
     const music = {
       user: evt.message.author.username,
       title: media.title,
       duration: media.length_seconds,
       url: bestaudio.url
     };
-    getSong(evt.message.guild.id).then(song => {
+    return getSong(evt.message.guild.id).then(song => {
+      if (song) {
+        addSong(evt.message.guild.id, music);
+        return Promise.resolve(`\`${media.title}\` ${T('music_queue_added', lang)}`);
+      }
       if (!song) {
         addSong(evt.message.guild.id, music);
         play(client, evt, music);
-      } else {
-        addSong(evt.message.guild.id, music);
+        return Promise.resolve(`\`${media.title}\` ${T('music_queue_added', lang)}`);
       }
     });
-    return Promise.resolve(`\`${media.title}\` ${T('music_queue_added', lang)}`);
   });
 }
 
@@ -107,10 +111,9 @@ function stop(client, evt, lang) {
   if (info) {
     timer(client, evt, lang);
     info.voiceConnection.getEncoderStream().unpipeAll();
-    delSongs(evt.message.guild.id);
-  } else {
-    return Promise.resolve(T('music_not_connected', lang));
+    return delSongs(evt.message.guild.id);
   }
+  if (!info) return Promise.resolve(T('music_not_connected', lang));
 }
 
 function skip(client, evt, lang) {
@@ -118,17 +121,15 @@ function skip(client, evt, lang) {
   if (info) {
     info.voiceConnection.getEncoderStream().unpipeAll();
     delSong(evt.message.guild.id);
-    getSong(evt.message.guild.id).then(song => {
-      if (song) {
-        play(client, evt, JSON.parse(song));
-      } else {
+    return getSong(evt.message.guild.id).then(song => {
+      if (song) return play(client, evt, JSON.parse(song));
+      if (!song) {
         timer(client, evt, lang);
         return Promise.resolve(T('music_queue_empty', lang));
       }
     });
-  } else {
-    return Promise.resolve(T('music_not_connected', lang));
   }
+  if (!info) return Promise.resolve(T('music_not_connected', lang));
 }
 
 function pause(client, evt, lang) {
@@ -136,48 +137,48 @@ function pause(client, evt, lang) {
   if (info) {
     timer(client, evt, lang);
     info.voiceConnection.getEncoderStream().unpipeAll();
-  } else {
-    return Promise.resolve(T('music_not_connected', lang));
   }
+  if (!info) return Promise.resolve(T('music_not_connected', lang));
 }
 
 function resume(client, evt, lang) {
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (info) {
-    getSong(evt.message.guild.id).then(song => {
-      if (song) {
-        play(client, evt, JSON.parse(song));
-      } else {
+    return getSong(evt.message.guild.id).then(song => {
+      if (song) return play(client, evt, JSON.parse(song));
+      if (!song) {
         timer(client, evt, lang);
         return Promise.resolve(T('music_queue_empty', lang));
       }
     });
-  } else {
-    return Promise.resolve(T('music_not_connected', lang));
   }
+  if (!info) return Promise.resolve(T('music_not_connected', lang));
 }
 
 function playing(client, evt, lang) {
-  getSong(evt.message.guild.id).then(song => {
+  return getSong(evt.message.guild.id).then(song => {
     if (song) return Promise.resolve(`\`${song.title} ${time(song.duration)}\` - ${T('music_requested', lang)} ${song.user}`);
     if (!song) return Promise.resolve(T('music_queue_empty', lang));
   });
 }
 
 function next(client, evt, lang) {
-  getNextSong(evt.message.guild.id).then(song => {
+  return getNextSong(evt.message.guild.id).then(song => {
     if (song) return Promise.resolve(`\`${song.title} ${time(song.duration)}\` - ${T('music_requested', lang)} ${song.user}`);
     if (!song) return Promise.resolve(T('music_queue_empty', lang));
   });
 }
 
 function queue(client, evt, lang) {
-  getSongs(evt.message.guild.id).then(songs => {
-    let msg_array = [];
-    R.forEach(song => {
-      msg_array.push(`\`${song.title} ${time(song.duration)}\` - ${T('music_requested', lang)} ${song.user}`);
-    }, songs);
-    return Promise.resolve(msg_array.join('\n'));
+  return getSongs(evt.message.guild.id).then(songs => {
+    if (songs) {
+      let msg_array = [];
+      R.forEach(song => {
+        msg_array.push(`\`${song.title} ${time(song.duration)}\` - ${T('music_requested', lang)} ${song.user}`);
+      }, songs);
+      return Promise.resolve(msg_array.join('\n'));
+    }
+    if (!songs) return Promise.resolve(T('music_queue_empty', lang));
   });
 }
 

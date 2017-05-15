@@ -65,7 +65,7 @@ export function setUserLang(user_id, lang) {
     });
 }
 
-export function getSong(guild_id, callback) {
+export function getSong(guild_id) {
   return client.lindexAsync(`guild_${guild_id}`, 0)
   .then(song => song)
   .catch(err => {
@@ -73,7 +73,7 @@ export function getSong(guild_id, callback) {
   });
 }
 
-export function getNextSong(guild_id, callback) {
+export function getNextSong(guild_id) {
   return client.lindexAsync(`guild_${guild_id}`, 1)
   .then(song => song)
   .catch(err => {
@@ -81,7 +81,7 @@ export function getNextSong(guild_id, callback) {
   });
 }
 
-export function getSongs(guild_id, callback) {
+export function getSongs(guild_id) {
   return client.lrangeAsync(`guild_${guild_id}`, 1, 10)
   .then(songs => songs)
   .catch(err => {

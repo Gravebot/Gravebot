@@ -1,14 +1,14 @@
 module.exports = {
-  // *Required* Prefix for commands.
+  // *Required* Bot Prefix, used for triggering commands.
   PREFIX: '!',
   PORT: 5000,
 
-  // *Required* Bot token. Can be found in your bots application page.
-  // https://discordapp.com/developers/applications/me
+  // *Required* Bot Token, used for accessing Discord API.
+  // Can be found here. https://discordapp.com/developers/applications/me
   TOKEN: '',
 
-  // *Required* Bot client ID. Can be found in your bots application page.
-  // https://discordapp.com/developers/applications/me
+  // Bot Client ID, used for displaying a link to invite the bot with `!join`.
+  // Can be found here. https://discordapp.com/developers/applications/me
   CLIENT_ID: '',
 
   // *Required* Redis URL. Can be left blank if Redis is opened locally.
@@ -28,16 +28,16 @@ module.exports = {
   IMGFLIP_PASSWORD: '',
 
   // Champion.gg API key, used for the League of Legends `!lol` commands.
-  // Create a key here. http://api.champion.gg
+  // Get a key here. http://api.champion.gg
   CHAMPIONGG_KEY: '',
 
-  // Riot's API key, used for player and match search commands.
+  // Riot's API key, used for player and match search commands with `!lol`.
   // BE WARNED, a development key will be very limited and most of the time will not work,
   // as there is a lot of requests made in order to complete these data sets.
   RIOT_KEY: '',
 
   // Wolfram Alpha API key, used to query Wolfram Alpha with `!wolfram`.
-  // Apply for a key here. http://products.wolframalpha.com/developers
+  // Get a key here. http://products.wolframalpha.com/developers
   WOLFRAM_KEY: '',
 
   // PasteBin API key, used to create pastes with `!paste`.
@@ -45,7 +45,7 @@ module.exports = {
   PASTEBIN_KEY: '',
 
   // Popkey API key, used for searching GIFs with `!popkey`.
-  // Apply for a key here. http://popkey.co/api/submit
+  // Get a key here. http://popkey.co/api/submit
   POPKEY_KEY: '',
 
   // Random.org API key, used for getting random numbers and strings with `!random`.
