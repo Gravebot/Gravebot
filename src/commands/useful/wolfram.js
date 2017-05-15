@@ -8,7 +8,7 @@ import T from '../../translate';
 
 function queryWolf(wolf, query) {
   return new Promise((resolve, reject) => {
-    wolf.query(query, (err, results) => {
+    wolf.queryCb(query, (err, results) => {
       if (err) return reject(err);
       return resolve(results);
     });
