@@ -25,5 +25,12 @@ export default [
   'The only thing worse than yellow snow is green snow. - *Bob Ross*',
   'There\'s nothing wrong with having a tree as a friend. - *Bob Ross*',
   'We don\'t make mistakes, just happy little accidents. - *Bob Ross*',
-  'When tempted to fight fire with fire, remember that the Fire Department usually uses water.'
+  'When tempted to fight fire with fire, remember that the Fire Department usually uses water.',
+  'Nobody exists on purpose. Nobody belongs anywhere. We\'re all going to die. Come watch TV. - *Morty Smith*',
+  'What about the reality where Hitler cured cancer, Morty? The answer is: Don\'t think about it. - *Rick Sanchez*',
+  'Weddings are basically funerals with cake. - *Rick Sanchez*',
+  'You\'re young, you have your whole life ahead of you, and your anal cavity is still taut yet malleable. - *Rick Sanchez*',
+  'Wubba Lubba Dub Dub - *Rick Sanchez*',
+  'Where are my testicles, Summer? - *Snuffles*',
+  'He\'s not a hot girl. He can\'t just bail on his life and set up shop in someone else\'s. - *Beth Smith*'
 ];
