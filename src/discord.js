@@ -201,9 +201,9 @@ export function start() {
   });
 
   client.Dispatcher.on('DISCONNECTED', err => {
-    logger.warn('Disconnected. Attempting to reconnect in 10 seconds...');
+    logger.warn({message: 'Disconnected. Attempting to reconnect in 20 seconds...', err});
     sentry(err, 'discord');
-    setTimeout(connect, 10000);
+    setTimeout(connect, 20000);
   });
 
   startPortalIntervals(client);
