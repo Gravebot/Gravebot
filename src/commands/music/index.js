@@ -10,10 +10,12 @@ import T from '../../translate';
 function vleave(client, evt, lang) {
   const info = client.VoiceConnections.getForGuild(evt.message.guild);
   if (info) {
-    info.voiceConnection.disconnect();
     delSongs(evt.message.guild.id);
-    delSong(evt.message.guild.id);
+    const encoderStream = info.voiceConnection.getEncoderStream();
+    encoderStream.unpipeAll();
+    info.voiceConnection.disconnect();
   } else {
+    delSongs(evt.message.guild.id);
     return Promise.resolve(T('music_not_connected', lang));
   }
 }
@@ -23,23 +25,14 @@ function timer(client, evt, lang) {
   setTimeout(vleave, 600000, client, evt, lang);
 }
 
-function vjoin(client, evt, suffix, lang) {
-  if (!suffix) {
-    const channel = evt.message.guild.voiceChannels.filter(vc => vc.members.map(m => m.id).indexOf(evt.message.author.id) > -1);
-    if (channel.length > 0) {
-      channel[0].join();
-      timer(client, evt, lang);
-    } else {
-      return Promise.resolve(T('music_not_found', lang));
-    }
+function vjoin(client, evt, lang) {
+  const channel = evt.message.guild.voiceChannels.filter(vc => vc.members.map(m => m.id).indexOf(evt.message.author.id) > -1);
+  console.log(channel);
+  if (channel.length > 0) {
+    channel[0].join();
+    timer(client, evt, lang);
   } else {
-    const channel = evt.message.guild.voiceChannels.find(c => c.name.toLowerCase() === suffix.toLowerCase());
-    if (channel) {
-      channel.join();
-      timer(client, evt, lang);
-    } else {
-      return Promise.resolve(T('music_not_found', lang));
-    }
+    return Promise.resolve(T('music_not_found', lang));
   }
 }
 
@@ -171,14 +164,14 @@ function next(client, evt, lang) {
 
 function queue(client, evt, lang) {
   return getSongs(evt.message.guild.id).then(songs => {
-    if (songs) {
+    if (songs[0]) {
       let msg_array = [];
       R.forEach(song => {
         msg_array.push(`\`${song.title} ${time(song.duration)}\` - ${T('music_requested', lang)} ${song.user}`);
       }, songs);
       return Promise.resolve(msg_array.join('\n'));
     }
-    if (!songs) return Promise.resolve(T('music_queue_empty', lang));
+    if (!songs[0]) return Promise.resolve(T('music_queue_empty', lang));
   });
 }
 
