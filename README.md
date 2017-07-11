@@ -135,38 +135,48 @@ For self hosting, click [here](#localconfig).
 ---
 
 <a name="localconfig" />
-## Local Configuration
-
-Rename `config.js.example` to `config.js` and fill in the required information. Note that only variables with the `*Required*` comment are needed, everything else is optional.
 
 ## Local Installation
 #### Windows:
 **Warning**: Windows may have issues, even if all steps are done, sadly, we are not able to find the right dependencies for it (mostly regarding League of Legends and Wolfram commands), if you are familiar with coding, you can try messing around, either finding the right dependencies, or disabling the commands. If you are not familiar with coding, I would advise you to try out Linux, just install it alongside Windows and give it like 20GB of space, it will be plenty and you will have a good experience. Feel free to ask for help regarding installation in Gravebot's Lair, just keep this in mind.
 
-- Install [node.js](https://nodejs.org/en) v4.8.3
-- Install [python v2.7.3](https://www.python.org) ([32 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.msi), [64 bit](https://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi))
+- Install [Node.js v4.8.3](https://nodejs.org/en)
+- Install [Python v2.7.13](https://www.python.org/downloads)
 - Install [Microsoft Visual Studio C++ Express](http://go.microsoft.com/?linkid=9816758)
 - Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `npm install -g node-gyp`)
 - Install [libxml2](https://www.zlatkovic.com/libxml.en.html) and add it to your PATH (note that this may not work and some extra tinkering may be needed, if you find a better way of installing it, please share it)
-- If you are unable to install it, you may remove the `wolfram-alpha` dependency from `package.json` and delete `wolfram.js` in the `Gravebot/src/commands/useful` folder. That is the only command that uses libxml2.
-- Install and run [redis](http://redis.io/download#installation)
+- If you are unable to install it, you may remove the `wolfram-alpha` dependency line from `package.json` and delete `wolfram.js` in the `Gravebot/src/commands/useful` folder. That is the only command that uses libxml2.
+- Install and run [Redis](http://redis.io/download#installation)
 - Download Gravebot (open the [command prompt](http://windows.microsoft.com/en-us/windows/command-prompt-faq) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
-- Run `npm-install.bat` inside the Gravebot folder to install the Node dependencies
-- Run `launch.bat` inside the Gravebot folder to start the bot
-
-#### Linux:
-- Install [node.js](https://nodejs.org/en) v4.8.3
-- Install [gcc](https://gcc.gnu.org), [git](https://git-scm.com), [libxml2](http://www.xmlsoft.org) and [ffmpeg](https://ffmpeg.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo apt-get install build-essential git libxml2-dev ffmpeg libfontconfig1`)
-- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo npm install -g node-gyp`)
-- Install and run [redis](http://redis.io/download#installation)
-- Download Gravebot (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
+- Rename `config.js.example` to `config.js` in the Gravebot directory and fill in the required information. Note that only variables with the `*Required*` comment are needed, everything else is optional
 - [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the Gravebot directory and run `npm install` to install the Node dependencies
 - Run `npm start` in the Gravebot directory to start the bot
+
+#### Linux:
+- Install [Node.js v4.8.3](https://nodejs.org/en)
+- Install [ffmpeg](https://ffmpeg.org), [gcc](https://gcc.gnu.org), [git](https://git-scm.com), [libxml2](http://www.xmlsoft.org) and [python](https://www.python.org) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo apt-get install build-essential python git libxml2-dev ffmpeg libfontconfig1`)
+- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `sudo npm install -g node-gyp`)
+- Install and run [Redis](http://redis.io/download#installation)
+- Download Gravebot (open the [terminal](http://www.howtogeek.com/140679/beginner-geek-how-to-start-using-the-linux-terminal) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
+- Rename `config.js.example` to `config.js` in the Gravebot directory and fill in the required information. Note that only variables with the `*Required*` comment are needed, everything else is optional
+- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the Gravebot directory and run `npm install` to install the Node dependencies
+- Run `npm start` in the Gravebot directory to start the bot
+
+#### Mac:
+- Install [Node.js v4.8.3](https://nodejs.org/en)
+- Install [Python v2.7.13](https://www.python.org/downloads)
+- Install [node-gyp](https://github.com/nodejs/node-gyp) (open the [terminal](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) and write `sudo npm install -g node-gyp`)
+- Install and run [Redis](http://redis.io/download#installation)
+- Download Gravebot (open the [terminal](http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line) and write `git clone https://github.com/Gravebot/Gravebot.git` or if you don't have/want to use [git](https://git-scm.com/downloads), download the ZIP by clicking the green Download button at the top right of this page)
+- Rename `config.js.example` to `config.js` in the Gravebot directory and fill in the required information. Note that only variables with the `*Required*` comment are needed, everything else is optional
+- [cd](https://en.wikipedia.org/wiki/Cd_%28command%29) to the Gravebot directory and run `npm install` to install the Node dependencies
+- Run `npm start` in the Gravebot directory to start the bot
+
 
 ## Deployment
 #### Heroku
 
-Gravebot comes setup and ready for Heroku.
+Gravebot comes setup and ready for [Heroku](https://www.heroku.com).
 
 1. Setup your configuration in Heroku's app settings, environment variables.
 2. Setup the buildpacks in Heroku's app settings by clicking Add buildpack and selecting NodeJS, as well as adding the following buildpack for music commands `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
