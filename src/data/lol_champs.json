@@ -317,6 +317,12 @@
     "nid": "kayle",
     "image": "kayle.png"
   },
+  "kayn": {
+    "id": "141",
+    "name": "Kayn",
+    "nid": "kayn",
+    "image": "kayn.png"
+  },
   "kennen": {
     "id": "85",
     "name": "Kennen",
@@ -485,6 +491,12 @@
     "nid": "orianna",
     "image": "orianna.png"
   },
+  "ornn": {
+    "id": "516",
+    "name": "Ornn",
+    "nid": "ornn",
+    "image": "ornn.png"
+  },
   "pantheon": {
     "id": "80",
     "name": "Pantheon",
@@ -502,6 +514,12 @@
     "name": "Quinn",
     "nid": "quinn",
     "image": "quinn.png"
+  },
+  "rakan": {
+    "id": "497",
+    "name": "Rakan",
+    "nid": "rakan",
+    "image": "rakan.png"
   },
   "rammus": {
     "id": "33",
@@ -749,6 +767,12 @@
     "nid": "warwick",
     "image": "warwick.png"
   },
+  "xayah": {
+    "id": "498",
+    "name": "Xayah",
+    "nid": "xayah",
+    "image": "xayah.png"
+  },
   "xerath": {
     "id": "101",
     "name": "Xerath",
@@ -796,6 +820,12 @@
     "name": "Zilean",
     "nid": "zilean",
     "image": "zilean.png"
+  },
+  "zoe": {
+    "id": "142",
+    "name": "Zoe",
+    "nid": "zoe",
+    "image": "zoe.png"
   },
   "zyra": {
     "id": "143",
