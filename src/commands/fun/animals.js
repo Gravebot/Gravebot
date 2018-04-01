@@ -16,7 +16,7 @@ function cat(client, evt, suffix) {
   }
 
   const options = {
-    url: 'http://random.cat/meow.php',
+    url: 'http://aws.random.cat/meow',
     json: true
   };
 
@@ -50,7 +50,7 @@ function snake(client, evt, suffix) {
   }
 
   const options = {
-    url: 'http://fur.im/snek/snek.php',
+    url: 'http://fur.im/snek',
     json: true
   };
 
