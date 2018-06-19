@@ -45,7 +45,8 @@
     "url-unshort": "^4.0.0",
     "wikijs": "^3.0.5",
     "wolfram-alpha": "^0.6.0",
-    "youtube-node": "^1.3.0"
+    "youtube-node": "^1.3.0",
+    "snyk": "^1.83.0"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
@@ -93,7 +94,9 @@
     "test-coverage": "npm run lint && TEST=true babel-node node_modules/.bin/babel-istanbul cover --root ./src --include-all-sources true node_modules/.bin/_mocha -- ./tests/index.js",
     "translate": "babel-node ./scripts/translations/translate.js",
     "transifex:review": "babel-node ./scripts/translations/transifex-review.js",
-    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js"
+    "transifex:upload": "npm run transifex:review && npm run lint-json && babel-node ./scripts/translations/transifex-upload.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": "4.8.3",
