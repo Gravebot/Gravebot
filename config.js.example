@@ -5,11 +5,11 @@ module.exports = {
 
   // *Required* Bot token. Can be found in your bots application page.
   // https://discordapp.com/developers/applications/me
-  TOKEN: '',
+  TOKEN: 'NDY0NDc3ODQwNjIwOTEyNjcy.DiATwQ.0DL9V3Lw1GNxHudN4W_h9aV990g',
 
   // *Required* Bot client ID. Can be found in your bots application page.
   // https://discordapp.com/developers/applications/me
-  CLIENT_ID: '',
+  CLIENT_ID: '464477840620912672',
 
   // *Required* Redis URL. Can be left blank if Redis is opened locally.
   // Learn more here. http://redis.io/topics/quickstart
@@ -24,8 +24,8 @@ module.exports = {
 
   // Imgflip username and password, used for creating memes with `!meme`.
   // Create an account here. https://imgflip.com
-  IMGFLIP_USERNAME: '',
-  IMGFLIP_PASSWORD: '',
+  IMGFLIP_USERNAME: 'NewXyz',
+  IMGFLIP_PASSWORD: 'alimunye',
 
   // Champion.gg API key, used for the League of Legends `!lol` commands.
   // Create a key here. http://api.champion.gg
