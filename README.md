@@ -15,7 +15,7 @@ A fantastic, helpful, and fun [Discord](https://discordapp.com) chat and music b
 ## How to use
 #### Invitation
 
-Deprecated, see self [hosting](#localconfig).
+Deprecated, see [here](#localconfig) for self hosting.
 
 ~~The easiest way to set this bot up on your server is to invite it to your Discord server. It is currently hosted 24/7 and will always get the newest features first.~~
 
