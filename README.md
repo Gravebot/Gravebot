@@ -6,6 +6,10 @@
 <a href="https://zenhub.io"><img src="https://img.shields.io/badge/KanBan%20Board-Zenhub.io-blue.svg"></a>
 [![Translations](https://img.shields.io/badge/Translations-Transifex-135d91.svg)](https://www.transifex.com/gravebot/gravebot/)
 [![Discord](https://discordapp.com/api/guilds/128598463947472897/widget.png)](https://discord.gg/0iXEgtjdHgkpdsVr)
+
+
+__Project on hiatus.__ https://dustinblackman.com/posts/2019/05/hiatus-from-open-source/
+
 ## About
 
 A fantastic, helpful, and fun [Discord](https://discordapp.com) chat and music bot! Gravebot comes with a bunch of cool and powerful commands for both Discord and games!
