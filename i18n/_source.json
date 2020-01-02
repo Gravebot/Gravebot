@@ -316,7 +316,7 @@
     "done": true
   },
   "music_not_found": {
-    "text": "Channel not found. Please write the exact name of the voice channel or join it.",
+    "text": "Channel not found, please join the voice channel you wish to invite me to first.",
     "done": true
   },
   "music_queue_added": {

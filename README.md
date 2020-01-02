@@ -35,6 +35,7 @@ Deprecated, see [here](#localconfig) for self hosting.
 - `!help useful` - List of useful commands
 - `!help info` - List of information commands
 - `!help games` - List of game commands
+- `!help music` - List of music commands
 - `!help other` - List of other commands
 - `!help all` - List all available commands in private chat
 - `!memelist` - List of meme names for the `!meme` command
@@ -123,6 +124,17 @@ Deprecated, see [here](#localconfig) for self hosting.
 - `!ow time played` *region battletag* - Heroes most played
 - `!ow weapon accuracy` *region battletag* - Heroes weapon accuracy percentage
 - `!ow win percent` *region battletag* - Heroes with the highest win percentage
+
+### Music:
+- `next` - Shows the song that will play next
+- `pause` - Pauses the playback
+- `playing` - Shows the currently playing song
+- `queue` - Shows the song queue
+- `request` *Youtube URL* - Request a song to be played
+- `resume` - Resumes the playback
+- `skip` - Skips the currently playing song
+- `stop` - Stops the playback, leaves the channel and deletes all songs from the queue
+- `vjoin` *channelname* - Joins the voice channel the user is in, unless a channel name is specified
 
 #### Other:
 - `!ayylmao`

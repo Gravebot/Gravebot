@@ -65,6 +65,43 @@ export function setUserLang(user_id, lang) {
     });
 }
 
+export function getSong(guild_id) {
+  return client.lindexAsync(`guild_${guild_id}`, 0)
+  .then(song => song)
+  .catch(err => {
+    sentry(err, 'getSong');
+  });
+}
+
+export function getNextSong(guild_id) {
+  return client.lindexAsync(`guild_${guild_id}`, 1)
+  .then(song => song)
+  .catch(err => {
+    sentry(err, 'getNextSong');
+  });
+}
+
+export function getSongs(guild_id) {
+  return client.lrangeAsync(`guild_${guild_id}`, 1, 10)
+  .then(songs => songs)
+  .catch(err => {
+    sentry(err, 'getSongs');
+  });
+}
+
+export function delSong(guild_id) {
+  client.lset(`guild_${guild_id}`, 0, '*deleted*');
+  return client.lrem(`guild_${guild_id}`, 1, '*deleted*');
+}
+
+export function delSongs(guild_id) {
+  return client.ltrim(`guild_${guild_id}`, 0, 0);
+}
+
+export function addSong(guild_id, music) {
+  return client.rpush(`guild_${guild_id}`, JSON.stringify(music));
+}
+
 export function getMessageTTL(user_id) {
   return client.getAsync(`ttl_${user_id}`)
     .timeout(2000)

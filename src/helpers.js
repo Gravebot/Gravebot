@@ -17,3 +17,10 @@ export function numberWithCommas(x) {
 export function secondDec(n) {
   return Math.round(n * 100) / 100;
 }
+
+export function time(n) {
+  const hours = n / 3600;
+  const minutes = n / 60;
+  const seconds = n - minutes * 60;
+  return `[${hours > 0 ? hours`:` : ''}${minutes}:${seconds}]`;
+}

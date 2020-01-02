@@ -17,6 +17,7 @@ const permissions = [
   '0x0200000', // Speak
   '0x2000000', // Use Voice Activity
   '0x10000000' // Manage Roles
+
 ];
 
 const permission_value = R.sum(R.map(parseInt, permissions));
